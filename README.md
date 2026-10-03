@@ -2,7 +2,7 @@
 
 Site para consultar possíveis substituições de perfis de alumínio, acessórios e componentes. Você digita o código e ele mostra na hora por qual código dá para trocar.
 
-**Acesse o site:** [munizmoises.github.io/consulta-perfil](https://munizmoises.github.io/consulta-perfil/)
+**Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
 
 ![Tela inicial do Consulta Perfil](assets/img/prints/tela-inicial.png)
 
