@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta Perfil</title>
+  <meta name="description" content="Consulte possíveis substituições de perfis e acessórios do SAP.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="barra-marca"><span class="logo">C</span> Consulta Perfil</div>
+    <h1 class="barra-titulo">Possíveis substituições de perfis e acessórios</h1>
+    <div class="barra-info">
+      <time id="data-hora"></time>
+    </div>
+  </header>
+
+  <main class="painel-grade">
+    <section class="painel" id="painel-perfis">
+      <h2>Perfis</h2>
+      <form class="busca" autocomplete="off">
+        <label for="codigo-perfis">Digite o código do perfil</label>
+        <div class="busca-campos">
+          <input id="codigo-perfis" type="text" placeholder="Ex: CHR004" autocapitalize="characters" spellcheck="false" required>
+          <button type="submit" class="btn btn-principal">Pesquisar</button>
+          <button type="button" class="btn btn-secundario btn-limpar" hidden>Limpar</button>
+        </div>
+      </form>
+      <div class="resultado" aria-live="polite"></div>
+    </section>
+
+    <section class="painel" id="painel-acessorios">
+      <h2>Acessórios</h2>
+      <form class="busca" autocomplete="off">
+        <label for="codigo-acessorios">Digite o código do acessório</label>
+        <div class="busca-campos">
+          <input id="codigo-acessorios" type="text" placeholder="Ex: GUI-004" autocapitalize="characters" spellcheck="false" required>
+          <button type="submit" class="btn btn-principal">Pesquisar</button>
+          <button type="button" class="btn btn-secundario btn-limpar" hidden>Limpar</button>
+        </div>
+      </form>
+      <div class="resultado" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">Versão 1.0.0 · Moisés Muniz</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

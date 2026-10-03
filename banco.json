@@ -1,0 +1,14 @@
+{
+  "perfis": [
+    { "codigo": "CHR004", "substituicao": "CHR120", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
+    { "codigo": "CHR120", "substituicao": "-", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
+    { "codigo": "CHR064", "substituicao": "-", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
+    { "codigo": "VT228", "substituicao": "VT260", "observacao": "Sem observação", "sistema": "Ecoline 2.5" }
+  ],
+  "acessorios": [
+    { "codigo": "GUI-004", "substituicao": "-", "observacao": "Sem observação", "tipo": "PACOTE", "unidade_conversao": "8 PEÇAS" },
+    { "codigo": "GUI-006", "substituicao": "-", "observacao": "GUIA EMBUTIDA", "tipo": "PACOTE", "unidade_conversao": "8 PEÇAS" },
+    { "codigo": "CHRC-024", "substituicao": "CHRC 024", "observacao": "NÃO PRECISA USAR O HÍFEN (-) COLOQUE UM ESPAÇO ENTRE O CHRC E O 024", "tipo": "-", "unidade_conversao": "-" },
+    { "codigo": "NYL-332", "substituicao": "-", "observacao": "Sem observação", "tipo": "PACOTE", "unidade_conversao": "20 PEÇAS" }
+  ]
+}
