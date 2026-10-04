@@ -123,7 +123,7 @@ Acessórios não têm sistema. Os campos `tipo` e `unidade_conversao` são opcio
 
 ## Versão atual
 
-**v1.0.0** — 03/10/2026
+**v1.1.1** — 03/10/2026
 
 ### Adicionado
 - Estrutura inicial do projeto
