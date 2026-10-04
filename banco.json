@@ -1,10 +1,18 @@
 {
   "perfis": [
-    { "codigo": "CHR004", "substituicao": "CHR120", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
+    { "codigo": "PC004", "substituicao": "-", "observacao": "Com reforço", "sistema": "Grandline" },
+    { "codigo": "TG108", "substituicao": "-", "observacao":"Sem reforço", "sistema": "-"},
     { "codigo": "CHR120", "substituicao": "-", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
     { "codigo": "CHR064", "substituicao": "-", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
+    { "codigo": "CHR270", "substituicao": "-", "observacao": "Trilho macarrão pra porta - FOSCO (FO23)", "sistema": "Chroma"},
+    { "codigo": "MP348", "substituicao": "MP347", "observacao": "Sem observação", "sistema": "-"},
+
+
+
+    { "codigo": "CHR004", "substituicao": "CHR120", "observacao": "FOSCO (FO23)", "sistema": "Chroma" },
     { "codigo": "VT228", "substituicao": "VT260", "observacao": "Sem observação", "sistema": "Ecoline 2.5" }
   ],
+  
   "acessorios": [
     { "codigo": "GUI-004", "substituicao": "-", "observacao": "Sem observação", "tipo": "PACOTE", "unidade_conversao": "8 PEÇAS" },
     { "codigo": "GUI-006", "substituicao": "-", "observacao": "GUIA EMBUTIDA", "tipo": "PACOTE", "unidade_conversao": "8 PEÇAS" },
