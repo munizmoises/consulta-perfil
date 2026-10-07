@@ -123,17 +123,16 @@ Acessórios não têm sistema. Os campos `tipo` e `unidade_conversao` são opcio
 
 ## Versão atual
 
-**v1.1.1** — 03/10/2026
+**v1.1.0** — 05/10/2026
 
-### Adicionado
-- Estrutura inicial do projeto
-- Banco de dados em JSON
-- Pesquisa por código
-- Exibição de substituições
+### Adicionado / Corrigido
+- Histórico de pesquisas recentes
+- Atualização automática do horário na barra superior
+- Ajuste de contraste na logo `C` no tema escuro
+- Atualização de registos de perfis e acessórios no `banco.json`
 
 ### Planejado
-- Modo claro
-- Histórico de pesquisas
+- Suporte a alternância para Modo Claro
 - Botão de copiar resultado
 - Login por matrícula
 - Backend com Python e Flask

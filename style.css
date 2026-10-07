@@ -300,3 +300,36 @@ body{
     flex: 1 1 auto;
   }
 }
+/* Histórico */
+.historico {
+  margin-bottom: 1rem;
+}
+
+.historico-titulo {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--suave);
+}
+
+.historico-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.historico-item {
+  padding: 0.25rem 0.7rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--fundo);
+  color: var(--destaque);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.historico-item:hover {
+  background: var(--destaque);
+  color: var(--destaque-texto);
+}
