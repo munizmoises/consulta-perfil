@@ -116,8 +116,8 @@ Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Perfis seguem es
   "nome": "Complemento do Trilho",
   "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
   "sistema": "Chroma",
-  "imagem": "assets/img/fotos/PERFIL/CHROMA/original/CHR004.webp",
-  "imagem_sub": "assets/img/fotos/PERFIL/CHROMA/substituto/CHR120.webp"
+  "imagem": "assets/img/fotos/perfis/chroma/original/CHR004.webp",
+  "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp"
 }
 ```
 
@@ -140,9 +140,8 @@ Acessórios não têm sistema nem imagem (no momento):
 
 ### Novidades
 - Exibição de fotos dos perfis (original e substituto), com fallback para imagem padrão quando não há foto
-- Histórico das últimas 5 pesquisas por painel, salvo no `localStorage`, com pílulas clicáveis
-- Campo `nome` exibido no resultado de perfis e acessórios
-- Relógio atualizando a cada 60 segundos na barra superior
+- Histórico das últimas 5 pesquisas por painel, salvo no `localStorage`.
+- Campo `nome` exibido no resultado de perfis e acessórios.
 
 ### Planejado
 

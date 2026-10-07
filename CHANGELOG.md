@@ -4,7 +4,7 @@
 
 ### 🚀 Adicionado
 - Campo **nome** nos resultados de pesquisa (perfis e acessórios).
-- Histórico das últimas 5 pesquisas por painel guardado via `localStorage` (com pílulas clicáveis).
+- Histórico das últimas 5 pesquisas por painel guardado via `localStorage`.
 - Sistema de imagens para perfis (original e substituto, com suporte a fallback `NO-PHOTO`).
 - Campo `imagem_sub` na estrutura do `banco.json`.
 
