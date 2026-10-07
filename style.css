@@ -301,23 +301,23 @@ body{
   }
 }
 /* Histórico */
-.historico {
+.historico{
   margin-bottom: 1rem;
 }
 
-.historico-titulo {
+.historico-titulo{
   margin: 0 0 0.4rem;
   font-size: 0.8rem;
   color: var(--suave);
 }
 
-.historico-lista {
+.historico-lista{
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.historico-item {
+.historico-item{
   padding: 0.25rem 0.7rem;
   font: inherit;
   font-size: 0.85rem;
@@ -329,7 +329,52 @@ body{
   cursor: pointer;
 }
 
-.historico-item:hover {
+.historico-item:hover{
   background: var(--destaque);
   color: var(--destaque-texto);
+}
+
+/* Imagens do perfil */
+.item-imagens{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.foto-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.foto-perfil{
+  width: 120px;
+  height: 120px;
+  object-fit: cover; 
+  border-radius: 0.5rem; 
+  overflow: hidden; 
+  border: none;
+  background: transparent;
+  padding: 0;
+  
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.foto-perfil:hover{
+  transform: scale(1.15);
+}
+
+.foto-legenda{
+  font-size: 0.75rem;
+  color: var(--suave);
+}
+
+.foto-seta{
+  font-size: 1rem;
+  color: var(--suave);
+  margin-bottom: 1.2rem;
 }

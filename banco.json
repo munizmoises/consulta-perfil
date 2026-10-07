@@ -1,258 +1,2103 @@
 {
   "perfis": [
-    { "codigo": "PU1548", "substituicao": "-", "nome": "Cavalão", "observacao": "Sem observação", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "BC002", "substituicao": "-", "nome": "Barrinha da Grade", "observacao": "Sem observação", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T4072", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T1892", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T0497", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T2211", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T1817", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "T2207", "substituicao": "-", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "DS266", "substituicao": "DS156", "nome": "Sem informação", "observacao": "Sem observação", "sistema": "Sem informação", "imagem": ""},
-    { "codigo": "AR1548", "substituicao": "PU1548", "nome": "Sem informação", "observacao": "Sem observação", "sistema": "Sem informação", "imagem": ""},
+    {
+      "codigo": "PU1548",
+      "substituicao": "-",
+      "nome": "Cavalão",
+      "observacao": "Sem observação",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "BC002",
+      "substituicao": "-",
+      "nome": "Barrinha da Grade",
+      "observacao": "Sem observação",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T4072",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T1892",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T0497",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T2211",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T1817",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T2207",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT) e só vende em 13000",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "DS266",
+      "substituicao": "DS156",
+      "nome": "Sem informação",
+      "observacao": "Sem observação",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "AR1548",
+      "substituicao": "PU1548",
+      "nome": "Sem informação",
+      "observacao": "Sem observação",
+      "sistema": "Sem informação",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "CHR120", "substituicao": "-", "nome": "Complemento do Trilho", "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)", "sistema": "Chroma", "imagem": "assets/img/perfis/CHR120.png"},
-    { "codigo": "CHR064", "substituicao": "-", "nome": "Complemento do Trilho", "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR270", "substituicao": "-", "nome": "Trilho Monovia", "observacao": "Porta de Correr 2 Folhas | A cor somente em FOSCO (FO23)", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "VT867", "substituicao": "CHR096", "nome": "Montante e Travessa da Folha", "observacao": "Porta de Giro", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR004", "substituicao": "CHR120", "nome": "Complemento do Trilho", "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR005", "substituicao": "CHR115", "nome": "Batente / Mata-junta", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR095", "substituicao": "CHR021", "nome": "Marco Inferior 4 Planos", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR001", "substituicao": "CHR121", "nome": "Baguete", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR008", "substituicao": "CHR912", "nome": "Travessa Intermediária para Peitoril 2 Planos", "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR015", "substituicao": "CHR911", "nome": "Marco Superior (Bandeira) e Inferior (Peitoril)", "observacao": "Janela de Correr 3 Folhas com Bandeira", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR020", "substituicao": "CHR021", "nome": "Marco Inferior 4 Planos", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR029", "substituicao": "CHR042", "nome": "Montante Lateral / Central com Reforço", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR045", "substituicao": "CHR100", "nome": "Marco Inferior 2 Planos Persiana", "observacao": "Janela de Correr 2 Folhas com Persiana Integrada", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR049", "substituicao": "CHR121", "nome": "Baguete", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR053", "substituicao": "CHR026", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR054", "substituicao": "CHR026", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR055", "substituicao": "CHR027", "nome": "Montante Central com Engate", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR056", "substituicao": "CHR027", "nome": "Montante Central com Engate", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR057", "substituicao": "CHR028", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR058", "substituicao": "CHR030", "nome": "Travessa Superior / Inferior", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR060", "substituicao": "CHR032", "nome": "Travessa Inferior da Porta", "observacao": "Porta de Correr 1 Folha", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR063", "substituicao": "CHR042", "nome": "Montante Lateral / Central com Reforço", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR091", "substituicao": "CHR033", "nome": "Montante Central com Engate Duplo", "observacao": "Janela de Correr 3 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR099", "substituicao": "CHR003", "nome": "Marco Inferior 2 Planos", "observacao": "Porta de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR109", "substituicao": "CHR042", "nome": "Montante Lateral / Central com Reforço", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR201", "substituicao": "CHR220", "nome": "Folha largura inferior reforçado - Porta", "observacao": "Porta de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR218", "substituicao": "CHR220", "nome": "Folha largura inferior reforçado - Porta", "observacao": "Porta de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR271", "substituicao": "CHR202", "nome": "Travessa", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR704", "substituicao": "CHR713 + ES013", "nome": "Maxim-ar com baguete | Baguete", "observacao": "Janela Maxim-ares | Porta de Giro (A substituição do perfil seria feita com estes dois)", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR881", "substituicao": "CHR713", "nome": "Maxim-ar com baguete", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR883", "substituicao": "CHR885", "nome": "Pingadeira", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR882", "substituicao": "CHR705", "nome": "Perfil de Reversão", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR884", "substituicao": "CHR714", "nome": "Travessa Superior da Folha maxim-ar", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR886", "substituicao": "CHR703", "nome": "Montante com Olhal", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR890", "substituicao": "ES013", "nome": "Baguete", "observacao": "Porta de Giro", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR891", "substituicao": "CHR713", "nome": "Maxim-ar com baguete", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR892", "substituicao": "CHR705", "nome": "Perfil de Reversão", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR893", "substituicao": "CHR706", "nome": "Baguete", "observacao": "Janela de Correr 2 Folhas com Bandeira", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR894", "substituicao": "CHR714", "nome": "Travessa Superior da Folha maxim-ar", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR895", "substituicao": "CHR702", "nome": "Marco Maxim-Ar", "observacao": "Janela de Correr 2 Folhas com Bandeira", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR896", "substituicao": "CHR703", "nome": "Montante com Olhal", "observacao": "Janela Maxim-ares", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR900", "substituicao": "CHR002", "nome": "Marco Inferior 2 Planos", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR901", "substituicao": "CHR031", "nome": "Travessa Intermediária", "observacao": "Porta de Correr 1 Folha", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR902", "substituicao": "CHR014", "nome": "Marco Inferior 3 Planos", "observacao": "Porta de Correr 3 Folhas com Persiana Integrada", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR903", "substituicao": "CHR016", "nome": "Marco Lateral 3 Planos", "observacao": "Janela de Correr 3 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR904", "substituicao": "CHR010", "nome": "Marco Lateral 2 Planos", "observacao": "Janela de Correr 2 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR911", "substituicao": "CHR016", "nome": "Marco Lateral 3 Planos", "observacao": "Janela de Correr 3 Folhas", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "GS034", "substituicao": "CHR038", "nome": "Lambri", "observacao": "Porta de Giro", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "CHR106", "substituicao": "CHR120", "nome": "Complemento do Trilho", "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)", "sistema": "Chroma", "imagem": ""},
-    { "codigo": "DS073", "substituicao": "-", "nome": "Perfil para Tela Mosquiteira", "observacao": "Janela de Correr 3 Folhas", "sistema": "Chroma", "imagem": ""},
+
+    {
+      "codigo": "CHR120",
+      "substituicao": "-",
+      "nome": "Complemento do Trilho",
+      "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+      "sistema": "Chroma",
+      "imagem": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR064",
+      "substituicao": "-",
+      "nome": "Complemento do Trilho",
+      "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+      "sistema": "Chroma",
+      "imagem": "assets/img/fotos/perfis/chroma/substituto/CHR064.webp",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR270",
+      "substituicao": "-",
+      "nome": "Trilho Monovia",
+      "observacao": "Porta de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+      "sistema": "Chroma",
+      "imagem": "assets/img/fotos/perfis/chroma/substituto/CHR270.webp",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT867",
+      "substituicao": "CHR096",
+      "nome": "Montante e Travessa da Folha",
+      "observacao": "Porta de Giro",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR096.webp"
+    },
+    {
+      "codigo": "CHR004",
+      "substituicao": "CHR120",
+      "nome": "Complemento do Trilho",
+      "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp"
+    },
+    {
+      "codigo": "CHR005",
+      "substituicao": "CHR115",
+      "nome": "Batente / Mata-junta",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR115.webp"
+    },
+    {
+      "codigo": "CHR095",
+      "substituicao": "CHR021",
+      "nome": "Marco Inferior 4 Planos",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR021.webp"
+    },
+    {
+      "codigo": "CHR001",
+      "substituicao": "CHR121",
+      "nome": "Baguete",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR121.webp"
+    },
+    {
+      "codigo": "CHR008",
+      "substituicao": "CHR912",
+      "nome": "Travessa Intermediária para Peitoril 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
+      "sistema": "Chroma",
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR008.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR912.webp"
+    },
+    {
+      "codigo": "CHR015",
+      "substituicao": "CHR911",
+      "nome": "Marco Superior (Bandeira) e Inferior (Peitoril)",
+      "observacao": "Janela de Correr 3 Folhas com Bandeira",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR911.webp"
+    },
+    {
+      "codigo": "CHR020",
+      "substituicao": "CHR021",
+      "nome": "Marco Inferior 4 Planos",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Chroma",
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR020.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR021.webp"
+    },
+    {
+      "codigo": "CHR029",
+      "substituicao": "CHR042",
+      "nome": "Montante Lateral / Central com Reforço",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR045",
+      "substituicao": "CHR100",
+      "nome": "Marco Inferior 2 Planos Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR049",
+      "substituicao": "CHR121",
+      "nome": "Baguete",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR053",
+      "substituicao": "CHR026",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR054",
+      "substituicao": "CHR026",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR055",
+      "substituicao": "CHR027",
+      "nome": "Montante Central com Engate",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR056",
+      "substituicao": "CHR027",
+      "nome": "Montante Central com Engate",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR057",
+      "substituicao": "CHR028",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR058",
+      "substituicao": "CHR030",
+      "nome": "Travessa Superior / Inferior",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR060",
+      "substituicao": "CHR032",
+      "nome": "Travessa Inferior da Porta",
+      "observacao": "Porta de Correr 1 Folha",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR063",
+      "substituicao": "CHR042",
+      "nome": "Montante Lateral / Central com Reforço",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR091",
+      "substituicao": "CHR033",
+      "nome": "Montante Central com Engate Duplo",
+      "observacao": "Janela de Correr 3 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR099",
+      "substituicao": "CHR003",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR109",
+      "substituicao": "CHR042",
+      "nome": "Montante Lateral / Central com Reforço",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR201",
+      "substituicao": "CHR220",
+      "nome": "Folha largura inferior reforçado - Porta",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR218",
+      "substituicao": "CHR220",
+      "nome": "Folha largura inferior reforçado - Porta",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR271",
+      "substituicao": "CHR202",
+      "nome": "Travessa",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR704",
+      "substituicao": "CHR713 + ES013",
+      "nome": "Maxim-ar com baguete | Baguete",
+      "observacao": "Janela Maxim-ares | Porta de Giro (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR881",
+      "substituicao": "CHR713",
+      "nome": "Maxim-ar com baguete",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR883",
+      "substituicao": "CHR885",
+      "nome": "Pingadeira",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR882",
+      "substituicao": "CHR705",
+      "nome": "Perfil de Reversão",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR884",
+      "substituicao": "CHR714",
+      "nome": "Travessa Superior da Folha maxim-ar",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR886",
+      "substituicao": "CHR703",
+      "nome": "Montante com Olhal",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR890",
+      "substituicao": "ES013",
+      "nome": "Baguete",
+      "observacao": "Porta de Giro",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR891",
+      "substituicao": "CHR713",
+      "nome": "Maxim-ar com baguete",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR892",
+      "substituicao": "CHR705",
+      "nome": "Perfil de Reversão",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR893",
+      "substituicao": "CHR706",
+      "nome": "Baguete",
+      "observacao": "Janela de Correr 2 Folhas com Bandeira",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR894",
+      "substituicao": "CHR714",
+      "nome": "Travessa Superior da Folha maxim-ar",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR895",
+      "substituicao": "CHR702",
+      "nome": "Marco Maxim-Ar",
+      "observacao": "Janela de Correr 2 Folhas com Bandeira",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR896",
+      "substituicao": "CHR703",
+      "nome": "Montante com Olhal",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR900",
+      "substituicao": "CHR002",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR901",
+      "substituicao": "CHR031",
+      "nome": "Travessa Intermediária",
+      "observacao": "Porta de Correr 1 Folha",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR902",
+      "substituicao": "CHR014",
+      "nome": "Marco Inferior 3 Planos",
+      "observacao": "Porta de Correr 3 Folhas com Persiana Integrada",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR903",
+      "substituicao": "CHR016",
+      "nome": "Marco Lateral 3 Planos",
+      "observacao": "Janela de Correr 3 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR904",
+      "substituicao": "CHR010",
+      "nome": "Marco Lateral 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR911",
+      "substituicao": "CHR016",
+      "nome": "Marco Lateral 3 Planos",
+      "observacao": "Janela de Correr 3 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "GS034",
+      "substituicao": "CHR038",
+      "nome": "Lambri",
+      "observacao": "Porta de Giro",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHR106",
+      "substituicao": "CHR120",
+      "nome": "Complemento do Trilho",
+      "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "DS073",
+      "substituicao": "-",
+      "nome": "Perfil para Tela Mosquiteira",
+      "observacao": "Janela de Correr 3 Folhas",
+      "sistema": "Chroma",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "TG108", "substituicao": "-", "nome": "Tubo Retangular", "observacao": "Tabelado (Sem reforço)", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "MP348", "substituicao": "MP347", "nome": "Arremate", "observacao": "Arremate", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "TQ017", "substituicao": "-", "nome": "Tubo Quadrado - 50X50", "observacao": "Tabelado", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "AL10", "substituicao": "PU344", "nome": "Perfil U", "observacao": "Tabelado", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "AL12", "substituicao": "PU004", "nome": "Perfil U", "observacao": "Tabelado", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CT007", "substituicao": "CT005", "nome": "Cantoneira", "observacao": "Cantoneira", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CT013", "substituicao": "CT016", "nome": "Cantoneira", "observacao": "Cantoneira", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "VZ006", "substituicao": "VZ024", "nome": "Veneziana", "observacao": "Veneziana", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CM200", "substituicao": "-", "nome": "Contramarco", "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT)", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CT016", "substituicao": "-", "nome": "Cantoneira", "observacao": "Cantoneira", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "PU004", "substituicao": "-", "nome": "Perfil U da grade", "observacao": "Tabelado", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "TR004", "substituicao": "-", "nome": "Tubo Redondo (Tubinho da Grade)", "observacao": "Tabelado", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CL006", "substituicao": "-", "nome": "Conexão (Canto/Cantilhão)", "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT) e só vende em 3000", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "CL011", "substituicao": "-", "nome": "Cunha", "observacao": "Contramarco e Conexão | A cor sempre NATURAL (NAT) e só vende em 3000", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "TG072", "substituicao": "-", "nome": "Tubo Retangular", "observacao": "Tabelado | LEVE - 100X50", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "TG019", "substituicao": "-", "nome": "Tubo Retangular", "observacao": "Tabelado | PESADO - 100X50", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "RM005", "substituicao": "MP347", "nome": "Arremate", "observacao": "Arremate", "sistema": "Diversos", "imagem": ""},
-    { "codigo": "ME013", "substituicao": "ME014", "nome": "Arremate para Piso", "observacao": "Arremate", "sistema": "Diversos", "imagem": ""},
+
+    {
+      "codigo": "TG108",
+      "substituicao": "-",
+      "nome": "Tubo Retangular",
+      "observacao": "Tabelado (Sem reforço)",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "MP348",
+      "substituicao": "MP347",
+      "nome": "Arremate",
+      "observacao": "Arremate",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TQ017",
+      "substituicao": "-",
+      "nome": "Tubo Quadrado - 50X50",
+      "observacao": "Tabelado",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "AL10",
+      "substituicao": "PU344",
+      "nome": "Perfil U",
+      "observacao": "Tabelado",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "AL12",
+      "substituicao": "PU004",
+      "nome": "Perfil U",
+      "observacao": "Tabelado",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CT007",
+      "substituicao": "CT005",
+      "nome": "Cantoneira",
+      "observacao": "Cantoneira",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CT013",
+      "substituicao": "CT016",
+      "nome": "Cantoneira",
+      "observacao": "Cantoneira",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VZ006",
+      "substituicao": "VZ024",
+      "nome": "Veneziana",
+      "observacao": "Veneziana",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CM200",
+      "substituicao": "-",
+      "nome": "Contramarco",
+      "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT)",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CT016",
+      "substituicao": "-",
+      "nome": "Cantoneira",
+      "observacao": "Cantoneira",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PU004",
+      "substituicao": "-",
+      "nome": "Perfil U da grade",
+      "observacao": "Tabelado",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TR004",
+      "substituicao": "-",
+      "nome": "Tubo Redondo (Tubinho da Grade)",
+      "observacao": "Tabelado",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CL006",
+      "substituicao": "-",
+      "nome": "Conexão (Canto/Cantilhão)",
+      "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT) e só vende em 3000",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CL011",
+      "substituicao": "-",
+      "nome": "Cunha",
+      "observacao": "Contramarco e Conexão | A cor sempre NATURAL (NAT) e só vende em 3000",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TG072",
+      "substituicao": "-",
+      "nome": "Tubo Retangular",
+      "observacao": "Tabelado | LEVE - 100X50",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TG019",
+      "substituicao": "-",
+      "nome": "Tubo Retangular",
+      "observacao": "Tabelado | PESADO - 100X50",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "RM005",
+      "substituicao": "MP347",
+      "nome": "Arremate",
+      "observacao": "Arremate",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "ME013",
+      "substituicao": "ME014",
+      "nome": "Arremate para Piso",
+      "observacao": "Arremate",
+      "sistema": "Diversos",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "ECO791", "substituicao": "VT869", "nome": "Tampa Interna Persiana", "observacao": "Porta de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT228", "substituicao": "VT260", "nome": "Marco Inferior 2 Planos", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT082", "substituicao": "VT080", "nome": "Travessa Superior da Folha", "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT858", "substituicao": "VT870", "nome": "Marco Superior Persiana", "observacao": "Janela de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT008", "substituicao": "VT302", "nome": "Mata-Junta", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT013", "substituicao": "VT012 + VT302", "nome": "Marco Lateral 3 Planos | Mata-Junta", "observacao": "Janela de Correr 3 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT021", "substituicao": "VT260", "nome": "Marco Inferior 2 Planos", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT040", "substituicao": "VT800", "nome": "Montante Central com Engate", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT041", "substituicao": "VT799", "nome": "Montante Central com Engate", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT043", "substituicao": "VT868 + VT302", "nome": "Montante Lateral / Central | Mata-Junta", "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT044", "substituicao": "VT868", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas (Com aba)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT047", "substituicao": "VT798", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT048", "substituicao": "VT798", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT049", "substituicao": "VT797", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT056", "substituicao": "VT859", "nome": "Montante Central com Engate", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT060", "substituicao": "VT899", "nome": "Montante Lateral / Central com Reforço", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT081", "substituicao": "VT200", "nome": "Montante e Travessa Inferior da Folha", "observacao": "Janela Maxim-ares", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT085", "substituicao": "VT086", "nome": "Coluna com Olhal", "observacao": "Janela Maxim-ares", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT089", "substituicao": "VT080", "nome": "Travessa Superior da Folha", "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT090", "substituicao": "VT900", "nome": "Montante e Travessa Inferior da Folha", "observacao": "Janela Maxim-ares", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT104", "substituicao": "VT102", "nome": "Baguete", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT121", "substituicao": "VT801", "nome": "Marco Superior 4 Planos", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT122", "substituicao": "VT810", "nome": "Trilho Quadruplo com nylon", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT123", "substituicao": "VT803", "nome": "Marco Lateral 4 Planos", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT191", "substituicao": "VT302", "nome": "Mata-Junta", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT192", "substituicao": "VT039 + VT302", "nome": "Montante Lateral / Central | Mata-Junta", "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT228", "substituicao": "VT260", "nome": "Marco Inferior 2 Planos", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT242", "substituicao": "VT797", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT243", "substituicao": "VT798", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT245", "substituicao": "VT868", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas (Com aba)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT250", "substituicao": "VT039", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas | O VT039 ele é MENORZINHO e o VT868 é MAIORZINHO", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT276", "substituicao": "VT083", "nome": "Pingadeira", "observacao": "Janela Maxim-ares", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT280", "substituicao": "VT868", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas (Com aba)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT281", "substituicao": "VT868 + VT302", "nome": "Montante Lateral / Central | Mata-Junta", "observacao": "Janela de Correr 2 Folhas (Com aba) | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT289", "substituicao": "VT797", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT290", "substituicao": "VT798", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT291", "substituicao": "VT302", "nome": "Mata-Junta", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT720", "substituicao": "VT861", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT780", "substituicao": "VT861", "nome": "Montante Central com Engate e Reforço", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT793", "substituicao": "VT006", "nome": "Travessa Intermediária para Peitoril 2 Planos", "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT792", "substituicao": "VT260", "nome": "Marco Inferior 2 Planos", "observacao": "Porta de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT794", "substituicao": "VT230", "nome": "Marco Inferior 3 Planos", "observacao": "Porta de Correr 3 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT795", "substituicao": "VT011", "nome": "Marco Inferior 3 Planos", "observacao": "Janela de Correr 3 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT796", "substituicao": "VT002", "nome": "Marco Inferior 2 Planos", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT802", "substituicao": "VT810", "nome": "Trilho Quadruplo com nylon", "observacao": "Porta de Correr 4 Folhas com 4 Planos", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT804", "substituicao": "VT819", "nome": "Tampa Interna Persiana", "observacao": "Janela de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT805", "substituicao": "VT812", "nome": "Marco Inferior - Persiana", "observacao": "Janela de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT806", "substituicao": "VT091", "nome": "Travessa Superior da Folha", "observacao": "Janela Maxim-ares", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT846", "substituicao": "VT899", "nome": "Montante Lateral / Central com Reforço", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT854", "substituicao": "VT869", "nome": "Tampa Interna Persiana", "observacao": "Porta de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT858", "substituicao": "VT870", "nome": "Marco Superior Persiana", "observacao": "Janela de Correr 2 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT956", "substituicao": "VT957", "nome": "Marco Superior Persiana", "observacao": "Janelas de Correr", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "T1900", "substituicao": "VT1905", "nome": "Marco Superior Persiana", "observacao": "Janela de Correr 3 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT1900", "substituicao": "VT1905", "nome": "Marco Superior Persiana", "observacao": "Janela de Correr 3 Folhas com Persiana Integrada", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT844", "substituicao": "VT868", "nome": "Montante Lateral / Central", "observacao": "Janela de Correr 2 Folhas (Com aba)", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT853", "substituicao": "VT006", "nome": "Travessa Intermediária para Peitoril 2 Planos", "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo", "sistema": "Ecoline 2.5", "imagem": ""},
-    { "codigo": "VT053", "substituicao": "VT186", "nome": "Travessa Superior / Inferior", "observacao": "Janela de Correr 2 Folhas", "sistema": "Ecoline 2.5", "imagem": "" },
+
+    {
+      "codigo": "ECO791",
+      "substituicao": "VT869",
+      "nome": "Tampa Interna Persiana",
+      "observacao": "Porta de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT228",
+      "substituicao": "VT260",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT082",
+      "substituicao": "VT080",
+      "nome": "Travessa Superior da Folha",
+      "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT858",
+      "substituicao": "VT870",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT008",
+      "substituicao": "VT302",
+      "nome": "Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT013",
+      "substituicao": "VT012 + VT302",
+      "nome": "Marco Lateral 3 Planos | Mata-Junta",
+      "observacao": "Janela de Correr 3 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT021",
+      "substituicao": "VT260",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT040",
+      "substituicao": "VT800",
+      "nome": "Montante Central com Engate",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT041",
+      "substituicao": "VT799",
+      "nome": "Montante Central com Engate",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT043",
+      "substituicao": "VT868 + VT302",
+      "nome": "Montante Lateral / Central | Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT044",
+      "substituicao": "VT868",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas (Com aba)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT047",
+      "substituicao": "VT798",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT048",
+      "substituicao": "VT798",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT049",
+      "substituicao": "VT797",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT056",
+      "substituicao": "VT859",
+      "nome": "Montante Central com Engate",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT060",
+      "substituicao": "VT899",
+      "nome": "Montante Lateral / Central com Reforço",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT081",
+      "substituicao": "VT200",
+      "nome": "Montante e Travessa Inferior da Folha",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT085",
+      "substituicao": "VT086",
+      "nome": "Coluna com Olhal",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT089",
+      "substituicao": "VT080",
+      "nome": "Travessa Superior da Folha",
+      "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT090",
+      "substituicao": "VT900",
+      "nome": "Montante e Travessa Inferior da Folha",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT104",
+      "substituicao": "VT102",
+      "nome": "Baguete",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT121",
+      "substituicao": "VT801",
+      "nome": "Marco Superior 4 Planos",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT122",
+      "substituicao": "VT810",
+      "nome": "Trilho Quadruplo com nylon",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT123",
+      "substituicao": "VT803",
+      "nome": "Marco Lateral 4 Planos",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT191",
+      "substituicao": "VT302",
+      "nome": "Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT192",
+      "substituicao": "VT039 + VT302",
+      "nome": "Montante Lateral / Central | Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT228",
+      "substituicao": "VT260",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT242",
+      "substituicao": "VT797",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT243",
+      "substituicao": "VT798",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT245",
+      "substituicao": "VT868",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas (Com aba)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT250",
+      "substituicao": "VT039",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas | O VT039 ele é MENORZINHO e o VT868 é MAIORZINHO",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT276",
+      "substituicao": "VT083",
+      "nome": "Pingadeira",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT280",
+      "substituicao": "VT868",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas (Com aba)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT281",
+      "substituicao": "VT868 + VT302",
+      "nome": "Montante Lateral / Central | Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas (Com aba) | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT289",
+      "substituicao": "VT797",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT290",
+      "substituicao": "VT798",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT291",
+      "substituicao": "VT302",
+      "nome": "Mata-Junta",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT720",
+      "substituicao": "VT861",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT780",
+      "substituicao": "VT861",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT793",
+      "substituicao": "VT006",
+      "nome": "Travessa Intermediária para Peitoril 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT792",
+      "substituicao": "VT260",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Porta de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT794",
+      "substituicao": "VT230",
+      "nome": "Marco Inferior 3 Planos",
+      "observacao": "Porta de Correr 3 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT795",
+      "substituicao": "VT011",
+      "nome": "Marco Inferior 3 Planos",
+      "observacao": "Janela de Correr 3 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT796",
+      "substituicao": "VT002",
+      "nome": "Marco Inferior 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT802",
+      "substituicao": "VT810",
+      "nome": "Trilho Quadruplo com nylon",
+      "observacao": "Porta de Correr 4 Folhas com 4 Planos",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT804",
+      "substituicao": "VT819",
+      "nome": "Tampa Interna Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT805",
+      "substituicao": "VT812",
+      "nome": "Marco Inferior - Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT806",
+      "substituicao": "VT091",
+      "nome": "Travessa Superior da Folha",
+      "observacao": "Janela Maxim-ares",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT846",
+      "substituicao": "VT899",
+      "nome": "Montante Lateral / Central com Reforço",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT854",
+      "substituicao": "VT869",
+      "nome": "Tampa Interna Persiana",
+      "observacao": "Porta de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT858",
+      "substituicao": "VT870",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT956",
+      "substituicao": "VT957",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janelas de Correr",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "T1900",
+      "substituicao": "VT1905",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 3 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT1900",
+      "substituicao": "VT1905",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 3 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT844",
+      "substituicao": "VT868",
+      "nome": "Montante Lateral / Central",
+      "observacao": "Janela de Correr 2 Folhas (Com aba)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT853",
+      "substituicao": "VT006",
+      "nome": "Travessa Intermediária para Peitoril 2 Planos",
+      "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "VT053",
+      "substituicao": "VT186",
+      "nome": "Travessa Superior / Inferior",
+      "observacao": "Janela de Correr 2 Folhas",
+      "sistema": "Ecoline 2.5",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "PS302", "substituicao": "PS303", "nome": "Travessa Intermediária com Presilha Parafusada", "observacao": "Travessa", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS304", "substituicao": "PS303", "nome": "Travessa Intermediária com Presilha Parafusada", "observacao": "Travessa", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS325", "substituicao": "PS403", "nome": "Luva Travessa", "observacao": "Luva", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS341", "substituicao": "PS345", "nome": "Presilha de Fixação Frontal", "observacao": "Presilhas", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS347", "substituicao": "PS345", "nome": "Presilha de Fixação Frontal", "observacao": "Presilhas", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS350", "substituicao": "PS400 + PS413", "nome": "Marco Coluna 180 mm | Perfil Complementar Montante Lateral 180 mm", "observacao": "Marco (A substituição do perfil seria feita com estes dois)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS355", "substituicao": "PS317", "nome": "Marco para coluna 70 mm", "observacao": "Marco (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS354", "substituicao": "PS305", "nome": "Coluna Central 70 mm", "observacao": "Coluna (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS360", "substituicao": "PS361", "nome": "Sem informação", "observacao": "Sem informação", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS364", "substituicao": "PS320", "nome": "Montante da Folha Móvel", "observacao": "Folha", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS365", "substituicao": "PS321", "nome": "Travessa Superior da Folha Móvel", "observacao": "Folha", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS381", "substituicao": "PS340", "nome": "Ancoragem Central 88 mm", "observacao": "Ancoragem", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS317", "substituicao": "-", "nome": "Marco para coluna 70 mm", "observacao": "Marco (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS305", "substituicao": "-", "nome": "Coluna Central 70 mm", "observacao": "Sem observação", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS314", "substituicao": "-", "nome": "Coluna para Canto 90° Interno 70mm", "observacao": "Coluna (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS348", "substituicao": "-", "nome": "Marco para coluna 92 mm", "observacao": "Marco (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS306", "substituicao": "-", "nome": "Coluna Central 92 mm", "observacao": "Coluna (Somente com 6500)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS306", "substituicao": "PS327", "nome": "Luva Montante Central 92 mm", "observacao": "Luva", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS303", "substituicao": "PS403", "nome": "Luva Travessa", "observacao": "Luva", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS351", "substituicao": "-", "nome": "Luva do Marco para Coluna 92 mm", "observacao": "Luva | A cor somente em NATURAL (NAT)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS327", "substituicao": "-", "nome": "Luva Montante Central 92 mm", "observacao": "Luva | A cor somente em NATURAL (NAT)", "sistema": "Ecostick", "imagem": ""},
-    { "codigo": "PS367", "substituicao": "PS421", "nome": "Sem informação", "observacao": "A cor somente em NATURAL (NAT)", "sistema": "Ecostick", "imagem": ""},
+
+    {
+      "codigo": "PS302",
+      "substituicao": "PS303",
+      "nome": "Travessa Intermediária com Presilha Parafusada",
+      "observacao": "Travessa",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS304",
+      "substituicao": "PS303",
+      "nome": "Travessa Intermediária com Presilha Parafusada",
+      "observacao": "Travessa",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS325",
+      "substituicao": "PS403",
+      "nome": "Luva Travessa",
+      "observacao": "Luva",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS341",
+      "substituicao": "PS345",
+      "nome": "Presilha de Fixação Frontal",
+      "observacao": "Presilhas",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS347",
+      "substituicao": "PS345",
+      "nome": "Presilha de Fixação Frontal",
+      "observacao": "Presilhas",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS350",
+      "substituicao": "PS400 + PS413",
+      "nome": "Marco Coluna 180 mm | Perfil Complementar Montante Lateral 180 mm",
+      "observacao": "Marco (A substituição do perfil seria feita com estes dois)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS355",
+      "substituicao": "PS317",
+      "nome": "Marco para coluna 70 mm",
+      "observacao": "Marco (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS354",
+      "substituicao": "PS305",
+      "nome": "Coluna Central 70 mm",
+      "observacao": "Coluna (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS360",
+      "substituicao": "PS361",
+      "nome": "Sem informação",
+      "observacao": "Sem informação",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS364",
+      "substituicao": "PS320",
+      "nome": "Montante da Folha Móvel",
+      "observacao": "Folha",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS365",
+      "substituicao": "PS321",
+      "nome": "Travessa Superior da Folha Móvel",
+      "observacao": "Folha",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS381",
+      "substituicao": "PS340",
+      "nome": "Ancoragem Central 88 mm",
+      "observacao": "Ancoragem",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS317",
+      "substituicao": "-",
+      "nome": "Marco para coluna 70 mm",
+      "observacao": "Marco (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS305",
+      "substituicao": "-",
+      "nome": "Coluna Central 70 mm",
+      "observacao": "Sem observação",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS314",
+      "substituicao": "-",
+      "nome": "Coluna para Canto 90° Interno 70mm",
+      "observacao": "Coluna (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS348",
+      "substituicao": "-",
+      "nome": "Marco para coluna 92 mm",
+      "observacao": "Marco (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS306",
+      "substituicao": "-",
+      "nome": "Coluna Central 92 mm",
+      "observacao": "Coluna (Somente com 6500)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS306",
+      "substituicao": "PS327",
+      "nome": "Luva Montante Central 92 mm",
+      "observacao": "Luva",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS303",
+      "substituicao": "PS403",
+      "nome": "Luva Travessa",
+      "observacao": "Luva",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS351",
+      "substituicao": "-",
+      "nome": "Luva do Marco para Coluna 92 mm",
+      "observacao": "Luva | A cor somente em NATURAL (NAT)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS327",
+      "substituicao": "-",
+      "nome": "Luva Montante Central 92 mm",
+      "observacao": "Luva | A cor somente em NATURAL (NAT)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "PS367",
+      "substituicao": "PS421",
+      "nome": "Sem informação",
+      "observacao": "A cor somente em NATURAL (NAT)",
+      "sistema": "Ecostick",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "PC004", "substituicao": "-", "nome": "Folha", "observacao": "Portões (Com reforço)", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG201", "substituicao": "-", "nome": "Castanha", "observacao": "Guarda-Corpo | A cor somente em NATURAL (NAT)", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG202", "substituicao": "CG272", "nome": "Corrimão", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "TG203", "substituicao": "CG246", "nome": "Montante", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG222", "substituicao": "CG246", "nome": "Montante", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG245", "substituicao": "CG272", "nome": "Corrimão", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "TG001", "substituicao": "CG021", "nome": "Barrote", "observacao": "Guarda-Corpo | Substituir somente quando a cor for PRETO (PR000PE)", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG245", "substituicao": "CG272", "nome": "Corrimão", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG202", "substituicao": "CG272", "nome": "Corrimão", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG206", "substituicao": "CG246", "nome": "Montante", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CHUR4033", "substituicao": "-", "nome": "Chumbador", "observacao": "Guarda-Corpo | É somente na 1005 e a cor é somente em NATURAL (NAT)", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG205", "substituicao": "CG204", "nome": "Porta Vidro", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG076", "substituicao": "CG204", "nome": "Porta Vidro", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG072", "substituicao": "CG272", "nome": "Corrimão", "observacao": "Guarda-Corpo", "sistema": "Grandline", "imagem": ""},
-    { "codigo": "CG260", "substituicao": "-", "nome": "Corrimão", "observacao": "Guarda-Corpo | Perfil de Corrimão", "sistema": "Grandline", "imagem": ""},
+
+    {
+      "codigo": "PC004",
+      "substituicao": "-",
+      "nome": "Folha",
+      "observacao": "Portões (Com reforço)",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG201",
+      "substituicao": "-",
+      "nome": "Castanha",
+      "observacao": "Guarda-Corpo | A cor somente em NATURAL (NAT)",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG202",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TG203",
+      "substituicao": "CG246",
+      "nome": "Montante",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG222",
+      "substituicao": "CG246",
+      "nome": "Montante",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG245",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "TG001",
+      "substituicao": "CG021",
+      "nome": "Barrote",
+      "observacao": "Guarda-Corpo | Substituir somente quando a cor for PRETO (PR000PE)",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG245",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG202",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG206",
+      "substituicao": "CG246",
+      "nome": "Montante",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CHUR4033",
+      "substituicao": "-",
+      "nome": "Chumbador",
+      "observacao": "Guarda-Corpo | É somente na 1005 e a cor é somente em NATURAL (NAT)",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG205",
+      "substituicao": "CG204",
+      "nome": "Porta Vidro",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG076",
+      "substituicao": "CG204",
+      "nome": "Porta Vidro",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG072",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "CG260",
+      "substituicao": "-",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo | Perfil de Corrimão",
+      "sistema": "Grandline",
+      "imagem": "",
+      "imagem_sub": ""
+    },
 
 
-    { "codigo": "25510", "substituicao": "25514", "nome": "Marco", "observacao": "Sem observação", "sistema": "Linha 25", "imagem": ""},
-    { "codigo": "25517", "substituicao": "25514", "nome": "Marco", "observacao": "Sem observação", "sistema": "Linha 25", "imagem": ""},
-    { "codigo": "VT111", "substituicao": "25542 + BG001", "nome": "Folha | Baguete", "observacao": "A substituição do perfil seria feita com estes dois", "sistema": "Linha 25 / Diversos", "imagem": ""},
-    { "codigo": "VT279", "substituicao": "25540", "nome": "Marco", "observacao": "Sem observação", "sistema": "Linha 25", "imagem": ""},
-    { "codigo": "VT479", "substituicao": "25540", "nome": "Marco", "observacao": "Sem observação", "sistema": "Linha 25", "imagem": ""},
-    { "codigo": "VT227", "substituicao": "25508", "nome": "Travessa", "observacao": "Sem observação", "sistema": "Linha 25", "imagem": ""}
+
+    {
+      "codigo": "25510",
+      "substituicao": "25514",
+      "nome": "Marco",
+      "observacao": "Sem observação",
+      "sistema": "Linha 25",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25514.webp"
+    },
+    {
+      "codigo": "25517",
+      "substituicao": "25514",
+      "nome": "Marco",
+      "observacao": "Sem observação",
+      "sistema": "Linha 25",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25514.webp"
+    },
+    {
+      "codigo": "VT111",
+      "substituicao": "25542 + BG001",
+      "nome": "Folha | Baguete",
+      "observacao": "A substituição do perfil seria feita com estes dois",
+      "sistema": "Linha 25 / Diversos",
+      "imagem": "assets/img/fotos/perfis/linha25/original/VT111.webp",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25542.webp"
+    },
+    {
+      "codigo": "VT279",
+      "substituicao": "25540",
+      "nome": "Marco",
+      "observacao": "Sem observação",
+      "sistema": "Linha 25",
+      "imagem": "assets/img/fotos/perfis/linha25/original/VT279.webp",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25540.webp"
+    },
+    {
+      "codigo": "VT479",
+      "substituicao": "25540",
+      "nome": "Marco",
+      "observacao": "Sem observação",
+      "sistema": "Linha 25",
+      "imagem": "",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25540.webp"
+    },
+    {
+      "codigo": "VT227",
+      "substituicao": "25508",
+      "nome": "Travessa",
+      "observacao": "Sem observação",
+      "sistema": "Linha 25",
+      "imagem": "assets/img/fotos/perfis/linha25/original/VT227.webp",
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25508.webp"
+    }
   ],
-  
   "acessorios": [
-    { "codigo": "GUI-004", "substituicao": "-", "nome": "Guia Deslizante 21 mm", "observacao": "Guia Deslizante Vedação", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-026", "substituicao": "GUI-S026", "nome": "Guia e Vedação do Montante sem Baguete - Square", "observacao": "Guia Deslizante Chroma", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-29", "substituicao": "GUI-026", "nome": "Sem informação", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-006", "substituicao": "-", "nome": "Guia Deslizante 24 mm", "observacao": "Guia Embutida", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-007", "substituicao": "-", "nome": "Guia Deslizante 32 mm", "observacao": "Guia Embutida", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-S026", "substituicao": "-", "nome": "Guia e Vedação do Montante sem Baguete - Square", "observacao": "Guia Deslizante Chroma", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "GUI-S028", "substituicao": "-", "nome": "Guia Deslizante - Minimalista - Square", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "4 PEÇAS", "imagem": ""},
-
-
-    { "codigo": "NYL-332", "substituicao": "-", "nome": "Sem informação", "observacao": "Guia Deslizante", "tipo": "PACOTE (PAC)", "unidade_conversao": "20 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-395", "substituicao": "-", "nome": "Sem informação", "observacao": "Caixa Dreno", "tipo": "PACOTE (PAC)", "unidade_conversao": "10 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-335", "substituicao": "-", "nome": "Vedação Superior", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "20 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-329", "substituicao": "VED-025", "nome": "Caixa de Dreno", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "10 PEÇAS", "imagem": ""},
-    { "codigo": "SD-2507", "substituicao": "VED-025", "nome": "Caixa de Dreno", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "10 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-414", "substituicao": "-", "nome": "Batedeira", "observacao": "Batedeira Folha de Correr", "tipo": "PACOTE (PAC)", "unidade_conversao": "20 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-398", "substituicao": "-", "nome": "Batedeira", "observacao": "Batedeira Trilho", "tipo": "PACOTE (PAC)", "unidade_conversao": "10 PEÇAS", "imagem": ""},
-    { "codigo": "NYL-394", "substituicao": "-", "nome": "Calço da Folha Fixa", "observacao": "Sem observação", "tipo": "PACOTE (PAC)", "unidade_conversao": "20 PEÇAS", "imagem": ""},
-
-
-    { "codigo": "GUA-438", "substituicao": "SPHG-013", "nome": "Guarnição em EPDM", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-330", "substituicao": "GUA-768", "nome": "Guarnição em EPDM", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-10", "substituicao": "GUA-051", "nome": "Guarnição Cunha 3X12", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-157", "substituicao": "-", "nome": "Espuma Adesiva PVC 11 x 6 mm", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "10M", "imagem": ""},
-    { "codigo": "GUA-172", "substituicao": "-", "nome": "Espuma Adesiva PVC 11 x 2 mm", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "10M", "imagem": ""},
-    { "codigo": "GUA-239", "substituicao": "-", "nome": "Guarnição em EPDM", "observacao": "Guarnição Marco Maxim AR", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-282", "substituicao": "-", "nome": "Sem informação", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "10M", "imagem": ""},
-    { "codigo": "GUA-517", "substituicao": "GUA-115", "nome": "Guarnição em Silicone", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-518", "substituicao": "-", "nome": "Guarnição em EPDM", "observacao": "Guarnição EXT Vidro 8 a 10 mm", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-519", "substituicao": "GUA-778", "nome": "Guarnição em EPDM", "observacao": "Guarnição INT Vidro 10 mm CHROMA", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-168", "substituicao": "GUA-768", "nome": "Guarnição em EPDM", "observacao": "Guarnição Vidro 17 mm", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-117", "substituicao": "GUA-115", "nome": "Guarnição em Silicone", "observacao": "Sem observação", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-768", "substituicao": "GUA-768", "nome": "Guarnição em EPDM", "observacao": "Guarnição Vidro 17 mm", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-    { "codigo": "GUA-006", "substituicao": "-", "nome": "Guarnição em EPDM", "observacao": "Borracha Tela Mosquiteiro", "tipo": "ROLO (RL)", "unidade_conversao": "50M", "imagem": ""},
-
-
-    { "codigo": "ROL-468", "substituicao": "-", "nome": "Roldana com Regul. e Rolamento para Janela", "observacao": "40kg por folha", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "ROL-439", "substituicao": "-", "nome": "Roldana com Regulagem e rolamento para Porta", "observacao": "Roldana Dupla (80kg por folha)", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "ROL-440", "substituicao": "-", "nome": "Roldana com Regulagem e rolamento para Porta", "observacao": "Roldana Simples (40kg por folha)", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "CHRC-018", "substituicao": "-", "nome": "Roldana Dupla Pedra", "observacao": "200 kg por folha", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-
-
-    { "codigo": "CHRC-024", "substituicao": "CHRC 024", "nome": "Conexão de Alumínio Pivos 355X102", "observacao": "Não é necessário colocar o HÍFEN, coloque um espaço entre o CHRC E O 024", "tipo": "PACOTE (PAC)", "unidade_conversao": "8 PEÇAS", "imagem": ""},
-    { "codigo": "CHRC-041", "substituicao": "CHRC-048", "nome": "Sem informação", "observacao": "STOPPER", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "BRA-400", "substituicao": "BRA-704", "nome": "Braço para folha maxim-ar", "observacao": "8kg por folha", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "FECHO CONCHA", "substituicao": "FEC-7411", "nome": "Fecho Concha Slide c/ Parafuso 158mm", "observacao": "Sem observação", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "CON-450", "substituicao": "CON-7311", "nome": "Concha Cega 158mm c/ Parafuso", "observacao": "Sem observação", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "PAR-428", "substituicao": "1715416NT", "nome": "Parafuso Ponta Guia Cabeça Panela Fenda Philips 4,8 x 32 mm", "observacao": "Sem observação", "tipo": "CONJUNTO / KIT (CT)", "unidade_conversao": "100 PEÇAS", "imagem": ""},
-    { "codigo": "BRA-900", "substituicao": "BRA-950", "nome": "Braço para folha maxim-ar", "observacao": "Deslizante", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "CX17", "substituicao": "-", "nome": "Sem informação", "observacao": "CX17 para todos os códigos BRA- (BRA-950 , BRA-600 , BRA-350)", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "CHU-804", "substituicao": "CHU-PER01", "nome": "Chumbador para Contramarco", "observacao": "Pode ser colocado como ZINCADO", "tipo": "CONJUNTO / KIT (CT)", "unidade_conversao": "100 PEÇAS", "imagem": ""},
-    { "codigo": "CHU-120", "substituicao": "CHU-PER01", "nome": "Chumbador para Contramarco", "observacao": "Pode ser colocado como ZINCADO", "tipo": "CONJUNTO / KIT (CT)", "unidade_conversao": "100 PEÇAS", "imagem": ""},
-    { "codigo": "FEC-1045", "substituicao": "FEC-7411", "nome": "Fecho Concha Slide c/ Parafuso 158mm", "observacao": "Sem observação", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "FEC-1038", "substituicao": "FEC-7411", "nome": "Fecho Concha Slide c/ Parafuso 158mm", "observacao": "Sem observação", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "TETRA", "substituicao": "FEC-1900", "nome": "Fecho Unha para Porta de Giro", "observacao": "Rosetas", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "BICO DE PAPAGAIO", "substituicao": "CON-386", "nome": "Contra Testa para Porta de Giro", "observacao": "Contra testa para fechadura bico de papagaio", "tipo": "PARES (PAR)", "unidade_conversao": "2 PEÇAS", "imagem": ""},
-    { "codigo": "Cantilhão e Cunha", "substituicao": "1715390NT", "nome": "Sem informação", "observacao": "Cantilhão e Cunha", "tipo": "PACOTE (PAC)", "unidade_conversao": "10KG", "imagem": ""},
-    { "codigo": "Contra fecho", "substituicao": "CFEC-389", "nome": "Contra Fecho", "observacao": "Contra fecho", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "Lingueta", "substituicao": "TRA-011", "nome": "Lingueta para Fecho Concha", "observacao": "Lingueta", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "BÚZIO", "substituicao": "FRA-090 ou FRA-603", "nome": "Sem informação", "observacao": "Fechadura Portão Búzio de Correr (FRA-090) e de abrir (FRA-603)", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "Fechadura Papagaio", "substituicao": "FRA-902", "nome": "Sem informação", "observacao": "Fechadura Papagaio", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""},
-    { "codigo": "CHRC-004", "substituicao": "-", "nome": "Trava da Folha Fixa", "observacao": "Contar como unidade", "tipo": "PEÇA (PEÇ)", "unidade_conversao": "-", "imagem": ""}
+    {
+      "codigo": "GUI-004",
+      "substituicao": "-",
+      "nome": "Guia Deslizante 21 mm",
+      "observacao": "Guia Deslizante Vedação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-026",
+      "substituicao": "GUI-S026",
+      "nome": "Guia e Vedação do Montante sem Baguete - Square",
+      "observacao": "Guia Deslizante Chroma",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-29",
+      "substituicao": "GUI-026",
+      "nome": "Sem informação",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-006",
+      "substituicao": "-",
+      "nome": "Guia Deslizante 24 mm",
+      "observacao": "Guia Embutida",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-007",
+      "substituicao": "-",
+      "nome": "Guia Deslizante 32 mm",
+      "observacao": "Guia Embutida",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-S026",
+      "substituicao": "-",
+      "nome": "Guia e Vedação do Montante sem Baguete - Square",
+      "observacao": "Guia Deslizante Chroma",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUI-S028",
+      "substituicao": "-",
+      "nome": "Guia Deslizante - Minimalista - Square",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "4 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-332",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "Guia Deslizante",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "20 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-395",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "Caixa Dreno",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "10 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-335",
+      "substituicao": "-",
+      "nome": "Vedação Superior",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "20 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-329",
+      "substituicao": "VED-025",
+      "nome": "Caixa de Dreno",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "10 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "SD-2507",
+      "substituicao": "VED-025",
+      "nome": "Caixa de Dreno",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "10 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-414",
+      "substituicao": "-",
+      "nome": "Batedeira",
+      "observacao": "Batedeira Folha de Correr",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "20 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-398",
+      "substituicao": "-",
+      "nome": "Batedeira",
+      "observacao": "Batedeira Trilho",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "10 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "NYL-394",
+      "substituicao": "-",
+      "nome": "Calço da Folha Fixa",
+      "observacao": "Sem observação",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "20 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-438",
+      "substituicao": "SPHG-013",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-330",
+      "substituicao": "GUA-768",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-10",
+      "substituicao": "GUA-051",
+      "nome": "Guarnição Cunha 3X12",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-157",
+      "substituicao": "-",
+      "nome": "Espuma Adesiva PVC 11 x 6 mm",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "10M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-172",
+      "substituicao": "-",
+      "nome": "Espuma Adesiva PVC 11 x 2 mm",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "10M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-239",
+      "substituicao": "-",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição Marco Maxim AR",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-282",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "10M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-517",
+      "substituicao": "GUA-115",
+      "nome": "Guarnição em Silicone",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-518",
+      "substituicao": "-",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição EXT Vidro 8 a 10 mm",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-519",
+      "substituicao": "GUA-778",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição INT Vidro 10 mm CHROMA",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-168",
+      "substituicao": "GUA-768",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição Vidro 17 mm",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-117",
+      "substituicao": "GUA-115",
+      "nome": "Guarnição em Silicone",
+      "observacao": "Sem observação",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-768",
+      "substituicao": "GUA-768",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição Vidro 17 mm",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "GUA-006",
+      "substituicao": "-",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Borracha Tela Mosquiteiro",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": ""
+    },
+    {
+      "codigo": "ROL-468",
+      "substituicao": "-",
+      "nome": "Roldana com Regul. e Rolamento para Janela",
+      "observacao": "40kg por folha",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "ROL-439",
+      "substituicao": "-",
+      "nome": "Roldana com Regulagem e rolamento para Porta",
+      "observacao": "Roldana Dupla (80kg por folha)",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "ROL-440",
+      "substituicao": "-",
+      "nome": "Roldana com Regulagem e rolamento para Porta",
+      "observacao": "Roldana Simples (40kg por folha)",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHRC-018",
+      "substituicao": "-",
+      "nome": "Roldana Dupla Pedra",
+      "observacao": "200 kg por folha",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHRC-024",
+      "substituicao": "CHRC 024",
+      "nome": "Conexão de Alumínio Pivos 355X102",
+      "observacao": "Não é necessário colocar o HÍFEN, coloque um espaço entre o CHRC E O 024",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHRC-041",
+      "substituicao": "CHRC-048",
+      "nome": "Sem informação",
+      "observacao": "STOPPER",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "BRA-400",
+      "substituicao": "BRA-704",
+      "nome": "Braço para folha maxim-ar",
+      "observacao": "8kg por folha",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "FECHO CONCHA",
+      "substituicao": "FEC-7411",
+      "nome": "Fecho Concha Slide c/ Parafuso 158mm",
+      "observacao": "Sem observação",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "CON-450",
+      "substituicao": "CON-7311",
+      "nome": "Concha Cega 158mm c/ Parafuso",
+      "observacao": "Sem observação",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "PAR-428",
+      "substituicao": "1715416NT",
+      "nome": "Parafuso Ponta Guia Cabeça Panela Fenda Philips 4,8 x 32 mm",
+      "observacao": "Sem observação",
+      "tipo": "CONJUNTO / KIT (CT)",
+      "unidade_conversao": "100 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "BRA-900",
+      "substituicao": "BRA-950",
+      "nome": "Braço para folha maxim-ar",
+      "observacao": "Deslizante",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "CX17",
+      "substituicao": "-",
+      "nome": "Sem informação",
+      "observacao": "CX17 para todos os códigos BRA- (BRA-950 , BRA-600 , BRA-350)",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHU-804",
+      "substituicao": "CHU-PER01",
+      "nome": "Chumbador para Contramarco",
+      "observacao": "Pode ser colocado como ZINCADO",
+      "tipo": "CONJUNTO / KIT (CT)",
+      "unidade_conversao": "100 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHU-120",
+      "substituicao": "CHU-PER01",
+      "nome": "Chumbador para Contramarco",
+      "observacao": "Pode ser colocado como ZINCADO",
+      "tipo": "CONJUNTO / KIT (CT)",
+      "unidade_conversao": "100 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "FEC-1045",
+      "substituicao": "FEC-7411",
+      "nome": "Fecho Concha Slide c/ Parafuso 158mm",
+      "observacao": "Sem observação",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "FEC-1038",
+      "substituicao": "FEC-7411",
+      "nome": "Fecho Concha Slide c/ Parafuso 158mm",
+      "observacao": "Sem observação",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "TETRA",
+      "substituicao": "FEC-1900",
+      "nome": "Fecho Unha para Porta de Giro",
+      "observacao": "Rosetas",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "BICO DE PAPAGAIO",
+      "substituicao": "CON-386",
+      "nome": "Contra Testa para Porta de Giro",
+      "observacao": "Contra testa para fechadura bico de papagaio",
+      "tipo": "PARES (PAR)",
+      "unidade_conversao": "2 PEÇAS",
+      "imagem": ""
+    },
+    {
+      "codigo": "Cantilhão e Cunha",
+      "substituicao": "1715390NT",
+      "nome": "Sem informação",
+      "observacao": "Cantilhão e Cunha",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "10KG",
+      "imagem": ""
+    },
+    {
+      "codigo": "Contra fecho",
+      "substituicao": "CFEC-389",
+      "nome": "Contra Fecho",
+      "observacao": "Contra fecho",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "Lingueta",
+      "substituicao": "TRA-011",
+      "nome": "Lingueta para Fecho Concha",
+      "observacao": "Lingueta",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "BÚZIO",
+      "substituicao": "FRA-090 ou FRA-603",
+      "nome": "Sem informação",
+      "observacao": "Fechadura Portão Búzio de Correr (FRA-090) e de abrir (FRA-603)",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "Fechadura Papagaio",
+      "substituicao": "FRA-902",
+      "nome": "Sem informação",
+      "observacao": "Fechadura Papagaio",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    },
+    {
+      "codigo": "CHRC-004",
+      "substituicao": "-",
+      "nome": "Trava da Folha Fixa",
+      "observacao": "Contar como unidade",
+      "tipo": "PEÇA (PEÇ)",
+      "unidade_conversao": "-",
+      "imagem": ""
+    }
   ]
 }

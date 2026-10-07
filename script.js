@@ -1,15 +1,19 @@
-// Consulta Perfil v1.1.0
+// Consulta Perfil
+
+const versao_atual = '1.2.0';
+
+document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
 const CAMPOS_PERFIS = [
-  ["nome", "Nome"],
   ["substituicao", "Substituição", true],
+  ["nome", "Nome"],
   ["observacao", "Observação"],
   ["sistema", "Sistema"],
 ];
 
 const CAMPOS_ACESSORIOS = [
-  ["nome", "Nome"],
   ["substituicao", "Substituição", true],
+  ["nome", "Nome"],
   ["observacao", "Observação"],
   ["tipo", "Tipo"],
   ["unidade_conversao", "Unidade de conversão"],
@@ -18,6 +22,7 @@ const CAMPOS_ACESSORIOS = [
 const HISTORICO_MAX = 5;
 const HISTORICO_KEY_PERFIS = "historico_perfis";
 const HISTORICO_KEY_ACESSORIOS = "historico_acessorios";
+const NO_PHOTO = "assets/img/fotos/NO-PHOTO.webp";
 
 let banco = { perfis: [], acessorios: [] };
 
@@ -32,13 +37,10 @@ function criar(tag, classe, texto) {
   return el;
 }
 
-// ── Histórico ──────────────────────────────────────────────
-function lerHistorico(chave) {
-  try {
-    return JSON.parse(localStorage.getItem(chave)) || [];
-  } catch {
-    return [];
-  }
+// Histórico
+function lerHistorico(chave){
+  try { return JSON.parse(localStorage.getItem(chave)) || []; }
+  catch { return []; }
 }
 
 function salvarHistorico(chave, codigo) {
@@ -58,9 +60,7 @@ function renderizarHistorico(chave, campo, resultado) {
   const bloco = document.createElement("div");
   bloco.id = "historico-" + chave;
   bloco.className = "historico";
-
-  const titulo = criar("p", "historico-titulo", "Recentes:");
-  bloco.appendChild(titulo);
+  bloco.appendChild(criar("p", "historico-titulo", "Pesquisas recentes:"));
 
   const lista = document.createElement("div");
   lista.className = "historico-lista";
@@ -76,17 +76,51 @@ function renderizarHistorico(chave, campo, resultado) {
   });
 
   bloco.appendChild(lista);
-
-  // Inserir antes do resultado
   resultado.parentNode.insertBefore(bloco, resultado);
 }
 
-// ── Montar resultado ────────────────────────────────────────
-function montarItem(item, campos) {
+// Imagens
+function montarImagens(item){
+  if (!("imagem" in item)) return null;
+
+  const bloco = criar("div", "item-imagens");
+
+  const criarFoto = (src, legenda) => {
+    const wrap = criar("div", "foto-wrap");
+    const img = document.createElement("img");
+    img.className = "foto-perfil";
+    img.alt = legenda;
+    img.loading = "lazy";
+    img.onerror = () => { img.src = NO_PHOTO; };
+    img.src = src && src.trim() !== "" ? src : NO_PHOTO;
+    const leg = criar("span", "foto-legenda", legenda);
+    wrap.appendChild(img);
+    wrap.appendChild(leg);
+    return wrap;
+  };
+
+  bloco.appendChild(criarFoto(item.imagem, item.codigo));
+
+// Só mostra substituto se houver substituição diferente de "-"
+  if (item.imagem_sub && item.substituicao && item.substituicao !== "-") {
+    const seta = criar("i", "fa-solid fa-arrow-right foto-seta"); 
+    bloco.appendChild(seta);
+    bloco.appendChild(criarFoto(item.imagem_sub, item.substituicao));
+  }
+
+  return bloco;
+}
+
+// Montar resultado
+function montarItem(item, campos){
   const bloco = criar("article", "item");
+
+  // Imagens (só perfis)
+  const imgs = montarImagens(item);
+  if (imgs) bloco.appendChild(imgs);
+
   const lista = criar("dl");
   campos.forEach(([chave, rotulo, destaque]) => {
-    if (!item[chave] || item[chave] === "-" && chave === "nome") return;
     if (!item[chave]) return;
     lista.appendChild(criar("dt", "", rotulo));
     lista.appendChild(criar("dd", destaque ? "destaque" : "", item[chave]));
@@ -95,15 +129,14 @@ function montarItem(item, campos) {
   return bloco;
 }
 
-// ── Configurar painel ───────────────────────────────────────
-function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
+// Configurar painel
+function configurarPainel(idPainel, chaveLista, campos, chaveHistorico){
   const painel = document.getElementById(idPainel);
   const form = painel.querySelector("form");
   const campo = painel.querySelector("input");
   const limpar = painel.querySelector(".btn-limpar");
   const resultado = painel.querySelector(".resultado");
 
-  // Renderiza histórico ao abrir
   renderizarHistorico(chaveHistorico, campo, resultado);
 
   form.addEventListener("submit", (e) => {
@@ -137,8 +170,8 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
   });
 }
 
-// ── Relógio ─────────────────────────────────────────────────
-function atualizarRelogio() {
+// Relógio
+function atualizarRelogio(){
   const agora = new Date();
   document.getElementById("data-hora").textContent =
     agora.toLocaleDateString("pt-BR") +
@@ -146,8 +179,7 @@ function atualizarRelogio() {
     agora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 }
 
-// ── Iniciar ──────────────────────────────────────────────────
-async function iniciar() {
+async function iniciar(){
   atualizarRelogio();
   setInterval(atualizarRelogio, 60000);
 

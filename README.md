@@ -8,7 +8,7 @@ Site para consultar possíveis substituições de perfis de alumínio, acessóri
 
 ## Por que eu fiz?
 
-Trabalho com vendas e lido todo dia com perfis de alumínio. São muitos itens e muitos códigos, e ninguém consegue lembrar tudo de cabeça. Quando um perfil não está disponível, era preciso procurar num bloco de notas qual outro serviria no lugar.
+Trabalho com vendas na Perfil Alumínio do Brasil e lido todo dia com perfis de alumínio. São muitos itens e muitos códigos, e ninguém consegue lembrar tudo de cabeça. Quando um perfil não está disponível, era preciso procurar num bloco de notas qual outro serviria no lugar.
 
 Eu já tinha montado uma planilha de Excel para isso com PROCX, e ela ajudou bastante. O problema é que, com vários usuários na mesma planilha online, todo mundo acabava mexendo nas mesmas células ao mesmo tempo.
 
@@ -25,11 +25,14 @@ Ao pesquisar um código, o resultado mostra:
 
 **Perfis**
 - **Substituição:** o código que pode ser usado no lugar
+- **Nome:** o nome do perfil
 - **Observação:** detalhes importantes, como acabamento ou cor
 - **Sistema:** a linha de perfis a que o item pertence
+- **Imagem:** foto do perfil original e do substituto
 
 **Acessórios**
 - **Substituição:** o código que pode ser usado no lugar
+- **Nome:** o nome do acessório
 - **Observação:** detalhes importantes
 - **Tipo** e **Unidade de conversão:** só aparecem quando o item tem essas informações
 
@@ -41,7 +44,8 @@ Exemplo de perfil:
 Código: CHR004
 
 Substituição: CHR120
-Observação:   FOSCO (FO23)
+Nome:         Complemento do Trilho
+Observação:   Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)
 Sistema:      Chroma
 ```
 
@@ -51,8 +55,9 @@ Exemplo de acessório:
 Código: GUI-004
 
 Substituição: -
-Observação:   Sem observação
-Tipo:         PACOTE
+Nome:         Guia Deslizante 21 mm
+Observação:   Guia Deslizante Vedação
+Tipo:         PACOTE (PAC)
 Und. conv.:   8 PEÇAS
 ```
 
@@ -70,7 +75,7 @@ Quando a página abre, o JavaScript carrega o `banco.json` e procura o código d
 
 ## Tecnologias
 
-**v1.0**
+**Atual**
 - HTML
 - CSS
 - JavaScript
@@ -90,9 +95,13 @@ consulta-perfil/
 ├── banco.json
 ├── assets/
 │   ├── fonts/
-│   ├── icons/
-│   └── img/
-├── README.md
+│   ├── img/
+│   │   ├── fotos/
+│   │   │   ├── PERFIL/
+│   │   │   ├── ACESSORIOS/
+│   │   │   └── NO-PHOTO.webp
+│   │   └── prints/
+└── README.md
 └── CHANGELOG.md
 ```
 
@@ -104,41 +113,67 @@ Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Perfis seguem es
 {
   "codigo": "CHR004",
   "substituicao": "CHR120",
-  "observacao": "FOSCO (FO23)",
-  "sistema": "Chroma"
+  "nome": "Complemento do Trilho",
+  "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+  "sistema": "Chroma",
+  "imagem": "assets/img/fotos/PERFIL/CHROMA/original/CHR004.webp",
+  "imagem_sub": "assets/img/fotos/PERFIL/CHROMA/substituto/CHR120.webp"
 }
 ```
 
-Acessórios não têm sistema. Os campos `tipo` e `unidade_conversao` são opcionais e só precisam ser incluídos nos itens que tiverem essas informações:
+Acessórios não têm sistema nem imagem (no momento):
 
 ```json
 {
   "codigo": "GUI-004",
   "substituicao": "-",
-  "observacao": "Sem observação",
-  "tipo": "PACOTE",
+  "nome": "Guia Deslizante 21 mm",
+  "observacao": "Guia Deslizante Vedação",
+  "tipo": "PACOTE (PAC)",
   "unidade_conversao": "8 PEÇAS"
 }
 ```
 
-## Versão atual
+## Versão Atual
 
-**v1.1.0** — 05/10/2026
+**v1.2.0** — 07/10/2026
 
-### Adicionado / Corrigido
-- Histórico de pesquisas recentes
-- Atualização automática do horário na barra superior
-- Ajuste de contraste na logo `C` no tema escuro
-- Atualização de registos de perfis e acessórios no `banco.json`
+### Novidades
+- Exibição de fotos dos perfis (original e substituto), com fallback para imagem padrão quando não há foto
+- Histórico das últimas 5 pesquisas por painel, salvo no `localStorage`, com pílulas clicáveis
+- Campo `nome` exibido no resultado de perfis e acessórios
+- Relógio atualizando a cada 60 segundos na barra superior
 
 ### Planejado
-- Suporte a alternância para Modo Claro
-- Botão de copiar resultado
-- Login por matrícula
-- Backend com Python e Flask
-- Portal administrativo
 
-O histórico completo está no [CHANGELOG](CHANGELOG.md).
+**Fase 1 — Essenciais**
+- [ ] Autocomplete com sugestões ao digitar
+- [ ] Copiar resultado formatado com 1 clique
+- [ ] Busca automática ao preencher o código exato
+- [x] Botões de pesquisar e limpar
+
+**Fase 2 — Refinamento & UI**
+- [x] Campo inteligente que ignora maiúsculas, espaços e hífens
+- [ ] Alternância para Modo Claro
+- [ ] Tags visuais no card (badges coloridos por sistema, acabamento, etc.)
+
+**Fase 3 — Persistência Local**
+- [x] Histórico das 5 últimas pesquisas
+- [ ] Contador total de consultas realizadas
+- [ ] Lista de favoritos com estrela
+- [ ] Top consultas (ranking dos mais pesquisados)
+
+**Fase 4 — Compartilhamento**
+- [ ] Link compartilhável (ex: `?codigo=CHR120`)
+- [ ] Exportação de relatório em texto e PDF
+- [ ] Painel de status (total de perfis, acessórios, data de atualização e versão)
+
+**Fase 5 — Futuro**
+- [ ] Login por matrícula
+- [ ] Backend com Python e Flask
+- [ ] Portal administrativo
+
+> Histórico completo no [CHANGELOG](CHANGELOG.md).
 
 ## Autor
 
