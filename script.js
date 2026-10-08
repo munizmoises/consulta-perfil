@@ -1,6 +1,4 @@
-// Consulta Perfil
-
-const versao_atual = '1.2.0';
+const versao_atual = '1.2.2';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
@@ -27,7 +25,7 @@ const NO_PHOTO = "assets/img/fotos/NO-PHOTO.webp";
 let banco = { perfis: [], acessorios: [] };
 
 function normalizar(texto) {
-  return texto.trim().toUpperCase().replace(/[\s\-]+/g, "");
+  return texto.trim().toUpperCase().replace(/[\s\-*]+/g, "");
 }
 
 function criar(tag, classe, texto) {
@@ -155,7 +153,7 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico){
       return;
     }
 
-    salvarHistorico(chaveHistorico, campo.value.trim().toUpperCase());
+    salvarHistorico(chaveHistorico, normalizar(campo.value));
     renderizarHistorico(chaveHistorico, campo, resultado);
 
     resultado.appendChild(criar("span", "status ok", "Código encontrado"));
