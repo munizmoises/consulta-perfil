@@ -1,6 +1,6 @@
 # Consulta Perfil
 
-Site para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil](https://perfilaluminio.com.br). Você digita o código e ele mostra na hora por qual código dá para trocar.
+Site para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição.
 
 **Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
 
@@ -136,7 +136,7 @@ Acessórios não têm sistema nem imagem (no momento):
 
 ## Versão Atual
 
-**v1.3.0** — 08/10/2026
+**v1.4.0** — 08/10/2026
 
 ### Planejado
 
