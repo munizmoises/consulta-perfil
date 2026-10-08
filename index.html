@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta Perfil</title>
-  <meta name="description" content="Consulte possíveis substituições de perfis e acessórios da Perfil Alumínio do Brasil.">
+  <meta name="description" content="Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da Perfil Alumínio do Brasil.">
+  <meta property="og:title" content="Consulta Perfil - Perfil Alumínio do Brasil">
+  <meta property="og:description" content="Consulte substituições de perfis de alumínio, acessórios e componentes de forma rápida.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://munizmoises.github.io/consulta-perfil/">
+
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -36,7 +41,7 @@
     <section class="painel" id="painel-acessorios">
       <h2>Acessórios</h2>
       <form class="busca" autocomplete="off">
-        <label for="codigo-acessorios">Digite o código do acessório</label>
+        <label for="codigo-acessorios">Digite o código do acessório/componente</label>
         <div class="busca-campos">
           <input id="codigo-acessorios" type="text" placeholder="Ex: GUI-004" autocapitalize="characters" spellcheck="false" required>
           <button type="submit" class="btn btn-principal">Pesquisar</button>
@@ -50,5 +55,6 @@
   <footer class="rodape">Versão <span class="versao_atual"></span> · Moisés Muniz</footer>
 
   <script src="script.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
