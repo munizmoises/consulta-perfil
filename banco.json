@@ -78,7 +78,7 @@
       "nome": "Sem informação",
       "observacao": "Sem observação",
       "sistema": "Sem informação",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/chroma/original/DS266.webp",
       "imagem_sub": ""
     },
     {
@@ -117,7 +117,16 @@
       "nome": "Trilho Monovia",
       "observacao": "Porta de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
       "sistema": "Chroma",
-      "imagem": "assets/img/fotos/perfis/chroma/substituto/CHR270.webp",
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR270.webp",
+      "imagem_sub": ""
+    },
+    {
+      "codigo": "ERS004",
+      "substituicao": "-",
+      "nome": "Complemento do Trilho",
+      "observacao": "Janela e Porta de Correr | A cor somente em FOSCO (FO23)",
+      "sistema": "Erus",
+      "imagem": "assets/img/fotos/perfis/chroma/original/ERS004.webp",
       "imagem_sub": ""
     },
     {
@@ -199,7 +208,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR042.webp"
     },
     {
       "codigo": "CHR045",
@@ -208,7 +217,7 @@
       "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR100.webp"
     },
     {
       "codigo": "CHR049",
@@ -217,7 +226,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR121.webp"
     },
     {
       "codigo": "CHR053",
@@ -226,7 +235,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR026.webp"
     },
     {
       "codigo": "CHR054",
@@ -235,7 +244,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR026.webp"
     },
     {
       "codigo": "CHR055",
@@ -244,7 +253,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR027.webp"
     },
     {
       "codigo": "CHR056",
@@ -253,7 +262,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR027.webp"
     },
     {
       "codigo": "CHR057",
@@ -262,7 +271,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR028.webp"
     },
     {
       "codigo": "CHR058",
@@ -271,7 +280,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR030.webp"
     },
     {
       "codigo": "CHR060",
@@ -280,7 +289,7 @@
       "observacao": "Porta de Correr 1 Folha",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR032.webp"
     },
     {
       "codigo": "CHR063",
@@ -289,7 +298,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR042.webp"
     },
     {
       "codigo": "CHR091",
@@ -298,7 +307,7 @@
       "observacao": "Janela de Correr 3 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR033.webp"
     },
     {
       "codigo": "CHR099",
@@ -307,7 +316,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR003.webp"
     },
     {
       "codigo": "CHR109",
@@ -315,8 +324,8 @@
       "nome": "Montante Lateral / Central com Reforço",
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR109.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR042.webp"
     },
     {
       "codigo": "CHR201",
@@ -325,7 +334,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR220.jpg"
     },
     {
       "codigo": "CHR218",
@@ -333,8 +342,8 @@
       "nome": "Folha largura inferior reforçado - Porta",
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR218.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR220.jpg"
     },
     {
       "codigo": "CHR271",
@@ -342,8 +351,8 @@
       "nome": "Travessa",
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR271.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR202.webp"
     },
     {
       "codigo": "CHR704",
@@ -351,7 +360,7 @@
       "nome": "Maxim-ar com baguete | Baguete",
       "observacao": "Janela Maxim-ares | Porta de Giro (A substituição do perfil seria feita com estes dois)",
       "sistema": "Chroma",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR704.webp",
       "imagem_sub": ""
     },
     {
@@ -361,7 +370,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR713.webp"
     },
     {
       "codigo": "CHR883",
@@ -370,7 +379,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR885.webp"
     },
     {
       "codigo": "CHR882",
@@ -379,7 +388,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR705.webp"
     },
     {
       "codigo": "CHR884",
@@ -388,7 +397,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR714.jpg"
     },
     {
       "codigo": "CHR886",
@@ -397,7 +406,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR703.webp"
     },
     {
       "codigo": "CHR890",
@@ -415,7 +424,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR713.webp"
     },
     {
       "codigo": "CHR892",
@@ -424,7 +433,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR705.webp"
     },
     {
       "codigo": "CHR893",
@@ -433,7 +442,7 @@
       "observacao": "Janela de Correr 2 Folhas com Bandeira",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR706.webp"
     },
     {
       "codigo": "CHR894",
@@ -442,7 +451,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR714.jpg"
     },
     {
       "codigo": "CHR895",
@@ -451,7 +460,7 @@
       "observacao": "Janela de Correr 2 Folhas com Bandeira",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR702.jpg"
     },
     {
       "codigo": "CHR896",
@@ -460,7 +469,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR703.webp"
     },
     {
       "codigo": "CHR900",
@@ -468,8 +477,8 @@
       "nome": "Marco Inferior 2 Planos",
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR900.jpg",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR002.webp"
     },
     {
       "codigo": "CHR901",
@@ -478,7 +487,7 @@
       "observacao": "Porta de Correr 1 Folha",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR031.webp"
     },
     {
       "codigo": "CHR902",
@@ -486,8 +495,8 @@
       "nome": "Marco Inferior 3 Planos",
       "observacao": "Porta de Correr 3 Folhas com Persiana Integrada",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR902.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR014.webp"
     },
     {
       "codigo": "CHR903",
@@ -496,7 +505,7 @@
       "observacao": "Janela de Correr 3 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR016.webp"
     },
     {
       "codigo": "CHR904",
@@ -505,7 +514,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR010.webp"
     },
     {
       "codigo": "CHR911",
@@ -513,8 +522,8 @@
       "nome": "Marco Lateral 3 Planos",
       "observacao": "Janela de Correr 3 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/chroma/original/CHR911.webp",
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR016.webp"
     },
     {
       "codigo": "GS034",
@@ -523,7 +532,7 @@
       "observacao": "Porta de Giro",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR038.webp"
     },
     {
       "codigo": "CHR106",
@@ -532,7 +541,7 @@
       "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
       "sistema": "Chroma",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp"
     },
     {
       "codigo": "DS073",
@@ -540,7 +549,7 @@
       "nome": "Perfil para Tela Mosquiteira",
       "observacao": "Janela de Correr 3 Folhas",
       "sistema": "Chroma",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/chroma/original/DS073.webp",
       "imagem_sub": ""
     },
 
@@ -552,7 +561,7 @@
       "nome": "Tubo Retangular",
       "observacao": "Tabelado (Sem reforço)",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/TG108.webp",
       "imagem_sub": ""
     },
     {
@@ -561,8 +570,8 @@
       "nome": "Arremate",
       "observacao": "Arremate",
       "sistema": "Diversos",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/diversos/original/MP348.webp",
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/MP347.webp"
     },
     {
       "codigo": "TQ017",
@@ -570,7 +579,7 @@
       "nome": "Tubo Quadrado - 50X50",
       "observacao": "Tabelado",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/TQ017.webp",
       "imagem_sub": ""
     },
     {
@@ -580,7 +589,7 @@
       "observacao": "Tabelado",
       "sistema": "Diversos",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/PU344.webp"
     },
     {
       "codigo": "AL12",
@@ -597,8 +606,8 @@
       "nome": "Cantoneira",
       "observacao": "Cantoneira",
       "sistema": "Diversos",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/diversos/original/CT007.webp",
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/CT005.webp"
     },
     {
       "codigo": "CT013",
@@ -607,7 +616,7 @@
       "observacao": "Cantoneira",
       "sistema": "Diversos",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/CT016.webp"
     },
     {
       "codigo": "VZ006",
@@ -616,7 +625,7 @@
       "observacao": "Veneziana",
       "sistema": "Diversos",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/VZ024.webp"
     },
     {
       "codigo": "CM200",
@@ -624,7 +633,7 @@
       "nome": "Contramarco",
       "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT)",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/CM200.webp",
       "imagem_sub": ""
     },
     {
@@ -633,7 +642,7 @@
       "nome": "Cantoneira",
       "observacao": "Cantoneira",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/substituto/CT016.webp",
       "imagem_sub": ""
     },
     {
@@ -642,7 +651,7 @@
       "nome": "Perfil U da grade",
       "observacao": "Tabelado",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/PU004.webp",
       "imagem_sub": ""
     },
     {
@@ -651,7 +660,7 @@
       "nome": "Tubo Redondo (Tubinho da Grade)",
       "observacao": "Tabelado",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/TR004.webp",
       "imagem_sub": ""
     },
     {
@@ -660,7 +669,7 @@
       "nome": "Conexão (Canto/Cantilhão)",
       "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT) e só vende em 3000",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/CL006.webp",
       "imagem_sub": ""
     },
     {
@@ -669,7 +678,7 @@
       "nome": "Cunha",
       "observacao": "Contramarco e Conexão | A cor sempre NATURAL (NAT) e só vende em 3000",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/CL011.webp",
       "imagem_sub": ""
     },
     {
@@ -678,7 +687,7 @@
       "nome": "Tubo Retangular",
       "observacao": "Tabelado | LEVE - 100X50",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/TG072.webp",
       "imagem_sub": ""
     },
     {
@@ -687,7 +696,7 @@
       "nome": "Tubo Retangular",
       "observacao": "Tabelado | PESADO - 100X50",
       "sistema": "Diversos",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/diversos/original/TG019.webp",
       "imagem_sub": ""
     },
     {
@@ -697,7 +706,7 @@
       "observacao": "Arremate",
       "sistema": "Diversos",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/MP347.webp"
     },
     {
       "codigo": "ME013",
@@ -706,7 +715,7 @@
       "observacao": "Arremate",
       "sistema": "Diversos",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/diversos/substituto/ME014.webp"
     },
 
 
@@ -718,7 +727,7 @@
       "observacao": "Porta de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT869.webp"
     },
     {
       "codigo": "VT228",
@@ -726,8 +735,8 @@
       "nome": "Marco Inferior 2 Planos",
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT228.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT260.webp"
     },
     {
       "codigo": "VT082",
@@ -735,8 +744,8 @@
       "nome": "Travessa Superior da Folha",
       "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT082.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT080.webp"
     },
     {
       "codigo": "VT858",
@@ -745,7 +754,7 @@
       "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT870.webp"
     },
     {
       "codigo": "VT008",
@@ -754,7 +763,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT013",
@@ -762,7 +771,7 @@
       "nome": "Marco Lateral 3 Planos | Mata-Junta",
       "observacao": "Janela de Correr 3 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT013.webp",
       "imagem_sub": ""
     },
     {
@@ -772,7 +781,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT260.webp"
     },
     {
       "codigo": "VT040",
@@ -781,7 +790,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT800.webp"
     },
     {
       "codigo": "VT041",
@@ -790,7 +799,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT799.webp"
     },
     {
       "codigo": "VT043",
@@ -808,7 +817,7 @@
       "observacao": "Janela de Correr 2 Folhas (Com aba)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp"
     },
     {
       "codigo": "VT047",
@@ -817,7 +826,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT798.webp"
     },
     {
       "codigo": "VT048",
@@ -826,7 +835,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT798.webp"
     },
     {
       "codigo": "VT049",
@@ -835,7 +844,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT797.webp"
     },
     {
       "codigo": "VT056",
@@ -844,7 +853,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT859.webp"
     },
     {
       "codigo": "VT060",
@@ -853,7 +862,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT899.webp"
     },
     {
       "codigo": "VT081",
@@ -861,8 +870,8 @@
       "nome": "Montante e Travessa Inferior da Folha",
       "observacao": "Janela Maxim-ares",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT081.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT200.webp"
     },
     {
       "codigo": "VT085",
@@ -871,7 +880,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT086.webp"
     },
     {
       "codigo": "VT089",
@@ -880,7 +889,7 @@
       "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT080.webp"
     },
     {
       "codigo": "VT090",
@@ -889,7 +898,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT900.webp"
     },
     {
       "codigo": "VT104",
@@ -898,7 +907,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT102.webp"
     },
     {
       "codigo": "VT121",
@@ -907,7 +916,7 @@
       "observacao": "Porta de Correr 4 Folhas com 4 Planos",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT801.webp"
     },
     {
       "codigo": "VT122",
@@ -916,7 +925,7 @@
       "observacao": "Porta de Correr 4 Folhas com 4 Planos",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT810.webp"
     },
     {
       "codigo": "VT123",
@@ -925,7 +934,7 @@
       "observacao": "Porta de Correr 4 Folhas com 4 Planos",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT803.webp"
     },
     {
       "codigo": "VT191",
@@ -934,7 +943,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT192",
@@ -951,8 +960,8 @@
       "nome": "Marco Inferior 2 Planos",
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT228.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT260.webp"
     },
     {
       "codigo": "VT242",
@@ -961,7 +970,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT797.webp"
     },
     {
       "codigo": "VT243",
@@ -970,7 +979,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT798.webp"
     },
     {
       "codigo": "VT245",
@@ -979,7 +988,7 @@
       "observacao": "Janela de Correr 2 Folhas (Com aba)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp"
     },
     {
       "codigo": "VT250",
@@ -988,7 +997,7 @@
       "observacao": "Janela de Correr 2 Folhas | O VT039 ele é MENORZINHO e o VT868 é MAIORZINHO",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT039.webp"
     },
     {
       "codigo": "VT276",
@@ -997,7 +1006,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT083.webp"
     },
     {
       "codigo": "VT280",
@@ -1006,7 +1015,7 @@
       "observacao": "Janela de Correr 2 Folhas (Com aba)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp"
     },
     {
       "codigo": "VT281",
@@ -1024,7 +1033,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT797.webp"
     },
     {
       "codigo": "VT290",
@@ -1033,7 +1042,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT798.webp"
     },
     {
       "codigo": "VT291",
@@ -1042,7 +1051,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT720",
@@ -1050,8 +1059,8 @@
       "nome": "Montante Central com Engate e Reforço",
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT720.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT861.webp"
     },
     {
       "codigo": "VT780",
@@ -1060,7 +1069,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT861.webp"
     },
     {
       "codigo": "VT793",
@@ -1069,7 +1078,7 @@
       "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT006.webp"
     },
     {
       "codigo": "VT792",
@@ -1078,7 +1087,7 @@
       "observacao": "Porta de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT260.webp"
     },
     {
       "codigo": "VT794",
@@ -1087,7 +1096,7 @@
       "observacao": "Porta de Correr 3 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT230.webp"
     },
     {
       "codigo": "VT795",
@@ -1096,7 +1105,7 @@
       "observacao": "Janela de Correr 3 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT011.webp"
     },
     {
       "codigo": "VT796",
@@ -1104,8 +1113,8 @@
       "nome": "Marco Inferior 2 Planos",
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT796.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT002.webp"
     },
     {
       "codigo": "VT802",
@@ -1113,8 +1122,8 @@
       "nome": "Trilho Quadruplo com nylon",
       "observacao": "Porta de Correr 4 Folhas com 4 Planos",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT802.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT810.webp"
     },
     {
       "codigo": "VT804",
@@ -1123,7 +1132,7 @@
       "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT819.webp"
     },
     {
       "codigo": "VT805",
@@ -1131,8 +1140,8 @@
       "nome": "Marco Inferior - Persiana",
       "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT805.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT812.webp"
     },
     {
       "codigo": "VT806",
@@ -1141,7 +1150,7 @@
       "observacao": "Janela Maxim-ares",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT091.webp"
     },
     {
       "codigo": "VT846",
@@ -1150,7 +1159,7 @@
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT899.webp"
     },
     {
       "codigo": "VT854",
@@ -1159,16 +1168,7 @@
       "observacao": "Porta de Correr 2 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
-    },
-    {
-      "codigo": "VT858",
-      "substituicao": "VT870",
-      "nome": "Marco Superior Persiana",
-      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
-      "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT869.webp"
     },
     {
       "codigo": "VT956",
@@ -1177,7 +1177,7 @@
       "observacao": "Janelas de Correr",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT957.webp"
     },
     {
       "codigo": "T1900",
@@ -1186,7 +1186,7 @@
       "observacao": "Janela de Correr 3 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT1905.webp"
     },
     {
       "codigo": "VT1900",
@@ -1195,7 +1195,7 @@
       "observacao": "Janela de Correr 3 Folhas com Persiana Integrada",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT1905.webp"
     },
     {
       "codigo": "VT844",
@@ -1203,8 +1203,8 @@
       "nome": "Montante Lateral / Central",
       "observacao": "Janela de Correr 2 Folhas (Com aba)",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT844.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp"
     },
     {
       "codigo": "VT853",
@@ -1212,8 +1212,8 @@
       "nome": "Travessa Intermediária para Peitoril 2 Planos",
       "observacao": "Janela de Correr 2 Folhas com Peitoril Fixo",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT853.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT006.webp"
     },
     {
       "codigo": "VT053",
@@ -1221,8 +1221,8 @@
       "nome": "Travessa Superior / Inferior",
       "observacao": "Janela de Correr 2 Folhas",
       "sistema": "Ecoline 2.5",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT053.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT186.webp"
     },
 
 
@@ -1234,7 +1234,7 @@
       "observacao": "Travessa",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS303.webp"
     },
     {
       "codigo": "PS304",
@@ -1243,7 +1243,7 @@
       "observacao": "Travessa",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS303.webp"
     },
     {
       "codigo": "PS325",
@@ -1252,7 +1252,7 @@
       "observacao": "Luva",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS403.webp"
     },
     {
       "codigo": "PS341",
@@ -1261,7 +1261,7 @@
       "observacao": "Presilhas",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS345.webp"
     },
     {
       "codigo": "PS347",
@@ -1287,8 +1287,8 @@
       "nome": "Marco para coluna 70 mm",
       "observacao": "Marco (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS355.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS317.webp"
     },
     {
       "codigo": "PS354",
@@ -1296,8 +1296,8 @@
       "nome": "Coluna Central 70 mm",
       "observacao": "Coluna (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS354.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS305.webp"
     },
     {
       "codigo": "PS360",
@@ -1315,7 +1315,7 @@
       "observacao": "Folha",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS320.webp"
     },
     {
       "codigo": "PS365",
@@ -1324,7 +1324,7 @@
       "observacao": "Folha",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS321.webp"
     },
     {
       "codigo": "PS381",
@@ -1333,7 +1333,7 @@
       "observacao": "Ancoragem",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS340.webp"
     },
     {
       "codigo": "PS317",
@@ -1341,7 +1341,7 @@
       "nome": "Marco para coluna 70 mm",
       "observacao": "Marco (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/substituto/PS317.webp",
       "imagem_sub": ""
     },
     {
@@ -1350,7 +1350,7 @@
       "nome": "Coluna Central 70 mm",
       "observacao": "Sem observação",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/substituto/PS305.webp",
       "imagem_sub": ""
     },
     {
@@ -1359,7 +1359,7 @@
       "nome": "Coluna para Canto 90° Interno 70mm",
       "observacao": "Coluna (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/substituto/PS314.webp",
       "imagem_sub": ""
     },
     {
@@ -1368,7 +1368,7 @@
       "nome": "Marco para coluna 92 mm",
       "observacao": "Marco (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS348.webp",
       "imagem_sub": ""
     },
     {
@@ -1377,7 +1377,7 @@
       "nome": "Coluna Central 92 mm",
       "observacao": "Coluna (Somente com 6500)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS306.webp",
       "imagem_sub": ""
     },
     {
@@ -1386,8 +1386,8 @@
       "nome": "Luva Montante Central 92 mm",
       "observacao": "Luva",
       "sistema": "Ecostick",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS306.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS327.webp"
     },
     {
       "codigo": "PS303",
@@ -1395,8 +1395,8 @@
       "nome": "Luva Travessa",
       "observacao": "Luva",
       "sistema": "Ecostick",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/ecostick/substituto/PS303.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS403.webp"
     },
     {
       "codigo": "PS351",
@@ -1404,7 +1404,7 @@
       "nome": "Luva do Marco para Coluna 92 mm",
       "observacao": "Luva | A cor somente em NATURAL (NAT)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS351.webp",
       "imagem_sub": ""
     },
     {
@@ -1413,7 +1413,7 @@
       "nome": "Luva Montante Central 92 mm",
       "observacao": "Luva | A cor somente em NATURAL (NAT)",
       "sistema": "Ecostick",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/ecostick/substituto/PS327.webp",
       "imagem_sub": ""
     },
     {
@@ -1434,7 +1434,7 @@
       "nome": "Folha",
       "observacao": "Portões (Com reforço)",
       "sistema": "Grandline",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/grandline/original/PC004.webp",
       "imagem_sub": ""
     },
     {
@@ -1443,7 +1443,7 @@
       "nome": "Castanha",
       "observacao": "Guarda-Corpo | A cor somente em NATURAL (NAT)",
       "sistema": "Grandline",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG201.webp",
       "imagem_sub": ""
     },
     {
@@ -1453,7 +1453,7 @@
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
       "codigo": "TG203",
@@ -1470,7 +1470,7 @@
       "nome": "Montante",
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG222.webp",
       "imagem_sub": ""
     },
     {
@@ -1479,8 +1479,8 @@
       "nome": "Corrimão",
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG245.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
       "codigo": "TG001",
@@ -1488,8 +1488,8 @@
       "nome": "Barrote",
       "observacao": "Guarda-Corpo | Substituir somente quando a cor for PRETO (PR000PE)",
       "sistema": "Grandline",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/grandline/original/TG001.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG021.webp"
     },
     {
       "codigo": "CG245",
@@ -1497,8 +1497,8 @@
       "nome": "Corrimão",
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
-      "imagem": "",
-      "imagem_sub": ""
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG245.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
       "codigo": "CG202",
@@ -1507,7 +1507,7 @@
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
       "codigo": "CG206",
@@ -1524,7 +1524,7 @@
       "nome": "Chumbador",
       "observacao": "Guarda-Corpo | É somente na 1005 e a cor é somente em NATURAL (NAT)",
       "sistema": "Grandline",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CHUR4033.webp",
       "imagem_sub": ""
     },
     {
@@ -1534,7 +1534,7 @@
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG204.webp"
     },
     {
       "codigo": "CG076",
@@ -1543,7 +1543,7 @@
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG204.webp"
     },
     {
       "codigo": "CG072",
@@ -1552,7 +1552,7 @@
       "observacao": "Guarda-Corpo",
       "sistema": "Grandline",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
       "codigo": "CG260",
@@ -1560,7 +1560,7 @@
       "nome": "Corrimão",
       "observacao": "Guarda-Corpo | Perfil de Corrimão",
       "sistema": "Grandline",
-      "imagem": "",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG260.webp",
       "imagem_sub": ""
     },
 
@@ -1621,6 +1621,8 @@
       "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25508.webp"
     }
   ],
+
+
   "acessorios": [
     {
       "codigo": "GUI-004",
@@ -1629,7 +1631,7 @@
       "observacao": "Guia Deslizante Vedação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "assets/img/fotos/acessorios/SPHG-013.png"
     },
     {
       "codigo": "GUI-026",
@@ -2099,5 +2101,15 @@
       "unidade_conversao": "-",
       "imagem": ""
     }
+
+
+
+
+
+
+
+
+
+
   ]
 }
