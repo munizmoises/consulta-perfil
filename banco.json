@@ -1623,6 +1623,7 @@
   ],
 
 
+  
   "acessorios": [
     {
       "codigo": "GUI-004",
@@ -1631,7 +1632,8 @@
       "observacao": "Guia Deslizante Vedação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/SPHG-013.png"
+      "imagem": "assets/img/fotos/acessorios/SPHG-013.png",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-026",
@@ -1640,7 +1642,8 @@
       "observacao": "Guia Deslizante Chroma",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-29",
@@ -1649,7 +1652,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-006",
@@ -1658,7 +1662,8 @@
       "observacao": "Guia Embutida",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-007",
@@ -1667,7 +1672,8 @@
       "observacao": "Guia Embutida",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-S026",
@@ -1676,7 +1682,8 @@
       "observacao": "Guia Deslizante Chroma",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUI-S028",
@@ -1685,7 +1692,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "4 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-332",
@@ -1694,7 +1702,8 @@
       "observacao": "Guia Deslizante",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "20 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-395",
@@ -1703,7 +1712,8 @@
       "observacao": "Caixa Dreno",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "10 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-335",
@@ -1712,7 +1722,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "20 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-329",
@@ -1721,7 +1732,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "10 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "SD-2507",
@@ -1730,7 +1742,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "10 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-414",
@@ -1739,7 +1752,8 @@
       "observacao": "Batedeira Folha de Correr",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "20 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-398",
@@ -1748,7 +1762,8 @@
       "observacao": "Batedeira Trilho",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "10 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "NYL-394",
@@ -1757,7 +1772,8 @@
       "observacao": "Sem observação",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "20 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-438",
@@ -1766,7 +1782,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-330",
@@ -1775,7 +1792,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-10",
@@ -1784,7 +1802,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-157",
@@ -1793,7 +1812,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "10M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-172",
@@ -1802,7 +1822,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "10M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-239",
@@ -1811,7 +1832,8 @@
       "observacao": "Guarnição Marco Maxim AR",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-282",
@@ -1820,7 +1842,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "10M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-517",
@@ -1829,7 +1852,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-518",
@@ -1838,7 +1862,8 @@
       "observacao": "Guarnição EXT Vidro 8 a 10 mm",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-519",
@@ -1847,7 +1872,8 @@
       "observacao": "Guarnição INT Vidro 10 mm CHROMA",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-168",
@@ -1856,7 +1882,8 @@
       "observacao": "Guarnição Vidro 17 mm",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-117",
@@ -1865,7 +1892,8 @@
       "observacao": "Sem observação",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-768",
@@ -1874,7 +1902,8 @@
       "observacao": "Guarnição Vidro 17 mm",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "GUA-006",
@@ -1883,7 +1912,8 @@
       "observacao": "Borracha Tela Mosquiteiro",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "ROL-468",
@@ -1892,7 +1922,8 @@
       "observacao": "40kg por folha",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "ROL-439",
@@ -1901,7 +1932,8 @@
       "observacao": "Roldana Dupla (80kg por folha)",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "ROL-440",
@@ -1910,7 +1942,8 @@
       "observacao": "Roldana Simples (40kg por folha)",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHRC-018",
@@ -1919,7 +1952,8 @@
       "observacao": "200 kg por folha",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHRC-024",
@@ -1928,7 +1962,8 @@
       "observacao": "Não é necessário colocar o HÍFEN, coloque um espaço entre o CHRC E O 024",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "8 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHRC-041",
@@ -1937,7 +1972,8 @@
       "observacao": "STOPPER",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "BRA-400",
@@ -1946,7 +1982,8 @@
       "observacao": "8kg por folha",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "FECHO CONCHA",
@@ -1955,7 +1992,8 @@
       "observacao": "Sem observação",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CON-450",
@@ -1964,7 +2002,8 @@
       "observacao": "Sem observação",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "PAR-428",
@@ -1973,7 +2012,8 @@
       "observacao": "Sem observação",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "BRA-900",
@@ -1982,7 +2022,8 @@
       "observacao": "Deslizante",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CX17",
@@ -1991,7 +2032,8 @@
       "observacao": "CX17 para todos os códigos BRA- (BRA-950 , BRA-600 , BRA-350)",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHU-804",
@@ -2000,7 +2042,8 @@
       "observacao": "Pode ser colocado como ZINCADO",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHU-120",
@@ -2009,7 +2052,8 @@
       "observacao": "Pode ser colocado como ZINCADO",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "FEC-1045",
@@ -2018,7 +2062,8 @@
       "observacao": "Sem observação",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "FEC-1038",
@@ -2027,7 +2072,8 @@
       "observacao": "Sem observação",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "TETRA",
@@ -2036,7 +2082,8 @@
       "observacao": "Rosetas",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "BICO DE PAPAGAIO",
@@ -2045,7 +2092,8 @@
       "observacao": "Contra testa para fechadura bico de papagaio",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "Cantilhão e Cunha",
@@ -2054,7 +2102,8 @@
       "observacao": "Cantilhão e Cunha",
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "10KG",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "Contra fecho",
@@ -2063,7 +2112,8 @@
       "observacao": "Contra fecho",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "Lingueta",
@@ -2072,7 +2122,8 @@
       "observacao": "Lingueta",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "BÚZIO",
@@ -2081,7 +2132,8 @@
       "observacao": "Fechadura Portão Búzio de Correr (FRA-090) e de abrir (FRA-603)",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "Fechadura Papagaio",
@@ -2090,7 +2142,8 @@
       "observacao": "Fechadura Papagaio",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     },
     {
       "codigo": "CHRC-004",
@@ -2099,17 +2152,8 @@
       "observacao": "Contar como unidade",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": ""
+      "imagem": "",
+      "imagem_sub": ""
     }
-
-
-
-
-
-
-
-
-
-
   ]
 }

@@ -1,4 +1,4 @@
-const versao_atual = '1.3.0';
+const versao_atual = '1.4.0';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
@@ -164,7 +164,7 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico){
       return;
     }
 
-    salvarHistorico(chaveHistorico, normalizar(campo.value));
+    salvarHistorico(chaveHistorico, achados[0].codigo);
     renderizarHistorico(chaveHistorico, campo, resultado);
 
     resultado.appendChild(criar("span", "status ok", "Código encontrado"));
