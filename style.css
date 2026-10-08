@@ -350,14 +350,14 @@ body{
   gap: 0.35rem;
 }
 
-.foto-perfil{
+.foto-perfil {
   width: 120px;
   height: 120px;
-  object-fit: cover; 
+  object-fit: contain;
   border-radius: 0.5rem; 
   overflow: hidden; 
   border: none;
-  background: transparent;
+  background: #ffffff;
   padding: 0;
   
   transition: transform 0.3s ease;
