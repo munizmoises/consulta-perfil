@@ -1,4 +1,4 @@
-const versao_atual = '1.2.2';
+const versao_atual = '1.3.0';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
@@ -83,27 +83,38 @@ function montarImagens(item){
 
   const bloco = criar("div", "item-imagens");
 
-  const criarFoto = (src, legenda) => {
-    const wrap = criar("div", "foto-wrap");
-    const img = document.createElement("img");
-    img.className = "foto-perfil";
-    img.alt = legenda;
-    img.loading = "lazy";
-    img.onerror = () => { img.src = NO_PHOTO; };
-    img.src = src && src.trim() !== "" ? src : NO_PHOTO;
-    const leg = criar("span", "foto-legenda", legenda);
-    wrap.appendChild(img);
-    wrap.appendChild(leg);
-    return wrap;
+  const montarFoto = (src, legenda) => {
+    const caixa = criar("div", "foto-wrap");
+    const foto = document.createElement("img");
+    foto.className = "foto-perfil";
+    foto.alt = legenda.trim();
+    foto.loading = "lazy";
+    foto.onerror = () => { foto.src = NO_PHOTO; };
+    foto.src = src && src.trim() !== "" ? src : NO_PHOTO;
+    const texto = criar("span", "foto-legenda", legenda.trim());
+    caixa.appendChild(foto);
+    caixa.appendChild(texto);
+    return caixa;
   };
 
-  bloco.appendChild(criarFoto(item.imagem, item.codigo));
+  bloco.appendChild(montarFoto(item.imagem, item.codigo));
 
-// Só mostra substituto se houver substituição diferente de "-"
+  // Só mostra substituição se houver substituição diferente de "-"
   if (item.imagem_sub && item.substituicao && item.substituicao !== "-") {
-    const seta = criar("i", "fa-solid fa-arrow-right foto-seta"); 
-    bloco.appendChild(seta);
-    bloco.appendChild(criarFoto(item.imagem_sub, item.substituicao));
+    bloco.appendChild(criar("i", "fa-solid fa-arrow-right foto-seta"));
+
+    const codigosSub = item.substituicao.split("+");
+    const caminhosSub = item.imagem_sub.split(",");
+
+    codigosSub.forEach((codigo, i) => {
+      const caminho = caminhosSub[i] ? caminhosSub[i].trim() : "";
+      bloco.appendChild(montarFoto(caminho, codigo));
+
+      // Coloca "+" entre as fotos mas não depois da última
+      if (i < codigosSub.length - 1) {
+        bloco.appendChild(criar("i", "fa-solid fa-plus foto-seta"));
+      }
+    });
   }
 
   return bloco;

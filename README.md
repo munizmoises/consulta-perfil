@@ -136,12 +136,7 @@ Acessórios não têm sistema nem imagem (no momento):
 
 ## Versão Atual
 
-**v1.2.2** — 07/10/2026
-
-### Novidades
-- Exibição de fotos dos perfis (original e substituto), com fallback para imagem padrão quando não há foto
-- Histórico das últimas 5 pesquisas por painel, salvo no `localStorage`.
-- Campo `nome` exibido no resultado de perfis e acessórios.
+**v1.3.0** — 08/10/2026
 
 ### Planejado
 
