@@ -197,7 +197,7 @@ async function iniciar(){
     banco = await resposta.json();
   } catch {
     document.querySelectorAll(".resultado").forEach((r) => {
-      r.appendChild(criar("p", "msg-erro", "Não foi possível carregar o banco de dados!"));
+      r.appendChild(criar("p", "msg-erro", "Não foi possível carregar o banco de dados. Recarregue a página e tente novamente."));
     });
   }
 
