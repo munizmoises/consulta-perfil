@@ -361,7 +361,7 @@
       "observacao": "Janela Maxim-ares | Porta de Giro (A substituição do perfil seria feita com estes dois)",
       "sistema": "Chroma",
       "imagem": "assets/img/fotos/perfis/chroma/original/CHR704.webp",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR713.webp, assets/img/fotos/perfis/chroma/substituto/ES013.webp"
     },
     {
       "codigo": "CHR881",
@@ -772,7 +772,7 @@
       "observacao": "Janela de Correr 3 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecoline 2.5",
       "imagem": "assets/img/fotos/perfis/ecoline/original/VT013.webp",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT012.webp , assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT021",
@@ -808,7 +808,7 @@
       "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp , assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT044",
@@ -952,7 +952,7 @@
       "observacao": "Janela de Correr 2 Folhas | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT039.webp , assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT228",
@@ -1024,7 +1024,7 @@
       "observacao": "Janela de Correr 2 Folhas (Com aba) | Janela de Correr 2 Folhas (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecoline 2.5",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT868.webp , assets/img/fotos/perfis/ecoline/substituto/VT302.webp"
     },
     {
       "codigo": "VT289",
@@ -1279,7 +1279,7 @@
       "observacao": "Marco (A substituição do perfil seria feita com estes dois)",
       "sistema": "Ecostick",
       "imagem": "",
-      "imagem_sub": ""
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS400.webp , assets/img/fotos/perfis/ecostick/substituto/PS413.webp"
     },
     {
       "codigo": "PS355",
@@ -1591,7 +1591,7 @@
       "observacao": "A substituição do perfil seria feita com estes dois",
       "sistema": "Linha 25 / Diversos",
       "imagem": "assets/img/fotos/perfis/linha25/original/VT111.webp",
-      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25542.webp"
+      "imagem_sub": "assets/img/fotos/perfis/linha25/substituto/25542.webp , assets/img/fotos/perfis/linha25/substituto/BG001.webp"
     },
     {
       "codigo": "VT279",
