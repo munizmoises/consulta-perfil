@@ -136,7 +136,7 @@ Acessórios não têm sistema nem imagem (no momento):
 
 ## Versão Atual
 
-**v1.2.0** — 07/10/2026
+**v1.2.2** — 07/10/2026
 
 ### Novidades
 - Exibição de fotos dos perfis (original e substituto), com fallback para imagem padrão quando não há foto
