@@ -368,6 +368,11 @@ body{
   transform: scale(1.15);
 }
 
+.foto-perfil[src*="NO-PHOTO"]{
+  object-fit: cover;
+  background: transparent;
+}
+
 .foto-legenda{
   font-size: 0.75rem;
   color: var(--suave);
