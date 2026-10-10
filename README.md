@@ -24,19 +24,22 @@ O site tem duas colunas de pesquisa:
 Ao pesquisar um código, o resultado mostra:
 
 **Perfis**
+- **Imagem:** foto do perfil original e do substituto
 - **Substituição:** o código que pode ser usado no lugar
 - **Nome:** o nome do perfil
-- **Observação:** detalhes importantes, como acabamento ou cor
+- **Observação:** detalhes importantes
 - **Sistema:** a linha de perfis a que o item pertence
-- **Imagem:** foto do perfil original e do substituto
 
 **Acessórios**
+- **Imagem:** foto do acessório original e do substituto
 - **Substituição:** o código que pode ser usado no lugar
 - **Nome:** o nome do acessório
 - **Observação:** detalhes importantes
 - **Tipo** e **Unidade de conversão:** só aparecem quando o item tem essas informações
 
-A pesquisa ignora hífen e maiúsculas/minúsculas, então `GUI-004`, `gui004` e `GUI004` encontram o mesmo item.
+A pesquisa ignora hífen, asteriscos e maiúsculas/minúsculas, então `GUI-004`, `gui004`, `*GUI004*` e `GUI004` encontram o mesmo item.
+
+A pesquisa inteligente sugere resultados enquanto você digita, buscando por código, nome, apelido e observação.
 
 Exemplo de perfil:
 
@@ -45,7 +48,7 @@ Código: CHR004
 
 Substituição: CHR120
 Nome:         Complemento do Trilho
-Observação:   Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)
+Observação:   Janela de Correr 2 Folhas - A cor somente em FOSCO (FO23)
 Sistema:      Chroma
 ```
 
@@ -69,7 +72,7 @@ Escolhi começar simples, sem banco de dados e sem servidor:
 
 - HTML, CSS e JavaScript puro
 - Um arquivo JSON (`banco.json`) com todos os itens
-- Hospedagem gratuita no GitHub Pages
+- Hospedagem no GitHub Pages
 
 Quando a página abre, o JavaScript carrega o `banco.json` e procura o código digitado. Não precisa de mais nada para funcionar.
 
@@ -81,7 +84,6 @@ Quando a página abre, o JavaScript carrega o `banco.json` e procura o código d
 - JavaScript
 
 **Futuro**
-- Bootstrap
 - Python
 - Flask
 
@@ -102,7 +104,6 @@ consulta-perfil/
 │   │   │   └── NO-PHOTO.webp
 │   │   └── prints/
 └── README.md
-└── CHANGELOG.md
 ```
 
 ## Como atualizar os dados
@@ -114,14 +115,14 @@ Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Perfis seguem es
   "codigo": "CHR004",
   "substituicao": "CHR120",
   "nome": "Complemento do Trilho",
-  "observacao": "Janela de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
+  "observacao": "Janela de Correr 2 Folhas - A cor somente em FOSCO (FO23)",
   "sistema": "Chroma",
   "imagem": "assets/img/fotos/perfis/chroma/original/CHR004.webp",
   "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp"
 }
 ```
 
-Acessórios não têm sistema nem imagem (no momento):
+Acessórios não tem sistema (no momento):
 
 ```json
 {
@@ -136,38 +137,7 @@ Acessórios não têm sistema nem imagem (no momento):
 
 ## Versão Atual
 
-**v1.4.0** — 08/10/2026
-
-### Planejado
-
-**Fase 1 — Essenciais**
-- [ ] Autocomplete com sugestões ao digitar
-- [ ] Copiar resultado formatado com 1 clique
-- [ ] Busca automática ao preencher o código exato
-- [x] Botões de pesquisar e limpar
-
-**Fase 2 — Refinamento & UI**
-- [x] Campo inteligente que ignora maiúsculas, espaços e hífens
-- [ ] Alternância para Modo Claro
-- [ ] Tags visuais no card (badges coloridos por sistema, acabamento, etc.)
-
-**Fase 3 — Persistência Local**
-- [x] Histórico das 5 últimas pesquisas
-- [ ] Contador total de consultas realizadas
-- [ ] Lista de favoritos com estrela
-- [ ] Top consultas (ranking dos mais pesquisados)
-
-**Fase 4 — Compartilhamento**
-- [ ] Link compartilhável (ex: `?codigo=CHR120`)
-- [ ] Exportação de relatório em texto e PDF
-- [ ] Painel de status (total de perfis, acessórios, data de atualização e versão)
-
-**Fase 5 — Futuro**
-- [ ] Login por matrícula
-- [ ] Backend com Python e Flask
-- [ ] Portal administrativo
-
-> Histórico completo no [CHANGELOG](CHANGELOG.md).
+**v1.4.0**
 
 ## Autor
 
