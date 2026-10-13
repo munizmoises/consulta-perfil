@@ -1,11 +1,11 @@
-const versao_atual = '2.0.4';
+const versao_atual = '2.0.5';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
 const CAMPOS_PERFIS = [
   ["substituicao", "Substituição", true],
   ["nome", "Nome"],
-  ["apelido", "Apelido popular"],
+  ["apelido", "Nome popular"],
   ["observacao", "Observação"],
   ["sistema", "Sistema"],
 ];
@@ -13,7 +13,7 @@ const CAMPOS_PERFIS = [
 const CAMPOS_ACESSORIOS = [
   ["substituicao", "Substituição", true],
   ["nome", "Nome"],
-  ["apelido", "Apelido popular"],
+  ["apelido", "Nome popular"],
   ["observacao", "Observação"],
   ["tipo", "Tipo"],
   ["unidade_conversao", "Unidade de conversão"],
