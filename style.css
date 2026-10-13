@@ -40,7 +40,7 @@
 }
 
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-tema="claro"]){
     --fundo: #0f151d;
     --superficie: #18212d;
     --texto: #e8edf4;
@@ -53,6 +53,20 @@
     --erro: #ff8a80;
     --erro-fundo: #321614;
   }
+}
+
+:root[data-tema="escuro"]{
+  --fundo: #0f151d;
+  --superficie: #18212d;
+  --texto: #e8edf4;
+  --suave: #9aa7b8;
+  --borda: #2b3746;
+  --destaque: #5b97ee;
+  --destaque-texto: #ffffff;
+  --ok: #5ccf94;
+  --ok-fundo: #12291e;
+  --erro: #ff8a80;
+  --erro-fundo: #321614;
 }
 
 *{
@@ -112,9 +126,33 @@ body{
 
 .barra-info{
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   text-align: right;
   font-size: 0.9rem;
   color: var(--suave);
+}
+
+.btn-tema{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--borda);
+  background: transparent;
+  color: var(--suave);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-tema:hover{
+  background: var(--fundo);
+  color: var(--texto);
 }
 
 /* Painéis */
@@ -260,6 +298,25 @@ body{
 .item dd.destaque{
   font-size: 1.5rem;
   color: var(--destaque);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-copiar{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--suave);
+  font-size: 0.9rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.3rem;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.btn-copiar:hover{
+  color: var(--destaque);
 }
 
 .msg-erro{
@@ -300,15 +357,37 @@ body{
     flex: 1 1 auto;
   }
 }
+
 /* Histórico */
 .historico{
   margin-bottom: 1rem;
+  margin-top: 0.4rem;
+}
+
+.historico-cabecalho{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .historico-titulo{
-  margin: 0 0 0.4rem;
+  margin: 0;
   font-size: 0.8rem;
   color: var(--suave);
+}
+
+.historico-limpar{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--suave);
+  font-size: 0.75rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.3rem;
+  transition: color 0.15s;
+  margin-top: 3px;
 }
 
 .historico-lista{
@@ -382,4 +461,58 @@ body{
   font-size: 1rem;
   color: var(--suave);
   margin-bottom: 1.2rem;
+}
+/* Pesquisa Inteligente */
+.autocomplete-dropdown{
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  overflow: hidden;
+}
+
+.autocomplete-item{
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--borda);
+  transition: background 0.1s;
+}
+
+.autocomplete-item:last-child{
+  border-bottom: none;
+}
+
+.autocomplete-item:hover, .autocomplete-item.ativo{
+  background: var(--fundo);
+}
+
+.autocomplete-codigo{
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--destaque);
+  white-space: nowrap;
+  min-width: 5rem;
+}
+
+.autocomplete-nome{
+  font-size: 0.82rem;
+  color: var(--suave);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.autocomplete-seta{
+  font-size: 0.65rem;
+  opacity: 0.6;
+  vertical-align: middle;
+  margin: 0 0.1rem;
 }

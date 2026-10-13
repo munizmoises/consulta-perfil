@@ -342,8 +342,8 @@
     {
       "codigo": "CHR704",
       "substituicao": "CHR713 + ES013",
-      "nome": "Maxim-ar com baguete | Baguete",
-      "observacao": "Janela Maxim-ares | Porta de Giro (A substituição do perfil seria feita com estes dois)",
+      "nome": "Maxim-ar com baguete (Baguete)",
+      "observacao": "Janela Maxim-ares - Porta de Giro || A substituição do perfil seria feita com estes dois",
       "sistema": "Chroma",
       "imagem": "assets/img/fotos/perfis/chroma/original/CHR704.webp",
       "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR713.webp , assets/img/fotos/perfis/chroma/substituto/ES013.webp"
@@ -687,7 +687,8 @@
     {
       "codigo": "CL006",
       "substituicao": "-",
-      "nome": "Conexão (Canto/Cantilhão)",
+      "nome": "Conexão (Canto)",
+      "apelido": "Cantilhão",
       "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT) e só vende em 3000",
       "sistema": "Diversos",
       "imagem": "assets/img/fotos/perfis/diversos/original/CL006.webp",
@@ -697,7 +698,7 @@
       "codigo": "CL011",
       "substituicao": "-",
       "nome": "Cunha",
-      "observacao": "Contramarco e Conexão | A cor sempre NATURAL (NAT) e só vende em 3000",
+      "observacao": "Contramarco e Conexão | A cor somente em NATURAL (NAT) e só vende em 3000",
       "sistema": "Diversos",
       "imagem": "assets/img/fotos/perfis/diversos/original/CL011.webp",
       "imagem_sub": ""
@@ -1640,7 +1641,7 @@
       "codigo": "ERS004",
       "substituicao": "-",
       "nome": "Complemento do Trilho",
-      "observacao": "Janela e Porta de Correr | A cor somente em FOSCO (FO23) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em FOSCO (FO23) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ERS004.webp",
       "imagem_sub": ""
@@ -1649,7 +1650,7 @@
       "codigo": "ERS006",
       "substituicao": "ERS021",
       "nome": "Folha Perimetral",
-      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ERS006.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS021.webp"
@@ -1658,7 +1659,7 @@
       "codigo": "ERS008",
       "substituicao": "ERS022",
       "nome": "Montante Folha Minimalista Interno",
-      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ERS008.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS022.webp"
@@ -1667,7 +1668,7 @@
       "codigo": "ERS009",
       "substituicao": "ERS023",
       "nome": "Montante Folha Minimalista Externo",
-      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ERS009.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS023.webp"
@@ -1676,7 +1677,7 @@
       "codigo": "ERS007",
       "substituicao": "ERS024",
       "nome": "Engate da Folha",
-      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ERS007.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS024.webp"
@@ -1685,7 +1686,7 @@
       "codigo": "ES034",
       "substituicao": "ERS025",
       "nome": "Baguete",
-      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) | Filial São Paulo (1006)",
+      "observacao": "Janela e Porta de Correr | A cor somente em NATURAL (NAT) || Somente Filial São Paulo (1006)",
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ES034.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS025.webp"
@@ -2246,7 +2247,7 @@
       "imagem_sub": ""
     },
     {
-      "codigo": "Cantilhão e Cunha",
+      "codigo": "CANTILHÃO E CUNHA",
       "substituicao": "1715390NT",
       "nome": "Sem informação",
       "observacao": "Cantilhão e Cunha",
@@ -2256,7 +2257,7 @@
       "imagem_sub": ""
     },
     {
-      "codigo": "Contra fecho",
+      "codigo": "CONTRA FECHO",
       "substituicao": "CFEC-389",
       "nome": "Contra Fecho",
       "observacao": "Contra fecho",
@@ -2266,7 +2267,7 @@
       "imagem_sub": ""
     },
     {
-      "codigo": "Lingueta",
+      "codigo": "LINGUETA",
       "substituicao": "TRA-011",
       "nome": "Lingueta para Fecho Concha",
       "observacao": "Lingueta",
@@ -2286,7 +2287,7 @@
       "imagem_sub": ""
     },
     {
-      "codigo": "Fechadura Papagaio",
+      "codigo": "FECHADURA PAPAGAIO",
       "substituicao": "FRA-902",
       "nome": "Sem informação",
       "observacao": "Fechadura Papagaio",
@@ -2353,16 +2354,6 @@
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
       "imagem": "assets/img/fotos/acessorios/CHRC-004.webp",
-      "imagem_sub": ""
-    },
-    {
-      "codigo": "1711176PR",
-      "substituicao": "1711547PR",
-      "nome": "Guia Deslizante 21 mm",
-      "observacao": "Guia Deslizante Vedação (GUI-004)",
-      "tipo": "PACOTE (PAC)",
-      "unidade_conversao": "8 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/guia/GUI-004.webp",
       "imagem_sub": ""
     }
   ]

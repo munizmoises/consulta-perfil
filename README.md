@@ -1,6 +1,6 @@
 # Consulta Perfil
 
-Site para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição.
+Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição.
 
 **Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
 
@@ -99,8 +99,8 @@ consulta-perfil/
 │   ├── fonts/
 │   ├── img/
 │   │   ├── fotos/
-│   │   │   ├── PERFIL/
-│   │   │   ├── ACESSORIOS/
+│   │   │   ├── perfis/
+│   │   │   ├── acessorios/
 │   │   │   └── NO-PHOTO.webp
 │   │   └── prints/
 └── README.md
@@ -137,7 +137,30 @@ Acessórios não tem sistema (no momento):
 
 ## Versão Atual
 
-**v1.4.0**
+**v2.0.0**
+
+### Planejado
+
+**Fase 1 — Essenciais**
+- [x] Pesquisa inteligente com sugestões ao digitar
+- [x] Copiar código de substituição com 1 clique
+- [x] Botões de pesquisar e limpar
+- [x] Histórico das 5 últimas pesquisas
+
+**Fase 2 — Refinamento & UI**
+- [x] Campo inteligente que ignora maiúsculas, espaços, hífens e asteriscos
+- [x] Painel de status (total de perfis, acessórios e versão)
+- [x] Alternância para Modo Claro
+
+**Fase 3 — Compartilhamento**
+- [ ] Link compartilhável (ex: `?codigo=CHR120`)
+- [ ] Exportação de relatório em texto, PDF e Excel
+
+**Fase 4 — Futuro**
+- [ ] Login por matrícula
+- [ ] Backend com Python e Flask
+- [ ] Portal administrativo
+- [ ] Top consultas (ranking dos mais pesquisados)
 
 ## Autor
 
