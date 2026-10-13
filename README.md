@@ -4,7 +4,13 @@ Sistema para consultar substituições de perfis de alumínio, acessórios e com
 
 **Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
 
-![Tela inicial do Consulta Perfil](assets/img/prints/tela-inicial.png)
+![Tela inicial do Consulta Perfil](assets/img/prints/tela_inicial-v2.webp)
+
+<details>
+<summary><b>Ver versão inicial (v1.0.0)</b></summary>
+
+![Tela inicial v1](assets/img/prints/tela_inicial-v1.webp)
+</details>
 
 ## Por que eu fiz?
 
