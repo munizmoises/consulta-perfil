@@ -19,6 +19,15 @@
       "imagem_sub": ""
     },
     {
+      "codigo": "DS193",
+      "substituicao": "-",
+      "nome": "Régua de pedreiro simples",
+      "observacao": "Sem observação",
+      "sistema": "Tabelado",
+      "imagem": "assets/img/fotos/perfis/tabelados/original/DS193.webp",
+      "imagem_sub": ""
+    },
+    {
       "codigo": "AR1548",
       "substituicao": "PU1548",
       "nome": "Cavalão",
@@ -109,6 +118,7 @@
       "codigo": "CHR270",
       "substituicao": "-",
       "nome": "Trilho Monovia",
+      "apelido": "Trilho macarrão",
       "observacao": "Porta de Correr 2 Folhas | A cor somente em FOSCO (FO23)",
       "sistema": "Chroma",
       "imagem": "assets/img/fotos/perfis/chroma/original/CHR270.webp",
@@ -589,6 +599,7 @@
       "codigo": "MP348",
       "substituicao": "MP347",
       "nome": "Arremate",
+      "apelido": "Alisar",
       "observacao": "Arremate",
       "sistema": "Diversos",
       "imagem": "assets/img/fotos/perfis/diversos/original/MP348.webp",
@@ -724,6 +735,7 @@
     {
       "codigo": "RM005",
       "substituicao": "MP347",
+      "apelido": "Alisar",
       "nome": "Arremate",
       "observacao": "Arremate",
       "sistema": "Diversos",
@@ -1237,6 +1249,123 @@
       "imagem": "assets/img/fotos/perfis/ecoline/original/VT053.webp",
       "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT186.webp"
     },
+    {
+      "codigo": "VT057",
+      "substituicao": "VT808",
+      "nome": "Montante Central com Engate Duplo",
+      "observacao": "Janela de Correr (Sem baguete)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT057.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT808.webp"
+    },
+    {
+      "codigo": "VT061",
+      "substituicao": "VT861",
+      "nome": "Montante Central com Engate e Reforço",
+      "observacao": "Janela de Correr (Sem baguete)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT061.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT861.webp"
+    },
+    {
+      "codigo": "VT042",
+      "substituicao": "VT818",
+      "nome": "Montante Central com Engate Duplo",
+      "observacao": "Janela de Correr (Com baguete)",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/VT042.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT818.webp"
+    },
+    {
+      "codigo": "ECO771",
+      "substituicao": "VT851",
+      "nome": "Marco Lateral Persiana",
+      "observacao": "Marco Lateral Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO771.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT851.webp"
+    },
+    {
+      "codigo": "ECO789",
+      "substituicao": "VT852",
+      "nome": "Arremate Lateral do Recolhedor",
+      "observacao": "Travessa caixa integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO789.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT852.webp"
+    },
+    {
+      "codigo": "ECO774",
+      "substituicao": "VT852",
+      "nome": "Arremate Lateral do Recolhedor",
+      "observacao": "Travessa caixa integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO774.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT852.webp"
+    },
+    {
+      "codigo": "ECO775",
+      "substituicao": "VT842",
+      "nome": "Montante Lateral para Guiagem da Persiana",
+      "observacao": "Sem observação",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO775.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT842.webp"
+    },
+    {
+      "codigo": "ECO787",
+      "substituicao": "VT856",
+      "nome": "Tampa Externa Persiana",
+      "observacao": "Porta",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO787.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT856.webp"
+    },
+    {
+      "codigo": "ECO772",
+      "substituicao": "VT857",
+      "nome": "Tampa Externa Persiana",
+      "observacao": "Janela",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO772.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT857.webp"
+    },
+    {
+      "codigo": "ECO768",
+      "substituicao": "VT870",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO768.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT870.webp"
+    },
+    {
+      "codigo": "ECO786",
+      "substituicao": "VT870",
+      "nome": "Marco Superior Persiana",
+      "observacao": "Janela de Correr 2 Folhas com Persiana Integrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO786.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT870.webp"
+    },
+    {
+      "codigo": "ECO813",
+      "substituicao": "VT969",
+      "nome": "Tampa Interna Persiana",
+      "observacao": "Tampa Integrada Quadrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO813.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT969.webp"
+    },
+    {
+      "codigo": "ECO815",
+      "substituicao": "VT919",
+      "nome": "Tampa Interna Persiana",
+      "observacao": "Tampa Integrada Quadrada",
+      "sistema": "Ecoline 2.5",
+      "imagem": "assets/img/fotos/perfis/ecoline/original/ECO815.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecoline/substituto/VT919.webp"
+    },
 
 
 
@@ -1438,9 +1567,28 @@
       "imagem": "assets/img/fotos/perfis/ecostick/original/PS367.webp",
       "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS421.webp"
     },
+    {
+      "codigo": "PS366",
+      "substituicao": "PS422",
+      "nome": "Altura Folha Reforçada - Encaixilhado",
+      "observacao": "Folha encaixilhada - Largura",
+      "sistema": "Ecostick",
+      "imagem": "assets/img/fotos/perfis/ecostick/original/PS366.webp",
+      "imagem_sub": "assets/img/fotos/perfis/ecostick/substituto/PS422.webp"
+    },
 
 
 
+    {
+      "codigo": "PC002",
+      "substituicao": "-",
+      "nome": "Folha",
+      "apelido": "Régua de pedreiro reforçada",
+      "observacao": "Sem observação",
+      "sistema": "Grandline",
+      "imagem": "assets/img/fotos/perfis/grandline/original/PC002.webp",
+      "imagem_sub": ""
+    },
     {
       "codigo": "PC004",
       "substituicao": "-",
@@ -1505,6 +1653,15 @@
       "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG021.webp"
     },
     {
+      "codigo": "CG223",
+      "substituicao": "CG245",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG223.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG245.webp"
+    },
+    {
       "codigo": "CG245",
       "substituicao": "CG272",
       "nome": "Corrimão",
@@ -1533,7 +1690,7 @@
     },
     {
       "codigo": "CHUR4033",
-      "substituicao": "-",
+      "substituicao": "CHU-R4033",
       "nome": "Chumbador",
       "observacao": "Guarda-Corpo | É somente na 1005 e a cor é somente em NATURAL (NAT)",
       "sistema": "Grandline",
@@ -1568,6 +1725,15 @@
       "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
     },
     {
+      "codigo": "CG212",
+      "substituicao": "CG272",
+      "nome": "Corrimão",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG212.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG272.webp"
+    },
+    {
       "codigo": "CG260",
       "substituicao": "-",
       "nome": "Corrimão",
@@ -1575,6 +1741,15 @@
       "sistema": "Grandline",
       "imagem": "assets/img/fotos/perfis/grandline/original/CG260.webp",
       "imagem_sub": ""
+    },
+    {  
+      "codigo": "CG237",
+      "substituicao": "CG253",
+      "nome": "Montante para Pontalete 4 pinos",
+      "observacao": "Guarda-Corpo",
+      "sistema": "Grandline",
+      "imagem": "assets/img/fotos/perfis/grandline/original/CG237.webp",
+      "imagem_sub": "assets/img/fotos/perfis/grandline/substituto/CG253.webp"
     },
 
 
@@ -1690,6 +1865,90 @@
       "sistema": "Erus",
       "imagem": "assets/img/fotos/perfis/erus/original/ES034.webp",
       "imagem_sub": "assets/img/fotos/perfis/erus/substituto/ERS025.webp"
+    },
+
+
+
+    { 
+      "codigo": "UP088",
+      "substituicao": "UP096",
+      "nome": "Canto 90º Positivo 80mm",
+      "observacao": "Montante de canto 90° Macho e Femea - Série 80",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP088.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP096.webp"
+    },
+    { 
+      "codigo": "UP089",
+      "substituicao": "UP096",
+      "nome": "Canto 90º Positivo 80mm",
+      "observacao": "Montante de canto 90° Macho e Femea - Série 80",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP089.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP096.webp"
+    },
+    { 
+      "codigo": "UP082",
+      "substituicao": "UP094",
+      "nome": "Travessa de Transição Inferior 80mm",
+      "observacao": "Largura inferior do módulo - Série 80",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP082.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP094.webp"
+    },
+    { 
+      "codigo": "UP080",
+      "substituicao": "UP095",
+      "nome": "Travessa de Transição Superior 80mm",
+      "observacao": "Largura superior do módulo",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP080.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP095.webp"
+    },
+    { 
+      "codigo": "UP119",
+      "substituicao": "UP145",
+      "nome": "Protetor de Borda",
+      "observacao": "Sem observação",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP119.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP145.webp"
+    },
+    { 
+      "codigo": "UP108",
+      "substituicao": "UP141",
+      "nome": "Canto 90º Positivo 100mm",
+      "observacao": "Montante de canto 90° Macho e Femea",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP108.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP141.webp"
+    },
+    { 
+      "codigo": "UP109",
+      "substituicao": "UP141",
+      "nome": "Canto 90º Positivo 100mm",
+      "observacao": "Montante de canto 90° Macho e Femea",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP109.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP141.webp"
+    },
+    { 
+      "codigo": "UP102",
+      "substituicao": "UP143",
+      "nome": "Travessa de Transição Inferior 100mm",
+      "observacao": "Largura inferior do módulo - Fachada Cortina",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP102.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP143.webp"
+    },
+    { 
+      "codigo": "UP100",
+      "substituicao": "UP144",
+      "nome": "Travessa de Transição Superior 100mm",
+      "observacao": "Largura superior do módulo - Fachada Cortina",
+      "sistema": "Wallframe",
+      "imagem": "assets/img/fotos/perfis/wallframe/original/UP100.webp",
+      "imagem_sub": "assets/img/fotos/perfis/wallframe/substituto/UP144.webp"
     }
   ],
 
@@ -1738,7 +1997,7 @@
     },
     {
       "codigo": "GUI-007",
-      "substituicao": "1711553PR",
+      "substituicao": "-",
       "nome": "Guia Deslizante 32 mm",
       "observacao": "Guia Embutida",
       "tipo": "PACOTE (PAC)",
@@ -1854,7 +2113,7 @@
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/SPHG-013.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/guarnicao/SPHG-013.webp"
     },
     {
       "codigo": "GUA-330",
@@ -1864,7 +2123,7 @@
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/GUA-768.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/guarnicao/GUA-768.webp"
     },
     {
       "codigo": "GUA-10",
@@ -1933,7 +2192,7 @@
       "observacao": "Guarnição EXT Vidro 8 a 10 mm",
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
-      "imagem": "assets/img/fotos/acessorios/GUA-518.webp",
+      "imagem": "assets/img/fotos/acessorios/guarnicao/GUA-518.webp",
       "imagem_sub": ""
     },
     {
@@ -1944,7 +2203,7 @@
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/GUA-778.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/guarnicao/GUA-778.webp"
     },
     {
       "codigo": "GUA-168",
@@ -1954,7 +2213,7 @@
       "tipo": "ROLO (RL)",
       "unidade_conversao": "50M",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/GUA-768.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/guarnicao/GUA-768.webp"
     },
     {
       "codigo": "GUA-117",
@@ -1983,7 +2242,7 @@
       "observacao": "40kg por folha",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/ROL-468.webp",
+      "imagem": "assets/img/fotos/acessorios/roldana/ROL-468.webp",
       "imagem_sub": ""
     },
     {
@@ -1993,7 +2252,7 @@
       "observacao": "Roldana Dupla (80kg por folha)",
       "tipo": "PEÇA (PEÇ)",
       "unidade_conversao": "-",
-      "imagem": "assets/img/fotos/acessorios/ROL-439.webp",
+      "imagem": "assets/img/fotos/acessorios/roldana/ROL-439.webp",
       "imagem_sub": ""
     },
     {
@@ -2003,7 +2262,7 @@
       "observacao": "Roldana Simples (40kg por folha)",
       "tipo": "PARES (PAR)",
       "unidade_conversao": "2 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/ROL-440.webp",
+      "imagem": "assets/img/fotos/acessorios/roldana/ROL-440.webp",
       "imagem_sub": ""
     },
     {
@@ -2023,7 +2282,7 @@
       "observacao": "4,2x50mm",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-4250.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-4250.webp",
       "imagem_sub": ""
     },
     {
@@ -2033,7 +2292,7 @@
       "observacao": "4.8 x 32 mm Aço Inox",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-4832.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-4832.webp",
       "imagem_sub": ""
     },
     {
@@ -2043,7 +2302,7 @@
       "observacao": "Sem observação",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-4232.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-4232.webp",
       "imagem_sub": ""
     },
     {
@@ -2054,7 +2313,7 @@
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/1715437NT.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/parafuso/1715437NT.webp"
     },
     {
       "codigo": "PAR-M512FA",
@@ -2063,7 +2322,7 @@
       "observacao": "Sem observação",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-M512FA.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/parafuso/PAR-M512FA.webp",
       "imagem_sub": ""
     },
     {
@@ -2073,7 +2332,7 @@
       "observacao": "4,2 x 25mm",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-693.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-693.webp",
       "imagem_sub": ""
     },
     {
@@ -2083,7 +2342,7 @@
       "observacao": "4,8 x 50 mm",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-431.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-431.webp",
       "imagem_sub": ""
     },
     {
@@ -2093,7 +2352,7 @@
       "observacao": "4,2 x 25 mm",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-693.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-693.webp",
       "imagem_sub": ""
     },
     {
@@ -2103,7 +2362,7 @@
       "observacao": "4,2 x 16 mm",
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/PAR-4216.webp",
+      "imagem": "assets/img/fotos/acessorios/parafuso/PAR-4216.webp",
       "imagem_sub": ""
     },
     {
@@ -2164,7 +2423,7 @@
       "tipo": "CONJUNTO / KIT (CT)",
       "unidade_conversao": "100 PEÇAS",
       "imagem": "",
-      "imagem_sub": "assets/img/fotos/acessorios/1715416NT.webp"
+      "imagem_sub": "assets/img/fotos/acessorios/parafuso/1715416NT.webp"
     },
     {
       "codigo": "BRA-900",
@@ -2345,6 +2604,16 @@
       "unidade_conversao": "2 PEÇAS",
       "imagem": "assets/img/fotos/acessorios/CHRC-004.webp",
       "imagem_sub": ""
+    },
+    {
+      "codigo": "PSC-006",
+      "substituicao": "GUA-290",
+      "nome": "Guarnição em EPDM",
+      "observacao": "Guarnição de trava da tampa",
+      "tipo": "ROLO (RL)",
+      "unidade_conversao": "50M",
+      "imagem": "assets/img/fotos/acessorios/guarnicao/PSC-006.webp",
+      "imagem_sub": "assets/img/fotos/acessorios/guarnicao/GUA-290.webp"
     }
   ]
 }
