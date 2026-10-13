@@ -1738,7 +1738,7 @@
     },
     {
       "codigo": "GUI-007",
-      "substituicao": "-",
+      "substituicao": "1711553PR",
       "nome": "Guia Deslizante 32 mm",
       "observacao": "Guia Embutida",
       "tipo": "PACOTE (PAC)",
@@ -2314,16 +2314,6 @@
       "tipo": "PACOTE (PAC)",
       "unidade_conversao": "4 PEÇAS",
       "imagem": "assets/img/fotos/acessorios/TAM-213.webp",
-      "imagem_sub": ""
-    },
-    {
-      "codigo": "GUI-007",
-      "substituicao": "1711553PR",
-      "nome": "Guia Deslizante 32 mm",
-      "observacao": "Sem observação",
-      "tipo": "PACOTE (PAC)",
-      "unidade_conversao": "8 PEÇAS",
-      "imagem": "assets/img/fotos/acessorios/guia/GUI-007.webp",
       "imagem_sub": ""
     },
     {
