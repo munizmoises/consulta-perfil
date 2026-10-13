@@ -23,9 +23,9 @@ Sistema para consultar substituições de perfis de alumínio, acessórios e com
 
 ## Por que eu fiz?
 
-Trabalho com vendas na [Perfil Alumínio do Brasil](https://perfilaluminio.com.br) e lido todo dia com perfis de alumínio. São muitos itens e muitos códigos, e ninguém consegue lembrar tudo de cabeça. Quando um perfil não está disponível, era preciso procurar num bloco de notas qual outro serviria no lugar.
+Trabalho com vendas na [Perfil Alumínio do Brasil](https://perfilaluminio.com.br) e lido todo dia com perfis de alumínio. São muitos itens e muitos códigos e ninguém consegue lembrar tudo de cabeça. Quando um perfil não está disponível era preciso procurar num bloco de notas qual outro serviria no lugar.
 
-Eu já tinha montado uma planilha de Excel para isso com PROCX, e ela ajudou bastante. O problema é que, com vários usuários na mesma planilha online, todo mundo acabava mexendo nas mesmas células ao mesmo tempo.
+Eu já tinha montado uma planilha de Excel para isso com PROCX, e ela ajudou bastante. O problema é que com vários usuários na mesma planilha online todo mundo acabava mexendo nas mesmas células ao mesmo tempo.
 
 Então peguei essa ideia e transformei em um site: cada pessoa consulta no seu computador, sem editar nada e sem atrapalhar ninguém.
 
@@ -123,7 +123,7 @@ consulta-perfil/
 
 ## Como atualizar os dados
 
-Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Perfis seguem este formato:
+Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Seguindo estes formatos:
 
 ```json
 {
