@@ -1,4 +1,4 @@
-const versao_atual = '2.0.5';
+const versao_atual = '2.1.0';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
