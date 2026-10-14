@@ -152,7 +152,7 @@ Acessórios não tem sistema (no momento):
 
 ## Versão Atual
 
-**v2.0.4**
+**v2.1.0**
 
 ### Planejado
 
