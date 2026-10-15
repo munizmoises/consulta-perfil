@@ -1,4 +1,4 @@
-const versao_atual = '2.1.0';
+const versao_atual = '2.1.2';
 
 document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
 
@@ -410,7 +410,7 @@ async function iniciar() {
   setInterval(atualizarRelogio, 60000);
 
   try {
-    const resposta = await fetch("banco.json");
+    const resposta = await fetch("banco_substitution.json");
     banco = await resposta.json();
   } catch {
     document.querySelectorAll(".resultado").forEach(r => {
