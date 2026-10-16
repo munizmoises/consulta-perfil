@@ -273,7 +273,7 @@ async function iniciar() {
   setInterval(atualizarRelogio, 60000);
 
   try {
-    const resposta = await fetch("../banco_catalog.json");
+    const resposta = await fetch("banco_catalog.json");
     banco = await resposta.json();
   } catch {
     document.getElementById("resultado-catalogo").appendChild(
