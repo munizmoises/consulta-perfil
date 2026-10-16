@@ -10,14 +10,14 @@
       "acabamento": "",
       "observacao": "",
       "sistema": "Chroma",
-      "imagem": "/assets/img/catalog/chroma/perfil/CHR010.webp"
+      "imagem": "assets/img/catalog/chroma/perfil/CHR010.webp"
     }
   ],
   "acessorios": [
     {
       "codigo": "GUI-004",
       "nome": "Guia Deslizante 21 mm",
-      "imagem": "/assets/img/catalog/chroma/acessorio/GUI-004.webp",
+      "imagem": "assets/img/catalog/chroma/acessorio/GUI-004.webp",
       "aplicavel": "tests",
       "acabamento": "tests",
       "material": "tests",

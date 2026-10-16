@@ -277,7 +277,7 @@ async function iniciar() {
     banco = await resposta.json();
   } catch {
     document.getElementById("resultado-catalogo").appendChild(
-      criar("p", "msg-erro", "Não foi possível carregar o catálogo. Recarregue a página e tente novamente.")
+      criar("p", "msg-erro", "Não foi possível carregar o banco de dados. Recarregue a página e tente novamente.")
     );
   }
 
