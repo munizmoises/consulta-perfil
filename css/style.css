@@ -516,3 +516,94 @@ body{
   vertical-align: middle;
   margin: 0 0.1rem;
 }
+
+/* Foto ampliada */
+.foto-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.foto-modal.foto-aberta{
+  opacity: 1;
+}
+
+.foto-ampliada{
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.foto-modal.foto-aberta .foto-ampliada{
+  transform: scale(1);
+}
+
+.foto-fechar{
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.foto-fechar:hover{
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Navegação na barra superior */
+.barra-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.nav-link {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  color: var(--suave);
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.nav-link-ativo {
+  background: var(--fundo);
+  color: var(--destaque);
+}
+
+@media (max-width: 52rem) {
+  .barra-nav {
+    display: none;
+  }
+}

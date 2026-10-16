@@ -1,0 +1,29 @@
+{
+  "perfis": [
+    {
+      "codigo": "CHR010",
+      "nome": "Marco Lateral 2 Planos",
+      "apelido": "",
+      "peso": "0.657 kg/m",
+      "encaixe": "CHR-002 / CHR-003 / CHR-007 / CHR-008 / CHR-009 / CHR-039 / CHR-079 / CHR-099 / CHR-900 / CHR-912",
+      "tipologia": "Janelas e portas de correr",
+      "acabamento": "",
+      "observacao": "",
+      "sistema": "Chroma",
+      "imagem": "/assets/img/catalog/chroma/perfil/CHR010.webp"
+    }
+  ],
+  "acessorios": [
+    {
+      "codigo": "GUI-004",
+      "nome": "Guia Deslizante 21 mm",
+      "imagem": "/assets/img/catalog/chroma/acessorio/GUI-004.webp",
+      "aplicavel": "tests",
+      "acabamento": "tests",
+      "material": "tests",
+      "tipo": "PACOTE (PAC)",
+      "unidade_conversao": "8 PEÇAS",
+      "observacao": "Guia Deslizante Vedação"
+    }
+  ]
+}

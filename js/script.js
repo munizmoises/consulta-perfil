@@ -1,7 +1,3 @@
-const versao_atual = '2.1.2';
-
-document.querySelectorAll('.versao_atual').forEach(el => el.innerHTML = versao_atual);
-
 const CAMPOS_PERFIS = [
   ["substituicao", "Substituição", true],
   ["nome", "Nome"],
@@ -22,7 +18,7 @@ const CAMPOS_ACESSORIOS = [
 const HISTORICO_MAX = 5;
 const HISTORICO_KEY_PERFIS = "historico_perfis";
 const HISTORICO_KEY_ACESSORIOS = "historico_acessorios";
-const NO_PHOTO = "assets/img/fotos/NO-PHOTO.webp";
+const NO_PHOTO = "assets/img/substitution/NO-PHOTO.webp";
 const SUGESTOES_MAX = 6;
 
 let banco = { perfis: [], acessorios: [] };
@@ -213,6 +209,44 @@ function itemBateComTermo(item, termo) {
     .some(v => v && normalizarBusca(v).includes(t));
 }
 
+// Foto ampliada
+
+function abrirFoto(src, alt) {
+  const modal = criar("div", "foto-modal");
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-label", alt);
+
+  const img = document.createElement("img");
+  img.className = "foto-ampliada";
+  img.src = src;
+  img.alt = alt;
+
+  const btnFechar = criar("button", "foto-fechar");
+  btnFechar.type = "button";
+  btnFechar.setAttribute("aria-label", "Fechar imagem");
+  btnFechar.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+  const fechar = () => {
+    modal.classList.remove("foto-aberta");
+    setTimeout(() => modal.remove(), 200);
+    document.removeEventListener("keydown", escListener);
+  };
+
+  const escListener = (e) => { if (e.key === "Escape") fechar(); };
+
+  btnFechar.addEventListener("click", fechar);
+  modal.addEventListener("click", (e) => { if (e.target === modal) fechar(); });
+  document.addEventListener("keydown", escListener);
+
+  modal.appendChild(img);
+  modal.appendChild(btnFechar);
+  document.body.appendChild(modal);
+
+  modal.getBoundingClientRect();
+  modal.classList.add("foto-aberta");
+}
+
 // Imagens
 
 function montarImagens(item) {
@@ -228,6 +262,9 @@ function montarImagens(item) {
     foto.loading = "lazy";
     foto.onerror = () => { foto.src = NO_PHOTO; };
     foto.src = src && src.trim() !== "" ? src : NO_PHOTO;
+    foto.addEventListener("click", () => {
+      if (!foto.src.includes("NO-PHOTO")) abrirFoto(foto.src, legenda.trim());
+    });
     const texto = criar("span", "foto-legenda", legenda.trim());
     caixa.appendChild(foto);
     caixa.appendChild(texto);
@@ -396,9 +433,7 @@ function iniciarTema() {
   if (salvo) {
     aplicar(salvo === "escuro");
   } else {
-    btn.innerHTML = temaEscuro()
-      ? '<i class="fa-solid fa-sun"></i>'
-      : '<i class="fa-solid fa-moon"></i>';
+    aplicar(true); // padrão: escuro
   }
 
   btn.addEventListener("click", () => aplicar(!temaEscuro()));

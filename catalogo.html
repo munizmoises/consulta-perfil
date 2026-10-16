@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca Perfil</title>
+  <meta name="description" content="Catálogo técnico de perfis de alumínio e acessórios da Perfil Alumínio do Brasil.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+
+<body>
+  <header class="barra">
+    <div class="barra-marca">
+      <span class="logo">C</span><span>Consulta Perfil</span>
+      <nav class="barra-nav">
+        <a href="index.html" class="nav-link">Substituições</a>
+        <a href="catalogo.html" class="nav-link nav-link-ativo">Catálogo (EM TESTES)</a>
+      </nav>
+    </div>
+    <h1 class="barra-titulo">Busca Perfil (EM TESTES)</h1>
+    <div class="barra-info">
+      <time id="data-hora"></time>
+      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema"></button>
+    </div>
+  </header>
+
+  <main class="catalogo-layout">
+
+    <aside class="catalogo-busca-painel painel">
+      <div class="catalogo-abas">
+        <button class="catalogo-aba catalogo-aba-ativa" data-aba="perfis" type="button">Perfis</button>
+        <button class="catalogo-aba" data-aba="acessorios" type="button">Acessórios</button>
+      </div>
+
+      <form class="busca" autocomplete="off" id="form-catalogo">
+        <label for="busca-catalogo">Nome ou código</label>
+        <div class="busca-campos">
+          <input id="busca-catalogo" type="text" placeholder="Ex: CHR010" spellcheck="false">
+          <button type="submit" class="btn btn-principal">Pesquisar</button>
+          <button type="button" class="btn btn-secundario btn-limpar" hidden>Limpar</button>
+        </div>
+      </form>
+
+      <div id="resultado-catalogo" class="resultado" aria-live="polite"></div>
+    </aside>
+
+    <section class="catalogo-ficha painel" id="ficha-tecnica">
+      <p class="ficha-vazia">Pesquise um código ou nome para ver a ficha técnica. (EM TESTES)</p>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    Versão <span class="versao_atual"></span> · Moisés Muniz
+  </footer>
+
+
+  <script src="global.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

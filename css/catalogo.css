@@ -1,0 +1,235 @@
+/* Navegação na barra */
+.barra-nav{
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link{
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  color: var(--suave);
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover{
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.nav-link-ativo{
+  background: var(--fundo);
+  color: var(--destaque);
+}
+
+/* Layout */
+.catalogo-layout{
+  flex: 1;
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 22rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Abas perfis / acessórios */
+.catalogo-abas{
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.catalogo-aba{
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 1px solid var(--borda);
+  background: transparent;
+  color: var(--suave);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.catalogo-aba:hover{
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.catalogo-aba-ativa{
+  background: var(--destaque);
+  color: var(--destaque-texto);
+  border-color: transparent;
+}
+
+/* Lista de resultados */
+.catalogo-item-lista{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.catalogo-item-lista:hover{
+  background: var(--fundo);
+}
+
+.catalogo-item-lista.selecionado{
+  background: var(--fundo);
+  border-color: var(--destaque);
+}
+
+.catalogo-item-thumb{
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  border-radius: 0.35rem;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.catalogo-item-info{
+  min-width: 0;
+}
+
+.catalogo-item-codigo{
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--destaque);
+}
+
+.catalogo-item-nome{
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catalogo-item-sistema{
+  font-size: 0.78rem;
+  color: var(--suave);
+}
+
+/* Ficha técnica */
+.catalogo-ficha{
+  position: sticky;
+  top: 1.5rem;
+}
+
+.ficha-vazia{
+  color: var(--suave);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.ficha-topo{
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ficha-imagem-wrap{
+  flex-shrink: 0;
+}
+
+.ficha-imagem{
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding: 0.5rem;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.ficha-imagem:hover{
+  transform: scale(1.04);
+}
+
+.ficha-cabecalho{
+  flex: 1;
+  min-width: 0;
+}
+
+.ficha-codigo {
+  font-size: 0.85rem;
+  color: var(--suave);
+  margin: 0 0 0.2rem;
+}
+
+.ficha-nome{
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  line-height: 1.2;
+}
+
+.ficha-sistema{
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--ok-fundo);
+  color: var(--ok);
+}
+
+.ficha-campos{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  border-top: 1px solid var(--borda);
+  padding-top: 1rem;
+}
+
+.ficha-campo dt{
+  font-size: 0.82rem;
+  color: var(--suave);
+  margin-bottom: 0.15rem;
+}
+
+.ficha-campo dd{
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ficha-campo-largo{
+  grid-column: 1 / -1;
+}
+
+/* Responsividade */
+@media (max-width: 52rem){
+  .catalogo-layout{
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .catalogo-ficha{
+    position: static;
+  }
+
+  .ficha-campos{
+    grid-template-columns: 1fr;
+  }
+
+  .barra-nav{
+    display: none;
+  }
+}
