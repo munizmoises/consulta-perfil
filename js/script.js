@@ -636,7 +636,7 @@ async function iniciar() {
   setInterval(atualizarRelogio, 30000);
 
   try {
-    const resposta = await fetch("http://127.0.0.1:5000/api/substituicoes");
+    const resposta = await fetch("https://consulta-perfil-api.onrender.com/api/substituicoes");
     if (!resposta.ok) throw new Error("Erro na API");
     const dados = await resposta.json();
     if (!dados || ((!dados.perfis || dados.perfis.length === 0) && (!dados.acessorios || dados.acessorios.length === 0))) {
