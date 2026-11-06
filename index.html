@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consulta Perfil</title>
+  <title>Consulta Perfil | Substituições</title>
   <meta name="description" content="Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da Perfil Alumínio do Brasil.">
   <meta property="og:title" content="Consulta Perfil - Perfil Alumínio do Brasil">
   <meta property="og:description" content="Consulte substituições de perfis de alumínio, acessórios e componentes de forma rápida.">
@@ -13,7 +13,9 @@
   <meta property="og:image:type" content="image/png">
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -21,16 +23,60 @@
   <header class="barra">
     <div class="barra-marca">
       <span class="logo">C</span>
-      <span>Consulta Perfil</span>
-      <nav class="barra-nav">
+      <span class="barra-marca-titulo">Consulta Perfil</span>
+      <nav class="barra-nav barra-nav-desktop">
         <a href="index.html" class="nav-link nav-link-ativo">Substituições</a>
-        <a href="catalogo.html" class="nav-link">Catálogo (EM TESTES)</a>
+        <a href="catalogo.html" class="nav-link">Catálogo Técnico</a>
       </nav>
     </div>
+
     <h1 class="barra-titulo">Substituições de perfis e acessórios</h1>
+
     <div class="barra-info">
       <time id="data-hora"></time>
-      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema"></button>
+      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
+
+      <!-- Aba de Futuro usuário -->
+      <div class="dropdown">
+        <button id="btn-usuario" class="btn-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu do usuário" title="Área do Usuário">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end usuario-dropdown-menu">
+          <div class="usuario-cabecalho">
+            <div class="usuario-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="usuario-dados">
+              <p class="usuario-nome">Perfil Alumínio</p>
+              <p class="usuario-cargo">Moisés Muniz</p>
+            </div>
+          </div>
+          <a href="index.html" class="usuario-item">
+            <i class="fa-solid fa-repeat"></i> Substituições
+          </a>
+          <a href="catalogo.html" class="usuario-item">
+            <i class="fa-solid fa-book-open"></i> Catálogo Técnico
+          </a>
+          <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item">
+            <i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio
+          </a>
+        </div>
+      </div>
+
+      <!-- Botão menu hambúrguer no Bootstrap -->
+      <button class="btn-hamburguer" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacaoMobile" aria-controls="menuNavegacaoMobile" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Menu hambúrguer -->
+    <div class="collapse barra-collapse-mobile" id="menuNavegacaoMobile">
+      <nav class="menu-hamburguer-box">
+        <a href="index.html" class="nav-link nav-link-ativo">
+          <i class="fa-solid fa-repeat"></i> Substituições
+        </a>
+        <a href="catalogo.html" class="nav-link">
+          <i class="fa-solid fa-book-open"></i> Catálogo Técnico
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -64,6 +110,7 @@
 
   <footer class="rodape">
     Versão <span class="versao_atual"></span> · Moisés Muniz <br>
+    <a class="site_perfil" href="https://perfilaluminio.com.br/" target="_blank">Conheça a Perfil Alumínio do Brasil</a> <br>
     <span id="contador-banco"></span>
   </footer>
 

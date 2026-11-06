@@ -3,33 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Busca Perfil</title>
+  <title>Consulta Perfil | Catálogo Técnico</title>
   <meta name="description" content="Catálogo técnico de perfis de alumínio e acessórios da Perfil Alumínio do Brasil.">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/catalogo.css">
 </head>
 
 <body>
   <header class="barra">
     <div class="barra-marca">
-      <span class="logo">C</span><span>Consulta Perfil</span>
-      <nav class="barra-nav">
+      <span class="logo">C</span>
+      <span class="barra-marca-titulo">Consulta Perfil</span>
+      <nav class="barra-nav barra-nav-desktop">
         <a href="index.html" class="nav-link">Substituições</a>
-        <a href="catalogo.html" class="nav-link nav-link-ativo">Catálogo (EM TESTES)</a>
+        <a href="catalogo.html" class="nav-link nav-link-ativo">Catálogo Técnico</a>
       </nav>
     </div>
-    <h1 class="barra-titulo">Busca Perfil (EM TESTES)</h1>
+
+    <h1 class="barra-titulo">Catálogo técnico de perfis e acessórios</h1>
+
     <div class="barra-info">
       <time id="data-hora"></time>
-      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema"></button>
+      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
+
+      <!-- Aba de Futuro usuário -->
+      <div class="dropdown">
+        <button id="btn-usuario" class="btn-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu do usuário" title="Área do Usuário">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end usuario-dropdown-menu">
+          <div class="usuario-cabecalho">
+            <div class="usuario-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="usuario-dados">
+              <p class="usuario-nome">Perfil Alumínio</p>
+              <p class="usuario-cargo">Moisés Muniz</p>
+            </div>
+          </div>
+          <a href="index.html" class="usuario-item">
+            <i class="fa-solid fa-repeat"></i> Substituições
+          </a>
+          <a href="catalogo.html" class="usuario-item">
+            <i class="fa-solid fa-book-open"></i> Catálogo Técnico
+          </a>
+          <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item">
+            <i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio
+          </a>
+        </div>
+      </div>
+
+      <!-- Botão menu hambúrguer no Bootstrap -->
+      <button class="btn-hamburguer" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacaoMobile" aria-controls="menuNavegacaoMobile" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Menu hambúrguer -->
+    <div class="collapse barra-collapse-mobile" id="menuNavegacaoMobile">
+      <nav class="menu-hamburguer-box">
+        <a href="index.html" class="nav-link">
+          <i class="fa-solid fa-repeat"></i> Substituições
+        </a>
+        <a href="catalogo.html" class="nav-link nav-link-ativo">
+          <i class="fa-solid fa-book-open"></i> Catálogo Técnico
+        </a>
+      </nav>
     </div>
   </header>
 
   <main class="catalogo-layout">
+    <aside class="catalogo-sistemas painel">
+      <h3 class="sistemas-titulo">Sistemas</h3>
+      <div class="sistemas-lista" id="filtro-sistemas">
+        <button type="button" class="sistema-btn sistema-btn-ativo" data-sistema="todos">Todos</button>
+        <button type="button" class="sistema-btn" data-sistema="chroma">Chroma</button>
+        <button type="button" class="sistema-btn" data-sistema="ecoline">Ecoline</button>
+        <button type="button" class="sistema-btn" data-sistema="ecostick">Ecostick</button>
+        <button type="button" class="sistema-btn" data-sistema="diversos">Diversos</button>
+        <button type="button" class="sistema-btn" data-sistema="grandline">Grandline</button>
+        <button type="button" class="sistema-btn" data-sistema="ecogrid">Ecogrid</button>
+        <button type="button" class="sistema-btn" data-sistema="tabelados">Tabelados</button>
+        <button type="button" class="sistema-btn" data-sistema="sophia">Sophia</button>
+        <button type="button" class="sistema-btn" data-sistema="minimalframe">Minimalframe</button>
+        <button type="button" class="sistema-btn" data-sistema="wallframe">Wallframe</button>
+        <button type="button" class="sistema-btn" data-sistema="slidinglass">Slidinglass</button>
+        <button type="button" class="sistema-btn" data-sistema="fachada ventilada">Fachada Ventilada</button>
+        <button type="button" class="sistema-btn" data-sistema="artus">Artus</button>
+        <button type="button" class="sistema-btn" data-sistema="unnion">Unnion</button>
+        <button type="button" class="sistema-btn" data-sistema="erus">Erus</button>
+        <button type="button" class="sistema-btn" data-sistema="vantor_90">Vantor 90</button>
+        <button type="button" class="sistema-btn" data-sistema="linha moveleira">Linha Moveleira</button>
+        <button type="button" class="sistema-btn" data-sistema="linha implementos rodoviarios">Linha Implementos Rodoviários</button>
+        <button type="button" class="sistema-btn" data-sistema="kit sacada certa">Kit Sacada Certa</button>
+      </div>
+    </aside>
 
-    <aside class="catalogo-busca-painel painel">
+    <!-- Abas / Busca visual e Histórico -->
+    <section class="catalogo-busca-painel painel">
       <div class="catalogo-abas">
         <button class="catalogo-aba catalogo-aba-ativa" data-aba="perfis" type="button">Perfis</button>
         <button class="catalogo-aba" data-aba="acessorios" type="button">Acessórios</button>
@@ -37,26 +109,33 @@
 
       <form class="busca" autocomplete="off" id="form-catalogo">
         <label for="busca-catalogo">Nome ou código</label>
-        <div class="busca-campos">
-          <input id="busca-catalogo" type="text" placeholder="Ex: CHR010" spellcheck="false">
+        <div class="busca-campos-wrap">
+          <div class="busca-input-container">
+            <input id="busca-catalogo" type="text" placeholder="Ex: CHR057" spellcheck="false">
+            <button type="button" class="btn-camera-ia" id="btn-camera-ia" title="Busca visual por foto em desenvolvimento!" aria-label="Busca visual por foto">
+              <i class="fa-solid fa-camera"></i>
+            </button>
+          </div>
           <button type="submit" class="btn btn-principal">Pesquisar</button>
           <button type="button" class="btn btn-secundario btn-limpar" hidden>Limpar</button>
         </div>
       </form>
 
-      <div id="resultado-catalogo" class="resultado" aria-live="polite"></div>
-    </aside>
+      <div id="historico-container" class="historico-catalogo"></div>
 
-    <section class="catalogo-ficha painel" id="ficha-tecnica">
-      <p class="ficha-vazia">Pesquise um código ou nome para ver a ficha técnica. (EM TESTES)</p>
+      <div id="resultado-catalogo" class="resultado" aria-live="polite"></div>
     </section>
 
+    <!-- Ficha Técnica -->
+    <section class="catalogo-ficha painel" id="ficha-tecnica">
+      <p class="ficha-vazia">Pesquise um código ou nome ao lado, ou selecione um sistema para listar os itens.</p>
+    </section>
   </main>
 
   <footer class="rodape">
-    Versão <span class="versao_atual"></span> · Moisés Muniz
+    Versão <span class="versao_atual"></span> · Moisés Muniz <br>
+    <a class="site_perfil" href="https://perfilaluminio.com.br/" target="_blank">Conheça a Perfil Alumínio do Brasil</a> <br>
   </footer>
-
 
   <script src="global.js"></script>
   <script src="js/catalogo.js"></script>
