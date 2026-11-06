@@ -1421,7 +1421,7 @@ function configurarAbas() {
       const novoEstado = estadoPorAba[abaAtiva];
       if (campo) {
         campo.value = novoEstado.termo || "";
-        campo.placeholder = abaAtiva === "perfis" ? "Ex: CHR010" : "Ex: VED-030";
+        campo.placeholder = abaAtiva === "perfis" ? "Ex: CHR057" : "Ex: VED030";
       }
       if (limpar) {
         limpar.hidden = !(novoEstado.termo && novoEstado.termo.trim() !== "");
