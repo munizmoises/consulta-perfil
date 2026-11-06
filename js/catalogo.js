@@ -1527,7 +1527,7 @@ async function iniciar() {
   setInterval(atualizarRelogio, 30000);
 
   try {
-    const resposta = await fetch("https://consulta-perfil.onrender.com/api/catalogo");
+    const resposta = await fetch("https://consulta-perfil-api.onrender.com/api/catalogo");
     if (!resposta.ok) throw new Error("Erro na API");
     const dados = await resposta.json();
     if (!dados || ((!dados.perfis || dados.perfis.length === 0) && (!dados.acessorios || dados.acessorios.length === 0))) {
