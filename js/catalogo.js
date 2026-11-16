@@ -2,88 +2,14 @@ const NO_PHOTO = "assets/img/catalog/NO-PHOTO.webp";
 const MAPA_ISOPLETAS_IMG = "assets/img/catalog/ISOPLETAS.webp";
 const HISTORICO_KEY_PERFIS = "historico_catalogo_perfis";
 const HISTORICO_KEY_ACESSORIOS = "historico_catalogo_acessorios";
-const HISTORICO_MAX = 5;
 
-// EDIÇÃO DE CADA SISTEMA NO CATÁLOGO
-
-const edicao_chroma            = 'Ed. 11 · Dezembro/2025';
-const edicao_ecoline           = 'Ed. 7 · Dezembro/2025';
-const edicao_ecostick          = 'Ed. 1 · Outubro/2026';
-const edicao_diversos          = 'Última alteração: Outubro/2026';
-const edicao_grandline         = 'Ed. 1 · Outubro/2026';
-const edicao_ecogrid           = 'Ed. 1 · Outubro/2026';
-const edicao_tabelados         = 'Ed. 1 · Outubro/2026';
-const edicao_sophia            = 'Ed. 1 · Outubro/2026';
-const edicao_minimalframe      = 'Ed. 1 · Outubro/2026';
-const edicao_wallframe         = 'Ed. 1 · Outubro/2026';
-const edicao_slidinglass       = 'Ed. 1 · Outubro/2026';
-const edicao_fachada_ventilada = 'Ed. 1 · Outubro/2026';
-const edicao_artus             = 'Ed. 1 · Outubro/2026';
-const edicao_unnion            = 'Ed. 1 · Outubro/2026';
-const edicao_erus              = 'Ed. 1 · Outubro/2026';
-const edicao_vantor_90         = 'Ed. 1 · Outubro/2026';
-const edicao_linha_moveleira   = 'Ed. 1 · Outubro/2026';
-const edicao_linha_implementos = 'Ed. 1 · Outubro/2026';
-const edicao_kit_sacada_certa  = 'Ed. 1 · Outubro/2026';
-const edicao_linha_25          = 'Ed. 1 · Outubro/2026';
-
-function aplicarEdicoesNoHTML() {
-  document.querySelectorAll('.edicao_chroma').forEach(el => el.innerHTML = edicao_chroma);
-  document.querySelectorAll('.edicao_ecoline').forEach(el => el.innerHTML = edicao_ecoline);
-  document.querySelectorAll('.edicao_ecostick').forEach(el => el.innerHTML = edicao_ecostick);
-  document.querySelectorAll('.edicao_diversos').forEach(el => el.innerHTML = edicao_diversos);
-  document.querySelectorAll('.edicao_grandline').forEach(el => el.innerHTML = edicao_grandline);
-  document.querySelectorAll('.edicao_ecogrid').forEach(el => el.innerHTML = edicao_ecogrid);
-  document.querySelectorAll('.edicao_tabelados').forEach(el => el.innerHTML = edicao_tabelados);
-  document.querySelectorAll('.edicao_sophia').forEach(el => el.innerHTML = edicao_sophia);
-  document.querySelectorAll('.edicao_minimalframe').forEach(el => el.innerHTML = edicao_minimalframe);
-  document.querySelectorAll('.edicao_wallframe').forEach(el => el.innerHTML = edicao_wallframe);
-  document.querySelectorAll('.edicao_slidinglass').forEach(el => el.innerHTML = edicao_slidinglass);
-  document.querySelectorAll('.edicao_fachada_ventilada').forEach(el => el.innerHTML = edicao_fachada_ventilada);
-  document.querySelectorAll('.edicao_artus').forEach(el => el.innerHTML = edicao_artus);
-  document.querySelectorAll('.edicao_unnion').forEach(el => el.innerHTML = edicao_unnion);
-  document.querySelectorAll('.edicao_erus').forEach(el => el.innerHTML = edicao_erus);
-  document.querySelectorAll('.edicao_vantor_90').forEach(el => el.innerHTML = edicao_vantor_90);
-  document.querySelectorAll('.edicao_linha_moveleira').forEach(el => el.innerHTML = edicao_linha_moveleira);
-  document.querySelectorAll('.edicao_linha_implementos').forEach(el => el.innerHTML = edicao_linha_implementos);
-  document.querySelectorAll('.edicao_kit_sacada_certa').forEach(el => el.innerHTML = edicao_kit_sacada_certa);
-  document.querySelectorAll('.edicao_linha_25').forEach(el => el.innerHTML = edicao_linha_25);
-}
-
-aplicarEdicoesNoHTML();
-
-const EDICOES_SISTEMAS = {
-  chroma: edicao_chroma,
-  ecoline: edicao_ecoline,
-  ecoline25: edicao_ecoline,
-  ecostick: edicao_ecostick,
-  diversos: edicao_diversos,
-  grandline: edicao_grandline,
-  ecogrid: edicao_ecogrid,
-  tabelados: edicao_tabelados,
-  sophia: edicao_sophia,
-  minimalframe: edicao_minimalframe,
-  wallframe: edicao_wallframe,
-  slidinglass: edicao_slidinglass,
-  fachadaventilada: edicao_fachada_ventilada,
-  artus: edicao_artus,
-  unnion: edicao_unnion,
-  erus: edicao_erus,
-  vantor90: edicao_vantor_90,
-  linhamoveleira: edicao_linha_moveleira,
-  linhaimplementosrodoviarios: edicao_linha_implementos,
-  kitsacadacerta: edicao_kit_sacada_certa,
-  linha25: edicao_linha_25
-};
-
-const MSG_ERRO_BANCO = "No momento não foi possível carregar o banco de dados. Recarregue a página e tente novamente.";
-
-let banco = { graficos_desempenho: [], perfis: [], acessorios: [] };
+let banco = { sistemas: [], graficos_desempenho: [], perfis: [], acessorios: [] };
 let erroCarregamentoBanco = false;
 let abaAtiva = "perfis";
 let sistemaAtivo = "todos";
+let foraDeLinha = {}; // código -> item da tabela de substituições
+let comparando = [];
 
-// Estado separado por aba
 let estadoPorAba = {
   perfis: {
     termo: "",
@@ -97,7 +23,6 @@ let estadoPorAba = {
   }
 };
 
-// Observação PRIMEIRO (em cima) e Encaixe DEPOIS (embaixo)
 const CAMPOS_PERFIL = [
   { chave: "peso",       rotulo: "Peso"       },
   { chave: "tipologia",  rotulo: "Tipologia"  },
@@ -119,30 +44,12 @@ const CAMPOS_ACESSORIO = [
   { chave: "aplicavel",         rotulo: "Aplicável nos perfis", largo: true, clicavel: true },
 ];
 
-function criar(tag, classe, texto) {
-  const el = document.createElement(tag);
-  if (classe) el.className = classe;
-  if (texto !== undefined) el.textContent = texto;
-  return el;
-}
-
-function normalizar(texto) {
-  return (texto || "").trim().toUpperCase().replace(/[\s\-*]+/g, "");
-}
-
-function normalizarBusca(texto) {
-  return (texto || "").trim().toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    .replace(/[\s\-*_.]+/g, "");
-}
-
-// Converte campo de imagem (string única, string separada por vírgula)
 function extrairListaImagens(valor, padraoFallback = "") {
   let lista = [];
   if (Array.isArray(valor)) {
     lista = valor.map(v => String(v || "").trim()).filter(Boolean);
   } else if (typeof valor === "string" && valor.trim() !== "") {
-    lista = valor.split(/[|,]+/).map(s => s.trim()).filter(Boolean);
+    lista = valor.split(/[|,\r\n]+/).map(s => s.trim()).filter(Boolean);
   }
   if (lista.length === 0 && padraoFallback) {
     lista = [padraoFallback];
@@ -153,6 +60,10 @@ function extrairListaImagens(valor, padraoFallback = "") {
 function obterPrimeiraImagem(valor, padraoFallback = NO_PHOTO) {
   const lista = extrairListaImagens(valor, "");
   return lista.length > 0 ? lista[0] : padraoFallback;
+}
+
+function imagemPadrao(item, pasta) {
+  return `assets/img/catalog/sistemas/${item.sistema_chave || "chroma"}/${pasta}/${item.codigo}.webp`;
 }
 
 function ordenarNatural(lista) {
@@ -172,10 +83,6 @@ function indexarBancoCatalogo() {
   todosItens.forEach(item => {
     item._codNorm = normalizar(item.codigo || "");
     item._codBusca = normalizarBusca(item.codigo || "");
-    item._sistemasNorm = (item.sistema || "")
-      .split(/[\/,]+/)
-      .map(s => normalizarBusca(s))
-      .filter(Boolean);
     item._buscaIndex = [
       item.codigo, item.nome, item.apelido, item.observacao,
       item.sistema, item.tipologia, item.tipo, item.encaixe, item.aplicavel
@@ -192,22 +99,81 @@ function itemBateComTermo(item, termo) {
   return item._buscaIndex ? item._buscaIndex.includes(t) : false;
 }
 
-function itemPertenceAoSistema(item, sisFiltro) {
-  if (!sisFiltro || sisFiltro === "todos") return true;
-  if (!item._sistemasNorm || item._sistemasNorm.length === 0) return false;
-  const alvo = normalizarBusca(sisFiltro);
-  return item._sistemasNorm.some(normS => normS.includes(alvo) || alvo.includes(normS));
+function itemPertenceAoSistema(item, chaveSistema) {
+  return !chaveSistema || chaveSistema === "todos" || item.sistema_chave === chaveSistema;
 }
 
-function obterEdicaoItem(item) {
-  if (!item) return "";
-  if (item.sistema) {
-    // Pega o primeiro sistema caso pertença a mais de um
-    const primeiroSis = item.sistema.split(/[\/,]+/)[0];
-    const chave = normalizarBusca(primeiroSis);
-    if (EDICOES_SISTEMAS[chave]) return EDICOES_SISTEMAS[chave];
+function acharSistema(valor) {
+  const alvo = normalizarBusca(valor);
+  return (banco.sistemas || []).find(s => normalizarBusca(s.chave) === alvo || normalizarBusca(s.nome) === alvo);
+}
+
+function edicaoDoSistema(chave) {
+  const sis = (banco.sistemas || []).find(s => s.chave === chave);
+  return sis ? sis.edicao : "";
+}
+
+function coresDoItem(item) {
+  const achadas = [...String(item.acabamento || "").matchAll(/\(([A-Z0-9]{2,8})\)/g)].map(m => m[1]);
+  return achadas.map(cod => (banco.cores || []).find(c => c.codigo === cod)).filter(Boolean);
+}
+
+// o 3D começa sempre no preto; se a pessoa escolher uma cor na ficha ele acompanha
+let cor3DEscolhida = null;
+const cor3D = () => cor3DEscolhida || "#25272b";
+
+// cor clara (branco, natural...) some no fundo branco, então nessas o fundo vira escuro
+function ehCorClara(hex) {
+  const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 150;
+}
+
+function montarCores(cores, trio) {
+  const boxTecnica = trio.firstChild;
+  const secao = criar("div", "ficha-cores");
+  secao.appendChild(criar("span", "ficha-cores-rotulo", `Cores (${cores.length})`));
+  const lista = criar("div", "ficha-cores-lista");
+
+  const pintar = (cor, btn) => {
+    const jaAtivo = btn.classList.contains("ativo");
+    lista.querySelectorAll(".cor-chip").forEach(b => b.classList.remove("ativo"));
+    if (!jaAtivo) btn.classList.add("ativo");
+    // o modelo 3D (se tiver) acompanha a cor escolhida
+    cor3DEscolhida = jaAtivo ? null : cor.hex;
+    document.dispatchEvent(new CustomEvent("cor-3d", { detail: cor3DEscolhida }));
+    // a cor vale pras três caixas: desenho técnico, 3D e imagem aplicada
+    [...trio.children].forEach(box => {
+      box.classList.toggle("pintado", !jaAtivo);
+      box.classList.toggle("cor-clara", !jaAtivo && ehCorClara(cor.hex));
+      if (!jaAtivo) box.style.setProperty("--cor-previa", cor.hex);
+    });
+  };
+
+  cores.forEach(cor => {
+    const btn = criar("button", "cor-chip");
+    btn.type = "button";
+    btn.title = `${cor.descricao} (${cor.codigo})`;
+    const bolinha = criar("span", "cor-bolinha");
+    bolinha.style.background = cor.hex;
+    btn.append(bolinha, criar("span", "cor-nome", cor.nome), criar("small", "cor-codigo", cor.codigo));
+    btn.addEventListener("click", () => pintar(cor, btn));
+    lista.appendChild(btn);
+  });
+
+  secao.appendChild(lista);
+  if (boxTecnica && boxTecnica.classList.contains("com-midia")) {
+    const dica = criar("small", "ficha-cores-dica", "Clica numa cor pra ver o desenho pintado (a cor é aproximada).");
+    secao.appendChild(dica);
+    // se a imagem não carregar a caixa vira "sem imagem", aí a dica não faz sentido
+    new MutationObserver((_, obs) => {
+      if (!boxTecnica.classList.contains("com-midia")) { dica.remove(); obs.disconnect(); }
+    }).observe(boxTecnica, { attributes: true, attributeFilter: ["class"] });
   }
-  return item.edicao || "";
+  return secao;
+}
+
+function ehUltimaAlteracao(edicao) {
+  return /altera/i.test(edicao || "");
 }
 
 function obterGraficosDoPerfil(item) {
@@ -256,116 +222,33 @@ function obterChaveHistorico(aba = abaAtiva) {
   return aba === "perfis" ? HISTORICO_KEY_PERFIS : HISTORICO_KEY_ACESSORIOS;
 }
 
-function lerHistorico(aba = abaAtiva) {
-  const chave = obterChaveHistorico(aba);
-  try { return JSON.parse(localStorage.getItem(chave)) || []; }
-  catch { return []; }
+function ehNomeDeSistema(valor) {
+  return normalizarBusca(valor) === "todos" || Boolean(acharSistema(valor));
 }
 
 function salvarHistorico(codigo, aba = abaAtiva) {
-  if (!codigo || !codigo.trim()) return;
-  const valor = codigo.trim();
-
-  const botoesSistema = Array.from(document.querySelectorAll(".sistema-btn")).flatMap(b => [
-    normalizarBusca(b.dataset.sistema || ""),
-    normalizarBusca(b.textContent || "")
-  ]);
-  if (botoesSistema.includes(normalizarBusca(valor)) || normalizarBusca(valor) === "todos") {
-    return;
-  }
-
-  const chave = obterChaveHistorico(aba);
-  let hist = lerHistorico(aba);
-  hist = hist.filter(c => normalizarBusca(c) !== normalizarBusca(valor));
-  hist.unshift(valor);
-  if (hist.length > HISTORICO_MAX) hist = hist.slice(0, HISTORICO_MAX);
-  localStorage.setItem(chave, JSON.stringify(hist));
+  if (!codigo || !codigo.trim() || ehNomeDeSistema(codigo)) return;
+  gravarHistorico(obterChaveHistorico(aba), codigo);
   renderizarHistorico();
-}
-
-// Modal de confirmação antes de apagar as pesquisas recentes
-function abrirModalConfirmacaoHistorico(mensagem, aoConfirmar) {
-  const backdrop = criar("div", "confirmacao-modal-backdrop");
-  backdrop.setAttribute("role", "dialog");
-  backdrop.setAttribute("aria-modal", "true");
-  backdrop.setAttribute("aria-label", "Confirmar exclusão de pesquisas recentes");
-
-  const caixa = criar("div", "confirmacao-modal-caixa");
-
-  const topo = criar("div", "confirmacao-modal-topo");
-  const icone = criar("div", "confirmacao-modal-icone");
-  icone.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  topo.appendChild(icone);
-  topo.appendChild(criar("h3", "confirmacao-modal-titulo", "Apagar pesquisas recentes"));
-  caixa.appendChild(topo);
-
-  caixa.appendChild(criar("p", "confirmacao-modal-texto", mensagem));
-
-  const acoes = criar("div", "confirmacao-modal-acoes");
-  const btnCancelar = criar("button", "btn-confirmar-cancelar", "Cancelar");
-  btnCancelar.type = "button";
-
-  const btnApagar = criar("button", "btn-confirmar-perigo");
-  btnApagar.type = "button";
-  btnApagar.innerHTML = '<i class="fa-solid fa-trash-can"></i> Confirmar e apagar';
-
-  acoes.appendChild(btnCancelar);
-  acoes.appendChild(btnApagar);
-  caixa.appendChild(acoes);
-  backdrop.appendChild(caixa);
-
-  const fechar = () => {
-    backdrop.classList.remove("aberto");
-    setTimeout(() => backdrop.remove(), 180);
-    document.removeEventListener("keydown", escHandler);
-  };
-
-  const escHandler = (e) => {
-    if (e.key === "Escape") fechar();
-  };
-
-  btnCancelar.addEventListener("click", fechar);
-  btnApagar.addEventListener("click", () => {
-    aoConfirmar();
-    fechar();
-  });
-  backdrop.addEventListener("click", (e) => {
-    if (e.target === backdrop) fechar();
-  });
-  document.addEventListener("keydown", escHandler);
-
-  document.body.appendChild(backdrop);
-  backdrop.getBoundingClientRect();
-  backdrop.classList.add("aberto");
-  btnApagar.focus();
 }
 
 function renderizarHistorico() {
   const container = document.getElementById("historico-container");
   if (!container) return;
   const chaveAtual = obterChaveHistorico(abaAtiva);
-
-  const botoesSistema = Array.from(document.querySelectorAll(".sistema-btn")).flatMap(b => [
-    normalizarBusca(b.dataset.sistema || ""),
-    normalizarBusca(b.textContent || "")
-  ]);
-  const hist = lerHistorico(abaAtiva).filter(
-    itemHist => !botoesSistema.includes(normalizarBusca(itemHist)) && normalizarBusca(itemHist) !== "todos"
-  );
+  const hist = lerHistorico(chaveAtual).filter(itemHist => !ehNomeDeSistema(itemHist));
 
   container.replaceChildren();
   if (hist.length === 0) return;
 
+  const nomeAba = abaAtiva === "perfis" ? "Perfis" : "Acessórios";
   const cab = criar("div", "historico-cabecalho");
   cab.appendChild(criar("span", "historico-titulo", "Pesquisas recentes:"));
   const btnLimpar = criar("button", "historico-limpar", "");
   btnLimpar.type = "button";
-  btnLimpar.title = abaAtiva === "perfis"
-    ? "Limpar pesquisas recentes de Perfis"
-    : "Limpar pesquisas recentes de Acessórios";
+  btnLimpar.title = `Limpar pesquisas recentes de ${nomeAba}`;
   btnLimpar.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
   btnLimpar.addEventListener("click", () => {
-    const nomeAba = abaAtiva === "perfis" ? "Perfis" : "Acessórios";
     abrirModalConfirmacaoHistorico(
       `Tem certeza de que deseja apagar todas as pesquisas recentes de ${nomeAba}?`,
       () => {
@@ -395,102 +278,6 @@ function renderizarHistorico() {
   container.appendChild(lista);
 }
 
-// Foto Ampliada
-function abrirFoto(imagensOuSrc, alt, indiceInicial = 0) {
-  const lista = Array.isArray(imagensOuSrc)
-    ? imagensOuSrc.filter(Boolean)
-    : [{ src: imagensOuSrc, leg: alt }];
-
-  if (lista.length === 0) return;
-  let idxAtual = Math.max(0, Math.min(indiceInicial, lista.length - 1));
-
-  const modal = criar("div", "foto-modal");
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
-  modal.setAttribute("aria-label", alt || "Imagem ampliada");
-
-  const caixa = criar("div", "foto-modal-caixa");
-
-  const legendaEl = criar("div", "foto-modal-legenda", lista[idxAtual].leg || alt || "");
-  caixa.appendChild(legendaEl);
-
-  const img = document.createElement("img");
-  img.className = "foto-ampliada";
-  img.src = lista[idxAtual].src;
-  img.alt = lista[idxAtual].leg || alt || "";
-  caixa.appendChild(img);
-
-  let contadorEl = null;
-
-  const atualizarSlide = (novoIdx) => {
-    idxAtual = (novoIdx + lista.length) % lista.length;
-    img.style.opacity = "0.25";
-    setTimeout(() => {
-      img.src = lista[idxAtual].src;
-      img.alt = lista[idxAtual].leg || alt || "";
-      legendaEl.textContent = lista[idxAtual].leg || alt || "";
-      if (contadorEl) contadorEl.textContent = `${idxAtual + 1} / ${lista.length}`;
-      img.style.opacity = "1";
-    }, 110);
-  };
-
-  // Setinhas FontAwesome
-  if (lista.length > 1) {
-    const btnEsq = criar("button", "foto-modal-seta esq");
-    btnEsq.type = "button";
-    btnEsq.setAttribute("aria-label", "Imagem anterior");
-    btnEsq.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-    btnEsq.addEventListener("click", (e) => {
-      e.stopPropagation();
-      atualizarSlide(idxAtual - 1);
-    });
-
-    const btnDir = criar("button", "foto-modal-seta dir");
-    btnDir.type = "button";
-    btnDir.setAttribute("aria-label", "Próxima imagem");
-    btnDir.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-    btnDir.addEventListener("click", (e) => {
-      e.stopPropagation();
-      atualizarSlide(idxAtual + 1);
-    });
-
-    contadorEl = criar("span", "foto-modal-contador", `${idxAtual + 1} / ${lista.length}`);
-
-    caixa.appendChild(btnEsq);
-    caixa.appendChild(btnDir);
-    caixa.appendChild(contadorEl);
-  }
-
-  const btnFechar = criar("button", "foto-fechar");
-  btnFechar.type = "button";
-  btnFechar.setAttribute("aria-label", "Fechar imagem");
-  btnFechar.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-
-  const fechar = () => {
-    modal.classList.remove("foto-aberta");
-    setTimeout(() => modal.remove(), 200);
-    document.removeEventListener("keydown", keyListener);
-  };
-
-  const keyListener = (e) => {
-    if (e.key === "Escape") fechar();
-    if (lista.length > 1 && e.key === "ArrowLeft") atualizarSlide(idxAtual - 1);
-    if (lista.length > 1 && e.key === "ArrowRight") atualizarSlide(idxAtual + 1);
-  };
-
-  btnFechar.addEventListener("click", fechar);
-  modal.addEventListener("click", (e) => { if (e.target === modal) fechar(); });
-  document.addEventListener("keydown", keyListener);
-
-  modal.appendChild(caixa);
-  modal.appendChild(btnFechar);
-  document.body.appendChild(modal);
-
-  modal.getBoundingClientRect();
-  modal.classList.add("foto-aberta");
-}
-
-// Modal do Gráfico Estrutural
 function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
   const graficos = graficosDisponiveis && graficosDisponiveis.length > 0
     ? graficosDisponiveis
@@ -499,8 +286,6 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
   if (graficos.length === 0) return;
 
   const modal = criar("div", "foto-modal");
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
   modal.setAttribute("aria-label", `Desempenho Estrutural - ${item.codigo}`);
 
   const conteudo = criar("div", "modal-estrutural-conteudo");
@@ -776,44 +561,28 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
   conteudo.appendChild(grid);
   modal.appendChild(conteudo);
 
-  const fechar = () => {
-    modal.classList.remove("foto-aberta");
-    setTimeout(() => modal.remove(), 200);
-    document.removeEventListener("keydown", escListener);
-  };
-
-  const escListener = (e) => { if (e.key === "Escape") fechar(); };
-
-  btnFechar.addEventListener("click", fechar);
-  modal.addEventListener("click", (e) => { if (e.target === modal) fechar(); });
-  document.addEventListener("keydown", escListener);
-
-  document.body.appendChild(modal);
-  modal.getBoundingClientRect();
-  modal.classList.add("foto-aberta");
+  btnFechar.addEventListener("click", abrirModal(modal, "foto-aberta"));
 }
 
-// Compartilhar por URL
+function preencherUrl(url, item) {
+  url.searchParams.set("codigo", item.codigo);
+  if (item.sistema_chave) url.searchParams.set("sistema", item.sistema_chave);
+  url.searchParams.set("aba", abaAtiva);
+  return url;
+}
+
 function atualizarUrlItem(item) {
-  if (!window.history || !window.history.replaceState) return;
   const url = new URL(window.location);
   if (item && item.codigo) {
-    url.searchParams.set("codigo", item.codigo);
-    if (item.sistema) url.searchParams.set("sistema", item.sistema);
-    url.searchParams.set("aba", abaAtiva);
+    preencherUrl(url, item);
   } else {
-    url.searchParams.delete("codigo");
-    url.searchParams.delete("sistema");
-    url.searchParams.delete("aba");
+    ["codigo", "sistema", "aba"].forEach(p => url.searchParams.delete(p));
   }
   window.history.replaceState({}, "", url);
 }
 
 function copiarLinkCompartilhamento(item, btn) {
-  const url = new URL(window.location.origin + window.location.pathname);
-  url.searchParams.set("codigo", item.codigo);
-  if (item.sistema) url.searchParams.set("sistema", item.sistema);
-  url.searchParams.set("aba", abaAtiva);
+  const url = preencherUrl(new URL(window.location.origin + window.location.pathname), item);
 
   navigator.clipboard.writeText(url.toString()).then(() => {
     const originalHtml = btn.innerHTML;
@@ -846,10 +615,15 @@ function encontrarItemPorCodigo(codigoAlvo, sistemaPreferido = sistemaAtivo) {
   return null;
 }
 
-function irParaPerfilCompleto(codigoAlvo) {
-  const resultado = encontrarItemPorCodigo(codigoAlvo, sistemaAtivo);
+function irParaPerfilCompleto(codigoAlvo, sistemaPreferido = sistemaAtivo, voltarPraTodos = false) {
+  const resultado = encontrarItemPorCodigo(codigoAlvo, sistemaPreferido);
   const campoBusca = document.getElementById("busca-catalogo");
   const limpar = document.querySelector("#form-catalogo .btn-limpar");
+
+  // se o item não é do sistema marcado ia dar "não encontrado", então volta pra Todos
+  if (sistemaAtivo !== "todos" && (voltarPraTodos || !resultado || !itemPertenceAoSistema(resultado.item, sistemaAtivo))) {
+    marcarSistemaAtivo("todos");
+  }
 
   if (resultado && resultado.aba !== abaAtiva) {
     document.querySelectorAll(".catalogo-aba").forEach(b => b.classList.remove("catalogo-aba-ativa"));
@@ -870,7 +644,6 @@ function irParaPerfilCompleto(codigoAlvo) {
   executarFiltro();
 }
 
-// Cards de Imagem técnica, 3D e aplicada
 function criarBoxImagem(titulo, valorImagens, altBase, iconeVazio, textoVazio) {
   const box = criar("div", "ficha-box-img");
   box.appendChild(criar("span", "ficha-box-rotulo", titulo));
@@ -917,7 +690,9 @@ function criarBoxImagem(titulo, valorImagens, altBase, iconeVazio, textoVazio) {
       }
     };
 
-    box.appendChild(img);
+    const moldura = criar("span", "ficha-box-moldura");
+    moldura.appendChild(img);
+    box.appendChild(moldura);
 
     if (listaImgs.length > 1) {
       const trocarNoCard = (delta) => {
@@ -955,7 +730,6 @@ function criarBoxImagem(titulo, valorImagens, altBase, iconeVazio, textoVazio) {
     box.classList.add("com-midia");
     box.title = `Clique para ampliar ${titulo}`;
     box.addEventListener("click", () => {
-      // Ao clicar, abre o modal SOMENTE com as imagens desta categoria (Técnica, 3D ou Aplicada)!
       const galeriaDesteTipo = listaImgs.map((s, i) => ({
         src: s,
         leg: `${altBase}${listaImgs.length > 1 ? " (" + (i + 1) + "/" + listaImgs.length + ")" : ""}`
@@ -966,6 +740,236 @@ function criarBoxImagem(titulo, valorImagens, altBase, iconeVazio, textoVazio) {
     renderizarVazio();
   }
 
+  return box;
+}
+
+// imagem_3d pode misturar .stl, página .html (iframe) e imagem comum
+const ehStl3D = (src) => /\.stl(\?.*)?$/i.test(src);
+const ehEmbed3D = (src) => /^https?:\/\/\S+\.html?(\?.*)?$/i.test(src);
+const tipoSlide3D = (src) => (ehStl3D(src) ? "stl" : (ehEmbed3D(src) ? "embed" : "img"));
+const previewEmbed3D = (src) => src.replace(/index\.html?(\?.*)?$/i, "export/preview.jpg");
+
+function abrirGaleria3D(slides, indiceInicial, altBase) {
+  const lista = (slides || []).slice();
+  if (lista.length === 0) return;
+  let idx = Math.max(0, Math.min(indiceInicial || 0, lista.length - 1));
+  let viewer = null, versao = 0;
+
+  const modal = criar("div", "foto-modal");
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-label", altBase || "Visualização 3D ampliada");
+
+  const caixa = criar("div", "foto-modal-caixa foto-modal-caixa-3d");
+  const legendaEl = criar("div", "foto-modal-legenda", "");
+  caixa.appendChild(legendaEl);
+  const palco = criar("div", "foto-modal-3d-palco");
+  caixa.appendChild(palco);
+
+  const legendaDe = (i) => `${altBase || ""}${lista.length > 1 ? " (" + (i + 1) + "/" + lista.length + ")" : ""}`;
+  let contadorEl = null;
+
+  const mostrar = () => {
+    if (viewer) { viewer.vivo = false; viewer = null; }
+    const meu = ++versao;
+    const slide = lista[idx];
+    palco.replaceChildren();
+    legendaEl.textContent = legendaDe(idx);
+    if (contadorEl) contadorEl.textContent = `${idx + 1} / ${lista.length}`;
+
+    palco.classList.toggle("fundo-escuro", slide.tipo === "stl" && ehCorClara(cor3D()));
+    if (slide.tipo === "stl") {
+      palco.appendChild(criar("span", "foto-modal-3d-dica", "Arraste para girar · scroll para zoom · duplo clique reinicia"));
+      viewer = Viewer3D.montar(palco, slide.src, { duploCliqueReinicia: true, cor: cor3D() });
+      palco.addEventListener("viewer3d-erro", () => {
+        if (meu !== versao) return;
+        palco.replaceChildren(criar("p", "foto-modal-3d-erro", "Não foi possível carregar o modelo 3D."));
+      }, { once: true });
+    } else if (slide.tipo === "embed") {
+      const frame = document.createElement("iframe");
+      frame.className = "foto-modal-3d-iframe";
+      frame.src = slide.src;
+      frame.title = legendaDe(idx);
+      frame.allow = "xr-spatial-tracking; camera; gyroscope; accelerometer; fullscreen";
+      frame.allowFullscreen = true;
+      palco.appendChild(frame);
+      const link = criar("a", "foto-modal-3d-link", "Abrir em nova aba");
+      link.href = slide.src;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      palco.appendChild(link);
+    } else {
+      const img = document.createElement("img");
+      img.className = "foto-modal-3d-img";
+      img.src = slide.src;
+      img.alt = legendaDe(idx);
+      palco.appendChild(img);
+    }
+  };
+
+  const ir = (delta) => { idx = (idx + delta + lista.length) % lista.length; mostrar(); };
+
+  if (lista.length > 1) {
+    const btnEsq = criar("button", "foto-modal-seta esq");
+    btnEsq.type = "button";
+    btnEsq.setAttribute("aria-label", "Anterior");
+    btnEsq.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    btnEsq.addEventListener("click", (e) => { e.stopPropagation(); ir(-1); });
+
+    const btnDir = criar("button", "foto-modal-seta dir");
+    btnDir.type = "button";
+    btnDir.setAttribute("aria-label", "Próximo");
+    btnDir.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    btnDir.addEventListener("click", (e) => { e.stopPropagation(); ir(1); });
+
+    contadorEl = criar("span", "foto-modal-contador", "");
+    caixa.appendChild(btnEsq);
+    caixa.appendChild(btnDir);
+    caixa.appendChild(contadorEl);
+  }
+
+  const btnFechar = criar("button", "foto-fechar");
+  btnFechar.type = "button";
+  btnFechar.setAttribute("aria-label", "Fechar");
+  btnFechar.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+  const fechar = () => {
+    if (viewer) { viewer.vivo = false; viewer = null; }
+    modal.classList.remove("foto-aberta");
+    setTimeout(() => modal.remove(), 200);
+    document.removeEventListener("keydown", keyListener);
+  };
+  const keyListener = (e) => {
+    if (e.key === "Escape") fechar();
+    if (lista.length > 1 && e.key === "ArrowLeft") ir(-1);
+    if (lista.length > 1 && e.key === "ArrowRight") ir(1);
+  };
+
+  btnFechar.addEventListener("click", fechar);
+  modal.addEventListener("click", (e) => { if (e.target === modal) fechar(); });
+  document.addEventListener("keydown", keyListener);
+
+  modal.appendChild(caixa);
+  modal.appendChild(btnFechar);
+  document.body.appendChild(modal);
+  mostrar();
+
+  modal.getBoundingClientRect();
+  modal.classList.add("foto-aberta");
+}
+
+function criarBoxMidia3D(titulo, lista, altBase) {
+  const slides = lista.map(src => ({ tipo: tipoSlide3D(src), src }));
+  let idx = 0, viewer = null, versao = 0, contadorBadge = null, btnEsq = null, btnDir = null;
+
+  const box = criar("div", "ficha-box-img com-midia ficha-box-3d");
+  box.appendChild(criar("span", "ficha-box-rotulo", titulo));
+  const palco = criar("div", "ficha-box-3d-palco");
+  box.appendChild(palco);
+  const dicaEl = criar("span", "ficha-box-3d-dica", "");
+  box.appendChild(dicaEl);
+  box.title = `Clique para ampliar ${titulo}`;
+
+  const atualizarControles = () => {
+    if (slides.length <= 1) {
+      if (contadorBadge) { contadorBadge.remove(); contadorBadge = null; }
+      if (btnEsq) { btnEsq.remove(); btnEsq = null; }
+      if (btnDir) { btnDir.remove(); btnDir = null; }
+    } else if (contadorBadge) {
+      contadorBadge.textContent = `${idx + 1}/${slides.length}`;
+    }
+  };
+
+  const removerSlideAtual = () => {
+    slides.splice(idx, 1);
+    if (slides.length === 0) {
+      if (viewer) { viewer.vivo = false; viewer = null; }
+      if (box.parentNode) box.replaceWith(criarBoxImagem(titulo, [], altBase, "fa-solid fa-cube", "Sem imagem 3D"));
+      return;
+    }
+    idx = idx % slides.length;
+    atualizarControles();
+    mostrar();
+  };
+
+  const mostrar = () => {
+    if (viewer) { viewer.vivo = false; viewer = null; }
+    const meu = ++versao;
+    const slide = slides[idx];
+    palco.replaceChildren();
+    if (contadorBadge) contadorBadge.textContent = `${idx + 1}/${slides.length}`;
+
+    if (slide.tipo === "stl") {
+      dicaEl.textContent = "Arraste para girar · clique para ampliar";
+      viewer = Viewer3D.montar(palco, slide.src, { duploCliqueReinicia: false, cor: cor3D() });
+      palco.addEventListener("viewer3d-erro", () => { if (meu === versao) removerSlideAtual(); }, { once: true });
+    } else if (slide.tipo === "embed") {
+      dicaEl.textContent = "Clique para abrir em 3D / RA";
+      const mostrarPlaceholder = () => {
+        if (meu !== versao) return;
+        const vazio = criar("div", "ficha-box-3d-vazio");
+        vazio.innerHTML = '<i class="fa-solid fa-cube"></i><span>Ver em 3D / RA</span>';
+        palco.replaceChildren(vazio, criarSelo3D());
+      };
+      const img = document.createElement("img");
+      img.className = "ficha-box-midia";
+      img.loading = "lazy";
+      img.alt = altBase;
+      img.onerror = mostrarPlaceholder;
+      img.src = previewEmbed3D(slide.src);
+      palco.appendChild(img);
+      palco.appendChild(criarSelo3D());
+    } else {
+      dicaEl.textContent = "Clique para ampliar";
+      const img = document.createElement("img");
+      img.className = "ficha-box-midia";
+      img.loading = "lazy";
+      img.alt = altBase;
+      img.onerror = () => { if (meu === versao) removerSlideAtual(); };
+      img.src = slide.src;
+      palco.appendChild(img);
+    }
+  };
+
+  function criarSelo3D() {
+    const selo = criar("span", "ficha-box-3d-selo");
+    selo.innerHTML = '<i class="fa-solid fa-cube"></i> 3D / RA';
+    return selo;
+  }
+
+  if (slides.length > 1) {
+    contadorBadge = criar("span", "ficha-box-contador", `1/${slides.length}`);
+    box.appendChild(contadorBadge);
+
+    const trocar = (delta) => { idx = (idx + delta + slides.length) % slides.length; mostrar(); };
+
+    btnEsq = criar("button", "ficha-box-seta esq");
+    btnEsq.type = "button";
+    btnEsq.title = "Anterior";
+    btnEsq.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    btnEsq.addEventListener("click", (e) => { e.stopPropagation(); trocar(-1); });
+
+    btnDir = criar("button", "ficha-box-seta dir");
+    btnDir.type = "button";
+    btnDir.title = "Próximo";
+    btnDir.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    btnDir.addEventListener("click", (e) => { e.stopPropagation(); trocar(1); });
+
+    box.appendChild(btnEsq);
+    box.appendChild(btnDir);
+  }
+
+  // arrastar gira o modelo, só abre o modal se foi clique
+  let inicio = null;
+  box.addEventListener("pointerdown", (e) => { inicio = { x: e.clientX, y: e.clientY }; });
+  box.addEventListener("click", (e) => {
+    if (e.target.closest(".ficha-box-seta")) return;
+    const moveu = inicio ? Math.hypot(e.clientX - inicio.x, e.clientY - inicio.y) > 6 : false;
+    inicio = null;
+    if (!moveu) abrirGaleria3D(slides, idx, altBase);
+  });
+
+  mostrar();
   return box;
 }
 
@@ -986,7 +990,7 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
   if (!busca) {
     const infoVazia = criar("div", "encaixe-preview-info");
     infoVazia.appendChild(criar("p", "encaixe-preview-codigo", codClicado));
-    infoVazia.appendChild(criar("p", "encaixe-preview-nome", "Item não foi encontrado no banco de dados!"));
+    infoVazia.appendChild(criar("p", "encaixe-preview-nome", "Não achei esse item no catálogo."));
     card.appendChild(infoVazia);
     containerPreview.appendChild(card);
     return;
@@ -994,8 +998,7 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
 
   const { item: alvo, aba } = busca;
   const pasta = aba === "perfis" ? "perfil" : "acessorio";
-  const padrao = `assets/img/catalog/sistemas/${(alvo.sistema || "chroma").toLowerCase()}/${pasta}/${alvo.codigo}.webp`;
-  const imgsAlvo = extrairListaImagens(alvo.imagem, padrao);
+  const imgsAlvo = extrairListaImagens(alvo.imagem, imagemPadrao(alvo, pasta));
   const imgSrc = imgsAlvo.length > 0 ? imgsAlvo[0] : NO_PHOTO;
 
   const img = document.createElement("img");
@@ -1046,6 +1049,7 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
 function mostrarFicha(item) {
   estadoPorAba[abaAtiva].itemSelecionado = item;
   atualizarUrlItem(item);
+  cor3DEscolhida = null;
   const ficha = document.getElementById("ficha-tecnica");
   ficha.replaceChildren();
 
@@ -1065,16 +1069,25 @@ function mostrarFicha(item) {
     linhaBadges.appendChild(criar("span", "ficha-sistema", item.sistema));
   }
 
-  const edicaoTexto = obterEdicaoItem(item);
+  const edicaoTexto = edicaoDoSistema(item.sistema_chave);
   if (edicaoTexto) {
     const badgeEdicao = criar("span", "ficha-edicao");
-    const ehDiversos = item.sistema && normalizarBusca(item.sistema) === "diversos";
-    const prefixoFicha = ehDiversos || edicaoTexto.toLowerCase().includes("altera") ? "" : "Catálogo ";
+    const prefixoFicha = ehUltimaAlteracao(edicaoTexto) ? "" : "Catálogo ";
     badgeEdicao.innerHTML = `<i class="fa-regular fa-calendar"></i> ${prefixoFicha}${edicaoTexto}`;
     linhaBadges.appendChild(badgeEdicao);
   }
 
+  const sub = foraDeLinha[item._codNorm || normalizar(item.codigo)];
+  let acoesForaLinha = null;
+  if (sub) {
+    const selo = criar("span", "ficha-fora-linha");
+    selo.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${ehConversao(sub) ? "Conversão de sistema" : "Fora de linha"}`;
+    linhaBadges.appendChild(selo);
+    acoesForaLinha = botoesSubstituto(sub, item.codigo);
+  }
+
   meta.appendChild(linhaBadges);
+  if (acoesForaLinha) meta.appendChild(acoesForaLinha);
   cabInfo.appendChild(meta);
   header.appendChild(cabInfo);
 
@@ -1083,15 +1096,27 @@ function mostrarFicha(item) {
   btnComp.innerHTML = '<i class="fa-solid fa-share-nodes"></i> Compartilhar';
   btnComp.title = "Copiar link direto para este item";
   btnComp.addEventListener("click", () => copiarLinkCompartilhamento(item, btnComp));
-  header.appendChild(btnComp);
+
+  const btnComparar = criar("button", "btn-compartilhar btn-comparar");
+  btnComparar.type = "button";
+  pintarBotaoComparar(btnComparar, item);
+  btnComparar.addEventListener("click", () => {
+    alternarComparacao(item);
+    pintarBotaoComparar(btnComparar, item);
+  });
+
+  const botoesTopo = criar("div", "ficha-header-botoes");
+  botoesTopo.append(btnComp, btnComparar);
+  header.appendChild(botoesTopo);
 
   ficha.appendChild(header);
   const trioImagens = criar("div", "ficha-imagens-trio");
   const pasta = abaAtiva === "perfis" ? "perfil" : "acessorio";
-  const padraoTecnica = `assets/img/catalog/sistemas/${(item.sistema || "chroma").toLowerCase()}/${pasta}/${item.codigo}.webp`;
-
-  const imgsTecnica = extrairListaImagens(item.imagem, padraoTecnica);
-  const imgs3D = extrairListaImagens(item.imagem_3d, "");
+  const imgsTecnica = extrairListaImagens(item.imagem, imagemPadrao(item, pasta));
+  const lista3D = extrairListaImagens(item.imagem_3d, "");
+  if (item.modelo_3d && !lista3D.some(ehStl3D)) lista3D.unshift(item.modelo_3d);
+  const viewerOk = typeof Viewer3D !== "undefined" && typeof THREE !== "undefined";
+  const lista3DUsavel = lista3D.filter(src => tipoSlide3D(src) !== "stl" || viewerOk);
   const imgsAplicada = extrairListaImagens(item.imagem_aplicavel, "");
 
   trioImagens.appendChild(criarBoxImagem(
@@ -1102,13 +1127,17 @@ function mostrarFicha(item) {
     "Sem imagem técnica"
   ));
 
-  trioImagens.appendChild(criarBoxImagem(
-    "imagem 3D",
-    imgs3D,
-    `Vista 3D — ${item.codigo}`,
-    "fa-solid fa-cube",
-    "Sem imagem 3D"
-  ));
+  if (lista3DUsavel.some(src => tipoSlide3D(src) !== "img")) {
+    trioImagens.appendChild(criarBoxMidia3D("imagem 3D", lista3DUsavel, `Imagem 3D — ${item.codigo}`));
+  } else {
+    trioImagens.appendChild(criarBoxImagem(
+      "imagem 3D",
+      lista3DUsavel,
+      `Imagem 3D — ${item.codigo}`,
+      "fa-solid fa-cube",
+      "Sem imagem 3D"
+    ));
+  }
 
   trioImagens.appendChild(criarBoxImagem(
     "imagem aplicada",
@@ -1120,7 +1149,9 @@ function mostrarFicha(item) {
 
   ficha.appendChild(trioImagens);
 
-  // Visualizar Gráfico de Desempenho
+  const coresItem = abaAtiva === "perfis" ? coresDoItem(item) : [];
+  if (coresItem.length) ficha.appendChild(montarCores(coresItem, trioImagens));
+
   const graficosDoItem = abaAtiva === "perfis" ? obterGraficosDoPerfil(item) : [];
   if (graficosDoItem.length > 0) {
     const secaoGrafico = criar("div", "ficha-secao-grafico");
@@ -1135,10 +1166,10 @@ function mostrarFicha(item) {
 
   ficha.appendChild(criar("hr", "ficha-divisor"));
 
-  // Campos Técnicos
   const grade = criar("dl", "ficha-campos");
   campos.forEach(({ chave, rotulo, largo, clicavel }) => {
     if (!item[chave] || String(item[chave]).trim() === "") return;
+    if (chave === "acabamento" && coresItem.length) return; // já aparece nas bolinhas de cor
 
     const div = criar("div", "ficha-campo" + (largo ? " ficha-campo-largo" : ""));
     div.appendChild(criar("dt", "", rotulo));
@@ -1161,7 +1192,7 @@ function mostrarFicha(item) {
       dd.appendChild(wrapTags);
       dd.appendChild(containerPreview);
     } else if (String(item[chave]).includes("||")) {
-      dd.innerHTML = String(item[chave]).split("||").join("<br>");
+      textoComQuebras(dd, item[chave]);
     } else {
       dd.textContent = item[chave];
     }
@@ -1171,6 +1202,9 @@ function mostrarFicha(item) {
   });
 
   ficha.appendChild(grade);
+
+  const lote = abaAtiva === "perfis" ? montarPesoLote(item) : null;
+  if (lote) ficha.appendChild(lote);
 }
 
 function exibirErroBancoCatalogo() {
@@ -1216,21 +1250,13 @@ function mostrarLista(itens) {
   const label = itens.length === 1 ? "1 resultado" : `${itens.length} resultados`;
   cabecalhoLista.appendChild(criar("span", "status ok", label));
 
-  const chaveSis = normalizarBusca(sistemaAtivo);
-  if (chaveSis !== "todos") {
-    if (chaveSis === "diversos") {
-      const textoDiv = EDICOES_SISTEMAS.diversos || "Última alteração: Outubro/2026";
-      const seloDiversos = criar("span", "edicao-catalogo-badge");
-      seloDiversos.innerHTML = `<i class="fa-solid fa-clock-rotate-left"></i> ${textoDiv}`;
-      cabecalhoLista.appendChild(seloDiversos);
-    } else {
-      const edicaoSis = EDICOES_SISTEMAS[chaveSis] || (itens[0] && obterEdicaoItem(itens[0]));
-      if (edicaoSis) {
-        const seloEdicao = criar("span", "edicao-catalogo-badge");
-        seloEdicao.innerHTML = `<i class="fa-solid fa-book-open"></i> Referência: ${edicaoSis}`;
-        cabecalhoLista.appendChild(seloEdicao);
-      }
-    }
+  const edicaoSis = sistemaAtivo !== "todos" ? edicaoDoSistema(sistemaAtivo) : "";
+  if (edicaoSis) {
+    const selo = criar("span", "edicao-catalogo-badge");
+    selo.innerHTML = ehUltimaAlteracao(edicaoSis)
+      ? `<i class="fa-solid fa-clock-rotate-left"></i> ${edicaoSis}`
+      : `<i class="fa-solid fa-book-open"></i> Referência: ${edicaoSis}`;
+    cabecalhoLista.appendChild(selo);
   }
 
   container.appendChild(cabecalhoLista);
@@ -1248,17 +1274,19 @@ function mostrarLista(itens) {
     thumb.loading = "lazy";
     thumb.decoding = "async";
     thumb.onerror = () => { thumb.src = NO_PHOTO; };
-    const padraoThumb = `assets/img/catalog/sistemas/${(item.sistema || "chroma").toLowerCase()}/${pasta}/${item.codigo}.webp`;
-    thumb.src = obterPrimeiraImagem(item.imagem, padraoThumb);
+    thumb.src = obterPrimeiraImagem(item.imagem, imagemPadrao(item, pasta));
     linha.appendChild(thumb);
 
     const info = criar("div", "catalogo-item-info");
     info.appendChild(criar("div", "catalogo-item-codigo", item.codigo));
     info.appendChild(criar("div", "catalogo-item-nome", item.nome || "—"));
     if (item.sistema || item.tipo) {
-      const textoSis = item.sistema ? `${item.sistema}${obterEdicaoItem(item) ? " · " + obterEdicaoItem(item) : ""}` : item.tipo;
+      const edicao = edicaoDoSistema(item.sistema_chave);
+      const textoSis = item.sistema ? item.sistema + (edicao ? ` · ${edicao}` : "") : item.tipo;
       info.appendChild(criar("div", "catalogo-item-sistema", textoSis));
     }
+    const qtdCores = abaAtiva === "perfis" ? coresDoItem(item).length : 0;
+    if (qtdCores) info.appendChild(criar("span", "catalogo-item-cores", `${qtdCores} ${qtdCores > 1 ? "cores" : "cor"}`));
     linha.appendChild(info);
 
     linha.addEventListener("click", () => {
@@ -1320,7 +1348,8 @@ function executarFiltro() {
 
     if (exatos.length > 0) {
       filtrados = exatos;
-      estadoAtual.itemSelecionado = exatos[0];
+      // mesmo código em 2 sistemas (ex: CHR-702): mantém o que a pessoa escolheu
+      if (!exatos.includes(estadoAtual.itemSelecionado)) estadoAtual.itemSelecionado = exatos[0];
       salvarHistorico(exatos[0].codigo, abaAtiva);
     } else {
       filtrados = filtrados.filter(item => itemBateComTermo(item, termo));
@@ -1328,78 +1357,45 @@ function executarFiltro() {
   }
 
   mostrarLista(filtrados);
+
+  const aviso = termo ? avisoForaDeLinha(termo) : null;
+  if (aviso) document.getElementById("resultado-catalogo").prepend(aviso);
+}
+
+function marcarSistemaAtivo(chave) {
+  sistemaAtivo = chave;
+  document.querySelectorAll(".sistema-btn").forEach(b => {
+    b.classList.toggle("sistema-btn-ativo", b.dataset.sistema === chave);
+  });
 }
 
 function construirFiltroSistemas() {
   const container = document.getElementById("filtro-sistemas");
   if (!container) return;
 
-  const sistemasMap = new Map();
-  container.querySelectorAll(".sistema-btn").forEach(btn => {
-    const chave = (btn.dataset.sistema || btn.textContent || "").trim();
-    const rotulo = btn.textContent.trim();
-    if (chave && normalizarBusca(chave) !== "todos") {
-      sistemasMap.set(normalizarBusca(chave), rotulo);
-    }
-  });
-
-  [...banco.perfis, ...banco.acessorios].forEach(item => {
-    if (item.sistema && item.sistema.trim() !== "" && item.sistema !== "Sem informação") {
-      item.sistema.split(/[\/,]+/).map(s => s.trim()).filter(Boolean).forEach(sis => {
-        const norm = normalizarBusca(sis);
-        if (!sistemasMap.has(norm)) {
-          sistemasMap.set(norm, sis);
-        }
-      });
-    }
-  });
+  const comItens = new Set([...banco.perfis, ...banco.acessorios].map(i => i.sistema_chave));
+  const opcoes = [{ chave: "todos", nome: "Todos" }, ...(banco.sistemas || [])];
 
   container.replaceChildren();
-
-  const btnTodos = criar("button", "sistema-btn" + (sistemaAtivo === "todos" ? " sistema-btn-ativo" : ""), "Todos");
-  btnTodos.type = "button";
-  btnTodos.dataset.sistema = "todos";
-  btnTodos.addEventListener("click", () => {
-    estadoPorAba[abaAtiva].jaInteragiu = true;
-    container.querySelectorAll(".sistema-btn").forEach(b => b.classList.remove("sistema-btn-ativo"));
-    btnTodos.classList.add("sistema-btn-ativo");
-    sistemaAtivo = "todos";
-    executarFiltro();
-  });
-  container.appendChild(btnTodos);
-
-  const sistemaTemItens = (sis) => {
-    return [...banco.perfis, ...banco.acessorios].some(item => itemPertenceAoSistema(item, sis));
-  };
-
-  Array.from(sistemasMap.values()).forEach(sis => {
-    const temItens = sistemaTemItens(sis);
-    const ativo = normalizarBusca(sistemaAtivo) === normalizarBusca(sis);
-    let classes = "sistema-btn";
-    if (ativo) classes += " sistema-btn-ativo";
-    if (!temItens) classes += " sistema-btn-desativado";
-
-    const btn = criar("button", classes, sis);
+  opcoes.forEach(sis => {
+    const ativo = sis.chave === "todos" || comItens.has(sis.chave);
+    const btn = criar("button", "sistema-btn" + (ativo ? "" : " sistema-btn-desativado"), sis.nome);
     btn.type = "button";
-    btn.dataset.sistema = sis;
+    btn.dataset.sistema = sis.chave;
 
-    if (!temItens) {
+    if (!ativo) {
       btn.title = "Sistema em desenvolvimento";
       btn.setAttribute("aria-disabled", "true");
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-      });
     } else {
       btn.addEventListener("click", () => {
         estadoPorAba[abaAtiva].jaInteragiu = true;
-        container.querySelectorAll(".sistema-btn").forEach(b => b.classList.remove("sistema-btn-ativo"));
-        btn.classList.add("sistema-btn-ativo");
-        sistemaAtivo = sis;
+        marcarSistemaAtivo(sis.chave);
         executarFiltro();
       });
     }
     container.appendChild(btn);
   });
+  marcarSistemaAtivo(sistemaAtivo);
 }
 
 function configurarAbas() {
@@ -1479,63 +1475,565 @@ function configurarForm() {
     });
   }
 
-  if (btnCamera) {
-    btnCamera.addEventListener("click", () => {
-      alert("Busca visual por foto em desenvolvimento! (EM BREVE)");
-    });
-  }
+  if (btnCamera) btnCamera.addEventListener("click", abrirBuscaVisual);
 }
 
-function atualizarRelogio() {
-  const agora = new Date();
-  const el = document.getElementById("data-hora");
-  if (el) {
-    el.textContent =
-      agora.toLocaleDateString("pt-BR") +
-      " · " +
-      agora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-  }
-}
+// TODO: quando tiver a identificação de verdade, mandar a foto pra API em vez de só mostrar
+function abrirBuscaVisual() {
+  const modal = criar("div", "foto-modal busca-foto-modal");
+  modal.setAttribute("aria-label", "Busca Visual");
+  const caixa = criar("div", "busca-foto-caixa");
 
-function iniciarTema() {
-  const btn = document.getElementById("btn-tema");
-  const html = document.documentElement;
+  const topo = criar("div", "busca-foto-topo");
+  topo.innerHTML = '<h3><i class="fa-solid fa-camera"></i> Busca Visual</h3>';
+  const btnFechar = botaoIcone("busca-foto-fechar", "fa-solid fa-xmark", "Fechar");
+  topo.appendChild(btnFechar);
 
-  const temaEscuro = () =>
-    html.dataset.tema === "escuro" ||
-    (!html.dataset.tema && matchMedia("(prefers-color-scheme: dark)").matches);
+  const area = criar("label", "busca-foto-area");
+  area.innerHTML = '<i class="fa-regular fa-image"></i><strong>Arrasta a foto aqui ou clica pra escolher</strong>' +
+    '<span>Foto do corte do perfil, de frente e com fundo claro, fica melhor.</span>';
+  const inputArquivo = document.createElement("input");
+  inputArquivo.type = "file";
+  inputArquivo.accept = "image/*";
+  inputArquivo.hidden = true;
+  area.appendChild(inputArquivo);
 
-  const aplicar = (escuro) => {
-    html.dataset.tema = escuro ? "escuro" : "claro";
-    if (btn) {
-      btn.innerHTML = escuro
-        ? '<i class="fa-solid fa-sun"></i>'
-        : '<i class="fa-solid fa-moon"></i>';
-    }
-    localStorage.setItem("tema", escuro ? "escuro" : "claro");
+  const inputCamera = document.createElement("input");
+  inputCamera.type = "file";
+  inputCamera.accept = "image/*";
+  inputCamera.capture = "environment";
+  inputCamera.hidden = true;
+
+  const acoes = criar("div", "busca-foto-acoes");
+  const btnCamera = criar("button", "btn btn-secundario");
+  btnCamera.type = "button";
+  btnCamera.innerHTML = '<i class="fa-solid fa-camera"></i> Tirar foto';
+  btnCamera.addEventListener("click", () => inputCamera.click());
+  const btnFixar = criar("button", "btn btn-principal");
+  btnFixar.type = "button";
+  btnFixar.innerHTML = '<i class="fa-solid fa-thumbtack"></i> Fixar do lado da lista';
+  btnFixar.disabled = true;
+  acoes.append(btnCamera, btnFixar, inputCamera);
+
+  const aviso = criar("p", "busca-foto-aviso");
+  aviso.innerHTML = '<i class="fa-solid fa-circle-info"></i> A identificação automática ainda tá sendo feita. ' +
+    'Por enquanto dá pra fixar a foto do lado da lista e ir comparando com os desenhos.';
+
+  caixa.append(topo, area, acoes, aviso);
+  modal.appendChild(caixa);
+
+  let fotoAtual = "";
+  const mostrarPrevia = (arquivo) => {
+    if (!arquivo || !arquivo.type.startsWith("image/")) return;
+    const leitor = new FileReader();
+    leitor.onload = () => {
+      fotoAtual = leitor.result;
+      area.classList.add("com-foto");
+      area.replaceChildren(inputArquivo);
+      const img = document.createElement("img");
+      img.src = fotoAtual;
+      img.alt = "Foto escolhida";
+      area.append(img, criar("span", "busca-foto-trocar", "Clica pra trocar a foto"));
+      btnFixar.disabled = false;
+    };
+    leitor.readAsDataURL(arquivo);
   };
 
-  const salvo = localStorage.getItem("tema");
-  aplicar(salvo ? salvo === "escuro" : true);
+  inputArquivo.addEventListener("change", () => mostrarPrevia(inputArquivo.files[0]));
+  inputCamera.addEventListener("change", () => mostrarPrevia(inputCamera.files[0]));
+  area.addEventListener("dragover", (e) => { e.preventDefault(); area.classList.add("arrastando"); });
+  area.addEventListener("dragleave", () => area.classList.remove("arrastando"));
+  area.addEventListener("drop", (e) => {
+    e.preventDefault();
+    area.classList.remove("arrastando");
+    mostrarPrevia(e.dataTransfer.files[0]);
+  });
 
-  if (btn) btn.addEventListener("click", () => aplicar(!temaEscuro()));
+  const fechar = abrirModal(modal, "foto-aberta");
+  btnFechar.addEventListener("click", fechar);
+  btnFixar.addEventListener("click", () => {
+    fixarFoto(fotoAtual);
+    fechar();
+  });
+}
+
+function fixarFoto(src) {
+  document.getElementById("foto-fixada")?.remove();
+  if (!src) return;
+  const card = criar("div", "foto-fixada");
+  card.id = "foto-fixada";
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = "Sua foto";
+  img.addEventListener("click", () => abrirFoto(src, "Sua foto"));
+  const tirar = botaoIcone("foto-fixada-tirar", "fa-solid fa-xmark", "Tirar foto fixada");
+  tirar.addEventListener("click", () => card.remove());
+  card.append(img, criar("span", "", "Sua foto"), tirar);
+  const resultado = document.getElementById("resultado-catalogo");
+  resultado.parentNode.insertBefore(card, resultado);
+}
+
+// ---- pesquisa geral (a ideia é ser tipo um google dos perfis) ----
+const NUMEROS = { um: 1, uma: 1, dois: 2, duas: 2, tres: 3, quatro: 4, cinco: 5, seis: 6, oito: 8 };
+const PALAVRAS_VAZIAS = new Set(["como", "fazer", "faco", "montar", "quero", "preciso", "uma", "um", "de", "da", "do", "das", "dos",
+  "para", "pra", "com", "e", "o", "a", "os", "as", "na", "no", "em", "perfil", "perfis", "sistema", "linha", "qual", "quais",
+  "usar", "que", "folha", "folhas", "tipo", "tem"]);
+const DETALHES = ["bandeira", "peitoril", "persiana", "veneziana", "minimalista", "canto", "baguete", "movel", "integrada", "reforc"];
+
+function textoPesquisa(t) {
+  let s = (t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  s = s.replace(/maxim[\s-]?ar|basculante/g, "maximar").replace(/guarda[\s-]?corpos?/g, "guardacorpo");
+  Object.entries(NUMEROS).forEach(([p, n]) => { s = s.replace(new RegExp(`\\b${p}\\b`, "g"), String(n)); });
+  return s;
+}
+
+function entenderPesquisa(texto) {
+  const t = textoPesquisa(texto);
+  const folhas = (t.match(/(\d+)\s*folhas?/) || [])[1];
+  const sistemas = (banco.sistemas || []).filter(s => {
+    const nome = textoPesquisa(s.nome).replace(/\s*2\.5$/, "");
+    return new RegExp(`\\b${nome}\\b`).test(t);
+  });
+  const nomesSistemas = sistemas.flatMap(s => textoPesquisa(s.nome).split(/\s+/));
+  const palavras = t.replace(/[^a-z0-9 ]/g, " ").split(/\s+/)
+    .filter(p => p && !PALAVRAS_VAZIAS.has(p) && !/^\d+$/.test(p) && !nomesSistemas.includes(p))
+    .map(p => p.replace(/s$/, ""));
+  return { folhas: folhas ? Number(folhas) : null, sistemas: sistemas.map(s => s.chave), palavras };
+}
+
+function pontuarTipologia(tip, p) {
+  if (p.sistemas.length && !p.sistemas.includes(tip.sistema_chave)) return 0;
+  const nome = tip._norm || (tip._norm = textoPesquisa(`${tip.tipologia} ${tip.grupo || ""}`));
+  const folhasTip = (nome.match(/(\d+)\s*folhas?/) || [])[1];
+  if (p.folhas && Number(folhasTip) !== p.folhas) return 0;
+
+  let pontos = 0, bateu = false, palavras = 0;
+  p.palavras.forEach(w => {
+    if (nome.includes(w)) { pontos += 3; bateu = true; palavras++; }
+  });
+  if (p.folhas) { pontos += 5; bateu = true; }
+  if (!p.palavras.length && !p.folhas && p.sistemas.length) { pontos += 1; bateu = true; } // só falou o sistema
+  if (!bateu) return { pontos: 0, palavras: 0 };
+  // quem não pediu bandeira/peitoril/etc vê primeiro a versão simples
+  DETALHES.forEach(d => { if (nome.includes(d) && !p.palavras.some(w => d.startsWith(w) || w.startsWith(d))) pontos -= 1; });
+  return { pontos: Math.max(pontos, 0.5), palavras };
+}
+
+function listaCodigos(texto) {
+  return String(texto || "").split(/[\/,]+/).map(c => c.trim()).filter(Boolean);
+}
+
+function miniaturaPerfil(cod, sistemaChave) {
+  const achado = encontrarItemPorCodigo(cod, sistemaChave);
+  const item = achado ? achado.item : null;
+  const btn = criar("button", "tipologia-perfil");
+  btn.type = "button";
+  btn.title = item ? `Abrir ficha de ${item.codigo}` : `${cod} ainda não está no catálogo`;
+
+  const foto = criar("span", "tipologia-perfil-foto");
+  const src = item ? obterPrimeiraImagem(item.imagem, imagemPadrao(item, achado.aba === "perfis" ? "perfil" : "acessorio")) : "";
+  if (src && !src.includes("NO-PHOTO")) {
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.alt = cod;
+    img.src = src;
+    img.onerror = () => {
+      foto.classList.add("sem-foto");
+      foto.innerHTML = '<i class="fa-regular fa-image"></i>';
+    };
+    foto.appendChild(img);
+  } else {
+    foto.classList.add("sem-foto");
+    foto.innerHTML = '<i class="fa-regular fa-image"></i>';
+  }
+
+  btn.append(foto, criar("strong", "", item ? item.codigo : cod), criar("span", "tipologia-perfil-nome", item ? item.nome || "" : "Fora do catálogo"));
+  if (item && item.peso) btn.appendChild(criar("small", "", item.peso));
+  if (!item) btn.disabled = true;
+  btn.addEventListener("click", () => {
+    irParaPerfilCompleto(cod, sistemaChave || sistemaAtivo, true);
+    document.getElementById("ficha-tecnica").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  return btn;
+}
+
+function cardTipologia(tip, aberto, rotuloQtd = "perfis") {
+  const card = criar("article", "tipologia-card" + (aberto ? " aberto" : ""));
+  card.dataset.sistema = tip.sistema_chave || "";
+  const codigos = listaCodigos(tip.perfis);
+
+  const topo = criar("button", "tipologia-card-topo");
+  topo.type = "button";
+  topo.setAttribute("aria-expanded", aberto ? "true" : "false");
+  const titulo = criar("span", "tipologia-card-titulo");
+  titulo.append(criar("i", "fa-solid fa-chevron-right tipologia-card-seta"), criar("span", "", tip.tipologia));
+  const lado = criar("span", "tipologia-card-lado");
+  lado.append(criar("span", "tipologia-card-qtd", `${codigos.length} ${rotuloQtd}`), criar("span", "ficha-sistema", tip.sistema));
+  topo.append(titulo, lado);
+  topo.addEventListener("click", () => {
+    const abre = !card.classList.contains("aberto");
+    card.classList.toggle("aberto", abre);
+    topo.setAttribute("aria-expanded", abre ? "true" : "false");
+  });
+
+  const corpo = criar("div", "tipologia-card-corpo");
+  const grade = criar("div", "tipologia-perfis");
+  codigos.forEach(cod => grade.appendChild(miniaturaPerfil(cod, tip.sistema_chave)));
+  corpo.appendChild(grade);
+
+  const comps = listaCodigos(tip.componentes);
+  if (comps.length) {
+    const linha = criar("div", "ficha-tags");
+    comps.forEach(c => {
+      const b = criar("button", "ficha-tag-link", c);
+      b.type = "button";
+      b.addEventListener("click", () => irParaPerfilCompleto(c, tip.sistema_chave, true));
+      linha.appendChild(b);
+    });
+    corpo.append(criar("span", "tipologia-card-sub", "Componentes"), linha);
+  }
+
+  card.append(topo, corpo);
+  return card;
+}
+
+function pesquisarGeral(texto) {
+  const caixa = document.getElementById("pesquisa-geral-resultado");
+  texto = texto.trim();
+  if (!texto) { caixa.hidden = true; return; }
+
+  const p = entenderPesquisa(texto);
+  const notas = (banco.tipologias || [])
+    .map(t => ({ t, ...pontuarTipologia(t, p) }))
+    .filter(x => x.pontos > 0);
+  // fica só com quem bateu mais palavras (senão "porta de giro" traz toda porta)
+  const melhor = Math.max(0, ...notas.map(x => x.palavras));
+  const achadas = notas
+    .filter(x => x.palavras === melhor)
+    .sort((a, b) => b.pontos - a.pontos)
+    .slice(0, 8)
+    .map(x => x.t);
+
+  caixa.replaceChildren();
+  const topo = criar("div", "pesquisa-geral-topo");
+  const resumo = criar("div", "pesquisa-geral-resumo");
+  resumo.appendChild(criar("strong", "", achadas.length
+    ? `${achadas.length} ${achadas.length > 1 ? "tipologias" : "tipologia"} pra "${texto}"`
+    : `Não achei tipologia pra "${texto}"`));
+  if (achadas.length) resumo.appendChild(criar("span", "", "Clica num perfil pra abrir a ficha ao lado"));
+  const fechar = botaoIcone("pesquisa-geral-fechar", "fa-solid fa-xmark", "Fechar resultado");
+  fechar.addEventListener("click", () => { caixa.hidden = true; });
+  topo.append(resumo, fechar);
+  caixa.appendChild(topo);
+
+  const lista = criar("div", "tipologia-cards");
+  achadas.forEach((t, i) => lista.appendChild(cardTipologia(t, i === 0)));
+
+  const sistemas = [...new Map(achadas.map(t => [t.sistema_chave, t.sistema])).entries()];
+  if (sistemas.length > 1) {
+    const filtros = criar("div", "pesquisa-geral-filtros");
+    const opcoes = [["todos", `Todos (${achadas.length})`],
+      ...sistemas.map(([k, nome]) => [k, `${nome} (${achadas.filter(t => t.sistema_chave === k).length})`])];
+    opcoes.forEach(([chave, rotulo], i) => {
+      const b = criar("button", "pesquisa-geral-filtro" + (i === 0 ? " ativo" : ""), rotulo);
+      b.type = "button";
+      b.addEventListener("click", () => {
+        filtros.querySelectorAll(".pesquisa-geral-filtro").forEach(x => x.classList.toggle("ativo", x === b));
+        lista.querySelectorAll(".tipologia-card").forEach(c => { c.hidden = chave !== "todos" && c.dataset.sistema !== chave; });
+        const primeiro = [...lista.querySelectorAll(".tipologia-card")].find(c => !c.hidden);
+        if (primeiro && !lista.querySelector(".tipologia-card.aberto:not([hidden])")) primeiro.querySelector(".tipologia-card-topo").click();
+      });
+      filtros.appendChild(b);
+    });
+    caixa.appendChild(filtros);
+  }
+  if (achadas.length) caixa.appendChild(lista);
+
+  // se achou pouca tipologia, mostra também os itens que batem com as palavras
+  if (achadas.length < 2 && p.palavras.length) {
+    const soltos = [...banco.perfis, ...banco.acessorios]
+      .filter(i => p.palavras.every(w => (i._buscaIndex || "").includes(w)))
+      .slice(0, 12);
+    if (soltos.length) {
+      const extra = criar("div", "tipologia-cards");
+      extra.appendChild(cardTipologia({ tipologia: "Itens do catálogo com essas palavras", sistema: "Catálogo",
+        perfis: soltos.map(i => i.codigo).join(" / ") }, !achadas.length, "itens"));
+      caixa.appendChild(extra);
+    } else if (!achadas.length) {
+      caixa.appendChild(criar("p", "pesquisa-geral-vazio", "Tenta de outro jeito, tipo: janela de correr 2 folhas, porta de giro, maxim-ar chroma."));
+    }
+  }
+  caixa.hidden = false;
+}
+
+function configurarPesquisaGeral() {
+  const form = document.getElementById("form-pesquisa-geral");
+  const campo = document.getElementById("pesquisa-geral");
+  if (!form || !campo) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    pesquisarGeral(campo.value);
+  });
+
+  // sugestões = as tipologias que mais aparecem nos sistemas
+  const sugestoes = document.getElementById("pesquisa-geral-sugestoes");
+  const contagem = {};
+  (banco.tipologias || []).forEach(t => {
+    const k = t.tipologia.trim();
+    if (/\d+\s*folhas?|giro|maxim|guarda|pivot/i.test(k)) contagem[k] = (contagem[k] || 0) + 1;
+  });
+  Object.entries(contagem).sort((a, b) => b[1] - a[1]).slice(0, 6).forEach(([nome]) => {
+    const chip = criar("button", "pesquisa-geral-chip", nome);
+    chip.type = "button";
+    chip.addEventListener("click", () => {
+      campo.value = nome;
+      pesquisarGeral(nome);
+    });
+    sugestoes.appendChild(chip);
+  });
+}
+
+// ---- fora de linha (vem da tabela de substituições) ----
+function carregarForaDeLinha() {
+  carregarBanco("/api/substituicoes").then(dados => {
+    [...(dados.perfis || []), ...(dados.acessorios || [])].forEach(s => {
+      const sub = (s.substituicao || "").trim();
+      if (!sub || sub === "-") return;
+      // "mantém o mesmo perfil" não é fora de linha
+      s.codigo.split("+").forEach(c => { if (normalizar(c) !== normalizar(sub)) foraDeLinha[normalizar(c)] = s; });
+    });
+    if (estadoPorAba[abaAtiva].jaInteragiu) executarFiltro();
+  }).catch(() => {}); // se a API de substituições falhar o catálogo segue normal
+}
+
+function ehConversao(s) {
+  return /->/.test(s.sistema || "");
+}
+
+function avisoForaDeLinha(termo) {
+  const s = foraDeLinha[normalizar(termo)];
+  if (!s) return null;
+
+  const caixa = criar("div", "aviso-fora-linha");
+  caixa.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+  const texto = criar("div", "aviso-fora-linha-texto");
+  texto.appendChild(criar("strong", "", ehConversao(s) ? `${s.codigo} (${s.sistema})` : `${s.codigo} saiu de linha`));
+
+  texto.appendChild(botoesSubstituto(s, s.codigo));
+  if (s.observacao) texto.appendChild(criar("small", "", s.observacao.split("||").map(t => t.trim()).join(" · ")));
+
+  caixa.appendChild(texto);
+  return caixa;
+}
+
+// botão pra ir direto no substituto + link pra aba de Substituições (os detalhes ficam lá)
+function botoesSubstituto(s, codigo) {
+  const linha = criar("div", "fora-linha-acoes");
+  const noCatalogo = cod => [...banco.perfis, ...banco.acessorios].some(i => normalizar(i.codigo) === normalizar(cod));
+  // só vira botão o substituto que tem ficha no catálogo; os outros ficam no link da Substituição
+  s.substituicao.split("+").map(c => c.trim()).filter(noCatalogo).forEach(cod => {
+    const btn = criar("button", "btn-ir-substituto");
+    btn.type = "button";
+    btn.innerHTML = `<i class="fa-solid fa-arrow-right"></i> ${ehConversao(s) ? "Ver" : "Ir pro"} ${cod}`;
+    btn.title = `Abrir a ficha do ${cod}`;
+    btn.addEventListener("click", () => irParaPerfilCompleto(cod, sistemaAtivo, true));
+    linha.appendChild(btn);
+  });
+  const link = criar("a", "link-substituicao");
+  link.href = `index.html?codigo=${encodeURIComponent(codigo)}`;
+  link.innerHTML = '<i class="fa-solid fa-right-left"></i> Ver na Substituição';
+  linha.appendChild(link);
+  return linha;
+}
+
+// ---- peso do lote ----
+function montarPesoLote(item) {
+  const kgPorMetro = parseFloat(String(item.peso || "").replace(",", "."));
+  if (!kgPorMetro) return null;
+
+  const caixa = criar("div", "peso-lote");
+  caixa.appendChild(criar("span", "ficha-cores-rotulo", "Peso do lote"));
+  const linha = criar("div", "peso-lote-linha");
+
+  const campo = (rotulo, valor, passo) => {
+    const label = criar("label", "peso-lote-campo");
+    label.appendChild(criar("span", "", rotulo));
+    const input = document.createElement("input");
+    input.type = "number";
+    input.min = "0";
+    input.step = passo;
+    input.value = valor;
+    label.appendChild(input);
+    linha.appendChild(label);
+    return input;
+  };
+  const barras = campo("Barras", 1, "1");
+  const metros = campo("Metros por barra", 6, "0.1");
+  const total = criar("strong", "peso-lote-total");
+  linha.appendChild(total);
+
+  const calcular = () => {
+    const kg = kgPorMetro * (parseFloat(barras.value) || 0) * (parseFloat(metros.value) || 0);
+    total.textContent = `${kg.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 3 })} kg`;
+  };
+  barras.addEventListener("input", calcular);
+  metros.addEventListener("input", calcular);
+  calcular();
+
+  caixa.appendChild(linha);
+  return caixa;
+}
+
+// ---- comparar lado a lado (até 3) ----
+const mesmoItem = (a, b) => a.codigo === b.codigo && a.sistema_chave === b.sistema_chave;
+
+function alternarComparacao(item) {
+  const i = comparando.findIndex(x => mesmoItem(x, item));
+  if (i >= 0) {
+    comparando.splice(i, 1);
+  } else {
+    if (comparando.length >= 3) comparando.shift();
+    comparando.push(item);
+  }
+  atualizarBarraComparar();
+}
+
+function pintarBotaoComparar(btn, item) {
+  const dentro = comparando.some(x => mesmoItem(x, item));
+  btn.classList.toggle("ativo", dentro);
+  btn.innerHTML = dentro
+    ? '<i class="fa-solid fa-check"></i> Comparando'
+    : '<i class="fa-solid fa-table-columns"></i> Comparar';
+}
+
+function atualizarBarraComparar() {
+  let barra = document.getElementById("barra-comparar");
+  if (!comparando.length) {
+    if (barra) barra.remove();
+    return;
+  }
+  if (!barra) {
+    barra = criar("div", "barra-comparar");
+    barra.id = "barra-comparar";
+    document.body.appendChild(barra);
+  }
+  barra.replaceChildren(criar("span", "barra-comparar-titulo", "Comparar:"));
+
+  comparando.forEach(it => {
+    const chip = criar("span", "barra-comparar-item", it.codigo);
+    const tirar = botaoIcone("barra-comparar-tirar", "fa-solid fa-xmark", `Tirar ${it.codigo}`);
+    tirar.addEventListener("click", () => {
+      alternarComparacao(it);
+      const btn = document.querySelector(".btn-comparar");
+      const atual = estadoPorAba[abaAtiva].itemSelecionado;
+      if (btn && atual) pintarBotaoComparar(btn, atual);
+    });
+    chip.appendChild(tirar);
+    barra.appendChild(chip);
+  });
+
+  const ver = criar("button", "btn btn-principal");
+  ver.type = "button";
+  ver.innerHTML = '<i class="fa-solid fa-table-columns"></i> Ver lado a lado';
+  ver.disabled = comparando.length < 2;
+  ver.title = comparando.length < 2 ? "Escolhe pelo menos 2 itens" : "";
+  ver.addEventListener("click", abrirComparacao);
+
+  const limpar = criar("button", "btn btn-secundario", "Limpar");
+  limpar.type = "button";
+  limpar.addEventListener("click", () => {
+    comparando = [];
+    atualizarBarraComparar();
+    const btn = document.querySelector(".btn-comparar");
+    const atual = estadoPorAba[abaAtiva].itemSelecionado;
+    if (btn && atual) pintarBotaoComparar(btn, atual);
+  });
+  barra.append(ver, limpar);
+}
+
+function abrirComparacao() {
+  const modal = criar("div", "foto-modal comparar-modal");
+  modal.setAttribute("aria-label", "Comparação lado a lado");
+  const caixa = criar("div", "comparar-caixa");
+
+  const topo = criar("div", "busca-foto-topo");
+  topo.innerHTML = '<h3><i class="fa-solid fa-table-columns"></i> Lado a lado</h3>';
+  const btnFechar = botaoIcone("busca-foto-fechar", "fa-solid fa-xmark", "Fechar");
+  topo.appendChild(btnFechar);
+
+  const ehAcessorio = it => "aplicavel" in it;
+  const linhas = [
+    ["Nome", it => it.nome],
+    ["Sistema", it => it.sistema],
+    ["Peso", it => it.peso],
+    ["Tipologia", it => it.tipologia || it.tipo],
+    ["Encaixe / Aplicável", it => it.encaixe || it.aplicavel],
+    ["Jx", it => it.jx],
+    ["Jy", it => it.jy],
+    ["Wx", it => it.wx],
+    ["Wy", it => it.wy],
+    ["Material", it => it.material],
+    ["Unidade", it => it.unidade_conversao],
+    ["Cores / Acabamento", it => it.acabamento],
+    ["Observação", it => it.observacao],
+  ];
+
+  const tabela = document.createElement("table");
+  tabela.className = "comparar-tabela";
+  const cab = document.createElement("tr");
+  cab.appendChild(document.createElement("th"));
+  comparando.forEach(it => {
+    const th = document.createElement("th");
+    const img = document.createElement("img");
+    img.src = obterPrimeiraImagem(it.imagem, imagemPadrao(it, ehAcessorio(it) ? "acessorio" : "perfil"));
+    img.alt = it.codigo;
+    img.onerror = () => { img.src = NO_PHOTO; };
+    th.append(img, criar("div", "comparar-codigo", it.codigo));
+    cab.appendChild(th);
+  });
+  tabela.appendChild(cab);
+
+  linhas.forEach(([rotulo, pega]) => {
+    const valores = comparando.map(it => String(pega(it) || "").trim());
+    if (valores.every(v => !v)) return;
+    const tr = document.createElement("tr");
+    if (new Set(valores).size > 1) tr.className = "diferente";
+    tr.appendChild(criar("td", "comparar-rotulo", rotulo));
+    comparando.forEach((it, i) => {
+      const td = criar("td", "");
+      const cores = rotulo.startsWith("Cores") ? coresDoItem(it) : [];
+      if (cores.length) {
+        cores.forEach(c => {
+          const bolinha = criar("span", "cor-bolinha");
+          bolinha.style.background = c.hex;
+          bolinha.title = `${c.nome} (${c.codigo})`;
+          td.appendChild(bolinha);
+        });
+      } else {
+        td.textContent = valores[i] ? valores[i].split("||").join(" · ") : "—";
+      }
+      tr.appendChild(td);
+    });
+    tabela.appendChild(tr);
+  });
+
+  const rolagem = criar("div", "comparar-rolagem");
+  rolagem.appendChild(tabela);
+  caixa.append(topo, rolagem, criar("small", "ficha-cores-dica", "As linhas destacadas são onde os itens são diferentes."));
+  modal.appendChild(caixa);
+
+  const fechar = abrirModal(modal, "foto-aberta");
+  btnFechar.addEventListener("click", fechar);
 }
 
 async function iniciar() {
   iniciarTema();
-  atualizarRelogio();
-  setInterval(atualizarRelogio, 30000);
+  iniciarRelogio();
 
   try {
-    const resposta = await fetch("https://consulta-perfil-api.onrender.com/api/catalogo");
-    if (!resposta.ok) throw new Error("Erro na API");
-    const dados = await resposta.json();
-    if (!dados || ((!dados.perfis || dados.perfis.length === 0) && (!dados.acessorios || dados.acessorios.length === 0))) {
-      throw new Error("Banco vazio ou sem conexão com o Notion");
-    }
-    banco = dados;
-    erroCarregamentoBanco = false;
+    banco = await carregarBanco("/api/catalogo");
     indexarBancoCatalogo();
+    carregarForaDeLinha();
   } catch {
     erroCarregamentoBanco = true;
   }
@@ -1543,6 +2041,7 @@ async function iniciar() {
   construirFiltroSistemas();
   configurarAbas();
   configurarForm();
+  configurarPesquisaGeral();
   renderizarHistorico();
 
   if (erroCarregamentoBanco) {
@@ -1561,19 +2060,11 @@ async function iniciar() {
     document.querySelector(`.catalogo-aba[data-aba="${abaAtiva}"]`)?.classList.add("catalogo-aba-ativa");
   }
 
-  if (sisParam) {
-    const btnSis = Array.from(document.querySelectorAll(".sistema-btn")).find(
-      b => normalizarBusca(b.dataset.sistema || b.textContent || "") === normalizarBusca(sisParam)
-    );
-    if (btnSis) {
-      document.querySelectorAll(".sistema-btn").forEach(b => b.classList.remove("sistema-btn-ativo"));
-      btnSis.classList.add("sistema-btn-ativo");
-      sistemaAtivo = btnSis.dataset.sistema;
-    }
-  }
+  const sisUrl = sisParam ? acharSistema(sisParam) : null;
+  if (sisUrl) marcarSistemaAtivo(sisUrl.chave);
 
   if (codParam) {
-    const busca = encontrarItemPorCodigo(codParam, sisParam || sistemaAtivo);
+    const busca = encontrarItemPorCodigo(codParam, sistemaAtivo);
     if (busca && !abaParam && busca.aba !== abaAtiva) {
       document.querySelectorAll(".catalogo-aba").forEach(b => b.classList.remove("catalogo-aba-ativa"));
       document.querySelector(`.catalogo-aba[data-aba="${busca.aba}"]`)?.classList.add("catalogo-aba-ativa");

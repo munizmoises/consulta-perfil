@@ -15,32 +15,13 @@ const CAMPOS_ACESSORIOS = [
   ["unidade_conversao", "Unidade de conversão"],
 ];
 
-const HISTORICO_MAX = 5;
 const HISTORICO_KEY_PERFIS = "historico_perfis";
 const HISTORICO_KEY_ACESSORIOS = "historico_acessorios";
 const NO_PHOTO = "assets/img/substitution/NO-PHOTO.webp";
 const SUGESTOES_MAX = 6;
-const MSG_ERRO_BANCO = "No momento não foi possível carregar o banco de dados. Recarregue a página e tente novamente.";
 
 let banco = { perfis: [], acessorios: [] };
 let erroCarregamentoBanco = false;
-
-function normalizar(texto) {
-  return (texto || "").trim().toUpperCase().replace(/[\s\-*]+/g, "");
-}
-
-function normalizarBusca(texto) {
-  return (texto || "").trim().toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    .replace(/[\s\-*_.]+/g, "");
-}
-
-function criar(tag, classe, texto) {
-  const el = document.createElement(tag);
-  if (classe) el.className = classe;
-  if (texto !== undefined) el.textContent = texto;
-  return el;
-}
 
 function exibirErroBanco(container) {
   if (!container) return;
@@ -57,6 +38,7 @@ function indexarBancoSubstituicoes() {
     item._nomeBusca = normalizarBusca(item.nome || "");
     item._apelidoBusca = normalizarBusca(item.apelido || "");
     item._subBusca = normalizarBusca(item.substituicao || "");
+    item._sistemaBusca = normalizarBusca(item.sistema || "");
     item._textoCompletoBusca = [
       item.codigo, item.substituicao, item.nome, item.apelido, item.observacao, item.sistema, item.tipo
     ].filter(Boolean).map(v => normalizarBusca(v)).join(" ");
@@ -67,77 +49,6 @@ function codigoBateExato(item, codigoDigitadoNorm) {
   if (!item || !codigoDigitadoNorm) return false;
   if (item._codNorm === codigoDigitadoNorm) return true;
   return Array.isArray(item._partesCodNorm) && item._partesCodNorm.includes(codigoDigitadoNorm);
-}
-
-function lerHistorico(chave) {
-  try { return JSON.parse(localStorage.getItem(chave)) || []; }
-  catch { return []; }
-}
-
-function salvarHistorico(chave, codigo) {
-  if (!codigo || !codigo.trim()) return;
-  const valor = codigo.trim();
-  let hist = lerHistorico(chave);
-  hist = hist.filter(c => normalizarBusca(c) !== normalizarBusca(valor));
-  hist.unshift(valor);
-  if (hist.length > HISTORICO_MAX) hist = hist.slice(0, HISTORICO_MAX);
-  localStorage.setItem(chave, JSON.stringify(hist));
-}
-
-function abrirModalConfirmacaoHistorico(mensagem, aoConfirmar) {
-  const backdrop = criar("div", "confirmacao-modal-backdrop");
-  backdrop.setAttribute("role", "dialog");
-  backdrop.setAttribute("aria-modal", "true");
-  backdrop.setAttribute("aria-label", "Confirmar exclusão de pesquisas recentes");
-
-  const caixa = criar("div", "confirmacao-modal-caixa");
-
-  const topo = criar("div", "confirmacao-modal-topo");
-  const icone = criar("div", "confirmacao-modal-icone");
-  icone.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-  topo.appendChild(icone);
-  topo.appendChild(criar("h3", "confirmacao-modal-titulo", "Apagar pesquisas recentes"));
-  caixa.appendChild(topo);
-
-  caixa.appendChild(criar("p", "confirmacao-modal-texto", mensagem));
-
-  const acoes = criar("div", "confirmacao-modal-acoes");
-  const btnCancelar = criar("button", "btn-confirmar-cancelar", "Cancelar");
-  btnCancelar.type = "button";
-
-  const btnApagar = criar("button", "btn-confirmar-perigo");
-  btnApagar.type = "button";
-  btnApagar.innerHTML = '<i class="fa-solid fa-trash-can"></i> Confirmar e apagar';
-
-  acoes.appendChild(btnCancelar);
-  acoes.appendChild(btnApagar);
-  caixa.appendChild(acoes);
-  backdrop.appendChild(caixa);
-
-  const fechar = () => {
-    backdrop.classList.remove("aberto");
-    setTimeout(() => backdrop.remove(), 150);
-    document.removeEventListener("keydown", escHandler);
-  };
-
-  const escHandler = (e) => {
-    if (e.key === "Escape") fechar();
-  };
-
-  btnCancelar.addEventListener("click", fechar);
-  btnApagar.addEventListener("click", () => {
-    aoConfirmar();
-    fechar();
-  });
-  backdrop.addEventListener("click", (e) => {
-    if (e.target === backdrop) fechar();
-  });
-  document.addEventListener("keydown", escHandler);
-
-  document.body.appendChild(backdrop);
-  backdrop.getBoundingClientRect();
-  backdrop.classList.add("aberto");
-  btnApagar.focus();
 }
 
 function renderizarHistorico(chave, campo, resultado) {
@@ -186,8 +97,6 @@ function renderizarHistorico(chave, campo, resultado) {
   bloco.appendChild(lista);
   resultado.parentNode.insertBefore(bloco, resultado);
 }
-
-// Pesquisa Inteligente
 
 function buscarSugestoes(lista, termo) {
   if (erroCarregamentoBanco || !termo || termo.length < 1) return [];
@@ -295,101 +204,6 @@ function itemBateComTermo(item, termo) {
   return item._textoCompletoBusca ? item._textoCompletoBusca.includes(t) : false;
 }
 
-// Foto ampliada
-
-function abrirFoto(imagensOuSrc, alt, indiceInicial = 0) {
-  const lista = Array.isArray(imagensOuSrc)
-    ? imagensOuSrc.filter(Boolean)
-    : [{ src: imagensOuSrc, leg: alt }];
-
-  if (lista.length === 0) return;
-  let idxAtual = Math.max(0, Math.min(indiceInicial, lista.length - 1));
-
-  const modal = criar("div", "foto-modal");
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
-  modal.setAttribute("aria-label", alt || "Imagem ampliada");
-
-  const caixa = criar("div", "foto-modal-caixa");
-
-  const legendaEl = criar("div", "foto-modal-legenda", lista[idxAtual].leg || alt || "");
-  caixa.appendChild(legendaEl);
-
-  const img = document.createElement("img");
-  img.className = "foto-ampliada";
-  img.src = lista[idxAtual].src;
-  img.alt = lista[idxAtual].leg || alt || "";
-  caixa.appendChild(img);
-
-  let contadorEl = null;
-
-  const atualizarSlide = (novoIdx) => {
-    idxAtual = (novoIdx + lista.length) % lista.length;
-    img.style.opacity = "0.25";
-    setTimeout(() => {
-      img.src = lista[idxAtual].src;
-      img.alt = lista[idxAtual].leg || alt || "";
-      legendaEl.textContent = lista[idxAtual].leg || alt || "";
-      if (contadorEl) contadorEl.textContent = `${idxAtual + 1} / ${lista.length}`;
-      img.style.opacity = "1";
-    }, 100);
-  };
-
-  if (lista.length > 1) {
-    const btnEsq = criar("button", "foto-modal-seta esq");
-    btnEsq.type = "button";
-    btnEsq.setAttribute("aria-label", "Imagem anterior");
-    btnEsq.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-    btnEsq.addEventListener("click", (e) => {
-      e.stopPropagation();
-      atualizarSlide(idxAtual - 1);
-    });
-
-    const btnDir = criar("button", "foto-modal-seta dir");
-    btnDir.type = "button";
-    btnDir.setAttribute("aria-label", "Próxima imagem");
-    btnDir.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-    btnDir.addEventListener("click", (e) => {
-      e.stopPropagation();
-      atualizarSlide(idxAtual + 1);
-    });
-
-    contadorEl = criar("span", "foto-modal-contador", `${idxAtual + 1} / ${lista.length}`);
-
-    caixa.appendChild(btnEsq);
-    caixa.appendChild(btnDir);
-    caixa.appendChild(contadorEl);
-  }
-
-  const btnFechar = criar("button", "foto-fechar");
-  btnFechar.type = "button";
-  btnFechar.setAttribute("aria-label", "Fechar imagem");
-  btnFechar.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-
-  const fechar = () => {
-    modal.classList.remove("foto-aberta");
-    setTimeout(() => modal.remove(), 180);
-    document.removeEventListener("keydown", keyListener);
-  };
-
-  const keyListener = (e) => {
-    if (e.key === "Escape") fechar();
-    if (lista.length > 1 && e.key === "ArrowLeft") atualizarSlide(idxAtual - 1);
-    if (lista.length > 1 && e.key === "ArrowRight") atualizarSlide(idxAtual + 1);
-  };
-
-  btnFechar.addEventListener("click", fechar);
-  modal.addEventListener("click", (e) => { if (e.target === modal) fechar(); });
-  document.addEventListener("keydown", keyListener);
-
-  modal.appendChild(caixa);
-  modal.appendChild(btnFechar);
-  document.body.appendChild(modal);
-
-  modal.getBoundingClientRect();
-  modal.classList.add("foto-aberta");
-}
-
 function montarImagens(item) {
   if (!("imagem" in item)) return null;
 
@@ -427,7 +241,6 @@ function montarImagens(item) {
     return caixa;
   };
 
-  // Lado Esquerdo (Origem - 1 ou mais itens separados por "+")
   const codigosOrig = String(item.codigo || "").split("+").map(s => s.trim()).filter(Boolean);
   const caminhosOrig = Array.isArray(item.imagem)
     ? item.imagem
@@ -441,7 +254,6 @@ function montarImagens(item) {
     }
   });
 
-  // Seta e Lado Direito (Substituição - 1 ou mais itens separados por "+")
   if (item.substituicao && item.substituicao !== "-") {
     bloco.appendChild(criar("i", "fa-solid fa-arrow-right foto-seta"));
 
@@ -462,7 +274,6 @@ function montarImagens(item) {
   return bloco;
 }
 
-// Montar resultado
 function montarItem(item, campos) {
   const bloco = criar("article", "item");
 
@@ -498,7 +309,7 @@ function montarItem(item, campos) {
       }
     } else {
       if (typeof item[chave] === "string" && item[chave].includes("||")) {
-        dd.innerHTML = item[chave].split("||").join("<br>");
+        textoComQuebras(dd, item[chave]);
       } else {
         dd.textContent = item[chave];
       }
@@ -509,7 +320,114 @@ function montarItem(item, campos) {
   return bloco;
 }
 
-// Painel
+function configurarPainelConversao() {
+  const btnGoldChroma = document.getElementById("btn-conv-gold-chroma");
+  const containerLista = document.getElementById("lista-conversao-container");
+  const painelPerfis = document.getElementById("painel-perfis");
+
+  if (!btnGoldChroma || !containerLista || !painelPerfis) return;
+
+  const obterItensGoldChroma = () => {
+    return (banco.perfis || []).filter(item => {
+      const sisNorm = normalizarBusca(item.sistema || "");
+      return sisNorm.includes("gold") && sisNorm.includes("chroma");
+    });
+  };
+
+  const renderizarItensConversao = (filtro = "") => {
+    const scrollBox = containerLista.querySelector(".conversao-itens-scroll");
+    if (!scrollBox) return;
+    scrollBox.replaceChildren();
+
+    const listaGold = obterItensGoldChroma();
+    const termo = normalizarBusca(filtro);
+    const filtrados = listaGold.filter(item => {
+      if (!termo) return true;
+      return normalizarBusca(item.codigo).includes(termo) || normalizarBusca(item.substituicao).includes(termo);
+    });
+
+    if (filtrados.length === 0) {
+      const msgVazio = criar("p", "msg-erro", "Nenhum perfil Gold encontrado.");
+      msgVazio.style.fontSize = "0.8rem";
+      msgVazio.style.padding = "0.4rem";
+      scrollBox.appendChild(msgVazio);
+      return;
+    }
+
+    filtrados.forEach(item => {
+      const btnLinha = criar("button", "conversao-item-linha");
+      btnLinha.type = "button";
+
+      const spanOrig = criar("span", "conversao-cod-gold", item.codigo);
+      const iconeSeta = criar("i", "fa-solid fa-arrow-right conversao-seta-item");
+      const semSub = !item.substituicao || item.substituicao === "-";
+      const spanDest = criar("span", "conversao-cod-chroma" + (semSub ? " sem-sub" : ""));
+
+      if (semSub) {
+        spanDest.innerHTML = '<i class="fa-solid fa-ban"></i> Sem subst.';
+      } else {
+        spanDest.textContent = item.substituicao;
+      }
+
+      btnLinha.appendChild(spanOrig);
+      btnLinha.appendChild(iconeSeta);
+      btnLinha.appendChild(spanDest);
+
+      btnLinha.addEventListener("click", () => {
+        scrollBox.querySelectorAll(".conversao-item-linha").forEach(el => el.classList.remove("selecionado"));
+        btnLinha.classList.add("selecionado");
+
+        const inputPerfis = painelPerfis.querySelector("input");
+        const formPerfis = painelPerfis.querySelector("form");
+        if (inputPerfis && formPerfis) {
+          inputPerfis.value = item.codigo;
+          formPerfis.requestSubmit();
+        }
+      });
+
+      scrollBox.appendChild(btnLinha);
+    });
+  };
+
+  btnGoldChroma.addEventListener("click", () => {
+    const aberto = !containerLista.hidden;
+    if (aberto) {
+      containerLista.hidden = true;
+      btnGoldChroma.classList.remove("ativo");
+      return;
+    }
+
+    btnGoldChroma.classList.add("ativo");
+    containerLista.hidden = false;
+    containerLista.replaceChildren();
+
+    const wrapBusca = criar("div", "conversao-busca-wrap");
+    wrapBusca.appendChild(criar("i", "fa-solid fa-magnifying-glass conversao-busca-icone"));
+    const inputFiltro = document.createElement("input");
+    inputFiltro.type = "text";
+    inputFiltro.className = "conversao-filtro-input";
+    inputFiltro.placeholder = "Filtrar Gold ou Chroma...";
+    inputFiltro.addEventListener("input", () => renderizarItensConversao(inputFiltro.value));
+    wrapBusca.appendChild(inputFiltro);
+
+    const cabTabela = criar("div", "conversao-cabecalho-tabela");
+    const colEsq = criar("span", "");
+    colEsq.innerHTML = '<i class="fa-solid fa-layer-group"></i> Gold';
+    const colDir = criar("span", "");
+    colDir.innerHTML = '<i class="fa-solid fa-cube"></i> Chroma';
+    cabTabela.appendChild(colEsq);
+    cabTabela.appendChild(colDir);
+
+    const scrollBox = criar("div", "conversao-itens-scroll");
+
+    containerLista.appendChild(wrapBusca);
+    containerLista.appendChild(cabTabela);
+    containerLista.appendChild(scrollBox);
+
+    renderizarItensConversao("");
+  });
+}
+
 function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
   const painel = document.getElementById(idPainel);
   if (!painel) return;
@@ -520,7 +438,6 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
 
   renderizarHistorico(chaveHistorico, campo, resultado);
 
-  // Se o banco não estiver sido carregado, exibe o aviso imediatamente ao abrir a página
   if (erroCarregamentoBanco) {
     exibirErroBanco(resultado);
   }
@@ -538,7 +455,6 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
     fecharTodosDropdowns();
     const digitado = campo.value.trim();
 
-    // Se o banco não carregou, mostre o aviso de erro de banco ao pesquisar!
     if (erroCarregamentoBanco) {
       limpar.hidden = !digitado;
       exibirErroBanco(resultado);
@@ -555,7 +471,7 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
     const exatos = listaBase.filter(i => codigoBateExato(i, codigo));
 
     if (exatos.length > 0) {
-      salvarHistorico(chaveHistorico, exatos[0].codigo);
+      gravarHistorico(chaveHistorico, exatos[0].codigo);
       renderizarHistorico(chaveHistorico, campo, resultado);
       resultado.appendChild(criar("span", "status ok", "Código encontrado"));
       exatos.forEach(item => resultado.appendChild(montarItem(item, campos)));
@@ -593,73 +509,36 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
   };
 }
 
-// Relógio
-function atualizarRelogio() {
-  const agora = new Date();
-  const el = document.getElementById("data-hora");
-  if (el) {
-    el.textContent =
-      agora.toLocaleDateString("pt-BR") +
-      " · " +
-      agora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-  }
-}
-
-// Temas ESCURO ou CLARO
-function iniciarTema() {
-  const btn = document.getElementById("btn-tema");
-  const html = document.documentElement;
-
-  const temaEscuro = () =>
-    html.dataset.tema === "escuro" ||
-    (!html.dataset.tema && matchMedia("(prefers-color-scheme: dark)").matches);
-
-  const aplicar = (escuro) => {
-    html.dataset.tema = escuro ? "escuro" : "claro";
-    if (btn) {
-      btn.innerHTML = escuro
-        ? '<i class="fa-solid fa-sun"></i>'
-        : '<i class="fa-solid fa-moon"></i>';
-    }
-    localStorage.setItem("tema", escuro ? "escuro" : "claro");
-  };
-
-  const salvo = localStorage.getItem("tema");
-  aplicar(salvo ? salvo === "escuro" : false);
-
-  if (btn) btn.addEventListener("click", () => aplicar(!temaEscuro()));
-}
-
 async function iniciar() {
   iniciarTema();
-  atualizarRelogio();
-  setInterval(atualizarRelogio, 30000);
+  iniciarRelogio();
 
   try {
-    const resposta = await fetch("https://consulta-perfil-api.onrender.com/api/substituicoes");
-    if (!resposta.ok) throw new Error("Erro na API");
-    const dados = await resposta.json();
-    if (!dados || ((!dados.perfis || dados.perfis.length === 0) && (!dados.acessorios || dados.acessorios.length === 0))) {
-      throw new Error("Banco vazio ou sem conexão com o Notion");
-    }
-    banco = dados;
-    erroCarregamentoBanco = false;
+    banco = await carregarBanco("/api/substituicoes");
     indexarBancoSubstituicoes();
   } catch {
     erroCarregamentoBanco = true;
   }
 
   const contador = document.getElementById("contador-banco");
-  if (contador) {
-    if (!erroCarregamentoBanco) {
-      contador.textContent = `${(banco.perfis || []).length} perfis e ${(banco.acessorios || []).length} acessórios cadastrados!`;
-    } else {
-      contador.textContent = "";
-    }
+  if (contador && !erroCarregamentoBanco) {
+    contador.textContent = `${(banco.perfis || []).length} perfis e ${(banco.acessorios || []).length} acessórios cadastrados!`;
   }
 
+  configurarPainelConversao();
   configurarPainel("painel-perfis", "perfis", CAMPOS_PERFIS, HISTORICO_KEY_PERFIS);
   configurarPainel("painel-acessorios", "acessorios", CAMPOS_ACESSORIOS, HISTORICO_KEY_ACESSORIOS);
+
+  // veio do catálogo com ?codigo=... -> já pesquisa no painel certo
+  const codigoUrl = new URLSearchParams(location.search).get("codigo");
+  if (codigoUrl && !erroCarregamentoBanco) {
+    const norm = normalizar(codigoUrl);
+    const ehAcessorio = !banco.perfis.some(i => codigoBateExato(i, norm)) && banco.acessorios.some(i => codigoBateExato(i, norm));
+    const painel = document.getElementById(ehAcessorio ? "painel-acessorios" : "painel-perfis");
+    painel.querySelector("input").value = codigoUrl;
+    painel.querySelector("form").requestSubmit();
+    painel.scrollIntoView({ block: "start" });
+  }
 }
 
 iniciar();

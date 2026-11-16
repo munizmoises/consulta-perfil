@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta Perfil | Catálogo Técnico</title>
   <meta name="description" content="Catálogo técnico de perfis de alumínio e acessórios da Perfil Alumínio do Brasil.">
+  <meta property="og:description" content="Consulte o catálogo técnico de perfis de alumínio, acessórios e componentes de forma rápida.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://munizmoises.github.io/consulta-perfil/">
+  <meta property="og:image" content="https://munizmoises.github.io/consulta-perfil/assets/img/favicon.png">
+  <meta property="og:image:type" content="image/png">
+
+
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/all.min.css">
@@ -48,13 +55,16 @@
           <a href="catalogo.html" class="usuario-item">
             <i class="fa-solid fa-book-open"></i> Catálogo Técnico
           </a>
+          <a href="visualizador-3d.html" class="usuario-item">
+            <i class="fa-solid fa-cube"></i> Modelos 3D
+          </a>
           <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item">
             <i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio
           </a>
         </div>
       </div>
 
-      <!-- Botão menu hambúrguer no Bootstrap -->
+      <!-- Botão menu hambúrguer -->
       <button class="btn-hamburguer" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacaoMobile" aria-controls="menuNavegacaoMobile" aria-expanded="false" aria-label="Abrir menu de navegação">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -73,30 +83,22 @@
     </div>
   </header>
 
+  <!-- pesquisa geral: "como fazer uma janela de 4 folhas" -->
+  <section class="pesquisa-geral">
+    <form id="form-pesquisa-geral" class="pesquisa-geral-form" autocomplete="off">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="pesquisa-geral" type="search" placeholder="Pesquise do seu jeito: janela de correr 4 folhas, porta de giro, guarda-corpo..." spellcheck="false">
+      <button type="submit" class="btn btn-principal">Pesquisar</button>
+    </form>
+    <div id="pesquisa-geral-sugestoes" class="pesquisa-geral-sugestoes"></div>
+    <div id="pesquisa-geral-resultado" class="pesquisa-geral-resultado" hidden></div>
+  </section>
+
   <main class="catalogo-layout">
     <aside class="catalogo-sistemas painel">
       <h3 class="sistemas-titulo">Sistemas</h3>
       <div class="sistemas-lista" id="filtro-sistemas">
         <button type="button" class="sistema-btn sistema-btn-ativo" data-sistema="todos">Todos</button>
-        <button type="button" class="sistema-btn" data-sistema="chroma">Chroma</button>
-        <button type="button" class="sistema-btn" data-sistema="ecoline">Ecoline</button>
-        <button type="button" class="sistema-btn" data-sistema="ecostick">Ecostick</button>
-        <button type="button" class="sistema-btn" data-sistema="diversos">Diversos</button>
-        <button type="button" class="sistema-btn" data-sistema="grandline">Grandline</button>
-        <button type="button" class="sistema-btn" data-sistema="ecogrid">Ecogrid</button>
-        <button type="button" class="sistema-btn" data-sistema="tabelados">Tabelados</button>
-        <button type="button" class="sistema-btn" data-sistema="sophia">Sophia</button>
-        <button type="button" class="sistema-btn" data-sistema="minimalframe">Minimalframe</button>
-        <button type="button" class="sistema-btn" data-sistema="wallframe">Wallframe</button>
-        <button type="button" class="sistema-btn" data-sistema="slidinglass">Slidinglass</button>
-        <button type="button" class="sistema-btn" data-sistema="fachada ventilada">Fachada Ventilada</button>
-        <button type="button" class="sistema-btn" data-sistema="artus">Artus</button>
-        <button type="button" class="sistema-btn" data-sistema="unnion">Unnion</button>
-        <button type="button" class="sistema-btn" data-sistema="erus">Erus</button>
-        <button type="button" class="sistema-btn" data-sistema="vantor_90">Vantor 90</button>
-        <button type="button" class="sistema-btn" data-sistema="linha moveleira">Linha Moveleira</button>
-        <button type="button" class="sistema-btn" data-sistema="linha implementos rodoviarios">Linha Implementos Rodoviários</button>
-        <button type="button" class="sistema-btn" data-sistema="kit sacada certa">Kit Sacada Certa</button>
       </div>
     </aside>
 
@@ -112,7 +114,7 @@
         <div class="busca-campos-wrap">
           <div class="busca-input-container">
             <input id="busca-catalogo" type="text" placeholder="Ex: CHR057" spellcheck="false">
-            <button type="button" class="btn-camera-ia" id="btn-camera-ia" title="Busca visual por foto em desenvolvimento!" aria-label="Busca visual por foto">
+            <button type="button" class="btn-camera-ia" id="btn-camera-ia" title="Busca Visual" aria-label="Busca Visual">
               <i class="fa-solid fa-camera"></i>
             </button>
           </div>
@@ -140,5 +142,8 @@
   <script src="global.js"></script>
   <script src="js/catalogo.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/three.min.js"></script>
+  <script src="js/viewer3d.js"></script>
 </body>
 </html>

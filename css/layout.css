@@ -25,7 +25,7 @@
        url("../assets/fonts/bold.ttf") format("truetype");
 }
 
-/* TEMAS (CLARO OU ESCURO) */
+/* Temas */
 :root {
   --fundo: #f3f5f8;
   --superficie: #ffffff;
@@ -41,42 +41,45 @@
   --erro: #b3261e;
   --erro-fundo: #fbeae9;
   --sombra-card: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --fundo-desenho: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-tema="claro"]) {
-    --fundo: #0b1017;
-    --superficie: #141d28;
-    --superficie-elevada: #1c2736;
-    --texto: #e8edf4;
-    --suave: #9aa7b8;
-    --borda: #283546;
-    --destaque: #4d8df0;
-    --destaque-suave: rgba(77, 141, 240, 0.16);
+    --fundo: #101318;
+    --superficie: #181c22;
+    --superficie-elevada: #1f242c;
+    --texto: #e4e7ec;
+    --suave: #959eab;
+    --borda: #2b313a;
+    --destaque: #5a9bf2;
+    --destaque-suave: rgba(90, 155, 242, 0.13);
     --destaque-texto: #ffffff;
-    --ok: #5ccf94;
-    --ok-fundo: #12291e;
-    --erro: #ff8a80;
-    --erro-fundo: #321614;
-    --sombra-card: 0 6px 24px rgba(0, 0, 0, 0.35);
+    --ok: #5fc796;
+    --ok-fundo: #15281f;
+    --erro: #f28b82;
+    --erro-fundo: #2e1a19;
+    --sombra-card: 0 4px 18px rgba(0, 0, 0, 0.28);
+    --fundo-desenho: #ffffff;
   }
 }
 
 :root[data-tema="escuro"] {
-  --fundo: #0b1017;
-  --superficie: #141d28;
-  --superficie-elevada: #1c2736;
-  --texto: #e8edf4;
-  --suave: #9aa7b8;
-  --borda: #283546;
-  --destaque: #4d8df0;
-  --destaque-suave: rgba(77, 141, 240, 0.16);
+  --fundo: #101318;
+  --superficie: #181c22;
+  --superficie-elevada: #1f242c;
+  --texto: #e4e7ec;
+  --suave: #959eab;
+  --borda: #2b313a;
+  --destaque: #5a9bf2;
+  --destaque-suave: rgba(90, 155, 242, 0.13);
   --destaque-texto: #ffffff;
-  --ok: #5ccf94;
-  --ok-fundo: #12291e;
-  --erro: #ff8a80;
-  --erro-fundo: #321614;
-  --sombra-card: 0 6px 24px rgba(0, 0, 0, 0.35);
+  --ok: #5fc796;
+  --ok-fundo: #15281f;
+  --erro: #f28b82;
+  --erro-fundo: #2e1a19;
+  --sombra-card: 0 4px 18px rgba(0, 0, 0, 0.28);
+  --fundo-desenho: #ffffff;
 }
 
 *,
@@ -87,6 +90,13 @@
 
 html {
   font-size: 100%;
+}
+
+/* em tela grande sobrava tamanho: tudo que está em rem encolhe um pouco */
+@media (min-width: 62rem) {
+  html {
+    font-size: 90%;
+  }
 }
 
 body {
@@ -174,6 +184,24 @@ body {
 .msg-erro {
   margin: 0;
   color: var(--suave);
+}
+
+/* aparece quando a API demora (o Render dorme e leva um tempo pra acordar) */
+.aviso-carregando {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 50;
+  max-width: calc(100% - 2rem);
+  padding: 0.65rem 1.1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--texto);
+  background: var(--superficie-elevada);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  box-shadow: var(--sombra-card);
 }
 
 /* HEADER */
@@ -545,7 +573,7 @@ body {
   position: relative;
   width: min(520px, 94vw);
   height: min(520px, 80vh);
-  background: #ffffff;
+  background: var(--fundo-desenho);
   border-radius: 1rem;
   padding: 2.5rem 2rem 2.75rem;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
@@ -570,7 +598,7 @@ body {
   max-height: 100%;
   object-fit: contain;
   border-radius: 0.4rem;
-  background: #ffffff;
+  background: var(--fundo-desenho);
   padding: 0.25rem;
   image-rendering: -webkit-optimize-contrast;
   transition: opacity 0.15s ease;

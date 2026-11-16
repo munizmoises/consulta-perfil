@@ -1,10 +1,10 @@
 # Consulta Perfil
 
-Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição.
+Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição. Hoje ele também tem o catálogo técnico dos sistemas da empresa, com ficha, cores e modelo 3D.
 
 **Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
 
-### Interface do site (Atual)
+### Interface do site
 
 | Modo Escuro | Modo Claro |
 | :---: | :---: |
@@ -31,30 +31,25 @@ Então peguei essa ideia e transformei em um site: cada pessoa consulta no seu c
 
 ## O que ele faz?
 
-O site tem duas colunas de pesquisa:
+O site tem duas páginas: **Substituições** e **Catálogo Técnico**.
+
+### Substituições
+
+Duas colunas de pesquisa:
 
 - **Perfis:** para perfis de alumínio.
-- **Acessórios:** para acessórios e componentes. Eles têm diferenças entre si, mas deixei os dois juntos na mesma consulta para ficar simples.
+- **Acessórios:** para acessórios e componentes.
 
-Ao pesquisar um código, o resultado mostra:
+Ao pesquisar um código, o resultado mostra a imagem do item original e do substituto, o código que entra no lugar, o nome, a observação e o sistema. Nos acessórios aparecem também o tipo e a unidade de conversão, quando o item tem essas informações.
 
-**Perfis**
-- **Imagem:** foto do perfil original e do substituto
-- **Substituição:** o código que pode ser usado no lugar
-- **Nome:** o nome do perfil
-- **Observação:** detalhes importantes
-- **Sistema:** a linha de perfis a que o item pertence
+Também tem:
 
-**Acessórios**
-- **Imagem:** foto do acessório original e do substituto
-- **Substituição:** o código que pode ser usado no lugar
-- **Nome:** o nome do acessório
-- **Observação:** detalhes importantes
-- **Tipo** e **Unidade de conversão:** só aparecem quando o item tem essas informações
+- **Conversão de sistemas:** lista de perfis da linha Gold com o equivalente no Chroma.
+- **Pesquisa inteligente:** sugere resultados enquanto você digita, por código, nome, apelido e observação.
+- **Histórico** das 5 últimas pesquisas e botão para **copiar** o código de substituição.
+- **Link direto:** `index.html?codigo=CHR008` já abre com a pesquisa feita.
 
 A pesquisa ignora hífen, asteriscos e maiúsculas/minúsculas, então `GUI-004`, `gui004`, `*GUI004*` e `GUI004` encontram o mesmo item.
-
-A pesquisa inteligente sugere resultados enquanto você digita, buscando por código, nome, apelido e observação.
 
 Exemplo de perfil:
 
@@ -63,7 +58,8 @@ Código: CHR004
 
 Substituição: CHR120
 Nome:         Complemento do Trilho
-Observação:   Janela de Correr 2 Folhas - A cor somente em FOSCO (FO23)
+Observação:   Janela de Correr 2 Folhas
+              Somente na cor FOSCO (FO23)
 Sistema:      Chroma
 ```
 
@@ -79,80 +75,125 @@ Tipo:         PACOTE (PAC)
 Und. conv.:   8 PEÇAS
 ```
 
-O uso na empresa é no computador, mas o layout é responsivo e se ajusta a telas menores, como a do celular. A data e a hora ficam no topo da tela.
+### Catálogo Técnico
+
+Reúne os perfis e acessórios de 20 sistemas (Chroma, Ecoline 2.5, Ecostick, Gradline, Sophia e outros), seguindo os catálogos em PDF da empresa.
+
+- **Ficha técnica:** peso, encaixes, tipologia, inércia, observações e gráficos de desempenho.
+- **Imagens:** desenho técnico, modelo 3D e imagem aplicada.
+- **Cores:** mostra as cores em que o perfil existe e pinta o desenho e o 3D com a cor escolhida (a cor é aproximada).
+- **Modelo 3D:** dá para girar e dar zoom. Hoje está em quase todos os perfis do Chroma, nas guarnições e em um calço. A seção sai do desenho do próprio catálogo, na escala dele.
+- **Fora de linha:** se o item saiu de linha, aparece um aviso com botão para ir direto ao substituto.
+- **Peso do lote:** calcula o peso pelo número de barras e pelo comprimento (6 metros por padrão).
+- **Comparar:** coloca até 3 itens lado a lado.
+- **Compartilhar:** o link já leva para o item (`catalogo.html?codigo=CHR120&sistema=chroma&aba=perfis`).
+- **Pesquise do seu jeito:** escreva algo como "janela de correr 4 folhas" e ele mostra as tipologias com os perfis usados.
+
+No menu do usuário tem ainda a galeria **Modelos 3D**, com todos os modelos numa página só. Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só.
+
+O uso na empresa é no computador, mas o layout é responsivo e se ajusta a tablet e celular. Tem modo claro e escuro, e a data e a hora ficam no topo da tela.
 
 ## Como foi feito
 
-Escolhi começar simples, sem banco de dados e sem servidor:
+Comecei simples, sem banco de dados e sem servidor: era só HTML, CSS, JavaScript e um arquivo JSON com todos os itens.
 
-- HTML, CSS e JavaScript puro
-- Um arquivo JSON (`banco.json`) com todos os itens
-- Hospedagem no GitHub Pages
+Com o catálogo o JSON ficou grande demais para manter na mão, então hoje funciona assim:
 
-Quando a página abre, o JavaScript carrega o `banco.json` e procura o código digitado. Não precisa de mais nada para funcionar.
+```text
+Notion (onde os dados são cadastrados)
+   ↓
+API em Flask no Render (lê o Notion e guarda tudo na memória)
+   ↓
+Site no GitHub Pages (HTML, CSS e JavaScript puro)
+```
+
+- Os dados ficam em tabelas do **Notion**: uma de substituição de perfis, uma de acessórios e, para cada sistema do catálogo, tabelas de perfis, acessórios e gráficos.
+- A **API** lê tudo do Notion quando sobe e guarda na memória, para o site não depender do Notion a cada pesquisa.
+- O **site** continua estático. Ele pede os dados para a API uma vez e faz a busca no navegador.
+
+O Render gratuito dorme quando fica sem uso. No primeiro acesso depois disso a API precisa acordar e ler o Notion de novo, e o site mostra um aviso de "carregando" enquanto espera (pode levar até 1 minuto).
 
 ## Tecnologias
 
-**Atual**
-- HTML
-- CSS
-- JavaScript
-
-**Futuro**
-- Python
-- Flask
+- HTML, CSS e JavaScript puro
+- [Three.js](https://threejs.org/) para o visualizador 3D
+- Python e Flask na API
+- Notion como banco de dados
+- Render (API) e GitHub Pages (site)
 
 ## Estrutura
 
 ```text
 consulta-perfil/
-├── index.html
-├── style.css
-├── script.js
-├── banco.json
+├── index.html          página de Substituições
+├── catalogo.html       página do Catálogo Técnico
+├── visualizador-3d.html  galeria com todos os modelos 3D
+├── global.js           funções usadas nas duas páginas
+├── css/
+│   ├── layout.css      cabeçalho, temas e o que é comum
+│   ├── style.css       Substituições
+│   └── catalogo.css    Catálogo Técnico
+├── js/
+│   ├── script.js       Substituições
+│   ├── catalogo.js     Catálogo Técnico
+│   └── viewer3d.js     visualizador dos modelos .stl
 ├── assets/
-│   ├── fonts/
-│   ├── img/
-│   │   ├── fotos/
-│   │   │   ├── perfis/
-│   │   │   ├── acessorios/
-│   │   │   └── NO-PHOTO.webp
-│   │   └── prints/
+│   ├── img/            imagens dos perfis, acessórios e prints
+│   ├── models/         modelos 3D (.stl)
+│   └── js/             three.min.js
+├── app.py              API em Flask
+├── notion.py           leitura das tabelas do Notion
+├── sistemas.py         lista dos sistemas do catálogo
+├── cores.py            tabela de cores
+├── requirements.txt
 └── README.md
 ```
 
+## Rodando no computador
+
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+A API sobe em `http://127.0.0.1:5000`. Ela precisa de um arquivo `.env` na raiz com o token e os IDs das tabelas do Notion:
+
+```text
+NOTION_TOKEN=...
+ID_SUB_PERFIS=...
+ID_SUB_ACESSORIOS=...
+ID_CAT_PERFIS_CHROMA=...
+ID_CAT_ACESSORIOS_CHROMA=...
+ID_CAT_GRAFICOS_CHROMA=...
+(as três linhas ID_CAT_ se repetem para cada sistema: ECOLINE, ECOSTICK, GRADLINE...)
+ID_TIPOLOGIAS=...
+```
+
+Depois é só abrir o `index.html` com um servidor local (uso o Live Server do VS Code). Aberto no próprio computador, o site procura primeiro a API local; se ela estiver desligada, usa a do Render.
+
+## Rotas da API
+
+| Rota | O que faz |
+| --- | --- |
+| `/api/substituicoes` | perfis e acessórios da página de Substituições |
+| `/api/catalogo` | sistemas, cores, tipologias, perfis, acessórios e gráficos do catálogo |
+| `/api/sync` | lê tudo do Notion de novo (roda por fora e responde na hora) |
+| `/api/sync/substituicoes` | atualiza só as substituições |
+| `/api/sync/catalogo` | atualiza só o catálogo |
+| `/api/sync/sistema/<nome>` | atualiza um sistema, ex: `/api/sync/sistema/chroma` |
+| `/health` | mostra se está no ar, a última sincronização, as quantidades e os erros |
+
 ## Como atualizar os dados
 
-Tudo fica no `banco.json`, separado em `perfis` e `acessorios`. Seguindo estes formatos:
+1. Cadastrar ou alterar o item na tabela do Notion (o item só aparece no site com o status **Publicado**).
+2. Clicar no botão **Sincronização com o site**, na página Base de Dados do Notion. Ele chama a rota `/api/sync`.
+3. Conferir em `/health` se a sincronização terminou e se não teve erro.
 
-```json
-{
-  "codigo": "CHR004",
-  "substituicao": "CHR120",
-  "nome": "Complemento do Trilho",
-  "observacao": "Janela de Correr 2 Folhas - A cor somente em FOSCO (FO23)",
-  "sistema": "Chroma",
-  "imagem": "assets/img/fotos/perfis/chroma/original/CHR004.webp",
-  "imagem_sub": "assets/img/fotos/perfis/chroma/substituto/CHR120.webp"
-}
-```
-
-Acessórios não tem sistema (no momento):
-
-```json
-{
-  "codigo": "GUI-004",
-  "substituicao": "-",
-  "nome": "Guia Deslizante 21 mm",
-  "observacao": "Guia Deslizante Vedação",
-  "tipo": "PACOTE (PAC)",
-  "unidade_conversao": "8 PEÇAS"
-}
-```
+As imagens ficam em `assets/img/` e os modelos 3D em `assets/models/`. No Notion vai só o caminho do arquivo, nos campos `imagem`, `imagem_3d` e `imagem_aplicavel`.
 
 ## Versão Atual
 
-**v3.0.0**
+**v4.0.0**
 
 ### Planejado
 
@@ -165,17 +206,36 @@ Acessórios não tem sistema (no momento):
 **Fase 2 — Refinamento & UI**
 - [x] Campo inteligente que ignora maiúsculas, espaços, hífens e asteriscos
 - [x] Painel de status (total de perfis, acessórios e versão)
-- [x] Alternância para Modo Claro
+- [x] Alternância para Modo Claro ou Escuro
 
-**Fase 3 — Compartilhamento**
-- [ ] Link compartilhável (ex: `?codigo=CHR120`)
+**Fase 3 — Funcionalidades úteis**
+- [ ] Favoritos
+- [x] Comparar perfis
+- [ ] Histórico completo de pesquisas
+- [x] Link compartilhável por URL (ex: `?codigo=CHR120`)
 - [ ] Exportação de relatório em texto, PDF e Excel
 
-**Fase 4 — Futuro**
+**Fase 4 — Técnicas**
 - [ ] Login por matrícula
-- [ ] Backend com Python e Flask
-- [ ] Portal administrativo
+- [x] Backend com Python e Flask
 - [ ] Top consultas (ranking dos mais pesquisados)
+- [ ] Portal administrativo
+- [x] Integração Notion
+- [ ] Logs de consulta
+
+**Fase 5 — Futuro**
+- [x] Visualização 3D
+- [x] Visualização de aplicável
+- [ ] Dashboard avançado
+- [ ] Relatórios inteligentes
+
+**Fase 6 — IA**
+- [ ] IA para recomendações
+- [ ] Busca visual por perfil
+- [ ] Comparação por similaridade
+- [ ] Identificação automática de perfil
+- [ ] Retorno dos 3 itens mais parecidos
+- [ ] Indicação de substituições compatíveis
 
 ## Autor
 

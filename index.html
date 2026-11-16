@@ -55,6 +55,9 @@
           <a href="catalogo.html" class="usuario-item">
             <i class="fa-solid fa-book-open"></i> Catálogo Técnico
           </a>
+          <a href="visualizador-3d.html" class="usuario-item">
+            <i class="fa-solid fa-cube"></i> Modelos 3D
+          </a>
           <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item">
             <i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio
           </a>
@@ -81,6 +84,28 @@
   </header>
 
   <main class="painel-grade">
+    <!-- Conversão de Sistemas -->
+    <aside class="painel painel-conversao" id="painel-conversoes">
+      <h3 class="conversao-titulo">
+        <i class="fa-solid fa-right-left"></i> Conversão de Sistemas
+      </h3>
+
+      <div class="conversao-botoes">
+        <button type="button" class="conversao-btn" id="btn-conv-gold-chroma" data-sistema-conv="goldchroma">
+          <div class="conversao-btn-topo">
+            <span class="conversao-tag-origem"><i class="fa-solid fa-layer-group"></i> GOLD</span>
+            <i class="fa-solid fa-arrow-right conversao-seta-icone"></i>
+            <span class="conversao-tag-destino"><i class="fa-solid fa-cube"></i> CHROMA</span>
+          </div>
+          <span class="conversao-btn-sub">
+            <i class="fa-solid fa-circle-info"></i> Somente sem Baguete
+          </span>
+        </button>
+      </div>
+
+      <div id="lista-conversao-container" class="conversao-lista-container" hidden></div>
+    </aside>
+
     <section class="painel" id="painel-perfis">
       <h2>Perfis</h2>
       <form class="busca" autocomplete="off">
