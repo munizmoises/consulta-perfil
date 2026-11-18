@@ -1,7 +1,7 @@
-const versao_atual = '4.0.0';
+const versao_atual = '4.1.0';
 
-const API_RENDER = "https://consulta-perfil-api.onrender.com";
-const API_LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname) ? "http://127.0.0.1:5000" : null;
+const API_URL = "https://consulta-perfil-api.onrender.com";
+// const API_URL = "http://127.0.0.1:5000";
 
 const MSG_ERRO_BANCO = "No momento não foi possível carregar o banco de dados. Recarregue a página e tente novamente.";
 const HISTORICO_MAX = 5;
@@ -21,18 +21,8 @@ function normalizar(texto) {
 
 function normalizarBusca(texto) {
   return (texto || "").trim().toLowerCase()
-    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[\s\-*_.>→]+/g, "");
-}
-
-async function buscarNaApi(rota) {
-  try {
-    return await fetch(`${API_LOCAL || API_RENDER}${rota}`);
-  } catch (erro) {
-    // API local desligada: cai pra do Render
-    if (!API_LOCAL) throw erro;
-    return fetch(`${API_RENDER}${rota}`);
-  }
 }
 
 // troca "||" por quebra de linha
@@ -49,15 +39,15 @@ async function carregarBanco(rota) {
   cargasEmAndamento++;
   const aviso = setTimeout(() => {
     if (document.querySelector(".aviso-carregando")) return;
-    const el = criar("div", "aviso-carregando", "Carregando os dados do servidor. Na primeira vez pode levar até 1 minuto...");
+    const el = criar("div", "aviso-carregando", "Carregando os dados do servidor. Quando ele acaba de acordar pode levar alguns minutos...");
     el.setAttribute("role", "status");
     document.body.appendChild(el);
   }, 2500);
   try {
-    let resposta = await buscarNaApi(rota);
-    for (let tentativa = 0; resposta.status === 503 && tentativa < 30; tentativa++) {
-      await new Promise(resolver => setTimeout(resolver, 4000));
-      resposta = await buscarNaApi(rota);
+    let resposta = await fetch(`${API_URL}${rota}`);
+    for (let tentativa = 0; resposta.status === 503 && tentativa < 60; tentativa++) {
+      await new Promise(resolver => setTimeout(resolver, 5000));
+      resposta = await fetch(`${API_URL}${rota}`);
     }
     if (!resposta.ok) throw new Error("Erro na API");
     const dados = await resposta.json();
@@ -213,9 +203,13 @@ function iniciarTema() {
   const aplicar = (escuro) => {
     html.dataset.tema = escuro ? "escuro" : "claro";
     if (btn) btn.innerHTML = `<i class="fa-solid fa-${escuro ? "sun" : "moon"}"></i>`;
-    localStorage.setItem("tema", html.dataset.tema);
   };
 
-  aplicar(localStorage.getItem("tema") !== "claro"); // escuro é o padrão
-  if (btn) btn.addEventListener("click", () => aplicar(html.dataset.tema !== "escuro"));
+  // Modo claro - padrão
+  localStorage.removeItem("tema");
+  aplicar(localStorage.getItem("tema_escolhido") === "escuro");
+  if (btn) btn.addEventListener("click", () => {
+    aplicar(html.dataset.tema !== "escuro");
+    localStorage.setItem("tema_escolhido", html.dataset.tema);
+  });
 }

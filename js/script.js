@@ -22,6 +22,7 @@ const SUGESTOES_MAX = 6;
 
 let banco = { perfis: [], acessorios: [] };
 let erroCarregamentoBanco = false;
+let fichasCatalogo = {}; // código normalizado -> onde ele está no catálogo (pros botões de ficha completa)
 
 function exibirErroBanco(container) {
   if (!container) return;
@@ -43,6 +44,39 @@ function indexarBancoSubstituicoes() {
       item.codigo, item.substituicao, item.nome, item.apelido, item.observacao, item.sistema, item.tipo
     ].filter(Boolean).map(v => normalizarBusca(v)).join(" ");
   });
+}
+
+function substitutoBateExato(item, codigoDigitadoNorm) {
+  return String(item.substituicao || "").split(/[+\/]| ou /i).some(p => normalizar(p) === codigoDigitadoNorm);
+}
+
+async function carregarFichasCatalogo() {
+  try {
+    const resposta = await fetch(`${API_URL}/api/catalogo/codigos`);
+    if (!resposta.ok) return;
+    (await resposta.json()).forEach(c => {
+      const norm = normalizar(c.codigo);
+      if (!fichasCatalogo[norm]) fichasCatalogo[norm] = c;
+    });
+  } catch { /* sem a lista só não aparecem os botões de ficha */ }
+}
+
+function linkFicha(codigo) {
+  const ficha = fichasCatalogo[normalizar(codigo)];
+  if (!ficha) return null;
+  const link = criar("a", "btn-ficha-completa");
+  link.href = `catalogo.html?codigo=${encodeURIComponent(ficha.codigo)}&sistema=${encodeURIComponent(ficha.sistema)}&aba=${ficha.aba}`;
+  link.innerHTML = '<i class="fa-solid fa-book-open"></i> ';
+  link.appendChild(document.createTextNode(`Ficha completa do ${ficha.codigo}`));
+  return link;
+}
+
+function botoesFicha(codigos) {
+  const links = [...new Set(codigos)].map(linkFicha).filter(Boolean);
+  if (!links.length) return null;
+  const linha = criar("div", "fichas-acoes");
+  links.forEach(l => linha.appendChild(l));
+  return linha;
 }
 
 function codigoBateExato(item, codigoDigitadoNorm) {
@@ -241,10 +275,14 @@ function montarImagens(item) {
     return caixa;
   };
 
-  const codigosOrig = String(item.codigo || "").split("+").map(s => s.trim()).filter(Boolean);
+  let codigosOrig = String(item.codigo || "").split("+").map(s => s.trim()).filter(Boolean);
   const caminhosOrig = Array.isArray(item.imagem)
     ? item.imagem
     : String(item.imagem || "").split(",");
+  // conjunto com uma foto só (ex: VT1901+SPH001.png): mostra uma imagem com o conjunto todo
+  if (codigosOrig.length > 1 && caminhosOrig.filter(c => String(c).trim()).length === 1) {
+    codigosOrig = [codigosOrig.join(" + ")];
+  }
 
   codigosOrig.forEach((codOrig, i) => {
     const caminho = caminhosOrig[i] ? String(caminhosOrig[i]).trim() : (i === 0 ? String(item.imagem || "").trim() : "");
@@ -317,6 +355,11 @@ function montarItem(item, campos) {
     lista.appendChild(dd);
   });
   bloco.appendChild(lista);
+
+  // atalho pra ficha completa no catálogo, tanto do que saiu quanto do que entra no lugar
+  const separar = texto => String(texto || "").split(/[+\/]| ou /i).map(s => s.trim()).filter(s => s && s !== "-");
+  const fichas = botoesFicha([...separar(item.codigo), ...separar(item.substituicao)]);
+  if (fichas) bloco.appendChild(fichas);
   return bloco;
 }
 
@@ -478,6 +521,17 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
       return;
     }
 
+    // digitou o código novo (o substituto): mostra só quem ele substitui, sem misturar com a busca por texto
+    const substituidos = listaBase.filter(i => substitutoBateExato(i, codigo));
+    if (substituidos.length > 0) {
+      gravarHistorico(chaveHistorico, digitado.toUpperCase());
+      renderizarHistorico(chaveHistorico, campo, resultado);
+      const qtd = substituidos.length === 1 ? "1 código" : `${substituidos.length} códigos`;
+      resultado.appendChild(criar("span", "status ok", `${digitado.toUpperCase()} substitui ${qtd}`));
+      substituidos.forEach(item => resultado.appendChild(montarItem(item, campos)));
+      return;
+    }
+
     const porTermo = listaBase.filter(i => itemBateComTermo(i, digitado));
 
     if (porTermo.length > 0) {
@@ -491,9 +545,17 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
 
     resultado.appendChild(criar("span", "status erro", "Código não encontrado"));
     const msg = criar("p", "msg-erro", "Nenhuma substituição para ");
-    msg.appendChild(criar("strong", "", `"${codigo}"`));
-    msg.appendChild(document.createTextNode(". Confira o código e tente novamente."));
+    msg.appendChild(criar("strong", "", `"${digitado.toUpperCase()}"`));
+    const temFicha = linkFicha(digitado);
+    msg.appendChild(document.createTextNode(temFicha
+      ? ". Ele está no catálogo, mas não tem substituição cadastrada. Veja a ficha completa:"
+      : ". Confira o código e tente novamente."));
     resultado.appendChild(msg);
+    if (temFicha) {
+      const linha = criar("div", "fichas-acoes");
+      linha.appendChild(temFicha);
+      resultado.appendChild(linha);
+    }
   };
 
   limpar.onclick = () => {
@@ -516,6 +578,7 @@ async function iniciar() {
   try {
     banco = await carregarBanco("/api/substituicoes");
     indexarBancoSubstituicoes();
+    await carregarFichasCatalogo();
   } catch {
     erroCarregamentoBanco = true;
   }

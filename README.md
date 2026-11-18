@@ -48,6 +48,8 @@ Também tem:
 - **Pesquisa inteligente:** sugere resultados enquanto você digita, por código, nome, apelido e observação.
 - **Histórico** das 5 últimas pesquisas e botão para **copiar** o código de substituição.
 - **Link direto:** `index.html?codigo=CHR008` já abre com a pesquisa feita.
+- **Ficha completa:** cada resultado tem botões para abrir no Catálogo Técnico a ficha do código que saiu e do substituto. Se o código não tem substituição mas está no catálogo, aparece o botão para a ficha dele.
+- Digitando o código novo (ex: `VT230`) aparecem só os códigos que ele substitui.
 
 A pesquisa ignora hífen, asteriscos e maiúsculas/minúsculas, então `GUI-004`, `gui004`, `*GUI004*` e `GUI004` encontram o mesmo item.
 
@@ -80,6 +82,7 @@ Und. conv.:   8 PEÇAS
 Reúne os perfis e acessórios de 20 sistemas (Chroma, Ecoline 2.5, Ecostick, Gradline, Sophia e outros), seguindo os catálogos em PDF da empresa.
 
 - **Ficha técnica:** peso, encaixes, tipologia, inércia, observações e gráficos de desempenho.
+- **Compatibilidade nos dois sentidos:** o catálogo em PDF escreve o encaixe só em um dos perfis (o CHR003 diz que encaixa no CHR120). O site mostra nos dois, e o perfil também lista os acessórios aplicáveis nele.
 - **Imagens:** desenho técnico, modelo 3D e imagem aplicada.
 - **Cores:** mostra as cores em que o perfil existe e pinta o desenho e o 3D com a cor escolhida (a cor é aproximada).
 - **Modelo 3D:** dá para girar e dar zoom. Hoje está em quase todos os perfis do Chroma, nas guarnições e em um calço. A seção sai do desenho do próprio catálogo, na escala dele.
@@ -91,7 +94,7 @@ Reúne os perfis e acessórios de 20 sistemas (Chroma, Ecoline 2.5, Ecostick, Gr
 
 No menu do usuário tem ainda a galeria **Modelos 3D**, com todos os modelos numa página só. Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só.
 
-O uso na empresa é no computador, mas o layout é responsivo e se ajusta a tablet e celular. Tem modo claro e escuro, e a data e a hora ficam no topo da tela.
+O uso na empresa é no computador, mas o layout é responsivo e se ajusta a tablet e celular. Abre no modo claro e tem o botão para o modo escuro (o site lembra a escolha). A data e a hora ficam no topo da tela.
 
 ## Como foi feito
 
@@ -139,7 +142,7 @@ consulta-perfil/
 │   └── viewer3d.js     visualizador dos modelos .stl
 ├── assets/
 │   ├── img/            imagens dos perfis, acessórios e prints
-│   ├── models/         modelos 3D (.stl)
+│   ├── models/         modelos 3D (.stl), uma pasta por sistema (chroma/, ecoline/...)
 │   └── js/             three.min.js
 ├── app.py              API em Flask
 ├── notion.py           leitura das tabelas do Notion
@@ -169,7 +172,7 @@ ID_CAT_GRAFICOS_CHROMA=...
 ID_TIPOLOGIAS=...
 ```
 
-Depois é só abrir o `index.html` com um servidor local (uso o Live Server do VS Code). Aberto no próprio computador, o site procura primeiro a API local; se ela estiver desligada, usa a do Render.
+Depois é só abrir o `index.html` com um servidor local (uso o Live Server do VS Code). Para o site usar a API local, troque a linha comentada do `API_URL` no começo do `global.js` (e volte para a do Render antes de publicar).
 
 ## Rotas da API
 
@@ -177,8 +180,9 @@ Depois é só abrir o `index.html` com um servidor local (uso o Live Server do V
 | --- | --- |
 | `/api/substituicoes` | perfis e acessórios da página de Substituições |
 | `/api/catalogo` | sistemas, cores, tipologias, perfis, acessórios e gráficos do catálogo |
+| `/api/catalogo/codigos` | só a lista de códigos do catálogo (a página de Substituições usa pros botões de ficha completa) |
 | `/api/sync` | lê tudo do Notion de novo (roda por fora e responde na hora) |
-| `/api/sync/substituicoes` | atualiza só as substituições |
+| `/api/sync/substituicoes` | atualiza só as substituições (todas as rotas de sync respondem na hora e rodam por fora) |
 | `/api/sync/catalogo` | atualiza só o catálogo |
 | `/api/sync/sistema/<nome>` | atualiza um sistema, ex: `/api/sync/sistema/chroma` |
 | `/health` | mostra se está no ar, a última sincronização, as quantidades e os erros |
@@ -189,7 +193,7 @@ Depois é só abrir o `index.html` com um servidor local (uso o Live Server do V
 2. Clicar no botão **Sincronização com o site**, na página Base de Dados do Notion. Ele chama a rota `/api/sync`.
 3. Conferir em `/health` se a sincronização terminou e se não teve erro.
 
-As imagens ficam em `assets/img/` e os modelos 3D em `assets/models/`. No Notion vai só o caminho do arquivo, nos campos `imagem`, `imagem_3d` e `imagem_aplicavel`.
+As imagens ficam em `assets/img/` e os modelos 3D em `assets/models/<sistema>/`. No Notion vai só o caminho do arquivo, nos campos `imagem`, `imagem_3d` e `imagem_aplicavel`.
 
 ## Versão Atual
 

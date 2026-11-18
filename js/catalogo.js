@@ -33,6 +33,7 @@ const CAMPOS_PERFIL = [
   { chave: "wy",         rotulo: "Módulo de Resistência (Wy)" },
   { chave: "observacao", rotulo: "Observação", largo: true },
   { chave: "encaixe",    rotulo: "Encaixe / Compatibilidade", largo: true, clicavel: true },
+  { chave: "_acessorios", rotulo: "Acessórios aplicáveis", largo: true, clicavel: true },
 ];
 
 const CAMPOS_ACESSORIO = [
@@ -62,14 +63,38 @@ function obterPrimeiraImagem(valor, padraoFallback = NO_PHOTO) {
   return lista.length > 0 ? lista[0] : padraoFallback;
 }
 
+// mesmo padrão de pastas do Chroma: perfil/<COD>.webp e acessorio/normal/<COD>.webp
 function imagemPadrao(item, pasta) {
-  return `assets/img/catalog/sistemas/${item.sistema_chave || "chroma"}/${pasta}/${item.codigo}.webp`;
+  const sub = pasta === "acessorio" ? "acessorio/normal" : pasta;
+  return `assets/img/catalog/sistemas/${item.sistema_chave || "chroma"}/${sub}/${item.codigo}.webp`;
 }
 
 function ordenarNatural(lista) {
   return (lista || []).sort((a, b) => {
     return (a.codigo || a.id || "").localeCompare(b.codigo || b.id || "", undefined, { numeric: true, sensitivity: 'base' });
   });
+}
+
+// o catálogo escreve a compatibilidade num lado só (o CHR003 diz que encaixa no CHR120, o CHR120 não fala nada).
+// Aqui guarda o caminho de volta pra mostrar nos dois.
+let compatReversa = {};
+const codigosNoTexto = texto => (String(texto || "").toUpperCase().match(/[A-Z]{1,5}-?\d+[A-Z]?/g) || []).map(normalizar);
+const comHifen = codigo => String(codigo).replace(/^([A-Z]+)(\d)/, "$1-$2");
+
+function anotarReverso(sistema, alvo, tipo, codigo) {
+  const chave = `${sistema}|${alvo}`;
+  compatReversa[chave] = compatReversa[chave] || { perfis: [], acessorios: [] };
+  if (!compatReversa[chave][tipo].includes(codigo)) compatReversa[chave][tipo].push(codigo);
+}
+
+// lista final de códigos do campo: o que está no item + quem aponta pra ele, sem repetir
+function codigosDoCampo(item, chave) {
+  const reverso = compatReversa[`${item.sistema_chave}|${item._codNorm}`] || { perfis: [], acessorios: [] };
+  if (chave === "_acessorios") return reverso.acessorios.map(comHifen);
+  const proprios = String(item[chave] || "").split("/").map(s => s.trim()).filter(Boolean);
+  const vistos = new Set(proprios.flatMap(codigosNoTexto));
+  const deVolta = reverso.perfis.filter(c => !vistos.has(normalizar(c)) && normalizar(c) !== item._codNorm);
+  return [...proprios, ...deVolta.map(comHifen)];
 }
 
 function indexarBancoCatalogo() {
@@ -92,6 +117,10 @@ function indexarBancoCatalogo() {
   (banco.graficos_desempenho || []).forEach(g => {
     g._perfisNorm = (g.perfis_envolvidos || []).map(c => normalizar(c));
   });
+
+  compatReversa = {};
+  (banco.perfis || []).forEach(p => codigosNoTexto(p.encaixe).forEach(c => anotarReverso(p.sistema_chave, c, "perfis", p.codigo)));
+  (banco.acessorios || []).forEach(a => codigosNoTexto(a.aplicavel).forEach(c => anotarReverso(a.sistema_chave, c, "acessorios", a.codigo)));
 }
 
 function itemBateComTermo(item, termo) {
@@ -1168,7 +1197,8 @@ function mostrarFicha(item) {
 
   const grade = criar("dl", "ficha-campos");
   campos.forEach(({ chave, rotulo, largo, clicavel }) => {
-    if (!item[chave] || String(item[chave]).trim() === "") return;
+    const tags = clicavel ? codigosDoCampo(item, chave) : null;
+    if (clicavel ? !tags.length : (!item[chave] || String(item[chave]).trim() === "")) return;
     if (chave === "acabamento" && coresItem.length) return; // já aparece nas bolinhas de cor
 
     const div = criar("div", "ficha-campo" + (largo ? " ficha-campo-largo" : ""));
@@ -1179,7 +1209,7 @@ function mostrarFicha(item) {
       const wrapTags = criar("div", "ficha-tags");
       const containerPreview = criar("div", "encaixe-preview-container");
 
-      String(item[chave]).split("/").map(s => s.trim()).filter(Boolean).forEach(cod => {
+      tags.forEach(cod => {
         const btnTag = criar("button", "ficha-tag-link", cod);
         btnTag.type = "button";
         btnTag.title = `Ver prévia de ${cod}`;

@@ -316,6 +316,34 @@
   color: var(--destaque);
 }
 
+/* atalho pra ficha completa no catálogo */
+.fichas-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.btn-ficha-completa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--destaque);
+  background: var(--destaque-suave);
+  border: 1px solid var(--destaque);
+  border-radius: 0.45rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-ficha-completa:hover {
+  background: var(--destaque);
+  color: var(--destaque-texto);
+}
+
 /* Histórico */
 .historico {
   margin-bottom: 1rem;

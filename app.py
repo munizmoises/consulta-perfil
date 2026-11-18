@@ -1,5 +1,7 @@
+import json
 import os
 import re
+import tempfile
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
@@ -199,33 +201,79 @@ def sincronizar_tudo():
     sincronizar_substituicoes()
     sincronizar_catalogo()
 
+# No Render o gunicorn roda mais de um processo (worker) e cada um tem a sua memória.
+# Por isso o resultado do sync vai pra um arquivo: o processo que sincronizou grava,
+# e os outros leem o arquivo na próxima requisição. Assim todos ficam com os mesmos dados.
+ARQUIVO_CACHE = os.path.join(tempfile.gettempdir(), "consulta_perfil_cache.json")
+estado = {"carregado": False, "ultima": None, "versao": 0.0}
+sync_atual = {"thread": None}
 trava_sync = threading.Lock()
-estado = {"carregado": False, "ultima": None}
+
+
+def agora():
+    return datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
+
+
+def sincronizando():
+    t = sync_atual["thread"]
+    return t is not None and t.is_alive()
+
+
+def gravar_cache_no_disco():
+    dados = {"substituicoes": cache_substituicoes, "sistemas": cache_sistemas,
+             "tipologias": cache_tipologias, "ultima": estado["ultima"]}
+    temporario = f"{ARQUIVO_CACHE}.{os.getpid()}"
+    with open(temporario, "w", encoding="utf-8") as f:
+        json.dump(dados, f, ensure_ascii=False)
+    os.replace(temporario, ARQUIVO_CACHE)
+    estado["versao"] = os.path.getmtime(ARQUIVO_CACHE)
+
+
+def ler_cache_do_disco():
+    global cache_substituicoes, cache_tipologias
+    try:
+        versao = os.path.getmtime(ARQUIVO_CACHE)
+        if versao <= estado["versao"]:
+            return
+        with open(ARQUIVO_CACHE, encoding="utf-8") as f:
+            dados = json.load(f)
+    except (OSError, ValueError):
+        return
+    cache_substituicoes = dados["substituicoes"]
+    cache_tipologias = dados["tipologias"]
+    for chave, valor in dados["sistemas"].items():
+        if chave in cache_sistemas:
+            cache_sistemas[chave] = valor
+    remontar_catalogo()
+    estado.update(carregado=True, ultima=dados.get("ultima"), versao=versao)
 
 
 def sincronizar_por_fora(funcao):
-    if not trava_sync.acquire(blocking=False):
-        return False
+    # roda numa thread: o sync completo leva minutos no Render e o gunicorn derruba requisição que passa de 30s
+    with trava_sync:
+        if sincronizando():
+            return False
 
-    def rodar():
-        try:
-            funcao()
-            estado["ultima"] = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
-        except Exception as e:
-            erros_sync["sync"] = str(e)
-            print(f"Sync parou com erro: {e}")
-        finally:
-            # mesmo com erro libera a API, senão ela fica respondendo "carregando" pra sempre
-            estado["carregado"] = True
-            trava_sync.release()
+        def rodar():
+            try:
+                funcao()
+                estado["ultima"] = agora()
+                gravar_cache_no_disco()
+            except Exception as e:
+                erros_sync["sync"] = str(e)
+                print(f"Sync parou com erro: {e}")
+            finally:
+                # mesmo com erro libera a API, senão ela fica respondendo "carregando" pra sempre
+                estado["carregado"] = True
 
-    threading.Thread(target=rodar, daemon=True).start()
+        sync_atual["thread"] = threading.Thread(target=rodar, daemon=True)
+        sync_atual["thread"].start()
     return True
 
 
 def resumo():
     return {
-        "sincronizando": trava_sync.locked(),
+        "sincronizando": sincronizando(),
         "ultima_sincronizacao": estado["ultima"],
         "substituicoes": {k: len(v) for k, v in cache_substituicoes.items()},
         "catalogo": {
@@ -238,14 +286,19 @@ def resumo():
 
 
 @app.before_request
-def proteger_sync():
+def preparar():
+    # pega o que outro processo já sincronizou; se este ainda não tem nada, começa a carregar
+    # (o gunicorn com --preload cria os processos depois do import, então a carga do import não vale pra eles)
+    ler_cache_do_disco()
+    if not estado["carregado"]:
+        sincronizar_por_fora(sincronizar_tudo)
     if CHAVE_SYNC and request.path.startswith("/api/sync"):
         enviada = request.headers.get("X-Sync-Chave") or request.args.get("chave")
         if enviada != CHAVE_SYNC:
             return jsonify({"status": "erro", "mensagem": "Chave de sincronização inválida."}), 401
 
 
-CARREGANDO = ({"status": "carregando", "mensagem": "A API acabou de subir e ainda está lendo o Notion."}, 503)
+CARREGANDO = ({"status": "carregando", "mensagem": "A API acabou de acordar e ainda está lendo o Notion."}, 503)
 
 
 @app.get("/api/substituicoes")
@@ -258,24 +311,31 @@ def get_catalogo():
     return jsonify(cache_catalogo) if estado["carregado"] else CARREGANDO
 
 
+@app.get("/api/catalogo/codigos")
+def get_codigos_catalogo():
+    # lista leve pra página de Substituições saber quais códigos têm ficha no catálogo
+    if not estado["carregado"]:
+        return CARREGANDO
+    codigos = [{"codigo": i["codigo"], "sistema": i["sistema_chave"], "aba": aba}
+               for aba in ("perfis", "acessorios") for i in cache_catalogo[aba]]
+    return jsonify(codigos)
+
+
 @app.route("/api/sync", methods=["GET", "POST"])
 @app.route("/api/sync/tudo", methods=["GET", "POST"])
 def sync_tudo():
-    sincronizar_por_fora(sincronizar_tudo)
-    return jsonify({"status": "sincronizando", "escopo": "tudo", "acompanhe": "/health", **resumo()}), 202
+    return responder_sync("tudo", sincronizar_tudo)
 
 
 @app.route("/api/sync/substituicoes", methods=["GET", "POST"])
 def sync_substituicoes():
-    sincronizar_substituicoes()
-    return jsonify({"status": "sucesso", "escopo": "substituicoes", **resumo()})
+    return responder_sync("substituicoes", sincronizar_substituicoes)
 
 
 @app.route("/api/sync/catalogo", methods=["GET", "POST"])
 @app.route("/api/sync/sistemas", methods=["GET", "POST"])
 def sync_catalogo():
-    sincronizar_por_fora(sincronizar_catalogo)
-    return jsonify({"status": "sincronizando", "escopo": "catalogo", "acompanhe": "/health", **resumo()}), 202
+    return responder_sync("catalogo", sincronizar_catalogo)
 
 
 @app.route("/api/sync/sistema/<nome>", methods=["GET", "POST"])
@@ -283,23 +343,26 @@ def sync_sistema(nome):
     sis = achar(nome)
     if not sis:
         return jsonify({"status": "erro", "mensagem": f"Sistema '{nome}' não existe."}), 404
-    sincronizar_sistema(sis)
-    remontar_catalogo()
-    d = cache_sistemas[sis["chave"]]
-    return jsonify({
-        "status": "erro" if sis["chave"] in erros_sync else "sucesso",
-        "sistema": sis["nome"],
-        "perfis": len(d["perfis"]),
-        "acessorios": len(d["acessorios"]),
-        "graficos": len(d["graficos"]),
-        "erro": erros_sync.get(sis["chave"]),
-    })
+
+    def um_sistema():
+        sincronizar_sistema(sis)
+        remontar_catalogo()
+    return responder_sync(sis["nome"], um_sistema)
+
+
+def responder_sync(escopo, funcao):
+    # todas as rotas de sync respondem na hora; o andamento aparece em /health
+    comecou = sincronizar_por_fora(funcao)
+    status = "sincronizando" if comecou else "ja_estava_sincronizando"
+    return jsonify({"status": status, "escopo": escopo, "acompanhe": "/health", **resumo()}), 202
 
 
 @app.get("/health")
 def health():
     return jsonify({"status": "online", "carregado": estado["carregado"], **resumo()}), 200
 
+# já começa a carregar quando sobe (no Render isso acontece toda vez que ele acorda)
+# rodando local com debug o flask sobe 2 processos, aí só carrega no que fica de pé
 if __name__ != "__main__" or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
     sincronizar_por_fora(sincronizar_tudo)
 

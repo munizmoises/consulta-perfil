@@ -1,5 +1,5 @@
 // visualizador dos .stl - precisa do three.min.js antes
-// ex: Viewer3D.montar(div, "assets/models/NYL-394.stl")
+// ex: Viewer3D.montar(div, "assets/models/chroma/NYL-394.stl")
 (function (global) {
   function lerSTL(buf) {
     var dv = new DataView(buf), n = dv.getUint32(80, true);
