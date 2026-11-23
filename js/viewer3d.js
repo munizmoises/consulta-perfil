@@ -1,5 +1,3 @@
-// visualizador dos .stl - precisa do three.min.js antes
-// ex: Viewer3D.montar(div, "assets/models/chroma/NYL-394.stl")
 (function (global) {
   function lerSTL(buf) {
     var dv = new DataView(buf), n = dv.getUint32(80, true);
@@ -16,6 +14,35 @@
     return g;
   }
 
+  function estudio(renderer) {
+    var sala = new THREE.Scene(), caixa = new THREE.BoxGeometry(1, 1, 1);
+    var paredes = new THREE.Mesh(caixa, new THREE.MeshBasicMaterial({ color: 0x2a2d31, side: THREE.BackSide }));
+    paredes.scale.set(30, 16, 30); paredes.position.y = 4; sala.add(paredes);
+    function painel(forca, x, y, z, sx, sy, sz) {
+      var m = new THREE.MeshBasicMaterial(); m.color.setScalar(forca);
+      var p = new THREE.Mesh(caixa, m); p.position.set(x, y, z); p.scale.set(sx, sy, sz); sala.add(p);
+    }
+    painel(2.4, 0, 11.5, 0, 14, 0.2, 8);   // softbox grande em cima
+    painel(1.5, -14.5, 5, 0, 0.2, 8, 18);  // faixa da esquerda
+    painel(1.1, 14.5, 4, -4, 0.2, 6, 10);  // faixa da direita
+    painel(0.7, 0, 4, 14.5, 12, 5, 0.2);   // frente
+    var pmrem = new THREE.PMREMGenerator(renderer), tex = pmrem.fromScene(sala, 0.04).texture;
+    pmrem.dispose(); caixa.dispose();
+    return tex;
+  }
+ 
+  function acabamento(mat, hex) {
+    mat.color.set(hex);
+    var c = mat.color, max = Math.max(c.r, c.g, c.b), min = Math.min(c.r, c.g, c.b);
+    var luz = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b, saturacao = max ? (max - min) / max : 0;
+    if (luz > 0.92) { mat.metalness = 0.05; mat.roughness = 0.45; }
+    else if (luz > 0.5 && saturacao < 0.35) { mat.metalness = 0.85; mat.roughness = 0.35; }
+    else if (luz > 0.25) { mat.metalness = 0.5; mat.roughness = 0.42; }
+    else { mat.metalness = 0.3; mat.roughness = 0.45; }
+    c.convertSRGBToLinear();
+    return luz > 0.35;
+  }
+
   function montar(container, url, opcoes) {
     opcoes = opcoes || {};
     var estado = { vivo: true };
@@ -27,26 +54,28 @@
       return estado;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
     var cv = renderer.domElement;
     cv.className = "viewer3d-canvas";
     container.appendChild(cv);
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(35, 1, 1, 1000);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x8894a8, 1.1));
-    var key = new THREE.DirectionalLight(0xffffff, 1.0); key.position.set(40, 60, 50); scene.add(key);
-    var back = new THREE.DirectionalLight(0xffffff, 0.6); back.position.set(-50, 20, -40); scene.add(back);
+    scene.environment = estudio(renderer);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8894a8, 0.35));
+    var key = new THREE.DirectionalLight(0xffffff, 0.35); key.position.set(40, 60, 50); scene.add(key);
+    var back = new THREE.DirectionalLight(0xffffff, 0.25); back.position.set(-50, 20, -40); scene.add(back);
 
     var s = { theta: 0.75, phi: 1.1, r: 120 }, home = { theta: 0.75, phi: 1.1, r: 120 }, auto = true;
     var ptrs = {}, lastDist = 0;
 
-    // cor da peça: a que veio nas opções, ou a que a pessoa escolher nas bolinhas de cor da ficha
+    // Cor da peça: a que veio nas opções, ou a que a pessoa escolher nas bolinhas de cor da ficha
     var corPadrao = opcoes.cor || "#25272b", corAtual = corPadrao, mat = null, linhas = null;
     function pintar(hex) {
       corAtual = hex || corPadrao;
       if (!mat) return;
-      mat.color.set(corAtual);
-      var c = mat.color, clara = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b > 0.35;
+      var clara = acabamento(mat, corAtual);
       linhas.color.set(clara ? 0x4a5361 : 0x8fa0b8);
     }
     function aoTrocarCor(e) { pintar(e.detail); }
@@ -60,7 +89,8 @@
       geo.computeBoundingBox();
       var bb = geo.boundingBox, c = new THREE.Vector3(); bb.getCenter(c);
       var size = bb.getSize(new THREE.Vector3()).length();
-      mat = new THREE.MeshStandardMaterial({ roughness: 0.5, metalness: 0.2 });
+      // o brilho vem do reflexo do estúdio (luz espalhada), não de uma luz forte só, então não faz o "sol"
+      mat = new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.55 });
       var mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(-c.x, -c.y, -c.z); scene.add(mesh);
       linhas = new THREE.LineBasicMaterial();

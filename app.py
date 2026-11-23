@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 import notion
 from cores import CORES
-from sistemas import SISTEMAS, achar
+from sistemas import COR_OUTRAS_LINHAS, SISTEMAS, achar
 
 app = Flask(__name__)
 CORS(app)
@@ -26,7 +26,7 @@ CAMPOS_SUBSTITUICAO_ACESSORIO = CAMPOS_SUBSTITUICAO + ["tipo", "unidade_conversa
 CAMPOS_PERFIL = [
     "codigo_original", "medidas_mm", "medidas_polegadas", "raio_canto_mm",
     "nome", "apelido", "peso", "encaixe", "tipologia", "acabamento", "observacao", "sistema",
-    "jx", "jy", "wx", "wy", "grafico", "imagem", "imagem_3d", "imagem_aplicavel",
+    "jx", "jy", "wx", "wy", "grafico", "imagem", "imagem_3d", "imagem_aplicavel", "barra", "sistemas",
 ]
 CAMPOS_ACESSORIO = [
     "nome", "apelido", "aplicavel", "acabamento", "material", "tipo", "unidade_conversao",
@@ -39,18 +39,15 @@ cache_catalogo = {"sistemas": [], "cores": CORES, "tipologias": [], "graficos_de
 cache_tipologias = []
 erros_sync = {}
 
-
 def publicado(props):
     status = notion.texto(notion.prop(props, "status"))
     return not status or status.lower() in ("publicado", "ativo")
-
 
 def ordenar_por_id(itens):
     def chave(item):
         numeros = re.findall(r"\d+", item.get("id", ""))
         return int(numeros[0]) if numeros else 999999
     return sorted(itens, key=chave)
-
 
 def ler_itens(database_id, campos, extras=None):
     if not database_id:
@@ -69,10 +66,8 @@ def ler_itens(database_id, campos, extras=None):
         itens.append(item)
     return ordenar_por_id(itens)
 
-
 def separar(texto, sep=","):
     return [s.strip() for s in texto.split(sep) if s.strip()]
-
 
 def ler_graficos(database_id, sistema):
     if not database_id:
@@ -109,18 +104,16 @@ def ler_graficos(database_id, sistema):
         })
     return graficos
 
-
 def remontar_catalogo():
     global cache_catalogo
     novo = {"sistemas": [], "cores": CORES, "tipologias": cache_tipologias, "graficos_desempenho": [], "perfis": [], "acessorios": []}
     for chave, sis in SISTEMAS.items():
         dados = cache_sistemas[chave]
-        novo["sistemas"].append({"chave": chave, "nome": sis["nome"], "edicao": sis["edicao"]})
+        novo["sistemas"].append({"chave": chave, "nome": sis["nome"], "edicao": sis["edicao"], "cor": sis["cor"]})
         novo["perfis"].extend(dados["perfis"])
         novo["acessorios"].extend(dados["acessorios"])
         novo["graficos_desempenho"].extend(dados["graficos"])
     cache_catalogo = novo
-
 
 def sincronizar_substituicoes():
     global cache_substituicoes
@@ -136,7 +129,6 @@ def sincronizar_substituicoes():
         return
     print(f"Substituições: {len(cache_substituicoes['perfis'])} perfis e {len(cache_substituicoes['acessorios'])} acessórios.")
 
-
 def baixar_sistema(sis):
     extras = {"sistema_chave": sis["chave"]}
     perfis = ler_itens(sis["perfis"], CAMPOS_PERFIL, extras)
@@ -144,7 +136,6 @@ def baixar_sistema(sis):
     for item in perfis + acessorios:
         item["sistema"] = item["sistema"] or sis["nome"]
     return {"perfis": perfis, "acessorios": acessorios, "graficos": ler_graficos(sis["graficos"], sis)}
-
 
 def sincronizar_sistema(sis):
     try:
@@ -157,7 +148,6 @@ def sincronizar_sistema(sis):
     d = cache_sistemas[sis["chave"]]
     if d["perfis"] or d["acessorios"] or d["graficos"]:
         print(f"{sis['nome']}: {len(d['perfis'])}P / {len(d['acessorios'])}A / {len(d['graficos'])}G.")
-
 
 def sincronizar_tipologias():
     global cache_tipologias
@@ -188,7 +178,6 @@ def sincronizar_tipologias():
         erros_sync["tipologias"] = str(e)
         print(f"Tipologias: falha no Notion, mantendo o cache anterior. {e}")
 
-
 def sincronizar_catalogo():
     configurados = [s for s in SISTEMAS.values() if s["perfis"] or s["acessorios"] or s["graficos"]]
     with ThreadPoolExecutor(max_workers=4) as pool:
@@ -196,28 +185,21 @@ def sincronizar_catalogo():
     sincronizar_tipologias()
     remontar_catalogo()
 
-
 def sincronizar_tudo():
     sincronizar_substituicoes()
     sincronizar_catalogo()
 
-# No Render o gunicorn roda mais de um processo (worker) e cada um tem a sua memória.
-# Por isso o resultado do sync vai pra um arquivo: o processo que sincronizou grava,
-# e os outros leem o arquivo na próxima requisição. Assim todos ficam com os mesmos dados.
 ARQUIVO_CACHE = os.path.join(tempfile.gettempdir(), "consulta_perfil_cache.json")
 estado = {"carregado": False, "ultima": None, "versao": 0.0}
 sync_atual = {"thread": None}
 trava_sync = threading.Lock()
 
-
 def agora():
     return datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y %H:%M")
-
 
 def sincronizando():
     t = sync_atual["thread"]
     return t is not None and t.is_alive()
-
 
 def gravar_cache_no_disco():
     dados = {"substituicoes": cache_substituicoes, "sistemas": cache_sistemas,
@@ -227,7 +209,6 @@ def gravar_cache_no_disco():
         json.dump(dados, f, ensure_ascii=False)
     os.replace(temporario, ARQUIVO_CACHE)
     estado["versao"] = os.path.getmtime(ARQUIVO_CACHE)
-
 
 def ler_cache_do_disco():
     global cache_substituicoes, cache_tipologias
@@ -247,13 +228,11 @@ def ler_cache_do_disco():
     remontar_catalogo()
     estado.update(carregado=True, ultima=dados.get("ultima"), versao=versao)
 
-
 def sincronizar_por_fora(funcao):
-    # roda numa thread: o sync completo leva minutos no Render e o gunicorn derruba requisição que passa de 30s
     with trava_sync:
         if sincronizando():
             return False
-
+        
         def rodar():
             try:
                 funcao()
@@ -265,11 +244,9 @@ def sincronizar_por_fora(funcao):
             finally:
                 # mesmo com erro libera a API, senão ela fica respondendo "carregando" pra sempre
                 estado["carregado"] = True
-
         sync_atual["thread"] = threading.Thread(target=rodar, daemon=True)
         sync_atual["thread"].start()
     return True
-
 
 def resumo():
     return {
@@ -284,11 +261,8 @@ def resumo():
         "erros": erros_sync,
     }
 
-
 @app.before_request
 def preparar():
-    # pega o que outro processo já sincronizou; se este ainda não tem nada, começa a carregar
-    # (o gunicorn com --preload cria os processos depois do import, então a carga do import não vale pra eles)
     ler_cache_do_disco()
     if not estado["carregado"]:
         sincronizar_por_fora(sincronizar_tudo)
@@ -297,29 +271,30 @@ def preparar():
         if enviada != CHAVE_SYNC:
             return jsonify({"status": "erro", "mensagem": "Chave de sincronização inválida."}), 401
 
-
 CARREGANDO = ({"status": "carregando", "mensagem": "A API acabou de acordar e ainda está lendo o Notion."}, 503)
-
 
 @app.get("/api/substituicoes")
 def get_substituicoes():
-    return jsonify(cache_substituicoes) if estado["carregado"] else CARREGANDO
+    if not estado["carregado"]:
+        return CARREGANDO
+    # junto vai a cor de cada sistema, pro selo do sistema na página de Substituições
+    sistemas = [{"chave": s["chave"], "nome": s["nome"], "cor": s["cor"]} for s in SISTEMAS.values()]
+    sistemas += [{"chave": nome.lower(), "nome": nome, "cor": cor} for nome, cor in COR_OUTRAS_LINHAS.items()]
+    return jsonify({**cache_substituicoes, "sistemas": sistemas})
 
 
 @app.get("/api/catalogo")
 def get_catalogo():
     return jsonify(cache_catalogo) if estado["carregado"] else CARREGANDO
 
-
 @app.get("/api/catalogo/codigos")
 def get_codigos_catalogo():
-    # lista leve pra página de Substituições saber quais códigos têm ficha no catálogo
+    # lista pra página de Substituições saber quais códigos tem a ficha no catálogo
     if not estado["carregado"]:
         return CARREGANDO
     codigos = [{"codigo": i["codigo"], "sistema": i["sistema_chave"], "aba": aba}
                for aba in ("perfis", "acessorios") for i in cache_catalogo[aba]]
     return jsonify(codigos)
-
 
 @app.route("/api/sync", methods=["GET", "POST"])
 @app.route("/api/sync/tudo", methods=["GET", "POST"])
@@ -331,12 +306,10 @@ def sync_tudo():
 def sync_substituicoes():
     return responder_sync("substituicoes", sincronizar_substituicoes)
 
-
 @app.route("/api/sync/catalogo", methods=["GET", "POST"])
 @app.route("/api/sync/sistemas", methods=["GET", "POST"])
 def sync_catalogo():
     return responder_sync("catalogo", sincronizar_catalogo)
-
 
 @app.route("/api/sync/sistema/<nome>", methods=["GET", "POST"])
 def sync_sistema(nome):
@@ -349,20 +322,16 @@ def sync_sistema(nome):
         remontar_catalogo()
     return responder_sync(sis["nome"], um_sistema)
 
-
 def responder_sync(escopo, funcao):
-    # todas as rotas de sync respondem na hora; o andamento aparece em /health
+    # todas as rotas de sync respondem na hora, o andamento aparece em /health
     comecou = sincronizar_por_fora(funcao)
     status = "sincronizando" if comecou else "ja_estava_sincronizando"
     return jsonify({"status": status, "escopo": escopo, "acompanhe": "/health", **resumo()}), 202
-
 
 @app.get("/health")
 def health():
     return jsonify({"status": "online", "carregado": estado["carregado"], **resumo()}), 200
 
-# já começa a carregar quando sobe (no Render isso acontece toda vez que ele acorda)
-# rodando local com debug o flask sobe 2 processos, aí só carrega no que fica de pé
 if __name__ != "__main__" or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
     sincronizar_por_fora(sincronizar_tudo)
 

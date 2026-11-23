@@ -43,7 +43,7 @@
   font-size: 0.86rem;
   font-weight: 600;
   text-align: left;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid transparent;
   background: transparent;
   color: var(--texto);
@@ -54,6 +54,13 @@
 .sistema-btn:hover{
   border-color: var(--destaque);
   filter: brightness(1.08);
+}
+
+/* cada sistema com um filete na cor do catálogo dele */
+.sistema-btn,
+.sistema-btn:hover,
+.sistema-btn-ativo {
+  border-left: 3px solid var(--cor-sistema, transparent);
 }
 
 .sistema-btn-ativo,
@@ -95,7 +102,7 @@
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid var(--borda);
   background: transparent;
   color: var(--texto);
@@ -148,7 +155,7 @@
   color: var(--texto);
   background: var(--fundo);
   border: 1px solid var(--borda);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   transition: border-color 0.15s;
 }
 
@@ -170,7 +177,7 @@
   font-size: 1.1rem;
   cursor: pointer;
   padding: 0.25rem;
-  border-radius: 0.3rem;
+  border-radius: 4px;
   transition: color 0.15s, transform 0.1s;
 }
 
@@ -232,9 +239,9 @@
   font-size: 0.84rem;
   font-weight: 600;
   background: var(--fundo);
-  color: var(--destaque);
+  color: var(--texto);
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   cursor: pointer;
   transition: filter 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
 }
@@ -271,7 +278,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.78rem;
   font-weight: 600;
   background: var(--fundo);
@@ -302,7 +309,7 @@
   align-items: center;
   gap: 0.9rem;
   padding: 0.75rem 0.9rem;
-  border-radius: 0.55rem;
+  border-radius: 5px;
   cursor: pointer;
   border: 1px solid transparent;
   transition: background 0.12s, border-color 0.12s;
@@ -323,13 +330,12 @@
   width: 3.4rem;
   height: 3.4rem;
   object-fit: contain;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   background: var(--fundo-desenho);
   padding: 0.2rem;
   flex-shrink: 0;
   border: none;
   overflow: hidden;
-  image-rendering: -webkit-optimize-contrast;
 }
 
 .catalogo-item-thumb[src*="NO-PHOTO"] {
@@ -370,7 +376,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   border: 1px solid var(--borda);
-  border-radius: 0.3rem;
+  border-radius: 4px;
   color: var(--suave);
 }
 
@@ -438,14 +444,16 @@
   gap: 0.5rem;
 }
 
+/* selo do sistema com o contorno na cor do catálogo dele */
 .ficha-sistema {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
   font-weight: 600;
-  background: var(--ok-fundo);
-  color: var(--ok);
+  color: var(--texto);
+  border: 1.5px solid var(--cor-sistema, var(--borda));
+  background: color-mix(in srgb, var(--cor-sistema, transparent) 9%, transparent);
 }
 
 .ficha-edicao {
@@ -453,7 +461,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 600;
   background: var(--fundo);
@@ -468,7 +476,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.5rem 0.95rem;
-  border-radius: 0.45rem;
+  border-radius: 5px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -481,6 +489,29 @@
   filter: brightness(1.08);
 }
 
+/* embaixo da imagem técnica: copia a ficha montada */
+.btn-copiar-imagem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.8rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--destaque);
+  background: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-copiar-imagem:hover {
+  border-color: var(--destaque);
+}
+
 .ficha-imagens-trio {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -488,11 +519,16 @@
   margin: 1.25rem 0 1.5rem;
 }
 
+/* sem imagem aplicada: técnica e 3D dividem meio a meio */
+.ficha-imagens-trio.so-duas {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .ficha-box-img {
   position: relative;
   background: var(--fundo-desenho);
   border: 1px solid var(--borda);
-  border-radius: 0.65rem;
+  border-radius: 6px;
   padding: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -540,7 +576,7 @@
   font-size: 0.68rem;
   font-weight: 700;
   padding: 0.1rem 0.45rem;
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--destaque);
   color: var(--destaque-texto);
 }
@@ -551,9 +587,8 @@
   max-width: 100%;
   max-height: 130px;
   object-fit: contain;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   pointer-events: none;
-  image-rendering: -webkit-optimize-contrast;
   transition: opacity 0.15s ease;
 }
 
@@ -631,7 +666,7 @@
   font-weight: 700;
   background: var(--destaque);
   color: var(--destaque-texto);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
   transition: filter 0.15s ease;
@@ -685,7 +720,7 @@
   font: inherit;
   font-size: 0.85rem;
   font-weight: 700;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   border: 1px solid var(--borda);
   background: var(--fundo);
   color: var(--destaque);
@@ -706,11 +741,54 @@
   filter: brightness(1.08);
 }
 
+/* perfil do Diversos: escolhe o sistema e aparecem os perfis que encaixam nele */
+.ficha-sistemas-escolha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0.35rem 0 0.6rem;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ficha-sistema-opcao {
+  padding: 0.4rem 0.8rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 0;
+  border-right: 1px solid var(--borda);
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.ficha-sistema-opcao:last-child {
+  border-right: 0;
+}
+
+.ficha-sistema-opcao:hover {
+  background: var(--fundo);
+}
+
+.ficha-sistema-opcao.ativo {
+  background: var(--destaque);
+  color: var(--destaque-texto);
+}
+
+.ficha-tags-vazio {
+  font-size: 0.85rem;
+  color: var(--suave);
+}
+
 /* Card de prévia do encaixe */
 .encaixe-preview-card {
   margin-top: 0.85rem;
   padding: 1.1rem;
-  border-radius: 0.6rem;
+  border-radius: 6px;
   background: var(--fundo);
   border: 1px solid var(--borda);
   display: flex;
@@ -724,13 +802,12 @@
   height: 120px;
   object-fit: contain;
   background: var(--fundo-desenho);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   padding: 0.25rem;
   border: 1px solid var(--borda);
   overflow: hidden;
   cursor: zoom-in;
   flex-shrink: 0;
-  image-rendering: -webkit-optimize-contrast;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -788,7 +865,7 @@
   font: inherit;
   font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   border: none;
   background: var(--destaque);
   color: var(--destaque-texto);
@@ -807,7 +884,7 @@
   background: var(--superficie);
   color: var(--texto);
   border: 1px solid var(--borda);
-  border-radius: 0.75rem;
+  border-radius: 6px;
   max-width: 82rem;
   width: 96vw;
   max-height: 92vh;
@@ -842,7 +919,7 @@
 .modal-bloco-grafico {
   background: var(--fundo);
   color: var(--texto);
-  border-radius: 0.65rem;
+  border-radius: 6px;
   padding: 1.15rem;
   border: 1px solid var(--borda);
   display: flex;
@@ -857,7 +934,7 @@
   gap: 0.45rem;
   background: var(--superficie);
   padding: 0.75rem 0.9rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid var(--borda);
 }
 
@@ -880,7 +957,7 @@
   font: inherit;
   font-size: 0.84rem;
   font-weight: 600;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   border: 1px solid var(--borda);
   background: var(--fundo);
   color: var(--texto);
@@ -908,7 +985,7 @@
   padding: 0.8rem 0.95rem;
   background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 0.5rem;
+  border-radius: 5px;
 }
 
 .grafico-montagem-cabecalho {
@@ -931,7 +1008,7 @@
   color: var(--suave);
   background: var(--fundo);
   padding: 0.15rem 0.55rem;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid var(--borda);
 }
 
@@ -946,7 +1023,7 @@
   min-width: 11rem;
   background: var(--fundo);
   border: 1px solid var(--borda);
-  border-radius: 0.4rem;
+  border-radius: 4px;
   padding: 0.45rem 0.65rem;
   display: flex;
   flex-direction: column;
@@ -974,7 +1051,7 @@
   color: var(--destaque);
   background: var(--fundo);
   padding: 0.4rem 0.75rem;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   border: 1px solid var(--destaque);
   text-align: center;
 }
@@ -982,7 +1059,7 @@
 .modal-palco-img {
   background: var(--fundo-desenho);
   color: #16202e;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   padding: 0.85rem;
   border: 1px solid var(--borda);
   display: flex;
@@ -1017,7 +1094,7 @@
 }
 
 .grafico-aviso-vazio small {
-  font-family: monospace;
+  font-family: var(--fonte-mono);
   font-size: 0.78rem;
   color: #64748b;
 }
@@ -1060,7 +1137,7 @@
 .card-es-destaque {
   background: var(--fundo);
   border: 1px solid var(--destaque);
-  border-radius: 0.6rem;
+  border-radius: 6px;
   padding: 1rem 1.1rem;
 }
 
@@ -1089,7 +1166,7 @@
   border-collapse: collapse;
   font-size: 0.8rem;
   background: var(--fundo);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--borda);
 }
@@ -1117,7 +1194,7 @@
   display: inline-block;
   width: 2.2rem;
   height: 1rem;
-  border-radius: 0.2rem;
+  border-radius: 3px;
   vertical-align: middle;
   margin-right: 0.4rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1143,7 +1220,7 @@
   inset: 0;
   background: var(--cor-previa);
   mix-blend-mode: screen;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   pointer-events: none;
 }
 
@@ -1189,7 +1266,7 @@
   color: var(--texto);
   background: var(--fundo);
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -1239,7 +1316,7 @@
   padding: 0.45rem 0.45rem 0.45rem 1rem;
   background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   box-shadow: var(--sombra-card);
 }
 
@@ -1264,7 +1341,7 @@
 }
 
 .pesquisa-geral-form .btn {
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 0.5rem 1.2rem;
 }
 
@@ -1284,7 +1361,7 @@
   color: var(--suave);
   background: transparent;
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -1298,7 +1375,7 @@
   padding: 1rem 1.1rem 1.1rem;
   background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 1rem;
+  border-radius: 6px;
   box-shadow: var(--sombra-card);
 }
 
@@ -1332,7 +1409,7 @@
   font-size: 1.1rem;
   cursor: pointer;
   padding: 0.2rem 0.4rem;
-  border-radius: 0.4rem;
+  border-radius: 4px;
 }
 
 .pesquisa-geral-fechar:hover {
@@ -1355,7 +1432,7 @@
   color: var(--suave);
   background: var(--fundo);
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -1386,7 +1463,7 @@
 
 .tipologia-card {
   border: 1px solid var(--borda);
-  border-radius: 0.75rem;
+  border-radius: 6px;
   background: var(--fundo);
   overflow: hidden;
 }
@@ -1478,7 +1555,7 @@
   color: var(--texto);
   background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 0.55rem;
+  border-radius: 5px;
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
@@ -1501,7 +1578,7 @@
   height: 58px;
   margin-bottom: 0.15rem;
   background: var(--fundo-desenho);
-  border-radius: 0.35rem;
+  border-radius: 4px;
   color: var(--suave);
   font-size: 1.2rem;
 }
@@ -1563,7 +1640,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 700;
   background: var(--erro-fundo);
@@ -1590,7 +1667,7 @@
   color: var(--superficie);
   background: var(--erro);
   border: 1px solid var(--erro);
-  border-radius: 0.45rem;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -1607,7 +1684,7 @@
   font-weight: 600;
   color: var(--destaque);
   text-decoration: none;
-  border-radius: 0.45rem;
+  border-radius: 4px;
 }
 
 .link-substituicao:hover {
@@ -1621,7 +1698,7 @@
   padding: 0.75rem 0.85rem;
   margin-bottom: 0.75rem;
   border: 1px solid var(--erro);
-  border-radius: 0.6rem;
+  border-radius: 6px;
   background: var(--erro-fundo);
 }
 
@@ -1678,13 +1755,20 @@
   color: var(--texto);
   background: var(--fundo);
   border: 1px solid var(--borda);
-  border-radius: 0.4rem;
+  border-radius: 4px;
 }
 
 .peso-lote-total {
   font-size: 1.15rem;
   padding-bottom: 0.35rem;
   color: var(--destaque);
+}
+
+.peso-lote-aviso {
+  display: block;
+  margin: 0.15rem 0 0.6rem;
+  font-size: 0.8rem;
+  color: var(--suave);
 }
 
 /* Comparar */
@@ -1702,7 +1786,7 @@
   padding: 0.6rem 0.8rem;
   background: var(--superficie);
   border: 1px solid var(--destaque);
-  border-radius: 0.75rem;
+  border-radius: 6px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
 
@@ -1719,7 +1803,7 @@
   font-size: 0.85rem;
   font-weight: 700;
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   background: var(--fundo);
 }
 
@@ -1743,7 +1827,7 @@
   background: var(--superficie);
   color: var(--texto);
   border: 1px solid var(--borda);
-  border-radius: 1rem;
+  border-radius: 6px;
   padding: 1.25rem 1.4rem;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
 }
@@ -1773,7 +1857,7 @@
   height: 110px;
   object-fit: contain;
   background: var(--fundo-desenho);
-  border-radius: 0.4rem;
+  border-radius: 4px;
 }
 
 .comparar-codigo {
@@ -1803,7 +1887,7 @@
   background: var(--superficie);
   color: var(--texto);
   border: 1px solid var(--borda);
-  border-radius: 1rem;
+  border-radius: 6px;
   padding: 1.25rem 1.4rem 1.4rem;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
 }
@@ -1844,7 +1928,7 @@
   padding: 1rem;
   text-align: center;
   border: 2px dashed var(--borda);
-  border-radius: 0.8rem;
+  border-radius: 6px;
   background: var(--fundo);
   cursor: pointer;
 }
@@ -1868,7 +1952,7 @@
 .busca-foto-area.com-foto img {
   max-width: 100%;
   max-height: 240px;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   object-fit: contain;
 }
 
@@ -1902,7 +1986,7 @@
   padding: 0.45rem;
   margin-bottom: 0.75rem;
   border: 1px solid var(--destaque);
-  border-radius: 0.6rem;
+  border-radius: 6px;
   background: var(--destaque-suave);
   font-size: 0.8rem;
   font-weight: 600;
@@ -1912,7 +1996,7 @@
   width: 64px;
   height: 64px;
   object-fit: cover;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   cursor: zoom-in;
   background: var(--fundo-desenho);
 }
@@ -1972,7 +2056,8 @@
 }
 
 @media (max-width: 48rem) {
-  .ficha-imagens-trio {
+  .ficha-imagens-trio,
+  .ficha-imagens-trio.so-duas {
     grid-template-columns: 1fr;
   }
 
@@ -2025,8 +2110,8 @@
 .ficha-box-3d-palco .ficha-box-midia { max-height: 100%; }
 .ficha-box-3d-selo {
   position: absolute; right: 0.2rem; bottom: 0.2rem;
-  font-size: 0.68rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px;
-  background: var(--destaque); color: var(--destaque-texto); pointer-events: none;
+  font-size: 0.68rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 4px;
+  background: rgba(24, 24, 27, 0.75); color: #fff; pointer-events: none;
 }
 .ficha-box-3d-vazio {
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
@@ -2048,13 +2133,13 @@
   flex: 1 1 auto;
   width: 100%;
   min-height: 0;
-  border-radius: 0.65rem;
+  border-radius: 6px;
   overflow: hidden;
   background: var(--fundo-desenho);
 }
 /* peça clara em fundo branco não aparece, então o palco do 3D escurece */
 .ficha-box-3d.pintado.cor-clara .ficha-box-3d-palco,
-.foto-modal-3d-palco.fundo-escuro { background: #20242b; border-radius: 0.5rem; }
+.foto-modal-3d-palco.fundo-escuro { background: #20242b; border-radius: 5px; }
 .foto-modal-3d-palco.fundo-escuro .foto-modal-3d-dica { color: #c5ccd6; }
 .foto-modal-3d-palco .viewer3d-canvas { position: absolute; inset: 0; }
 .foto-modal-3d-palco .viewer3d-canvas { cursor: grab; }
@@ -2070,8 +2155,159 @@
 .foto-modal-3d-link {
   position: absolute; right: 0.9rem; top: 0.7rem; z-index: 2;
   font-size: 0.78rem; font-weight: 600; text-decoration: none;
-  padding: 0.2rem 0.7rem; border-radius: 999px;
+  padding: 0.2rem 0.7rem; border-radius: 4px;
   background: rgba(255, 255, 255, 0.92); border: 1px solid var(--borda); color: var(--destaque);
 }
 .foto-modal-3d-link:hover { text-decoration: underline; }
 .foto-modal-3d-erro { padding: 2rem; color: #a02020; text-align: center; }
+
+/* menu de tipologias ao lado do Pesquisar */
+.filtro-tipologia {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.filtro-tipologia-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 2.6rem;
+  padding: 0 0.85rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filtro-tipologia-botao .fa-chevron-down {
+  font-size: 0.7rem;
+  color: var(--suave);
+}
+
+.filtro-tipologia-botao:hover,
+.filtro-tipologia-botao[aria-expanded="true"] {
+  border-color: var(--destaque);
+}
+
+.filtro-tipologia-lista {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 60;
+  width: 23rem;
+  max-width: 85vw;
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.35rem;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  scrollbar-width: thin;
+  scrollbar-color: var(--borda) transparent;
+}
+
+.filtro-tipologia-lista[hidden] {
+  display: none;
+}
+
+.filtro-tipologia-grupo {
+  display: block;
+  padding: 0.55rem 0.6rem 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--suave);
+}
+
+.filtro-tipologia-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  font-size: 0.88rem;
+  text-align: left;
+  color: var(--texto);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filtro-tipologia-item small {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--suave);
+}
+
+.filtro-tipologia-item:hover {
+  background: var(--fundo);
+  color: var(--destaque);
+}
+
+@media (max-width: 48rem) {
+  .filtro-tipologia-botao {
+    padding: 0 0.6rem;
+  }
+  .filtro-tipologia-botao .fa-chevron-down {
+    display: none;
+  }
+}
+
+.sistema-btn.sistema-btn-ativo {
+  border-left-color: var(--cor-sistema, var(--destaque));
+}
+
+/* filete do Todos: as cores de todos os sistemas */
+.sistema-btn.sistema-btn-todos {
+  position: relative;
+}
+
+.sistema-btn.sistema-btn-todos::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: -1px;
+  bottom: -1px;
+  width: 3px;
+  border-radius: 5px 0 0 5px;
+  background: linear-gradient(to bottom, var(--cores-todos));
+}
+
+/* cor clara (branco, natural...): a caixa toda fica escura, no mesmo tom do desenho invertido, e o texto claro.
+   Vale pras duas caixas da ficha e pra janela do 3D ampliado, nos dois temas */
+.ficha-box-img.pintado.cor-clara,
+.ficha-box-3d.pintado.cor-clara,
+.ficha-box-3d.pintado.cor-clara .ficha-box-3d-palco,
+.foto-modal-caixa-3d:has(.foto-modal-3d-palco.fundo-escuro),
+.foto-modal-3d-palco.fundo-escuro {
+  background: #1a1a1a;
+}
+
+.ficha-box-img.pintado.cor-clara,
+.ficha-box-3d.pintado.cor-clara,
+.foto-modal-caixa-3d:has(.foto-modal-3d-palco.fundo-escuro) {
+  border-color: #2a2a2a;
+}
+
+.ficha-box-img.pintado.cor-clara .ficha-box-rotulo,
+.ficha-box-3d.pintado.cor-clara .ficha-box-rotulo,
+.ficha-box-3d.pintado.cor-clara .ficha-box-3d-dica,
+.foto-modal-caixa-3d:has(.foto-modal-3d-palco.fundo-escuro) .foto-modal-legenda {
+  color: #e5e5e5;
+}
+
+.ficha-box-img.pintado.cor-clara .btn-copiar-imagem {
+  background: transparent;
+  color: #e5e5e5;
+  border-color: #3a3a3a;
+}

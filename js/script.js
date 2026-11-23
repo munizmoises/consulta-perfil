@@ -15,6 +15,26 @@ const CAMPOS_ACESSORIOS = [
   ["unidade_conversao", "Unidade de conversão"],
 ];
 
+// "Gold -> Chroma" vira dois selos quadrados, cada um com o contorno na cor do catálogo do sistema
+function selosDoSistema(el, texto) {
+  String(texto).split(/\s*->\s*/).forEach((nome, i) => {
+    if (i) el.appendChild(criar("i", "fa-solid fa-arrow-right seta-conversao"));
+    const selo = criar("span", "selo-sistema", nome);
+    const sis = (banco.sistemas || []).find(s => normalizarBusca(s.nome) === normalizarBusca(nome) || normalizarBusca(s.chave) === normalizarBusca(nome));
+    if (sis && sis.cor) selo.style.setProperty("--cor-sistema", sis.cor);
+    el.appendChild(selo);
+  });
+}
+
+// exemplo do campo de busca: um código qualquer cadastrado (muda a cada vez que abre a página)
+function sortearExemplos() {
+  [["codigo-perfis", banco.perfis], ["codigo-acessorios", banco.acessorios]].forEach(([id, lista]) => {
+    const campo = document.getElementById(id);
+    const codigos = (lista || []).map(i => i.codigo).filter(c => c && !c.includes("+"));
+    if (campo && codigos.length) campo.placeholder = `Ex: ${codigos[Math.floor(Math.random() * codigos.length)]}`;
+  });
+}
+
 const HISTORICO_KEY_PERFIS = "historico_perfis";
 const HISTORICO_KEY_ACESSORIOS = "historico_acessorios";
 const NO_PHOTO = "assets/img/substitution/NO-PHOTO.webp";
@@ -348,6 +368,10 @@ function montarItem(item, campos) {
     } else {
       if (typeof item[chave] === "string" && item[chave].includes("||")) {
         textoComQuebras(dd, item[chave]);
+      } else if (chave === "sistema") {
+        selosDoSistema(dd, item[chave]);
+      } else if (typeof item[chave] === "string" && item[chave].includes("->")) {
+        textoComSeta(dd, item[chave]);
       } else {
         dd.textContent = item[chave];
       }
@@ -578,6 +602,7 @@ async function iniciar() {
   try {
     banco = await carregarBanco("/api/substituicoes");
     indexarBancoSubstituicoes();
+    sortearExemplos();
     await carregarFichasCatalogo();
   } catch {
     erroCarregamentoBanco = true;

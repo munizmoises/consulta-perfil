@@ -7,7 +7,9 @@ let banco = { sistemas: [], graficos_desempenho: [], perfis: [], acessorios: [] 
 let erroCarregamentoBanco = false;
 let abaAtiva = "perfis";
 let sistemaAtivo = "todos";
-let foraDeLinha = {}; // código -> item da tabela de substituições
+
+const EXEMPLOS_BUSCA = {};
+let foraDeLinha = {}; // código -- item da tabela de substituições
 let comparando = [];
 
 let estadoPorAba = {
@@ -63,7 +65,6 @@ function obterPrimeiraImagem(valor, padraoFallback = NO_PHOTO) {
   return lista.length > 0 ? lista[0] : padraoFallback;
 }
 
-// mesmo padrão de pastas do Chroma: perfil/<COD>.webp e acessorio/normal/<COD>.webp
 function imagemPadrao(item, pasta) {
   const sub = pasta === "acessorio" ? "acessorio/normal" : pasta;
   return `assets/img/catalog/sistemas/${item.sistema_chave || "chroma"}/${sub}/${item.codigo}.webp`;
@@ -75,8 +76,6 @@ function ordenarNatural(lista) {
   });
 }
 
-// o catálogo escreve a compatibilidade num lado só (o CHR003 diz que encaixa no CHR120, o CHR120 não fala nada).
-// Aqui guarda o caminho de volta pra mostrar nos dois.
 let compatReversa = {};
 const codigosNoTexto = texto => (String(texto || "").toUpperCase().match(/[A-Z]{1,5}-?\d+[A-Z]?/g) || []).map(normalizar);
 const comHifen = codigo => String(codigo).replace(/^([A-Z]+)(\d)/, "$1-$2");
@@ -87,14 +86,31 @@ function anotarReverso(sistema, alvo, tipo, codigo) {
   if (!compatReversa[chave][tipo].includes(codigo)) compatReversa[chave][tipo].push(codigo);
 }
 
-// lista final de códigos do campo: o que está no item + quem aponta pra ele, sem repetir
-function codigosDoCampo(item, chave) {
-  const reverso = compatReversa[`${item.sistema_chave}|${item._codNorm}`] || { perfis: [], acessorios: [] };
+function codigosDoCampo(item, chave, sistema) {
+  const chaves = sistema ? [sistema, "diversos"] : [item.sistema_chave, ...(item._sistemas || [])];
+  const reverso = { perfis: [], acessorios: [] };
+  chaves.forEach(k => {
+    const r = compatReversa[`${k}|${item._codNorm}`];
+    if (r) ["perfis", "acessorios"].forEach(t => r[t].forEach(c => { if (!reverso[t].includes(c)) reverso[t].push(c); }));
+  });
   if (chave === "_acessorios") return reverso.acessorios.map(comHifen);
-  const proprios = String(item[chave] || "").split("/").map(s => s.trim()).filter(Boolean);
+  const texto = item._encaixePorSistema && chave === "encaixe"
+    ? (sistema ? item._encaixePorSistema[sistema] : Object.values(item._encaixePorSistema).join(" / "))
+    : item[chave];
+  const proprios = [...new Set(String(texto || "").split("/").map(s => s.trim()).filter(Boolean))];
   const vistos = new Set(proprios.flatMap(codigosNoTexto));
   const deVolta = reverso.perfis.filter(c => !vistos.has(normalizar(c)) && normalizar(c) !== item._codNorm);
   return [...proprios, ...deVolta.map(comHifen)];
+}
+
+function separarPorSistema(texto) {
+  const partes = {};
+  String(texto || "").split("||").forEach(trecho => {
+    const m = trecho.match(/^\s*([^:]+):\s*(.*)$/);
+    const sis = m && acharSistema(m[1]);
+    if (sis) partes[sis.chave] = m[2].trim();
+  });
+  return Object.keys(partes).length ? partes : null;
 }
 
 function indexarBancoCatalogo() {
@@ -108,9 +124,12 @@ function indexarBancoCatalogo() {
   todosItens.forEach(item => {
     item._codNorm = normalizar(item.codigo || "");
     item._codBusca = normalizarBusca(item.codigo || "");
+
+    item._sistemas = String(item.sistemas || "").split("|").map(s => acharSistema(s.trim())).filter(Boolean).map(s => s.chave);
+    item._encaixePorSistema = item._sistemas.length ? separarPorSistema(item.encaixe) : null;
     item._buscaIndex = [
       item.codigo, item.nome, item.apelido, item.observacao,
-      item.sistema, item.tipologia, item.tipo, item.encaixe, item.aplicavel
+      item.sistema, item.sistemas, item.tipologia, item.tipo, item.encaixe, item.aplicavel
     ].filter(Boolean).map(v => normalizarBusca(v)).join(" ");
   });
 
@@ -119,7 +138,13 @@ function indexarBancoCatalogo() {
   });
 
   compatReversa = {};
-  (banco.perfis || []).forEach(p => codigosNoTexto(p.encaixe).forEach(c => anotarReverso(p.sistema_chave, c, "perfis", p.codigo)));
+  (banco.perfis || []).forEach(p => {
+    if (p._encaixePorSistema) {
+      Object.entries(p._encaixePorSistema).forEach(([sis, txt]) => codigosNoTexto(txt).forEach(c => anotarReverso(sis, c, "perfis", p.codigo)));
+      return;
+    }
+    codigosNoTexto(p.encaixe).forEach(c => anotarReverso(p.sistema_chave, c, "perfis", p.codigo));
+  });
   (banco.acessorios || []).forEach(a => codigosNoTexto(a.aplicavel).forEach(c => anotarReverso(a.sistema_chave, c, "acessorios", a.codigo)));
 }
 
@@ -129,12 +154,21 @@ function itemBateComTermo(item, termo) {
 }
 
 function itemPertenceAoSistema(item, chaveSistema) {
-  return !chaveSistema || chaveSistema === "todos" || item.sistema_chave === chaveSistema;
+  return !chaveSistema || chaveSistema === "todos" || item.sistema_chave === chaveSistema
+    || (item._sistemas || []).includes(chaveSistema);
 }
 
 function acharSistema(valor) {
   const alvo = normalizarBusca(valor);
   return (banco.sistemas || []).find(s => normalizarBusca(s.chave) === alvo || normalizarBusca(s.nome) === alvo);
+}
+
+// Cor do sistema 
+function seloSistema(nome, chave) {
+  const selo = criar("span", "ficha-sistema", nome);
+  const sis = (banco.sistemas || []).find(s => s.chave === chave);
+  if (sis && sis.cor) selo.style.setProperty("--cor-sistema", sis.cor);
+  return selo;
 }
 
 function edicaoDoSistema(chave) {
@@ -147,11 +181,10 @@ function coresDoItem(item) {
   return achadas.map(cod => (banco.cores || []).find(c => c.codigo === cod)).filter(Boolean);
 }
 
-// o 3D começa sempre no preto; se a pessoa escolher uma cor na ficha ele acompanha
+// Modelo 3D começa sempre no preto
 let cor3DEscolhida = null;
 const cor3D = () => cor3DEscolhida || "#25272b";
 
-// cor clara (branco, natural...) some no fundo branco, então nessas o fundo vira escuro
 function ehCorClara(hex) {
   const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
   return 0.2126 * r + 0.7152 * g + 0.0722 * b > 150;
@@ -167,10 +200,10 @@ function montarCores(cores, trio) {
     const jaAtivo = btn.classList.contains("ativo");
     lista.querySelectorAll(".cor-chip").forEach(b => b.classList.remove("ativo"));
     if (!jaAtivo) btn.classList.add("ativo");
-    // o modelo 3D (se tiver) acompanha a cor escolhida
+
     cor3DEscolhida = jaAtivo ? null : cor.hex;
     document.dispatchEvent(new CustomEvent("cor-3d", { detail: cor3DEscolhida }));
-    // a cor vale pras três caixas: desenho técnico, 3D e imagem aplicada
+
     [...trio.children].forEach(box => {
       box.classList.toggle("pintado", !jaAtivo);
       box.classList.toggle("cor-clara", !jaAtivo && ehCorClara(cor.hex));
@@ -193,7 +226,6 @@ function montarCores(cores, trio) {
   if (boxTecnica && boxTecnica.classList.contains("com-midia")) {
     const dica = criar("small", "ficha-cores-dica", "Clica numa cor pra ver o desenho pintado (a cor é aproximada).");
     secao.appendChild(dica);
-    // se a imagem não carregar a caixa vira "sem imagem", aí a dica não faz sentido
     new MutationObserver((_, obs) => {
       if (!boxTecnica.classList.contains("com-midia")) { dica.remove(); obs.disconnect(); }
     }).observe(boxTecnica, { attributes: true, attributeFilter: ["class"] });
@@ -595,7 +627,8 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
 
 function preencherUrl(url, item) {
   url.searchParams.set("codigo", item.codigo);
-  if (item.sistema_chave) url.searchParams.set("sistema", item.sistema_chave);
+  const sistemaLink = (item._sistemas || []).includes(sistemaAtivo) ? sistemaAtivo : item.sistema_chave;
+  if (sistemaLink) url.searchParams.set("sistema", sistemaLink);
   url.searchParams.set("aba", abaAtiva);
   return url;
 }
@@ -649,7 +682,6 @@ function irParaPerfilCompleto(codigoAlvo, sistemaPreferido = sistemaAtivo, volta
   const campoBusca = document.getElementById("busca-catalogo");
   const limpar = document.querySelector("#form-catalogo .btn-limpar");
 
-  // se o item não é do sistema marcado ia dar "não encontrado", então volta pra Todos
   if (sistemaAtivo !== "todos" && (voltarPraTodos || !resultado || !itemPertenceAoSistema(resultado.item, sistemaAtivo))) {
     marcarSistemaAtivo("todos");
   }
@@ -772,7 +804,6 @@ function criarBoxImagem(titulo, valorImagens, altBase, iconeVazio, textoVazio) {
   return box;
 }
 
-// imagem_3d pode misturar .stl, página .html (iframe) e imagem comum
 const ehStl3D = (src) => /\.stl(\?.*)?$/i.test(src);
 const ehEmbed3D = (src) => /^https?:\/\/\S+\.html?(\?.*)?$/i.test(src);
 const tipoSlide3D = (src) => (ehStl3D(src) ? "stl" : (ehEmbed3D(src) ? "embed" : "img"));
@@ -988,7 +1019,6 @@ function criarBoxMidia3D(titulo, lista, altBase) {
     box.appendChild(btnDir);
   }
 
-  // arrastar gira o modelo, só abre o modal se foi clique
   let inicio = null;
   box.addEventListener("pointerdown", (e) => { inicio = { x: e.clientX, y: e.clientY }; });
   box.addEventListener("click", (e) => {
@@ -1002,7 +1032,7 @@ function criarBoxMidia3D(titulo, lista, altBase) {
   return box;
 }
 
-function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTags) {
+function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTags, sistema = sistemaAtivo) {
   if (btnClicado.classList.contains("ativo")) {
     btnClicado.classList.remove("ativo");
     containerPreview.replaceChildren();
@@ -1013,7 +1043,7 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
   btnClicado.classList.add("ativo");
   containerPreview.replaceChildren();
 
-  const busca = encontrarItemPorCodigo(codClicado, sistemaAtivo);
+  const busca = encontrarItemPorCodigo(codClicado, sistema);
   const card = criar("div", "encaixe-preview-card");
 
   if (!busca) {
@@ -1057,9 +1087,11 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
     info.appendChild(pTip);
   }
 
-  if (alvo.encaixe || alvo.aplicavel) {
+  const encaixeAlvo = (alvo._encaixePorSistema && alvo._encaixePorSistema[sistema]) || alvo.encaixe || alvo.aplicavel;
+  if (encaixeAlvo) {
     const pEnc = criar("p", "encaixe-preview-detalhe");
-    pEnc.innerHTML = `<strong>${aba === "perfis" ? "Encaixes" : "Aplicável em"}:</strong> ${alvo.encaixe || alvo.aplicavel}`;
+    pEnc.appendChild(criar("strong", "", `${aba === "perfis" ? "Encaixes" : "Aplicável em"}: `));
+    textoComQuebras(pEnc, encaixeAlvo);
     info.appendChild(pEnc);
   }
 
@@ -1067,12 +1099,180 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
   const btnIr = criar("button", "btn-ir-perfil");
   btnIr.type = "button";
   btnIr.innerHTML = `<i class="fa-solid fa-arrow-right"></i> Ver ficha completa de ${alvo.codigo}`;
-  btnIr.addEventListener("click", () => irParaPerfilCompleto(alvo.codigo));
+  btnIr.addEventListener("click", () => irParaPerfilCompleto(alvo.codigo, sistema));
   acoes.appendChild(btnIr);
 
   info.appendChild(acoes);
   card.appendChild(info);
   containerPreview.appendChild(card);
+}
+
+const carregarImagem = src => new Promise((ok, erro) => {
+  const im = new Image();
+  im.onload = () => ok(im);
+  im.onerror = erro;
+  im.src = src;
+});
+
+// Quebra o texto em linhas que cabem na largura
+function linhasDoTexto(ctx, texto, largura) {
+  const linhas = [];
+  String(texto || "").split("||").forEach(paragrafo => {
+    let linha = "";
+    paragrafo.trim().split(/\s+/).forEach(palavra => {
+      const tentativa = linha ? `${linha} ${palavra}` : palavra;
+      if (ctx.measureText(tentativa).width > largura && linha) {
+        linhas.push(linha);
+        linha = palavra;
+      } else {
+        linha = tentativa;
+      }
+    });
+    if (linha) linhas.push(linha);
+  });
+  return linhas;
+}
+
+async function montarImagemFicha(item, desenho) {
+  const perfil = abaAtiva === "perfis";
+  const sistemaDaFicha = (item._sistemas || []).includes(sistemaAtivo) ? sistemaAtivo : (item._sistemas || [])[0];
+
+  const sis = (banco.sistemas || []).find(s => s.chave === (sistemaDaFicha || item.sistema_chave)) || {};
+  const cor = sis.cor && sis.chave !== "diversos" ? sis.cor : "#1f5fbf";
+  const FONTE = '"Fonte Ficha", system-ui, sans-serif';
+  const CODIGO = '"Fonte Codigo", "Fonte Ficha", system-ui, sans-serif';
+  await Promise.all([`700 40px ${CODIGO}`, `700 24px ${FONTE}`, `400 20px ${FONTE}`].map(f => document.fonts.load(f).catch(() => {})));
+  const logo = await carregarImagem("assets/img/logo.png").catch(() => null);
+
+  const L = 1100, M = 44, largura = L - 2 * M;
+  const medir = document.createElement("canvas").getContext("2d");
+
+  const info = [];
+  const juntar = lista => lista.filter(Boolean).join(" / ");
+  if (perfil) {
+    const encaixe = juntar(codigosDoCampo(item, "encaixe", sistemaDaFicha));
+    if (encaixe) info.push(["Encaixe", encaixe]);
+    const inercia = [["Jx", item.jx], ["Jy", item.jy], ["Wx", item.wx], ["Wy", item.wy]].filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("   ");
+    if (inercia) info.push(["Inércia", inercia]);
+    const tipologia = String(item.tipologia || "").split("|").map(t => t.trim()).filter(Boolean).join(", ");
+    if (tipologia) info.push(["Tipologia", tipologia]);
+    const barra = parseFloat(String(item.barra || "").replace(",", "."));
+    if (barra) info.push(["Barra", `vendido somente em barra de ${barra.toLocaleString("pt-BR")} mm`]);
+  } else {
+    if (item.aplicavel) info.push(["Aplicável nos perfis", item.aplicavel]);
+    if (item.material) info.push(["Material", item.material]);
+    if (item.acabamento) info.push(["Acabamento", item.acabamento]);
+    if (item.unidade_conversao || item.tipo) info.push(["Unidade", juntar([item.tipo, item.unidade_conversao])]);
+  }
+  if (item.observacao) info.push(["Observação", item.observacao]);
+
+  medir.font = `400 20px ${FONTE}`;
+  const blocos = info.map(([rotulo, texto]) => ({ rotulo, linhas: linhasDoTexto(medir, texto, largura - 150) }));
+  medir.font = `700 26px ${FONTE}`;
+  const nomeLinhas = linhasDoTexto(medir, item.nome || "", largura - 300).slice(0, 2);
+
+  const escala = desenho ? Math.min(largura / desenho.naturalWidth, 600 / desenho.naturalHeight, 2.2) : 0;
+  const altDesenho = desenho ? desenho.naturalHeight * escala : 0;
+  const altCabeca = Math.max(84, 28 + nomeLinhas.length * 34);
+  const altInfo = blocos.reduce((t, b) => t + b.linhas.length * 28 + 10, 0);
+  const H = M + altCabeca + 56 + 30 + altDesenho + 34 + altInfo + 70;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = L;
+  canvas.height = Math.ceil(H);
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, L, canvas.height);
+  ctx.textBaseline = "middle";
+
+  // Código e nome em caixas com a cor do sistema
+  ctx.font = `700 40px ${CODIGO}`;
+  const largCodigo = Math.max(200, ctx.measureText(item.codigo).width + 48);
+  ctx.fillStyle = cor;
+  ctx.fillRect(M, M, largCodigo, altCabeca);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText(item.codigo, M + 24, M + altCabeca / 2);
+  const xNome = M + largCodigo + 10;
+  ctx.fillStyle = cor;
+  ctx.fillRect(xNome, M, L - M - xNome, altCabeca);
+  ctx.fillStyle = "#ffffff";
+  ctx.font = `700 26px ${FONTE}`;
+  nomeLinhas.forEach((l, i) => ctx.fillText(l, xNome + 22, M + altCabeca / 2 + (i - (nomeLinhas.length - 1) / 2) * 34));
+
+  // Peso e sistema embaixo
+  let y = M + altCabeca + 12;
+  ctx.strokeStyle = cor;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(M + 1, y, largCodigo - 2, 40);
+  ctx.fillStyle = cor;
+  ctx.font = `700 22px ${CODIGO}`;
+  ctx.fillText(perfil ? (item.peso || "—") : (item.tipo || "Acessório"), M + 16, y + 20);
+  ctx.fillStyle = "#52525b";
+  ctx.font = `400 19px ${FONTE}`;
+  // Diversos e Linha 25 não têm catálogo com edição, então não vai o "Última alteração"
+  const edicao = ["diversos", "linha_25"].includes(item.sistema_chave) ? "" : edicaoDoSistema(item.sistema_chave);
+  const nomesSis = (item._sistemas || []).map(k => ((banco.sistemas || []).find(s => s.chave === k) || {}).nome || k);
+  ctx.fillText([item.sistema, nomesSis.length ? `usado em ${nomesSis.join(", ")}` : "", edicao].filter(Boolean).join("  ·  "), xNome + 4, y + 20);
+
+  // Desenho
+  y += 40 + 30;
+  if (desenho) {
+    const w = desenho.naturalWidth * escala;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(desenho, M + (largura - w) / 2, y, w, altDesenho);
+    y += altDesenho;
+  }
+
+  // Informações
+  y += 20;
+  ctx.strokeStyle = "#e4e4e7";
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(M, y); ctx.lineTo(L - M, y); ctx.stroke();
+  y += 24;
+  blocos.forEach(b => {
+    ctx.fillStyle = "#18181b";
+    ctx.font = `700 18px ${FONTE}`;
+    ctx.fillText(b.rotulo, M, y);
+    ctx.font = `400 20px ${FONTE}`;
+    ctx.fillStyle = "#27272a";
+    b.linhas.forEach((l, i) => ctx.fillText(l, M + 150, y + i * 28));
+    y += b.linhas.length * 28 + 10;
+  });
+
+  const yRodape = canvas.height - 34;
+  if (logo) ctx.drawImage(logo, M, yRodape - 14, 28, 28);
+  ctx.fillStyle = "#71717a";
+  ctx.font = `400 16px ${FONTE}`;
+  ctx.fillText("Consulta Perfil · Perfil Alumínio do Brasil", M + (logo ? 38 : 0), yRodape);
+  ctx.textAlign = "right";
+  ctx.fillText(`Gerado em ${new Date().toLocaleDateString("pt-BR")}`, L - M, yRodape);
+  return canvas;
+}
+
+async function copiarFichaComoImagem(btn, item, box) {
+  const original = btn.innerHTML;
+  const avisar = (html) => { btn.innerHTML = html; setTimeout(() => { btn.innerHTML = original; }, 1800); };
+  const img = box.querySelector("img.ficha-box-midia");
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Montando...';
+  let canvas;
+  try {
+    const desenho = img && img.complete && img.naturalWidth && !img.src.includes("NO-PHOTO") ? img : null;
+    canvas = await montarImagemFicha(item, desenho);
+    const png = await new Promise(ok => canvas.toBlob(ok, "image/png"));
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": png })]);
+    avisar('<i class="fa-solid fa-check"></i> Ficha copiada!');
+  } catch (e) {
+
+    if (canvas) {
+      const a = document.createElement("a");
+      a.href = canvas.toDataURL("image/png");
+      a.download = `${item.codigo}.png`;
+      a.click();
+      avisar('<i class="fa-solid fa-download"></i> Baixada');
+    } else {
+      avisar('<i class="fa-solid fa-xmark"></i> Não deu pra montar');
+    }
+  }
 }
 
 function mostrarFicha(item) {
@@ -1092,10 +1292,14 @@ function mostrarFicha(item) {
   if (item.apelido && item.apelido.trim() !== "") {
     meta.appendChild(criar("p", "ficha-apelido", "Nome popular: " + item.apelido));
   }
+  if (item._sistemas && item._sistemas.length) {
+    const nomes = item._sistemas.map(k => ((banco.sistemas || []).find(s => s.chave === k) || {}).nome || k);
+    meta.appendChild(criar("p", "ficha-apelido", "Usado nos sistemas: " + nomes.join(", ")));
+  }
 
   const linhaBadges = criar("div", "ficha-badges-linha");
   if (item.sistema && item.sistema.trim() !== "") {
-    linhaBadges.appendChild(criar("span", "ficha-sistema", item.sistema));
+    linhaBadges.appendChild(seloSistema(item.sistema, item.sistema_chave));
   }
 
   const edicaoTexto = edicaoDoSistema(item.sistema_chave);
@@ -1148,13 +1352,26 @@ function mostrarFicha(item) {
   const lista3DUsavel = lista3D.filter(src => tipoSlide3D(src) !== "stl" || viewerOk);
   const imgsAplicada = extrairListaImagens(item.imagem_aplicavel, "");
 
-  trioImagens.appendChild(criarBoxImagem(
+  const boxTecnica = criarBoxImagem(
     "imagem técnica",
     imgsTecnica,
     `Imagem técnica — ${item.codigo}`,
     "fa-regular fa-image",
     "Sem imagem técnica"
-  ));
+  );
+
+  if (boxTecnica.classList.contains("com-midia")) {
+    const btnCopiarImg = criar("button", "btn-copiar-imagem");
+    btnCopiarImg.type = "button";
+    btnCopiarImg.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar imagem';
+    btnCopiarImg.title = "Copiar uma ficha com o desenho e as informações deste item";
+    btnCopiarImg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      copiarFichaComoImagem(btnCopiarImg, item, boxTecnica);
+    });
+    boxTecnica.appendChild(btnCopiarImg);
+  }
+  trioImagens.appendChild(boxTecnica);
 
   if (lista3DUsavel.some(src => tipoSlide3D(src) !== "img")) {
     trioImagens.appendChild(criarBoxMidia3D("imagem 3D", lista3DUsavel, `Imagem 3D — ${item.codigo}`));
@@ -1168,13 +1385,17 @@ function mostrarFicha(item) {
     ));
   }
 
-  trioImagens.appendChild(criarBoxImagem(
-    "imagem aplicada",
-    imgsAplicada,
-    `Imagem aplicada — ${item.codigo}`,
-    "fa-solid fa-layer-group",
-    "Sem imagem aplicada"
-  ));
+  if (imgsAplicada.length) {
+    trioImagens.appendChild(criarBoxImagem(
+      "imagem aplicada",
+      imgsAplicada,
+      `Imagem aplicada — ${item.codigo}`,
+      "fa-solid fa-layer-group",
+      "Sem imagem aplicada"
+    ));
+  } else {
+    trioImagens.classList.add("so-duas");
+  }
 
   ficha.appendChild(trioImagens);
 
@@ -1196,29 +1417,59 @@ function mostrarFicha(item) {
   ficha.appendChild(criar("hr", "ficha-divisor"));
 
   const grade = criar("dl", "ficha-campos");
+  // perfil do Diversos: encaixe e acessórios mudam conforme o sistema escolhido
+  const porSistema = abaAtiva === "perfis" && item._sistemas && item._sistemas.length > 0;
+  let sistemaDaFicha = porSistema ? (item._sistemas.includes(sistemaAtivo) ? sistemaAtivo : item._sistemas[0]) : null;
+  const redesenhos = [];
+
   campos.forEach(({ chave, rotulo, largo, clicavel }) => {
     const tags = clicavel ? codigosDoCampo(item, chave) : null;
-    if (clicavel ? !tags.length : (!item[chave] || String(item[chave]).trim() === "")) return;
+    if (clicavel ? !tags.length && !porSistema : (!item[chave] || String(item[chave]).trim() === "")) return;
     if (chave === "acabamento" && coresItem.length) return; // já aparece nas bolinhas de cor
+    if (porSistema && clicavel && chave === "_acessorios" && !tags.length) return;
 
     const div = criar("div", "ficha-campo" + (largo ? " ficha-campo-largo" : ""));
-    div.appendChild(criar("dt", "", rotulo));
+    div.appendChild(criar("dt", "", porSistema && chave === "encaixe" ? "Onde encaixa" : rotulo));
     const dd = criar("dd", "");
 
     if (clicavel) {
       const wrapTags = criar("div", "ficha-tags");
       const containerPreview = criar("div", "encaixe-preview-container");
 
-      tags.forEach(cod => {
-        const btnTag = criar("button", "ficha-tag-link", cod);
-        btnTag.type = "button";
-        btnTag.title = `Ver prévia de ${cod}`;
-        btnTag.addEventListener("click", () => {
-          mostrarPreviewEncaixe(cod, containerPreview, btnTag, wrapTags);
+      const desenharTags = () => {
+        wrapTags.replaceChildren();
+        containerPreview.replaceChildren();
+        const lista = porSistema ? codigosDoCampo(item, chave, sistemaDaFicha) : tags;
+        if (!lista.length) wrapTags.appendChild(criar("span", "ficha-tags-vazio", "Nada cadastrado nesse sistema."));
+        lista.forEach(cod => {
+          const btnTag = criar("button", "ficha-tag-link", cod);
+          btnTag.type = "button";
+          btnTag.title = `Ver prévia de ${cod}`;
+          btnTag.addEventListener("click", () => {
+            mostrarPreviewEncaixe(cod, containerPreview, btnTag, wrapTags, sistemaDaFicha || sistemaAtivo);
+          });
+          wrapTags.appendChild(btnTag);
         });
-        wrapTags.appendChild(btnTag);
-      });
+      };
 
+      if (porSistema && chave === "encaixe") {
+        const escolha = criar("div", "ficha-sistemas-escolha");
+        item._sistemas.forEach(k => {
+          const sis = (banco.sistemas || []).find(s => s.chave === k);
+          const btn = criar("button", "ficha-sistema-opcao" + (k === sistemaDaFicha ? " ativo" : ""), sis ? sis.nome : k);
+          btn.type = "button";
+          btn.addEventListener("click", () => {
+            sistemaDaFicha = k;
+            escolha.querySelectorAll(".ficha-sistema-opcao").forEach(b => b.classList.toggle("ativo", b === btn));
+            redesenhos.forEach(f => f());
+          });
+          escolha.appendChild(btn);
+        });
+        dd.appendChild(escolha);
+      }
+
+      redesenhos.push(desenharTags);
+      desenharTags();
       dd.appendChild(wrapTags);
       dd.appendChild(containerPreview);
     } else if (String(item[chave]).includes("||")) {
@@ -1312,7 +1563,11 @@ function mostrarLista(itens) {
     info.appendChild(criar("div", "catalogo-item-nome", item.nome || "—"));
     if (item.sistema || item.tipo) {
       const edicao = edicaoDoSistema(item.sistema_chave);
-      const textoSis = item.sistema ? item.sistema + (edicao ? ` · ${edicao}` : "") : item.tipo;
+      let textoSis = item.sistema ? item.sistema + (edicao ? ` · ${edicao}` : "") : item.tipo;
+      if (item._sistemas && item._sistemas.length) {
+        const nomes = item._sistemas.map(k => ((banco.sistemas || []).find(s => s.chave === k) || {}).nome || k);
+        textoSis = `${item.sistema} · ${nomes.slice(0, 2).join(", ")}${nomes.length > 2 ? ` +${nomes.length - 2}` : ""}`;
+      }
       info.appendChild(criar("div", "catalogo-item-sistema", textoSis));
     }
     const qtdCores = abaAtiva === "perfis" ? coresDoItem(item).length : 0;
@@ -1397,14 +1652,38 @@ function marcarSistemaAtivo(chave) {
   document.querySelectorAll(".sistema-btn").forEach(b => {
     b.classList.toggle("sistema-btn-ativo", b.dataset.sistema === chave);
   });
+  atualizarPlaceholder();
+}
+
+function atualizarPlaceholder() {
+  const campo = document.getElementById("busca-catalogo");
+  if (!campo) return;
+  let exemplo = (EXEMPLOS_BUSCA[sistemaAtivo] || {})[abaAtiva];
+  if (!exemplo) {
+    const lista = (banco[abaAtiva] || []).filter(i => itemPertenceAoSistema(i, sistemaAtivo));
+    exemplo = lista.length ? lista[Math.floor(Math.random() * lista.length)].codigo : "";
+  }
+  campo.placeholder = exemplo ? `Ex: ${exemplo}` : "Nome ou código";
+}
+
+// Trocou de sistema: começa do zero e lista tudo do sistema escolhido
+function limparBuscaDoCatalogo() {
+  const campo = document.getElementById("busca-catalogo");
+  const limpar = document.querySelector("#form-catalogo .btn-limpar");
+  Object.values(estadoPorAba).forEach(e => { e.termo = ""; e.itemSelecionado = null; e.jaInteragiu = true; });
+  if (campo) campo.value = "";
+  if (limpar) limpar.hidden = true;
+  atualizarUrlItem(null);
 }
 
 function construirFiltroSistemas() {
   const container = document.getElementById("filtro-sistemas");
   if (!container) return;
 
-  const comItens = new Set([...banco.perfis, ...banco.acessorios].map(i => i.sistema_chave));
+  const comItens = new Set([...banco.perfis, ...banco.acessorios].flatMap(i => [i.sistema_chave, ...(i._sistemas || [])]));
   const opcoes = [{ chave: "todos", nome: "Todos" }, ...(banco.sistemas || [])];
+  // o Todos ganha um filete com as cores de todos os sistemas
+  const coresTodos = [...new Set((banco.sistemas || []).map(s => s.cor).filter(c => c && c !== "#6B7280"))];
 
   container.replaceChildren();
   opcoes.forEach(sis => {
@@ -1412,14 +1691,20 @@ function construirFiltroSistemas() {
     const btn = criar("button", "sistema-btn" + (ativo ? "" : " sistema-btn-desativado"), sis.nome);
     btn.type = "button";
     btn.dataset.sistema = sis.chave;
+    if (sis.cor) btn.style.setProperty("--cor-sistema", sis.cor);
+    if (sis.chave === "todos" && coresTodos.length) {
+      btn.classList.add("sistema-btn-todos");
+      btn.style.setProperty("--cores-todos", coresTodos.join(", "));
+    }
 
     if (!ativo) {
       btn.title = "Sistema em desenvolvimento";
       btn.setAttribute("aria-disabled", "true");
     } else {
       btn.addEventListener("click", () => {
-        estadoPorAba[abaAtiva].jaInteragiu = true;
+        limparBuscaDoCatalogo();
         marcarSistemaAtivo(sis.chave);
+        renderizarHistorico();
         executarFiltro();
       });
     }
@@ -1447,8 +1732,8 @@ function configurarAbas() {
       const novoEstado = estadoPorAba[abaAtiva];
       if (campo) {
         campo.value = novoEstado.termo || "";
-        campo.placeholder = abaAtiva === "perfis" ? "Ex: CHR057" : "Ex: VED030";
       }
+      atualizarPlaceholder();
       if (limpar) {
         limpar.hidden = !(novoEstado.termo && novoEstado.termo.trim() !== "");
       }
@@ -1506,6 +1791,7 @@ function configurarForm() {
   }
 
   if (btnCamera) btnCamera.addEventListener("click", abrirBuscaVisual);
+
 }
 
 // TODO: quando tiver a identificação de verdade, mandar a foto pra API em vez de só mostrar
@@ -1546,7 +1832,7 @@ function abrirBuscaVisual() {
   acoes.append(btnCamera, btnFixar, inputCamera);
 
   const aviso = criar("p", "busca-foto-aviso");
-  aviso.innerHTML = '<i class="fa-solid fa-circle-info"></i> A identificação automática ainda tá sendo feita. ' +
+  aviso.innerHTML = '<i class="fa-solid fa-circle-info"></i> A Busca Visual ainda está sendo feita. ' +
     'Por enquanto dá pra fixar a foto do lado da lista e ir comparando com os desenhos.';
 
   caixa.append(topo, area, acoes, aviso);
@@ -1698,7 +1984,7 @@ function cardTipologia(tip, aberto, rotuloQtd = "perfis") {
   const titulo = criar("span", "tipologia-card-titulo");
   titulo.append(criar("i", "fa-solid fa-chevron-right tipologia-card-seta"), criar("span", "", tip.tipologia));
   const lado = criar("span", "tipologia-card-lado");
-  lado.append(criar("span", "tipologia-card-qtd", `${codigos.length} ${rotuloQtd}`), criar("span", "ficha-sistema", tip.sistema));
+  lado.append(criar("span", "tipologia-card-qtd", `${codigos.length} ${rotuloQtd}`), seloSistema(tip.sistema, tip.sistema_chave));
   topo.append(titulo, lado);
   topo.addEventListener("click", () => {
     const abre = !card.classList.contains("aberto");
@@ -1727,22 +2013,27 @@ function cardTipologia(tip, aberto, rotuloQtd = "perfis") {
   return card;
 }
 
-function pesquisarGeral(texto) {
+function pesquisarGeral(texto, tipologiaExata = "") {
   const caixa = document.getElementById("pesquisa-geral-resultado");
   texto = texto.trim();
   if (!texto) { caixa.hidden = true; return; }
 
   const p = entenderPesquisa(texto);
-  const notas = (banco.tipologias || [])
-    .map(t => ({ t, ...pontuarTipologia(t, p) }))
-    .filter(x => x.pontos > 0);
-  // fica só com quem bateu mais palavras (senão "porta de giro" traz toda porta)
-  const melhor = Math.max(0, ...notas.map(x => x.palavras));
-  const achadas = notas
-    .filter(x => x.palavras === melhor)
-    .sort((a, b) => b.pontos - a.pontos)
-    .slice(0, 8)
-    .map(x => x.t);
+  let achadas;
+  if (tipologiaExata) {
+    achadas = (banco.tipologias || []).filter(t => t.tipologia.trim() === tipologiaExata);
+  } else {
+    const notas = (banco.tipologias || [])
+      .map(t => ({ t, ...pontuarTipologia(t, p) }))
+      .filter(x => x.pontos > 0);
+    // fica só com quem bateu mais palavras (senão "porta de giro" traz toda porta)
+    const melhor = Math.max(0, ...notas.map(x => x.palavras));
+    achadas = notas
+      .filter(x => x.palavras === melhor)
+      .sort((a, b) => b.pontos - a.pontos)
+      .slice(0, 8)
+      .map(x => x.t);
+  }
 
   caixa.replaceChildren();
   const topo = criar("div", "pesquisa-geral-topo");
@@ -1780,7 +2071,7 @@ function pesquisarGeral(texto) {
   if (achadas.length) caixa.appendChild(lista);
 
   // se achou pouca tipologia, mostra também os itens que batem com as palavras
-  if (achadas.length < 2 && p.palavras.length) {
+  if (!tipologiaExata && achadas.length < 2 && p.palavras.length) {
     const soltos = [...banco.perfis, ...banco.acessorios]
       .filter(i => p.palavras.every(w => (i._buscaIndex || "").includes(w)))
       .slice(0, 12);
@@ -1821,15 +2112,54 @@ function configurarPesquisaGeral() {
     });
     sugestoes.appendChild(chip);
   });
+
+  montarMenuTipologias(campo);
 }
 
-// ---- fora de linha (vem da tabela de substituições) ----
+// menu "Tipologias" ao lado do Pesquisar: lista todas, separadas em janelas, portas e o resto
+function montarMenuTipologias(campo) {
+  const caixa = document.getElementById("filtro-tipologia");
+  if (!caixa) return;
+  const botao = caixa.querySelector(".filtro-tipologia-botao");
+  const lista = caixa.querySelector(".filtro-tipologia-lista");
+  const nomes = [...new Set((banco.tipologias || []).map(t => t.tipologia.trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+  const fechar = () => { lista.hidden = true; botao.setAttribute("aria-expanded", "false"); };
+  const grupos = [["Janelas", n => /^janela/i.test(n)], ["Portas", n => /^porta/i.test(n)], ["Outras", () => true]];
+  const usados = new Set();
+  grupos.forEach(([titulo, bate]) => {
+    const doGrupo = nomes.filter(n => !usados.has(n) && bate(n));
+    if (!doGrupo.length) return;
+    lista.appendChild(criar("span", "filtro-tipologia-grupo", titulo));
+    doGrupo.forEach(nome => {
+      usados.add(nome);
+      const qtd = (banco.tipologias || []).filter(t => t.tipologia.trim() === nome).length;
+      const item = criar("button", "filtro-tipologia-item");
+      item.type = "button";
+      item.append(criar("span", "", nome), criar("small", "", qtd > 1 ? `${qtd} sistemas` : ""));
+      item.addEventListener("click", () => {
+        campo.value = nome;
+        fechar();
+        pesquisarGeral(nome, nome);
+      });
+      lista.appendChild(item);
+    });
+  });
+
+  botao.addEventListener("click", () => {
+    const abrir = lista.hidden;
+    lista.hidden = !abrir;
+    botao.setAttribute("aria-expanded", abrir ? "true" : "false");
+  });
+  document.addEventListener("click", e => { if (!caixa.contains(e.target)) fechar(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") fechar(); });
+}
+
 function carregarForaDeLinha() {
   carregarBanco("/api/substituicoes").then(dados => {
     [...(dados.perfis || []), ...(dados.acessorios || [])].forEach(s => {
       const sub = (s.substituicao || "").trim();
       if (!sub || sub === "-") return;
-      // "mantém o mesmo perfil" não é fora de linha
       s.codigo.split("+").forEach(c => { if (normalizar(c) !== normalizar(sub)) foraDeLinha[normalizar(c)] = s; });
     });
     if (estadoPorAba[abaAtiva].jaInteragiu) executarFiltro();
@@ -1856,7 +2186,7 @@ function avisoForaDeLinha(termo) {
   return caixa;
 }
 
-// botão pra ir direto no substituto + link pra aba de Substituições (os detalhes ficam lá)
+// botão pra ir direto no substituto + link pra aba de Substituições
 function botoesSubstituto(s, codigo) {
   const linha = criar("div", "fora-linha-acoes");
   const noCatalogo = cod => [...banco.perfis, ...banco.acessorios].some(i => normalizar(i.codigo) === normalizar(cod));
@@ -1876,7 +2206,7 @@ function botoesSubstituto(s, codigo) {
   return linha;
 }
 
-// ---- peso do lote ----
+// Peso do lote
 function montarPesoLote(item) {
   const kgPorMetro = parseFloat(String(item.peso || "").replace(",", "."));
   if (!kgPorMetro) return null;
@@ -1897,8 +2227,11 @@ function montarPesoLote(item) {
     linha.appendChild(label);
     return input;
   };
+  // comprimento da barra vem do Notion (coluna "barra", em mm); sem valor é a barra padrão de 6 m
+  const barraMm = parseFloat(String(item.barra || "").replace(",", "."));
   const barras = campo("Barras", 1, "1");
-  const metros = campo("Metros por barra", 6, "0.1");
+  const metros = campo("Metros por barra", barraMm ? barraMm / 1000 : 6, "0.1");
+  if (barraMm) caixa.appendChild(criar("span", "peso-lote-aviso", `Vendido somente em barra de ${barraMm.toLocaleString("pt-BR")} mm`));
   const total = criar("strong", "peso-lote-total");
   linha.appendChild(total);
 
@@ -1914,7 +2247,7 @@ function montarPesoLote(item) {
   return caixa;
 }
 
-// ---- comparar lado a lado (até 3) ----
+// Comparar lado a lado (até 3)
 const mesmoItem = (a, b) => a.codigo === b.codigo && a.sistema_chave === b.sistema_chave;
 
 function alternarComparacao(item) {

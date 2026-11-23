@@ -1,4 +1,5 @@
-const versao_atual = '4.1.0';
+const versao_atual = '4.2.0';
+const NOVIDADES_SEMPRE = false;
 
 const API_URL = "https://consulta-perfil-api.onrender.com";
 // const API_URL = "http://127.0.0.1:5000";
@@ -29,6 +30,14 @@ function normalizarBusca(texto) {
 function textoComQuebras(el, texto) {
   String(texto).split("||").forEach((parte, i) => {
     if (i) el.appendChild(document.createElement("br"));
+    el.appendChild(document.createTextNode(parte));
+  });
+}
+
+// Gold -> Chroma
+function textoComSeta(el, texto) {
+  String(texto).split(/\s*->\s*/).forEach((parte, i) => {
+    if (i) el.appendChild(criar("i", "fa-solid fa-arrow-right seta-conversao"));
     el.appendChild(document.createTextNode(parte));
   });
 }
@@ -213,3 +222,115 @@ function iniciarTema() {
     localStorage.setItem("tema_escolhido", html.dataset.tema);
   });
 }
+
+const PAGINAS = [
+  { href: "index.html", rotulo: "Substituições", icone: "fa-repeat" },
+  { href: "catalogo.html", rotulo: "Catálogo Técnico", icone: "fa-book-open" },
+  { href: "modelo-3d.html", rotulo: "Modelos 3D", icone: "fa-cube" },
+];
+
+function montarCabecalho() {
+  const barra = document.querySelector("header.barra[data-titulo]");
+  if (!barra) return;
+  const atual = location.pathname.split("/").pop() || "index.html";
+  const links = comIcone => PAGINAS.map(p =>
+    `<a href="${p.href}" class="nav-link${p.href === atual ? " nav-link-ativo" : ""}"${p.href === atual ? ' aria-current="page"' : ""}>` +
+    `${comIcone ? `<i class="fa-solid ${p.icone}"></i> ` : ""}${p.rotulo}</a>`).join("");
+
+  barra.innerHTML = `
+    <div class="barra-marca">
+      <a href="index.html" class="barra-marca-link">
+        <img class="logo" src="assets/img/logo.png" alt="" width="34" height="34">
+        <span class="barra-marca-titulo">Consulta Perfil</span>
+      </a>
+      <nav class="barra-nav barra-nav-desktop">${links(false)}</nav>
+    </div>
+    <h1 class="barra-titulo"></h1>
+    <div class="barra-info">
+      <time id="data-hora"></time>
+      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
+      <div class="dropdown">
+        <button id="btn-usuario" class="btn-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu do usuário" title="Área do Usuário">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end usuario-dropdown-menu">
+          <div class="usuario-cabecalho">
+            <div class="usuario-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="usuario-dados">
+              <p class="usuario-nome">Perfil Alumínio</p>
+              <p class="usuario-cargo">Moisés Muniz</p>
+            </div>
+          </div>
+          <a href="index.html" class="usuario-item"><i class="fa-solid fa-repeat"></i> Substituições</a>
+          <a href="catalogo.html" class="usuario-item"><i class="fa-solid fa-book-open"></i> Catálogo Técnico</a>
+          <button type="button" class="usuario-item" id="abrir-novidades"><i class="fa-solid fa-bullhorn"></i> Novidades</button>
+          <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item"><i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio</a>
+        </div>
+      </div>
+      <button class="btn-hamburguer" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacaoMobile" aria-controls="menuNavegacaoMobile" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div class="collapse barra-collapse-mobile" id="menuNavegacaoMobile">
+      <nav class="menu-hamburguer-box">${links(true)}</nav>
+    </div>`;
+  barra.querySelector(".barra-titulo").textContent = barra.dataset.titulo;
+  barra.querySelector("#abrir-novidades").addEventListener("click", mostrarNovidades);
+}
+
+montarCabecalho();
+
+// NOVIDADES 
+const NOVIDADES = {
+  data: "23/11/2026",
+  abertura: "Dei uma boa atualizada no Consulta Perfil:",
+  itens: [
+    "Chroma e Gradline já estão com os catálogos novos (Ed. 12 e Ed. 15).",
+    "Perfil que serve em vários sistemas, como o CL-006, agora fica no Diversos e aparece em todos eles. Na ficha dá pra ver onde ele encaixa em cada sistema.",
+    "Embaixo do desenho tem o botão \"Copiar imagem\". Ele monta uma ficha com o desenho e as informações, é só colar no WhatsApp ou no Chat X.",
+    "Os desenhos estão mais nítidos.",
+    "O peso do lote já usa a barra certa (o PS-307, por exemplo é de 6500 mm).",
+    "Na pesquisa tem o botão \"Tipologias\".",
+    "Os modelos 3D foram pro topo do site e cada um tem o link dele pra mandar. Agora quase todos os perfis de todos os sistemas tem o modelo 3D, junto com guarnições e espumas, e o material ficou com cara de alumínio.",
+  ],
+  fechamento: "Se achar alguma coisa estranha por ai, me avisa. Moisés!",
+};
+const CHAVE_NOVIDADES = "novidades_vistas";
+
+function lerGuardado(chave) {
+  try { return localStorage.getItem(chave); } catch { return null; }
+}
+
+function guardar(chave, valor) {
+  try { localStorage.setItem(chave, valor); } catch { /* navegador sem armazenamento: só mostra de novo */ }
+}
+
+function mostrarNovidades() {
+  if (document.querySelector(".novidades-caixa")) return;
+  guardar(CHAVE_NOVIDADES, versao_atual);
+
+  const fundo = criar("div", "confirmacao-modal-backdrop");
+  fundo.setAttribute("aria-label", "O que mudou no Consulta Perfil");
+  const caixa = criar("div", "confirmacao-modal-caixa novidades-caixa");
+
+  caixa.append(
+    criar("h3", "novidades-titulo", "O que mudou"),
+    criar("span", "novidades-versao", `Versão ${versao_atual} · ${NOVIDADES.data}`),
+    criar("p", "novidades-texto", NOVIDADES.abertura),
+  );
+  const lista = criar("ul", "novidades-lista");
+  NOVIDADES.itens.forEach(item => lista.appendChild(criar("li", "", item)));
+  caixa.append(lista, criar("p", "novidades-texto novidades-assinatura", NOVIDADES.fechamento));
+
+  const acoes = criar("div", "confirmacao-modal-acoes");
+  const ok = criar("button", "btn-confirmar-cancelar", "Fechar");
+  ok.type = "button";
+  acoes.appendChild(ok);
+  caixa.appendChild(acoes);
+
+  fundo.appendChild(caixa);
+  const fechar = abrirModal(fundo, "aberto");
+  ok.addEventListener("click", fechar);
+}
+
+if (NOVIDADES_SEMPRE || lerGuardado(CHAVE_NOVIDADES) !== versao_atual) setTimeout(mostrarNovidades, 600);

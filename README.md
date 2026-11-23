@@ -85,14 +85,19 @@ Reúne os perfis e acessórios de 20 sistemas (Chroma, Ecoline 2.5, Ecostick, Gr
 - **Compatibilidade nos dois sentidos:** o catálogo em PDF escreve o encaixe só em um dos perfis (o CHR003 diz que encaixa no CHR120). O site mostra nos dois, e o perfil também lista os acessórios aplicáveis nele.
 - **Imagens:** desenho técnico, modelo 3D e imagem aplicada.
 - **Cores:** mostra as cores em que o perfil existe e pinta o desenho e o 3D com a cor escolhida (a cor é aproximada).
-- **Modelo 3D:** dá para girar e dar zoom. Hoje está em quase todos os perfis do Chroma, nas guarnições e em um calço. A seção sai do desenho do próprio catálogo, na escala dele.
+- **Modelo 3D:** dá para girar e dar zoom. Hoje está em 959 dos 1000 perfis (todos os sistemas menos a Linha 25, que não tem catálogo) e nos acessórios que são extrudados: guarnições e gaxetas com seção desenhada, espumas, calços e tarucéis (1028 modelos na galeria). A seção sai do desenho do próprio catálogo, na escala dele, e é conferida pelo peso; nos Tabelados ela é montada com as medidas A, B e C da tabela. Ferragens e peças injetadas ficam sem 3D, porque o catálogo não tem como fazer elas fiéis. O material imita o acabamento: natural e anodizado com brilho de metal, branco como pintura, preto e bronze com um reflexo suave.
 - **Fora de linha:** se o item saiu de linha, aparece um aviso com botão para ir direto ao substituto.
-- **Peso do lote:** calcula o peso pelo número de barras e pelo comprimento (6 metros por padrão).
+- **Peso do lote:** calcula o peso pelo número de barras e pelo comprimento. Usa a barra de 6 metros, a não ser que o perfil só seja vendido em outro tamanho (coluna `barra` no Notion, ex.: PS-307 em 6500 mm, CL-006 em 3000 mm).
+- **Diversos:** perfil usado em vários sistemas (CL-006, CM-174, VT-957...) fica num registro só. Ele aparece em cada sistema onde é usado, e na ficha o "Onde encaixa" tem um botão por sistema que mostra os perfis que encaixam nele.
+- **Copiar imagem:** embaixo do desenho técnico; monta uma ficha com o desenho e as informações do item pra colar direto no WhatsApp, no Chat X ou no e-mail.
 - **Comparar:** coloca até 3 itens lado a lado.
+- **Busca:** ao trocar de sistema a busca limpa e lista tudo do sistema; dá pra filtrar por tipologia. O exemplo do campo muda com o sistema (pra fixar um exemplo é só mexer em `EXEMPLOS_BUSCA`, no começo do `js/catalogo.js`).
 - **Compartilhar:** o link já leva para o item (`catalogo.html?codigo=CHR120&sistema=chroma&aba=perfis`).
 - **Pesquise do seu jeito:** escreva algo como "janela de correr 4 folhas" e ele mostra as tipologias com os perfis usados.
 
-No menu do usuário tem ainda a galeria **Modelos 3D**, com todos os modelos numa página só. Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só.
+No topo tem ainda os **Modelos 3D**, com todos os 1028 modelos numa página só, separados por sistema e por tipo (perfil ou acessório). Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só (primeiro as cores padrão: natural, anodizado, preto, branco e bronze). Ao abrir um modelo dá para compartilhar o link dele (`modelo-3d.html#CHR057`) ou ir direto para a ficha no Catálogo Técnico.
+
+Quando sai uma versão nova aparece um aviso de **Novidades** com as mudanças, uma vez só (o navegador guarda que a pessoa já viu; dá pra rever no menu do usuário). O texto fica no `NOVIDADES`, no fim do `global.js`, e a versão no `versao_atual`, no começo dele.
 
 O uso na empresa é no computador, mas o layout é responsivo e se ajusta a tablet e celular. Abre no modo claro e tem o botão para o modo escuro (o site lembra a escolha). A data e a hora ficam no topo da tela.
 
@@ -130,8 +135,8 @@ O Render gratuito dorme quando fica sem uso. No primeiro acesso depois disso a A
 consulta-perfil/
 ├── index.html          página de Substituições
 ├── catalogo.html       página do Catálogo Técnico
-├── visualizador-3d.html  galeria com todos os modelos 3D
-├── global.js           funções usadas nas duas páginas
+├── modelo-3d.html      Modelos 3D: todos os modelos numa página
+├── global.js           funções usadas em todas as páginas (cabeçalho, tema, API_URL e o aviso de novidades)
 ├── css/
 │   ├── layout.css      cabeçalho, temas e o que é comum
 │   ├── style.css       Substituições
@@ -197,7 +202,7 @@ As imagens ficam em `assets/img/` e os modelos 3D em `assets/models/<sistema>/`.
 
 ## Versão Atual
 
-**v4.0.0**
+**v4.2.0**
 
 ### Planejado
 

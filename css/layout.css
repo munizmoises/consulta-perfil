@@ -1,84 +1,97 @@
+/* Poppins e Space Grotesk (assets/fonts) só na ficha que o "Copiar imagem" monta; o site usa a fonte do sistema */
 @font-face {
-  font-family: "Fonte do Site";
+  font-family: "Fonte Ficha";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("../assets/fonts/regular.woff2") format("woff2"),
-       url("../assets/fonts/regular.ttf") format("truetype");
+  src: url("../assets/fonts/Poppins_Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Fonte do Site";
-  font-weight: 600;
-  font-style: normal;
+  font-family: "Fonte Ficha";
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
-  src: url("../assets/fonts/semibold.woff2") format("woff2"),
-       url("../assets/fonts/semibold.ttf") format("truetype");
+  src: url("../assets/fonts/Poppins_Italic.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Fonte do Site";
-  font-weight: 700;
+  font-family: "Fonte Ficha";
+  font-weight: 600 700;
   font-style: normal;
   font-display: swap;
-  src: url("../assets/fonts/bold.woff2") format("woff2"),
-       url("../assets/fonts/bold.ttf") format("truetype");
+  src: url("../assets/fonts/Poppins_Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Fonte Codigo";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Fonte Codigo";
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Bold.ttf") format("truetype");
 }
 
 /* Temas */
 :root {
-  --fundo: #f3f5f8;
+  --fundo: #f4f4f5;
   --superficie: #ffffff;
-  --superficie-elevada: #f8fafc;
-  --texto: #16202e;
-  --suave: #5b6778;
-  --borda: #d5dbe4;
+  --superficie-elevada: #fafafa;
+  --texto: #18181b;
+  --suave: #52525b;
+  --borda: #e4e4e7;
   --destaque: #1f5fbf;
-  --destaque-suave: rgba(31, 95, 191, 0.1);
+  --destaque-suave: rgba(31, 95, 191, 0.08);
   --destaque-texto: #ffffff;
   --ok: #1d7a4a;
   --ok-fundo: #e6f4ec;
   --erro: #b3261e;
   --erro-fundo: #fbeae9;
-  --sombra-card: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --sombra-card: none;
   --fundo-desenho: #ffffff;
+  --fonte-mono: ui-monospace, "Cascadia Mono", Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-tema="claro"]) {
-    --fundo: #101318;
-    --superficie: #181c22;
-    --superficie-elevada: #1f242c;
-    --texto: #e4e7ec;
-    --suave: #959eab;
-    --borda: #2b313a;
+    --fundo: #000000;
+    --superficie: #0a0a0a;
+    --superficie-elevada: #141414;
+    --texto: #e5e5e5;
+    --suave: #a1a1aa;
+    --borda: #262626;
     --destaque: #5a9bf2;
-    --destaque-suave: rgba(90, 155, 242, 0.13);
+    --destaque-suave: rgba(90, 155, 242, 0.12);
     --destaque-texto: #ffffff;
     --ok: #5fc796;
     --ok-fundo: #15281f;
     --erro: #f28b82;
     --erro-fundo: #2e1a19;
-    --sombra-card: 0 4px 18px rgba(0, 0, 0, 0.28);
+    --sombra-card: none;
     --fundo-desenho: #ffffff;
   }
 }
 
 :root[data-tema="escuro"] {
-  --fundo: #101318;
-  --superficie: #181c22;
-  --superficie-elevada: #1f242c;
-  --texto: #e4e7ec;
-  --suave: #959eab;
-  --borda: #2b313a;
+  --fundo: #000000;
+  --superficie: #0a0a0a;
+  --superficie-elevada: #141414;
+  --texto: #e5e5e5;
+  --suave: #a1a1aa;
+  --borda: #262626;
   --destaque: #5a9bf2;
-  --destaque-suave: rgba(90, 155, 242, 0.13);
+  --destaque-suave: rgba(90, 155, 242, 0.12);
   --destaque-texto: #ffffff;
   --ok: #5fc796;
   --ok-fundo: #15281f;
   --erro: #f28b82;
   --erro-fundo: #2e1a19;
-  --sombra-card: 0 4px 18px rgba(0, 0, 0, 0.28);
+  --sombra-card: none;
   --fundo-desenho: #ffffff;
 }
 
@@ -106,7 +119,7 @@ body {
   flex-direction: column;
   background-color: var(--fundo);
   color: var(--texto);
-  font-family: "Fonte do Site", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
 }
@@ -119,7 +132,7 @@ body {
 .painel {
   background: var(--superficie);
   border: 1px solid var(--borda);
-  border-radius: 0.85rem;
+  border-radius: 6px;
   padding: 1.5rem;
   box-shadow: var(--sombra-card);
   min-width: 0;
@@ -129,7 +142,7 @@ body {
   padding: 0.7rem 1.1rem;
   font: inherit;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
   transition: filter 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
@@ -166,7 +179,7 @@ body {
   display: inline-block;
   margin: 0 0 0.75rem;
   padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -200,20 +213,20 @@ body {
   color: var(--texto);
   background: var(--superficie-elevada);
   border: 1px solid var(--borda);
-  border-radius: 999px;
+  border-radius: 4px;
   box-shadow: var(--sombra-card);
 }
 
 /* HEADER */
+/* os dois lados com a mesma largura deixam o título no centro da tela (sem passar por cima do menu se faltar espaço) */
 .barra {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
   align-items: center;
   gap: 1rem;
   padding: 0.85rem 1.5rem;
   background: var(--superficie);
   border-bottom: 1px solid var(--borda);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   position: relative;
   z-index: 100;
 }
@@ -226,23 +239,33 @@ body {
   min-width: 0;
 }
 
+/* marca: o favicon + "Consulta Perfil" */
+.barra-marca-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
 .barra-marca-titulo {
   font-weight: 700;
   color: var(--texto);
   white-space: nowrap;
 }
 
-.logo {
-  display: inline-grid;
-  place-items: center;
-  width: 2.15rem;
-  height: 2.15rem;
-  border-radius: 0.5rem;
-  background: var(--destaque);
-  color: var(--destaque-texto);
-  font-weight: 700;
-  font-size: 1rem;
-  flex-shrink: 0;
+/* códigos, pesos e códigos de cor em fonte mono */
+.ficha-codigo, .ficha-tag-link, .cor-codigo, .encaixe-preview-codigo, .catalogo-item-codigo,
+.comparar-codigo, .autocomplete-codigo, .tipologia-perfil strong, .peso-lote-total, .peso-lote-campo input {
+  font-family: var(--fonte-mono);
+  letter-spacing: -0.01em;
 }
 
 .barra-nav {
@@ -256,7 +279,7 @@ body {
   padding: 0.38rem 0.8rem;
   font-size: 0.86rem;
   font-weight: 600;
-  border-radius: 0.45rem;
+  border-radius: 4px;
   text-decoration: none;
   color: var(--suave) !important;
   border: 1px solid transparent;
@@ -277,10 +300,14 @@ body {
 
 .barra-titulo {
   margin: 0;
-  font-size: 1.1rem;
+  min-width: 0;
+  font-size: 1.05rem;
   font-weight: 600;
   text-align: center;
   color: var(--texto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .barra-info {
@@ -306,7 +333,7 @@ body {
   justify-content: center;
   width: 2.2rem;
   height: 2.2rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid var(--borda);
   background: var(--superficie-elevada);
   color: var(--suave);
@@ -333,7 +360,7 @@ body {
 .usuario-dropdown-menu {
   background: var(--superficie) !important;
   border: 1px solid var(--borda) !important;
-  border-radius: 0.75rem !important;
+  border-radius: 6px !important;
   box-shadow: var(--sombra-card) !important;
   padding: 0.85rem !important;
   min-width: 15.5rem !important;
@@ -353,7 +380,7 @@ body {
 .usuario-avatar {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.55rem;
+  border-radius: 5px;
   background: var(--destaque-suave);
   color: var(--destaque);
   display: inline-flex;
@@ -394,7 +421,7 @@ body {
   color: var(--texto);
   background: transparent;
   border: none;
-  border-radius: 0.45rem;
+  border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
@@ -459,7 +486,7 @@ body {
   background: var(--superficie);
   color: var(--texto);
   border: 1px solid var(--borda);
-  border-radius: 0.85rem;
+  border-radius: 6px;
   width: min(400px, 94vw);
   padding: 1.4rem 1.5rem;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
@@ -483,7 +510,7 @@ body {
 .confirmacao-modal-icone {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.55rem;
+  border-radius: 5px;
   background: var(--erro-fundo);
   color: var(--erro);
   display: inline-flex;
@@ -519,7 +546,7 @@ body {
   font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid transparent;
   background: var(--erro);
   color: #ffffff;
@@ -539,7 +566,7 @@ body {
   font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   border: 1px solid var(--borda);
   background: var(--superficie-elevada);
   color: var(--texto);
@@ -550,6 +577,46 @@ body {
 .btn-confirmar-cancelar:hover {
   border-color: var(--destaque);
   color: var(--destaque);
+}
+
+/* aviso de novidades (aparece uma vez por versão) */
+.novidades-caixa {
+  width: min(500px, 94vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  gap: 0.5rem;
+}
+
+.novidades-titulo {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.novidades-versao {
+  margin-top: -0.35rem;
+  font-size: 0.8rem;
+  color: var(--suave);
+}
+
+.novidades-texto {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+}
+
+.novidades-lista {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.novidades-lista li + li {
+  margin-top: 0.3rem;
+}
+
+.novidades-assinatura {
+  color: var(--suave);
 }
 
 .foto-modal {
@@ -574,7 +641,7 @@ body {
   width: min(520px, 94vw);
   height: min(520px, 80vh);
   background: var(--fundo-desenho);
-  border-radius: 1rem;
+  border-radius: 6px;
   padding: 2.5rem 2rem 2.75rem;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
   border: 2px solid var(--borda);
@@ -597,10 +664,9 @@ body {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 0.4rem;
+  border-radius: 4px;
   background: var(--fundo-desenho);
   padding: 0.25rem;
-  image-rendering: -webkit-optimize-contrast;
   transition: opacity 0.15s ease;
 }
 
@@ -630,7 +696,7 @@ body {
   font-size: 0.76rem;
   font-weight: 700;
   padding: 0.2rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 4px;
   letter-spacing: 0.04em;
 }
 
@@ -699,6 +765,7 @@ body {
   .barra-titulo {
     grid-column: 1 / -1;
     grid-row: 2;
+    white-space: normal;
     font-size: 1rem;
     padding-top: 0.35rem;
     border-top: 1px solid var(--borda);
@@ -724,7 +791,7 @@ body {
     padding: 0.65rem;
     background: var(--fundo);
     border: 1px solid var(--borda);
-    border-radius: 0.65rem;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;

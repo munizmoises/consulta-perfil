@@ -20,74 +20,18 @@
 </head>
 
 <body>
-  <header class="barra">
-    <div class="barra-marca">
-      <span class="logo">C</span>
-      <span class="barra-marca-titulo">Consulta Perfil</span>
-      <nav class="barra-nav barra-nav-desktop">
-        <a href="index.html" class="nav-link">Substituições</a>
-        <a href="catalogo.html" class="nav-link nav-link-ativo">Catálogo Técnico</a>
-      </nav>
-    </div>
+  <header class="barra" data-titulo="Catálogo técnico de perfis e acessórios"></header>
 
-    <h1 class="barra-titulo">Catálogo técnico de perfis e acessórios</h1>
-
-    <div class="barra-info">
-      <time id="data-hora"></time>
-      <button id="btn-tema" class="btn-tema" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
-
-      <!-- Aba de Futuro usuário -->
-      <div class="dropdown">
-        <button id="btn-usuario" class="btn-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu do usuário" title="Área do Usuário">
-          <i class="fa-solid fa-user"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-end usuario-dropdown-menu">
-          <div class="usuario-cabecalho">
-            <div class="usuario-avatar"><i class="fa-solid fa-user-tie"></i></div>
-            <div class="usuario-dados">
-              <p class="usuario-nome">Perfil Alumínio</p>
-              <p class="usuario-cargo">Moisés Muniz</p>
-            </div>
-          </div>
-          <a href="index.html" class="usuario-item">
-            <i class="fa-solid fa-repeat"></i> Substituições
-          </a>
-          <a href="catalogo.html" class="usuario-item">
-            <i class="fa-solid fa-book-open"></i> Catálogo Técnico
-          </a>
-          <a href="visualizador-3d.html" class="usuario-item" target="_blank">
-            <i class="fa-solid fa-cube"></i> Modelos 3D
-          </a>
-          <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item">
-            <i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio
-          </a>
-        </div>
-      </div>
-
-      <!-- Botão menu hambúrguer -->
-      <button class="btn-hamburguer" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacaoMobile" aria-controls="menuNavegacaoMobile" aria-expanded="false" aria-label="Abrir menu de navegação">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-
-    <!-- Menu hambúrguer -->
-    <div class="collapse barra-collapse-mobile" id="menuNavegacaoMobile">
-      <nav class="menu-hamburguer-box">
-        <a href="index.html" class="nav-link">
-          <i class="fa-solid fa-repeat"></i> Substituições
-        </a>
-        <a href="catalogo.html" class="nav-link nav-link-ativo">
-          <i class="fa-solid fa-book-open"></i> Catálogo Técnico
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- pesquisa geral: "como fazer uma janela de 4 folhas" -->
   <section class="pesquisa-geral">
     <form id="form-pesquisa-geral" class="pesquisa-geral-form" autocomplete="off">
       <i class="fa-solid fa-magnifying-glass"></i>
       <input id="pesquisa-geral" type="search" placeholder="Pesquise do seu jeito: janela de correr 4 folhas, porta de giro, guarda-corpo..." spellcheck="false">
+      <div class="filtro-tipologia" id="filtro-tipologia">
+        <button type="button" class="filtro-tipologia-botao" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-layer-group"></i> Tipologias <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="filtro-tipologia-lista" hidden></div>
+      </div>
       <button type="submit" class="btn btn-principal">Pesquisar</button>
     </form>
     <div id="pesquisa-geral-sugestoes" class="pesquisa-geral-sugestoes"></div>

@@ -13,13 +13,11 @@ HEADERS = {
     "Content-Type": "application/json",
 }
 
-
 class ErroNotion(Exception):
     pass
 
-
 def consultar(database_id):
-    # o notion manda de 100 em 100, vai pedindo até acabar
+    # O notion manda de 100 em 100
     paginas = []
     cursor = None
     while True:
@@ -27,7 +25,7 @@ def consultar(database_id):
         if cursor:
             payload["start_cursor"] = cursor
         resp = None
-        for tentativa in range(3):  # às vezes o notion demora, tenta de novo antes de desistir
+        for tentativa in range(3):  # O notion demora de vez enquanto, vai tentando de novo antes de desistir
             try:
                 resp = requests.post(f"{URL_API}/databases/{database_id}/query", headers=HEADERS, json=payload, timeout=30)
                 break
@@ -44,13 +42,11 @@ def consultar(database_id):
             return paginas
         cursor = dados.get("next_cursor")
 
-
 def prop(props, nome):
     if nome in props:
         return props[nome]
     nome = nome.lower()
     return next((v for k, v in props.items() if k.lower() == nome), None)
-
 
 def texto(prop_notion):
     if not prop_notion:
@@ -82,14 +78,11 @@ def texto(prop_notion):
         return ", ".join(urls)
     return ""
 
-
 def titulo(props):
     return next((texto(v) for v in props.values() if v.get("type") == "title"), "")
 
-
 def codigos_existentes(database_id):
     return {titulo(p.get("properties", {})).upper() for p in consultar(database_id)} - {""}
-
 
 def coluna_status(database_id):
     resp = requests.get(f"{URL_API}/databases/{database_id}", headers=HEADERS, timeout=20)
@@ -98,7 +91,6 @@ def coluna_status(database_id):
             if nome.lower() == "status":
                 return nome, p.get("type", "status")
     return "status", "status"
-
 
 def valor_status(tipo, nome="Publicado"):
     return {tipo: {"name": nome}}
