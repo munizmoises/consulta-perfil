@@ -15,7 +15,7 @@ const CAMPOS_ACESSORIOS = [
   ["unidade_conversao", "Unidade de conversão"],
 ];
 
-// "Gold -> Chroma" vira dois selos quadrados, cada um com o contorno na cor do catálogo do sistema
+// Selos dos sistemas (Gold -> Chroma)
 function selosDoSistema(el, texto) {
   String(texto).split(/\s*->\s*/).forEach((nome, i) => {
     if (i) el.appendChild(criar("i", "fa-solid fa-arrow-right seta-conversao"));
@@ -26,7 +26,7 @@ function selosDoSistema(el, texto) {
   });
 }
 
-// exemplo do campo de busca: um código qualquer cadastrado (muda a cada vez que abre a página)
+// Exemplo aleatório no campo de busca
 function sortearExemplos() {
   [["codigo-perfis", banco.perfis], ["codigo-acessorios", banco.acessorios]].forEach(([id, lista]) => {
     const campo = document.getElementById(id);
@@ -42,7 +42,7 @@ const SUGESTOES_MAX = 6;
 
 let banco = { perfis: [], acessorios: [] };
 let erroCarregamentoBanco = false;
-let fichasCatalogo = {}; // código normalizado -> onde ele está no catálogo (pros botões de ficha completa)
+let fichasCatalogo = {};
 
 function exibirErroBanco(container) {
   if (!container) return;
@@ -85,7 +85,7 @@ function linkFicha(codigo) {
   const ficha = fichasCatalogo[normalizar(codigo)];
   if (!ficha) return null;
   const link = criar("a", "btn-ficha-completa");
-  link.href = `catalogo.html?codigo=${encodeURIComponent(ficha.codigo)}&sistema=${encodeURIComponent(ficha.sistema)}&aba=${ficha.aba}`;
+  link.href = `${linkPagina("catalogo")}?codigo=${encodeURIComponent(ficha.codigo)}&sistema=${encodeURIComponent(ficha.sistema)}&aba=${ficha.aba}`;
   link.innerHTML = '<i class="fa-solid fa-book-open"></i> ';
   link.appendChild(document.createTextNode(`Ficha completa do ${ficha.codigo}`));
   return link;
@@ -299,7 +299,7 @@ function montarImagens(item) {
   const caminhosOrig = Array.isArray(item.imagem)
     ? item.imagem
     : String(item.imagem || "").split(",");
-  // conjunto com uma foto só (ex: VT1901+SPH001.png): mostra uma imagem com o conjunto todo
+  // Conjunto com uma foto só
   if (codigosOrig.length > 1 && caminhosOrig.filter(c => String(c).trim()).length === 1) {
     codigosOrig = [codigosOrig.join(" + ")];
   }
@@ -380,7 +380,7 @@ function montarItem(item, campos) {
   });
   bloco.appendChild(lista);
 
-  // atalho pra ficha completa no catálogo, tanto do que saiu quanto do que entra no lugar
+  // Botões de ficha completa
   const separar = texto => String(texto || "").split(/[+\/]| ou /i).map(s => s.trim()).filter(s => s && s !== "-");
   const fichas = botoesFicha([...separar(item.codigo), ...separar(item.substituicao)]);
   if (fichas) bloco.appendChild(fichas);
@@ -545,7 +545,7 @@ function configurarPainel(idPainel, chaveLista, campos, chaveHistorico) {
       return;
     }
 
-    // digitou o código novo (o substituto): mostra só quem ele substitui, sem misturar com a busca por texto
+    // Pesquisa pelo código substituto
     const substituidos = listaBase.filter(i => substitutoBateExato(i, codigo));
     if (substituidos.length > 0) {
       gravarHistorico(chaveHistorico, digitado.toUpperCase());
@@ -617,7 +617,7 @@ async function iniciar() {
   configurarPainel("painel-perfis", "perfis", CAMPOS_PERFIS, HISTORICO_KEY_PERFIS);
   configurarPainel("painel-acessorios", "acessorios", CAMPOS_ACESSORIOS, HISTORICO_KEY_ACESSORIOS);
 
-  // veio do catálogo com ?codigo=... -> já pesquisa no painel certo
+  // Pesquisa vinda da URL (?codigo=)
   const codigoUrl = new URLSearchParams(location.search).get("codigo");
   if (codigoUrl && !erroCarregamentoBanco) {
     const norm = normalizar(codigoUrl);

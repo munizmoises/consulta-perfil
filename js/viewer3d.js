@@ -22,10 +22,10 @@
       var m = new THREE.MeshBasicMaterial(); m.color.setScalar(forca);
       var p = new THREE.Mesh(caixa, m); p.position.set(x, y, z); p.scale.set(sx, sy, sz); sala.add(p);
     }
-    painel(2.4, 0, 11.5, 0, 14, 0.2, 8);   // softbox grande em cima
-    painel(1.5, -14.5, 5, 0, 0.2, 8, 18);  // faixa da esquerda
-    painel(1.1, 14.5, 4, -4, 0.2, 6, 10);  // faixa da direita
-    painel(0.7, 0, 4, 14.5, 12, 5, 0.2);   // frente
+    painel(2.4, 0, 11.5, 0, 14, 0.2, 8);
+    painel(1.5, -14.5, 5, 0, 0.2, 8, 18);
+    painel(1.1, 14.5, 4, -4, 0.2, 6, 10);
+    painel(0.7, 0, 4, 14.5, 12, 5, 0.2);
     var pmrem = new THREE.PMREMGenerator(renderer), tex = pmrem.fromScene(sala, 0.04).texture;
     pmrem.dispose(); caixa.dispose();
     return tex;
@@ -70,7 +70,7 @@
     var s = { theta: 0.75, phi: 1.1, r: 120 }, home = { theta: 0.75, phi: 1.1, r: 120 }, auto = true;
     var ptrs = {}, lastDist = 0;
 
-    // Cor da peça: a que veio nas opções, ou a que a pessoa escolher nas bolinhas de cor da ficha
+    // Cor da peça
     var corPadrao = opcoes.cor || "#25272b", corAtual = corPadrao, mat = null, linhas = null;
     function pintar(hex) {
       corAtual = hex || corPadrao;
@@ -89,7 +89,6 @@
       geo.computeBoundingBox();
       var bb = geo.boundingBox, c = new THREE.Vector3(); bb.getCenter(c);
       var size = bb.getSize(new THREE.Vector3()).length();
-      // o brilho vem do reflexo do estúdio (luz espalhada), não de uma luz forte só, então não faz o "sol"
       mat = new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.55 });
       var mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(-c.x, -c.y, -c.z); scene.add(mesh);
@@ -133,9 +132,9 @@
     }
     var ro = new ResizeObserver(ajustar); ro.observe(container); ajustar();
 
-    // o card entra na página depois, então espera ele aparecer; se sumir (trocou de ficha) para tudo
+    // Para quando a ficha fecha
     var jaAnexado = false, espera = 0;
-    // o navegador só aguenta uns 16 contextos WebGL; solta o deste quando a ficha fecha
+    // Libera o WebGL
     function encerrar() { estado.vivo = false; ro.disconnect(); renderer.dispose(); renderer.forceContextLoss(); document.removeEventListener("cor-3d", aoTrocarCor); }
     (function loop() {
       if (!estado.vivo) { encerrar(); return; }

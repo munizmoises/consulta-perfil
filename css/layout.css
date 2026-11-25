@@ -1,4 +1,4 @@
-/* Poppins e Space Grotesk (assets/fonts) só na ficha que o "Copiar imagem" monta; o site usa a fonte do sistema */
+/* Fontes do Copiar imagem */
 @font-face {
   font-family: "Fonte Ficha";
   font-weight: 400;
@@ -105,7 +105,7 @@ html {
   font-size: 100%;
 }
 
-/* em tela grande sobrava tamanho: tudo que está em rem encolhe um pouco */
+/* Tela grande */
 @media (min-width: 62rem) {
   html {
     font-size: 90%;
@@ -199,7 +199,7 @@ body {
   color: var(--suave);
 }
 
-/* aparece quando a API demora (o Render dorme e leva um tempo pra acordar) */
+/* Aviso de carregando */
 .aviso-carregando {
   position: fixed;
   left: 50%;
@@ -218,7 +218,6 @@ body {
 }
 
 /* HEADER */
-/* os dois lados com a mesma largura deixam o título no centro da tela (sem passar por cima do menu se faltar espaço) */
 .barra {
   display: grid;
   grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
@@ -239,7 +238,7 @@ body {
   min-width: 0;
 }
 
-/* marca: o favicon + "Consulta Perfil" */
+/* Logo */
 .barra-marca-link {
   display: flex;
   align-items: center;
@@ -261,7 +260,7 @@ body {
   white-space: nowrap;
 }
 
-/* códigos, pesos e códigos de cor em fonte mono */
+/* Fonte mono */
 .ficha-codigo, .ficha-tag-link, .cor-codigo, .encaixe-preview-codigo, .catalogo-item-codigo,
 .comparar-codigo, .autocomplete-codigo, .tipologia-perfil strong, .peso-lote-total, .peso-lote-campo input {
   font-family: var(--fonte-mono);
@@ -579,7 +578,7 @@ body {
   color: var(--destaque);
 }
 
-/* aviso de novidades (aparece uma vez por versão) */
+/* Novidades */
 .novidades-caixa {
   width: min(500px, 94vw);
   max-height: 88vh;
@@ -651,6 +650,7 @@ body {
   justify-content: center;
   transform: scale(0.96);
   transition: transform 0.18s ease;
+  overflow: hidden;
   user-select: none;
 }
 
@@ -668,6 +668,16 @@ body {
   background: var(--fundo-desenho);
   padding: 0.25rem;
   transition: opacity 0.15s ease;
+  transform-origin: 0 0;
+  cursor: zoom-in;
+}
+
+.foto-ampliada.com-zoom {
+  cursor: grab;
+}
+
+.foto-ampliada.com-zoom:active {
+  cursor: grabbing;
 }
 
 .foto-modal-legenda {

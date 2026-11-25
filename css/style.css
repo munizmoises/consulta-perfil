@@ -4,7 +4,7 @@
   max-width: 83%;
   margin: 0;
   padding: 1.5rem 2rem;
-  padding-left: 5rem; /* distância do conjunto até a borda esquerda */
+  padding-left: 5rem;
   display: grid;
   grid-template-columns: 17.5rem minmax(0, 1fr) minmax(0, 1fr);
   gap: 2rem;
@@ -316,7 +316,7 @@
   color: var(--destaque);
 }
 
-/* atalho pra ficha completa no catálogo */
+/* Ficha completa */
 .fichas-acoes {
   display: flex;
   flex-wrap: wrap;
@@ -551,14 +551,14 @@
   }
 }
 
-/* seta do "Gold -> Chroma" */
+/* Seta do Gold -> Chroma */
 .seta-conversao {
   margin: 0 0.45rem;
   font-size: 0.85em;
   color: var(--suave);
 }
 
-/* selo quadrado do sistema, com o contorno na cor do catálogo */
+/* Selo do sistema */
 .selo-sistema {
   display: inline-block;
   padding: 0.2rem 0.65rem;

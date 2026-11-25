@@ -34,7 +34,7 @@ const CAMPOS_PERFIL = [
   { chave: "wx",         rotulo: "Módulo de Resistência (Wx)" },
   { chave: "wy",         rotulo: "Módulo de Resistência (Wy)" },
   { chave: "observacao", rotulo: "Observação", largo: true },
-  { chave: "encaixe",    rotulo: "Encaixe / Compatibilidade", largo: true, clicavel: true },
+  { chave: "encaixe",    rotulo: "Perfis aplicáveis", largo: true, clicavel: true },
   { chave: "_acessorios", rotulo: "Acessórios aplicáveis", largo: true, clicavel: true },
 ];
 
@@ -86,6 +86,18 @@ function anotarReverso(sistema, alvo, tipo, codigo) {
   if (!compatReversa[chave][tipo].includes(codigo)) compatReversa[chave][tipo].push(codigo);
 }
 
+// Acessório escrito no Encaixe vai pra Acessórios aplicáveis
+let codigosPerfis = new Set(), codigosAcessorios = new Set();
+function ehAcessorio(cod) {
+  const n = normalizar(cod);
+  return codigosAcessorios.has(n) && !codigosPerfis.has(n);
+}
+
+function semRepetir(lista) {
+  const vistos = new Set();
+  return lista.filter(c => { const n = normalizar(c); if (vistos.has(n)) return false; vistos.add(n); return true; });
+}
+
 function codigosDoCampo(item, chave, sistema) {
   const chaves = sistema ? [sistema, "diversos"] : [item.sistema_chave, ...(item._sistemas || [])];
   const reverso = { perfis: [], acessorios: [] };
@@ -93,14 +105,15 @@ function codigosDoCampo(item, chave, sistema) {
     const r = compatReversa[`${k}|${item._codNorm}`];
     if (r) ["perfis", "acessorios"].forEach(t => r[t].forEach(c => { if (!reverso[t].includes(c)) reverso[t].push(c); }));
   });
-  if (chave === "_acessorios") return reverso.acessorios.map(comHifen);
-  const texto = item._encaixePorSistema && chave === "encaixe"
+  const texto = item._encaixePorSistema && (chave === "encaixe" || chave === "_acessorios")
     ? (sistema ? item._encaixePorSistema[sistema] : Object.values(item._encaixePorSistema).join(" / "))
-    : item[chave];
+    : item[chave === "_acessorios" ? "encaixe" : chave];
   const proprios = [...new Set(String(texto || "").split("/").map(s => s.trim()).filter(Boolean))];
+  if (chave === "_acessorios") return semRepetir([...proprios.filter(ehAcessorio), ...reverso.acessorios.map(comHifen)]);
   const vistos = new Set(proprios.flatMap(codigosNoTexto));
   const deVolta = reverso.perfis.filter(c => !vistos.has(normalizar(c)) && normalizar(c) !== item._codNorm);
-  return [...proprios, ...deVolta.map(comHifen)];
+  const lista = [...proprios, ...deVolta.map(comHifen)];
+  return chave === "encaixe" ? lista.filter(c => !ehAcessorio(c)) : lista;
 }
 
 function separarPorSistema(texto) {
@@ -121,6 +134,8 @@ function indexarBancoCatalogo() {
   }
 
   const todosItens = [...(banco.perfis || []), ...(banco.acessorios || [])];
+  codigosPerfis = new Set((banco.perfis || []).map(p => normalizar(p.codigo || "")));
+  codigosAcessorios = new Set((banco.acessorios || []).map(a => normalizar(a.codigo || "")));
   todosItens.forEach(item => {
     item._codNorm = normalizar(item.codigo || "");
     item._codBusca = normalizarBusca(item.codigo || "");
@@ -1150,8 +1165,10 @@ async function montarImagemFicha(item, desenho) {
   const info = [];
   const juntar = lista => lista.filter(Boolean).join(" / ");
   if (perfil) {
-    const encaixe = juntar(codigosDoCampo(item, "encaixe", sistemaDaFicha));
-    if (encaixe) info.push(["Encaixe", encaixe]);
+    const perfisAplicaveis = juntar(codigosDoCampo(item, "encaixe", sistemaDaFicha));
+    if (perfisAplicaveis) info.push(["Perfis aplicáveis", perfisAplicaveis]);
+    const acessoriosAplicaveis = juntar(codigosDoCampo(item, "_acessorios", sistemaDaFicha));
+    if (acessoriosAplicaveis) info.push(["Acessórios aplicáveis", acessoriosAplicaveis]);
     const inercia = [["Jx", item.jx], ["Jy", item.jy], ["Wx", item.wx], ["Wy", item.wy]].filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("   ");
     if (inercia) info.push(["Inércia", inercia]);
     const tipologia = String(item.tipologia || "").split("|").map(t => t.trim()).filter(Boolean).join(", ");
@@ -1209,7 +1226,7 @@ async function montarImagemFicha(item, desenho) {
   ctx.fillText(perfil ? (item.peso || "—") : (item.tipo || "Acessório"), M + 16, y + 20);
   ctx.fillStyle = "#52525b";
   ctx.font = `400 19px ${FONTE}`;
-  // Diversos e Linha 25 não têm catálogo com edição, então não vai o "Última alteração"
+  // Sem edição no Diversos e na Linha 25
   const edicao = ["diversos", "linha_25"].includes(item.sistema_chave) ? "" : edicaoDoSistema(item.sistema_chave);
   const nomesSis = (item._sistemas || []).map(k => ((banco.sistemas || []).find(s => s.chave === k) || {}).nome || k);
   ctx.fillText([item.sistema, nomesSis.length ? `usado em ${nomesSis.join(", ")}` : "", edicao].filter(Boolean).join("  ·  "), xNome + 4, y + 20);
@@ -1417,7 +1434,7 @@ function mostrarFicha(item) {
   ficha.appendChild(criar("hr", "ficha-divisor"));
 
   const grade = criar("dl", "ficha-campos");
-  // perfil do Diversos: encaixe e acessórios mudam conforme o sistema escolhido
+  // Diversos: muda conforme o sistema
   const porSistema = abaAtiva === "perfis" && item._sistemas && item._sistemas.length > 0;
   let sistemaDaFicha = porSistema ? (item._sistemas.includes(sistemaAtivo) ? sistemaAtivo : item._sistemas[0]) : null;
   const redesenhos = [];
@@ -1425,11 +1442,11 @@ function mostrarFicha(item) {
   campos.forEach(({ chave, rotulo, largo, clicavel }) => {
     const tags = clicavel ? codigosDoCampo(item, chave) : null;
     if (clicavel ? !tags.length && !porSistema : (!item[chave] || String(item[chave]).trim() === "")) return;
-    if (chave === "acabamento" && coresItem.length) return; // já aparece nas bolinhas de cor
+    if (chave === "acabamento" && coresItem.length) return;
     if (porSistema && clicavel && chave === "_acessorios" && !tags.length) return;
 
     const div = criar("div", "ficha-campo" + (largo ? " ficha-campo-largo" : ""));
-    div.appendChild(criar("dt", "", porSistema && chave === "encaixe" ? "Onde encaixa" : rotulo));
+    div.appendChild(criar("dt", "", rotulo));
     const dd = criar("dd", "");
 
     if (clicavel) {
@@ -1633,7 +1650,7 @@ function executarFiltro() {
 
     if (exatos.length > 0) {
       filtrados = exatos;
-      // mesmo código em 2 sistemas (ex: CHR-702): mantém o que a pessoa escolheu
+      // Mesmo código em 2 sistemas
       if (!exatos.includes(estadoAtual.itemSelecionado)) estadoAtual.itemSelecionado = exatos[0];
       salvarHistorico(exatos[0].codigo, abaAtiva);
     } else {
@@ -1666,7 +1683,7 @@ function atualizarPlaceholder() {
   campo.placeholder = exemplo ? `Ex: ${exemplo}` : "Nome ou código";
 }
 
-// Trocou de sistema: começa do zero e lista tudo do sistema escolhido
+// Troca de sistema
 function limparBuscaDoCatalogo() {
   const campo = document.getElementById("busca-catalogo");
   const limpar = document.querySelector("#form-catalogo .btn-limpar");
@@ -1682,7 +1699,7 @@ function construirFiltroSistemas() {
 
   const comItens = new Set([...banco.perfis, ...banco.acessorios].flatMap(i => [i.sistema_chave, ...(i._sistemas || [])]));
   const opcoes = [{ chave: "todos", nome: "Todos" }, ...(banco.sistemas || [])];
-  // o Todos ganha um filete com as cores de todos os sistemas
+  // Cores de todos os sistemas no Todos
   const coresTodos = [...new Set((banco.sistemas || []).map(s => s.cor).filter(c => c && c !== "#6B7280"))];
 
   container.replaceChildren();
@@ -1794,7 +1811,7 @@ function configurarForm() {
 
 }
 
-// TODO: quando tiver a identificação de verdade, mandar a foto pra API em vez de só mostrar
+// TODO: mandar a foto pra API
 function abrirBuscaVisual() {
   const modal = criar("div", "foto-modal busca-foto-modal");
   modal.setAttribute("aria-label", "Busca Visual");
@@ -1889,7 +1906,7 @@ function fixarFoto(src) {
   resultado.parentNode.insertBefore(card, resultado);
 }
 
-// ---- pesquisa geral (a ideia é ser tipo um google dos perfis) ----
+// Pesquisa geral
 const NUMEROS = { um: 1, uma: 1, dois: 2, duas: 2, tres: 3, quatro: 4, cinco: 5, seis: 6, oito: 8 };
 const PALAVRAS_VAZIAS = new Set(["como", "fazer", "faco", "montar", "quero", "preciso", "uma", "um", "de", "da", "do", "das", "dos",
   "para", "pra", "com", "e", "o", "a", "os", "as", "na", "no", "em", "perfil", "perfis", "sistema", "linha", "qual", "quais",
@@ -1928,9 +1945,9 @@ function pontuarTipologia(tip, p) {
     if (nome.includes(w)) { pontos += 3; bateu = true; palavras++; }
   });
   if (p.folhas) { pontos += 5; bateu = true; }
-  if (!p.palavras.length && !p.folhas && p.sistemas.length) { pontos += 1; bateu = true; } // só falou o sistema
+  if (!p.palavras.length && !p.folhas && p.sistemas.length) { pontos += 1; bateu = true; }
   if (!bateu) return { pontos: 0, palavras: 0 };
-  // quem não pediu bandeira/peitoril/etc vê primeiro a versão simples
+  // Versão simples primeiro
   DETALHES.forEach(d => { if (nome.includes(d) && !p.palavras.some(w => d.startsWith(w) || w.startsWith(d))) pontos -= 1; });
   return { pontos: Math.max(pontos, 0.5), palavras };
 }
@@ -2026,7 +2043,7 @@ function pesquisarGeral(texto, tipologiaExata = "") {
     const notas = (banco.tipologias || [])
       .map(t => ({ t, ...pontuarTipologia(t, p) }))
       .filter(x => x.pontos > 0);
-    // fica só com quem bateu mais palavras (senão "porta de giro" traz toda porta)
+    // Fica com quem bateu mais palavras
     const melhor = Math.max(0, ...notas.map(x => x.palavras));
     achadas = notas
       .filter(x => x.palavras === melhor)
@@ -2070,7 +2087,7 @@ function pesquisarGeral(texto, tipologiaExata = "") {
   }
   if (achadas.length) caixa.appendChild(lista);
 
-  // se achou pouca tipologia, mostra também os itens que batem com as palavras
+  // Pouca tipologia: mostra os itens também
   if (!tipologiaExata && achadas.length < 2 && p.palavras.length) {
     const soltos = [...banco.perfis, ...banco.acessorios]
       .filter(i => p.palavras.every(w => (i._buscaIndex || "").includes(w)))
@@ -2096,7 +2113,7 @@ function configurarPesquisaGeral() {
     pesquisarGeral(campo.value);
   });
 
-  // sugestões = as tipologias que mais aparecem nos sistemas
+  // Sugestões
   const sugestoes = document.getElementById("pesquisa-geral-sugestoes");
   const contagem = {};
   (banco.tipologias || []).forEach(t => {
@@ -2116,7 +2133,7 @@ function configurarPesquisaGeral() {
   montarMenuTipologias(campo);
 }
 
-// menu "Tipologias" ao lado do Pesquisar: lista todas, separadas em janelas, portas e o resto
+// Menu de tipologias
 function montarMenuTipologias(campo) {
   const caixa = document.getElementById("filtro-tipologia");
   if (!caixa) return;
@@ -2163,7 +2180,7 @@ function carregarForaDeLinha() {
       s.codigo.split("+").forEach(c => { if (normalizar(c) !== normalizar(sub)) foraDeLinha[normalizar(c)] = s; });
     });
     if (estadoPorAba[abaAtiva].jaInteragiu) executarFiltro();
-  }).catch(() => {}); // se a API de substituições falhar o catálogo segue normal
+  }).catch(() => {});
 }
 
 function ehConversao(s) {
@@ -2186,11 +2203,10 @@ function avisoForaDeLinha(termo) {
   return caixa;
 }
 
-// botão pra ir direto no substituto + link pra aba de Substituições
+// Botão do substituto
 function botoesSubstituto(s, codigo) {
   const linha = criar("div", "fora-linha-acoes");
   const noCatalogo = cod => [...banco.perfis, ...banco.acessorios].some(i => normalizar(i.codigo) === normalizar(cod));
-  // só vira botão o substituto que tem ficha no catálogo; os outros ficam no link da Substituição
   s.substituicao.split("+").map(c => c.trim()).filter(noCatalogo).forEach(cod => {
     const btn = criar("button", "btn-ir-substituto");
     btn.type = "button";
@@ -2200,7 +2216,7 @@ function botoesSubstituto(s, codigo) {
     linha.appendChild(btn);
   });
   const link = criar("a", "link-substituicao");
-  link.href = `index.html?codigo=${encodeURIComponent(codigo)}`;
+  link.href = `${linkPagina("")}?codigo=${encodeURIComponent(codigo)}`;
   link.innerHTML = '<i class="fa-solid fa-right-left"></i> Ver na Substituição';
   linha.appendChild(link);
   return linha;
@@ -2227,7 +2243,7 @@ function montarPesoLote(item) {
     linha.appendChild(label);
     return input;
   };
-  // comprimento da barra vem do Notion (coluna "barra", em mm); sem valor é a barra padrão de 6 m
+  // Barra do Notion (mm) ou 6 m
   const barraMm = parseFloat(String(item.barra || "").replace(",", "."));
   const barras = campo("Barras", 1, "1");
   const metros = campo("Metros por barra", barraMm ? barraMm / 1000 : 6, "0.1");

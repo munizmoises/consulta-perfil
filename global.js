@@ -1,8 +1,20 @@
-const versao_atual = '4.2.0';
+const versao_atual = '4.3.0';
 const NOVIDADES_SEMPRE = false;
 
 const API_URL = "https://consulta-perfil-api.onrender.com";
 // const API_URL = "http://127.0.0.1:5000";
+
+// Sem .html no site, com .html rodando local
+const RODANDO_LOCAL = ["localhost", "127.0.0.1", ""].includes(location.hostname);
+
+function linkPagina(nome) {
+  if (RODANDO_LOCAL) return (nome || "index") + ".html";
+  return nome || "./";
+}
+
+if (!RODANDO_LOCAL && location.pathname.endsWith(".html")) {
+  history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
+}
 
 const MSG_ERRO_BANCO = "No momento não foi possível carregar o banco de dados. Recarregue a página e tente novamente.";
 const HISTORICO_MAX = 5;
@@ -26,7 +38,7 @@ function normalizarBusca(texto) {
     .replace(/[\s\-*_.>→]+/g, "");
 }
 
-// troca "||" por quebra de linha
+// Troca "||" por quebra de linha
 function textoComQuebras(el, texto) {
   String(texto).split("||").forEach((parte, i) => {
     if (i) el.appendChild(document.createElement("br"));
@@ -158,11 +170,47 @@ function abrirFoto(imagensOuSrc, alt, indiceInicial = 0) {
   img.className = "foto-ampliada";
   img.src = lista[idxAtual].src;
   img.alt = lista[idxAtual].leg || alt || "";
+  img.draggable = false;
   caixa.append(legendaEl, img);
+
+  // Zoom com a rodinha, arrastar move e duplo clique volta
+  let zoom = 1, x = 0, y = 0, arrasto = null;
+  const aplicarZoom = () => {
+    img.style.transform = zoom === 1 ? "" : `translate(${x}px, ${y}px) scale(${zoom})`;
+    img.classList.toggle("com-zoom", zoom > 1);
+  };
+  const zerarZoom = () => { zoom = 1; x = 0; y = 0; aplicarZoom(); };
+  img.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const r = img.getBoundingClientRect();
+    const px = e.clientX - r.left, py = e.clientY - r.top;
+    const novo = Math.min(8, Math.max(1, zoom * (e.deltaY < 0 ? 1.2 : 1 / 1.2)));
+    x -= px * (novo / zoom - 1);
+    y -= py * (novo / zoom - 1);
+    zoom = novo;
+    if (zoom === 1) { x = 0; y = 0; }
+    aplicarZoom();
+  }, { passive: false });
+  img.addEventListener("pointerdown", (e) => {
+    if (zoom === 1) return;
+    arrasto = { px: e.clientX, py: e.clientY, x, y };
+    img.setPointerCapture(e.pointerId);
+  });
+  img.addEventListener("pointermove", (e) => {
+    if (!arrasto) return;
+    x = arrasto.x + e.clientX - arrasto.px;
+    y = arrasto.y + e.clientY - arrasto.py;
+    aplicarZoom();
+  });
+  const soltar = () => { arrasto = null; };
+  img.addEventListener("pointerup", soltar);
+  img.addEventListener("pointercancel", soltar);
+  img.addEventListener("dblclick", zerarZoom);
 
   let contadorEl = null;
   const irPara = (novoIdx) => {
     idxAtual = (novoIdx + lista.length) % lista.length;
+    zerarZoom();
     img.style.opacity = "0.25";
     setTimeout(() => {
       img.src = lista[idxAtual].src;
@@ -223,23 +271,24 @@ function iniciarTema() {
   });
 }
 
+// Páginas do menu
 const PAGINAS = [
-  { href: "index.html", rotulo: "Substituições", icone: "fa-repeat" },
-  { href: "catalogo.html", rotulo: "Catálogo Técnico", icone: "fa-book-open" },
-  { href: "modelo-3d.html", rotulo: "Modelos 3D", icone: "fa-cube" },
+  { nome: "", rotulo: "Substituições", icone: "fa-repeat" },
+  { nome: "catalogo", rotulo: "Catálogo Técnico", icone: "fa-book-open" },
+  { nome: "modelo3d", rotulo: "Modelos 3D", icone: "fa-cube" },
 ];
 
 function montarCabecalho() {
   const barra = document.querySelector("header.barra[data-titulo]");
   if (!barra) return;
-  const atual = location.pathname.split("/").pop() || "index.html";
+  const atual = location.pathname.split("/").pop().replace(/\.html$/, "").replace(/^index$/, "");
   const links = comIcone => PAGINAS.map(p =>
-    `<a href="${p.href}" class="nav-link${p.href === atual ? " nav-link-ativo" : ""}"${p.href === atual ? ' aria-current="page"' : ""}>` +
+    `<a href="${linkPagina(p.nome)}" class="nav-link${p.nome === atual ? " nav-link-ativo" : ""}"${p.nome === atual ? ' aria-current="page"' : ""}>` +
     `${comIcone ? `<i class="fa-solid ${p.icone}"></i> ` : ""}${p.rotulo}</a>`).join("");
 
   barra.innerHTML = `
     <div class="barra-marca">
-      <a href="index.html" class="barra-marca-link">
+      <a href="${linkPagina("")}" class="barra-marca-link">
         <img class="logo" src="assets/img/logo.png" alt="" width="34" height="34">
         <span class="barra-marca-titulo">Consulta Perfil</span>
       </a>
@@ -261,8 +310,8 @@ function montarCabecalho() {
               <p class="usuario-cargo">Moisés Muniz</p>
             </div>
           </div>
-          <a href="index.html" class="usuario-item"><i class="fa-solid fa-repeat"></i> Substituições</a>
-          <a href="catalogo.html" class="usuario-item"><i class="fa-solid fa-book-open"></i> Catálogo Técnico</a>
+          <a href="${linkPagina("")}" class="usuario-item"><i class="fa-solid fa-repeat"></i> Substituições</a>
+          <a href="${linkPagina("catalogo")}" class="usuario-item"><i class="fa-solid fa-book-open"></i> Catálogo Técnico</a>
           <button type="button" class="usuario-item" id="abrir-novidades"><i class="fa-solid fa-bullhorn"></i> Novidades</button>
           <a href="https://perfilaluminio.com.br/sobre" target="_blank" class="usuario-item"><i class="fa-solid fa-suitcase"></i> Conheça a Perfil Alumínio</a>
         </div>
@@ -282,16 +331,16 @@ montarCabecalho();
 
 // NOVIDADES 
 const NOVIDADES = {
-  data: "23/11/2026",
-  abertura: "Dei uma boa atualizada no Consulta Perfil:",
+  data: "25/11/2026",
+  abertura: "Mais uma atualizada no Consulta Perfil:",
   itens: [
-    "Chroma e Gradline já estão com os catálogos novos (Ed. 12 e Ed. 15).",
-    "Perfil que serve em vários sistemas, como o CL-006, agora fica no Diversos e aparece em todos eles. Na ficha dá pra ver onde ele encaixa em cada sistema.",
-    "Embaixo do desenho tem o botão \"Copiar imagem\". Ele monta uma ficha com o desenho e as informações, é só colar no WhatsApp ou no Chat X.",
-    "Os desenhos estão mais nítidos.",
-    "O peso do lote já usa a barra certa (o PS-307, por exemplo é de 6500 mm).",
-    "Na pesquisa tem o botão \"Tipologias\".",
-    "Os modelos 3D foram pro topo do site e cada um tem o link dele pra mandar. Agora quase todos os perfis de todos os sistemas tem o modelo 3D, junto com guarnições e espumas, e o material ficou com cara de alumínio.",
+    "O site agora tem endereço próprio: consultaperfil.com.br. O catálogo fica em /catalogo e os modelos 3D em /modelo3d.",
+    "Dá pra dar zoom nas imagens com a rodinha do mouse. Arrasta pra mover e dois cliques volta ao normal.",
+    "Na ficha do perfil agora tem \"Perfis aplicáveis\" e \"Acessórios aplicáveis\" separados.",
+    "Mais fotos nos acessórios do Ecoline, Kit Sacada Certa e Vantor 90. Alguns itens têm mais de uma foto, é só passar pelas setas.",
+    "A Linha 25 ganhou os modelos 3D.",
+    "O Vantor 90 ganhou o Veda Porta, o Puxador e o Selante que faltavam.",
+    "O CM-804 (chumbador) agora está nos acessórios, e as medidas dos braços BRA-702 e BRA-703 foram corrigidas.",
   ],
   fechamento: "Se achar alguma coisa estranha por ai, me avisa. Moisés!",
 };
@@ -302,7 +351,7 @@ function lerGuardado(chave) {
 }
 
 function guardar(chave, valor) {
-  try { localStorage.setItem(chave, valor); } catch { /* navegador sem armazenamento: só mostra de novo */ }
+  try { localStorage.setItem(chave, valor); } catch { }
 }
 
 function mostrarNovidades() {

@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+import fotos
 import notion
 from cores import CORES
 from sistemas import COR_OUTRAS_LINHAS, SISTEMAS, achar
@@ -30,7 +31,7 @@ CAMPOS_PERFIL = [
 ]
 CAMPOS_ACESSORIO = [
     "nome", "apelido", "aplicavel", "acabamento", "material", "tipo", "unidade_conversao",
-    "observacao", "sistema", "imagem", "imagem_3d", "imagem_aplicavel",
+    "observacao", "sistema", "imagem", "imagem_3d", "imagem_aplicavel", "sistemas",
 ]
 
 cache_substituicoes = {"perfis": [], "acessorios": []}
@@ -107,11 +108,13 @@ def ler_graficos(database_id, sistema):
 def remontar_catalogo():
     global cache_catalogo
     novo = {"sistemas": [], "cores": CORES, "tipologias": cache_tipologias, "graficos_desempenho": [], "perfis": [], "acessorios": []}
+    indice = fotos.indexar()
+    chave_por_nome = {s["nome"].lower(): k for k, s in SISTEMAS.items()}
     for chave, sis in SISTEMAS.items():
         dados = cache_sistemas[chave]
         novo["sistemas"].append({"chave": chave, "nome": sis["nome"], "edicao": sis["edicao"], "cor": sis["cor"]})
-        novo["perfis"].extend(dados["perfis"])
-        novo["acessorios"].extend(dados["acessorios"])
+        for grupo, tipo in (("perfis", "perfil"), ("acessorios", "acessorio")):
+            novo[grupo].extend(fotos.completar(i, tipo, indice, fotos.pastas_do_item(i, chave_por_nome)) for i in dados[grupo])
         novo["graficos_desempenho"].extend(dados["graficos"])
     cache_catalogo = novo
 
@@ -242,7 +245,7 @@ def sincronizar_por_fora(funcao):
                 erros_sync["sync"] = str(e)
                 print(f"Sync parou com erro: {e}")
             finally:
-                # mesmo com erro libera a API, senão ela fica respondendo "carregando" pra sempre
+                # Libera a API mesmo com erro
                 estado["carregado"] = True
         sync_atual["thread"] = threading.Thread(target=rodar, daemon=True)
         sync_atual["thread"].start()
@@ -277,7 +280,7 @@ CARREGANDO = ({"status": "carregando", "mensagem": "A API acabou de acordar e ai
 def get_substituicoes():
     if not estado["carregado"]:
         return CARREGANDO
-    # junto vai a cor de cada sistema, pro selo do sistema na página de Substituições
+    # Cor de cada sistema pros selos
     sistemas = [{"chave": s["chave"], "nome": s["nome"], "cor": s["cor"]} for s in SISTEMAS.values()]
     sistemas += [{"chave": nome.lower(), "nome": nome, "cor": cor} for nome, cor in COR_OUTRAS_LINHAS.items()]
     return jsonify({**cache_substituicoes, "sistemas": sistemas})
@@ -289,7 +292,7 @@ def get_catalogo():
 
 @app.get("/api/catalogo/codigos")
 def get_codigos_catalogo():
-    # lista pra página de Substituições saber quais códigos tem a ficha no catálogo
+    # Códigos com ficha no catálogo
     if not estado["carregado"]:
         return CARREGANDO
     codigos = [{"codigo": i["codigo"], "sistema": i["sistema_chave"], "aba": aba}
@@ -323,7 +326,7 @@ def sync_sistema(nome):
     return responder_sync(sis["nome"], um_sistema)
 
 def responder_sync(escopo, funcao):
-    # todas as rotas de sync respondem na hora, o andamento aparece em /health
+    # Responde na hora, o andamento fica no /health
     comecou = sincronizar_por_fora(funcao)
     status = "sincronizando" if comecou else "ja_estava_sincronizando"
     return jsonify({"status": status, "escopo": escopo, "acompanhe": "/health", **resumo()}), 202

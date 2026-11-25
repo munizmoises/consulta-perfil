@@ -56,7 +56,7 @@
   filter: brightness(1.08);
 }
 
-/* cada sistema com um filete na cor do catálogo dele */
+/* Cor do sistema */
 .sistema-btn,
 .sistema-btn:hover,
 .sistema-btn-ativo {
@@ -444,7 +444,7 @@
   gap: 0.5rem;
 }
 
-/* selo do sistema com o contorno na cor do catálogo dele */
+/* Selo do sistema */
 .ficha-sistema {
   display: inline-block;
   padding: 0.2rem 0.6rem;
@@ -489,7 +489,7 @@
   filter: brightness(1.08);
 }
 
-/* embaixo da imagem técnica: copia a ficha montada */
+/* Copiar imagem */
 .btn-copiar-imagem {
   display: flex;
   align-items: center;
@@ -519,7 +519,7 @@
   margin: 1.25rem 0 1.5rem;
 }
 
-/* sem imagem aplicada: técnica e 3D dividem meio a meio */
+/* Sem imagem aplicada */
 .ficha-imagens-trio.so-duas {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -741,7 +741,7 @@
   filter: brightness(1.08);
 }
 
-/* perfil do Diversos: escolhe o sistema e aparecem os perfis que encaixam nele */
+/* Diversos: escolha do sistema */
 .ficha-sistemas-escolha {
   display: flex;
   flex-wrap: wrap;
@@ -1224,7 +1224,7 @@
   pointer-events: none;
 }
 
-/* cor clara: inverte o desenho (perfil claro em fundo escuro) e aí pinta */
+/* Cor clara */
 .ficha-box-img.pintado.cor-clara .ficha-box-midia {
   filter: invert(0.9);
 }
@@ -2009,7 +2009,7 @@
   cursor: pointer;
 }
 
-/* barra de rolagem fininha nas listas que rolam pro lado */
+/* Barra de rolagem */
 .sistemas-lista,
 .pesquisa-geral-sugestoes {
   scrollbar-width: thin;
@@ -2065,7 +2065,6 @@
     padding: 0 1rem;
   }
 
-  /* no celular as sugestões ficam numa linha só, rolando pro lado */
   .pesquisa-geral-sugestoes {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -2137,7 +2136,7 @@
   overflow: hidden;
   background: var(--fundo-desenho);
 }
-/* peça clara em fundo branco não aparece, então o palco do 3D escurece */
+/* Peça clara com fundo escuro */
 .ficha-box-3d.pintado.cor-clara .ficha-box-3d-palco,
 .foto-modal-3d-palco.fundo-escuro { background: #20242b; border-radius: 5px; }
 .foto-modal-3d-palco.fundo-escuro .foto-modal-3d-dica { color: #c5ccd6; }
@@ -2161,7 +2160,7 @@
 .foto-modal-3d-link:hover { text-decoration: underline; }
 .foto-modal-3d-erro { padding: 2rem; color: #a02020; text-align: center; }
 
-/* menu de tipologias ao lado do Pesquisar */
+/* Menu de tipologias */
 .filtro-tipologia {
   position: relative;
   flex-shrink: 0;
@@ -2267,7 +2266,7 @@
   border-left-color: var(--cor-sistema, var(--destaque));
 }
 
-/* filete do Todos: as cores de todos os sistemas */
+/* Todos */
 .sistema-btn.sistema-btn-todos {
   position: relative;
 }
@@ -2283,8 +2282,7 @@
   background: linear-gradient(to bottom, var(--cores-todos));
 }
 
-/* cor clara (branco, natural...): a caixa toda fica escura, no mesmo tom do desenho invertido, e o texto claro.
-   Vale pras duas caixas da ficha e pra janela do 3D ampliado, nos dois temas */
+/* Cor clara: caixa escura */
 .ficha-box-img.pintado.cor-clara,
 .ficha-box-3d.pintado.cor-clara,
 .ficha-box-3d.pintado.cor-clara .ficha-box-3d-palco,

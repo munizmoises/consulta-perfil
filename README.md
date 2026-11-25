@@ -2,7 +2,7 @@
 
 Sistema para consultar substituições de perfis de alumínio, acessórios e componentes da [Perfil Alumínio do Brasil.](https://perfilaluminio.com.br) Você digita o código e recebe na hora as opções de substituição. Hoje ele também tem o catálogo técnico dos sistemas da empresa, com ficha, cores e modelo 3D.
 
-**Acesse o site:** [Consulta Perfil](https://munizmoises.github.io/consulta-perfil/)
+**Acesse o site:** [Consulta Perfil](https://consultaperfil.com.br/)
 
 ### Interface do site
 
@@ -47,7 +47,7 @@ Também tem:
 - **Conversão de sistemas:** lista de perfis da linha Gold com o equivalente no Chroma.
 - **Pesquisa inteligente:** sugere resultados enquanto você digita, por código, nome, apelido e observação.
 - **Histórico** das 5 últimas pesquisas e botão para **copiar** o código de substituição.
-- **Link direto:** `index.html?codigo=CHR008` já abre com a pesquisa feita.
+- **Link direto:** `consultaperfil.com.br/?codigo=CHR008` já abre com a pesquisa feita.
 - **Ficha completa:** cada resultado tem botões para abrir no Catálogo Técnico a ficha do código que saiu e do substituto. Se o código não tem substituição mas está no catálogo, aparece o botão para a ficha dele.
 - Digitando o código novo (ex: `VT230`) aparecem só os códigos que ele substitui.
 
@@ -92,10 +92,10 @@ Reúne os perfis e acessórios de 20 sistemas (Chroma, Ecoline 2.5, Ecostick, Gr
 - **Copiar imagem:** embaixo do desenho técnico; monta uma ficha com o desenho e as informações do item pra colar direto no WhatsApp, no Chat X ou no e-mail.
 - **Comparar:** coloca até 3 itens lado a lado.
 - **Busca:** ao trocar de sistema a busca limpa e lista tudo do sistema; dá pra filtrar por tipologia. O exemplo do campo muda com o sistema (pra fixar um exemplo é só mexer em `EXEMPLOS_BUSCA`, no começo do `js/catalogo.js`).
-- **Compartilhar:** o link já leva para o item (`catalogo.html?codigo=CHR120&sistema=chroma&aba=perfis`).
+- **Compartilhar:** o link já leva para o item (`consultaperfil.com.br/catalogo?codigo=CHR120&sistema=chroma&aba=perfis`).
 - **Pesquise do seu jeito:** escreva algo como "janela de correr 4 folhas" e ele mostra as tipologias com os perfis usados.
 
-No topo tem ainda os **Modelos 3D**, com todos os 1028 modelos numa página só, separados por sistema e por tipo (perfil ou acessório). Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só (primeiro as cores padrão: natural, anodizado, preto, branco e bronze). Ao abrir um modelo dá para compartilhar o link dele (`modelo-3d.html#CHR057`) ou ir direto para a ficha no Catálogo Técnico.
+No topo tem ainda os **Modelos 3D**, com todos os 1028 modelos numa página só, separados por sistema e por tipo (perfil ou acessório). Eles abrem em preto e dá para trocar a cor de todos de uma vez ou de um modelo só (primeiro as cores padrão: natural, anodizado, preto, branco e bronze). Ao abrir um modelo dá para compartilhar o link dele (`consultaperfil.com.br/modelo3d#CHR057`) ou ir direto para a ficha no Catálogo Técnico.
 
 Quando sai uma versão nova aparece um aviso de **Novidades** com as mudanças, uma vez só (o navegador guarda que a pessoa já viu; dá pra rever no menu do usuário). O texto fica no `NOVIDADES`, no fim do `global.js`, e a versão no `versao_atual`, no começo dele.
 
@@ -135,7 +135,7 @@ O Render gratuito dorme quando fica sem uso. No primeiro acesso depois disso a A
 consulta-perfil/
 ├── index.html          página de Substituições
 ├── catalogo.html       página do Catálogo Técnico
-├── modelo-3d.html      Modelos 3D: todos os modelos numa página
+├── modelo3d.html       Modelos 3D: todos os modelos numa página
 ├── global.js           funções usadas em todas as páginas (cabeçalho, tema, API_URL e o aviso de novidades)
 ├── css/
 │   ├── layout.css      cabeçalho, temas e o que é comum
@@ -152,6 +152,7 @@ consulta-perfil/
 ├── app.py              API em Flask
 ├── notion.py           leitura das tabelas do Notion
 ├── sistemas.py         lista dos sistemas do catálogo
+├── fotos.py            liga as fotos aos códigos pelo nome do arquivo
 ├── cores.py            tabela de cores
 ├── requirements.txt
 └── README.md
@@ -177,7 +178,7 @@ ID_CAT_GRAFICOS_CHROMA=...
 ID_TIPOLOGIAS=...
 ```
 
-Depois é só abrir o `index.html` com um servidor local (uso o Live Server do VS Code). Para o site usar a API local, troque a linha comentada do `API_URL` no começo do `global.js` (e volte para a do Render antes de publicar).
+Depois é só abrir o `index.html` com um servidor local (uso o Live Server do VS Code). No site no ar os endereços ficam sem o `.html` (`/catalogo`, `/modelo3d`); rodando no computador o `.html` continua, porque o Live Server não acha a página sem ele (quem decide é o `linkPagina`, no `global.js`). Para o site usar a API local, troque a linha comentada do `API_URL` no começo do `global.js` (e volte para a do Render antes de publicar).
 
 ## Rotas da API
 
@@ -200,9 +201,16 @@ Depois é só abrir o `index.html` com um servidor local (uso o Live Server do V
 
 As imagens ficam em `assets/img/` e os modelos 3D em `assets/models/<sistema>/`. No Notion vai só o caminho do arquivo, nos campos `imagem`, `imagem_3d` e `imagem_aplicavel`.
 
+As fotos do catálogo também entram sozinhas pelo nome do arquivo, sem mexer no Notion (`fotos.py`):
+
+- `assets/img/catalog/sistemas/<sistema>/acessorio/normal/BRA-702.webp` é a foto do BRA-702 (`aplicada/` vai pra imagem aplicada e `3D/` pra imagem 3D).
+- Vários códigos separados por `_` (`BRA-702_BRA-703_BRA-704.webp`): a foto vale pra todos eles.
+- `_2`, `_3` no fim (`CL006_2.webp`): é a 2ª, a 3ª foto do item.
+- Perfil do Diversos procura na pasta `diversos/` e nas pastas dos sistemas onde ele é usado.
+
 ## Versão Atual
 
-**v4.2.0**
+**v4.3.0**
 
 ### Planejado
 
