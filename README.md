@@ -211,7 +211,7 @@ As fotos do catálogo também entram sozinhas pelo nome do arquivo, sem mexer no
 
 ## Versão Atual
 
-**v4.3.0**
+**v4.5.0**
 
 ### Planejado
 
