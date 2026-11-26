@@ -1,4 +1,4 @@
-const versao_atual = '4.5.0';
+const versao_atual = '4.5.1';
 const NOVIDADES_SEMPRE = false;
 
 const API_URL = "https://consulta-perfil-api.onrender.com";
