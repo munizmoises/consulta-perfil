@@ -65,11 +65,6 @@ function obterPrimeiraImagem(valor, padraoFallback = NO_PHOTO) {
   return lista.length > 0 ? lista[0] : padraoFallback;
 }
 
-function imagemPadrao(item, pasta) {
-  const sub = pasta === "acessorio" ? "acessorio/normal" : pasta;
-  return `assets/img/catalog/sistemas/${item.sistema_chave || "chroma"}/${sub}/${item.codigo}.webp`;
-}
-
 function ordenarNatural(lista) {
   return (lista || []).sort((a, b) => {
     return (a.codigo || a.id || "").localeCompare(b.codigo || b.id || "", undefined, { numeric: true, sensitivity: 'base' });
@@ -1095,8 +1090,7 @@ function mostrarPreviewEncaixe(codClicado, containerPreview, btnClicado, wrapTag
   }
 
   const { item: alvo, aba } = busca;
-  const pasta = aba === "perfis" ? "perfil" : "acessorio";
-  const imgsAlvo = extrairListaImagens(alvo.imagem, imagemPadrao(alvo, pasta));
+  const imgsAlvo = extrairListaImagens(alvo.imagem);
   const imgSrc = imgsAlvo.length > 0 ? imgsAlvo[0] : NO_PHOTO;
 
   const img = document.createElement("img");
@@ -1385,8 +1379,7 @@ function mostrarFicha(item) {
 
   ficha.appendChild(header);
   const trioImagens = criar("div", "ficha-imagens-trio");
-  const pasta = abaAtiva === "perfis" ? "perfil" : "acessorio";
-  const imgsTecnica = extrairListaImagens(item.imagem, imagemPadrao(item, pasta));
+  const imgsTecnica = extrairListaImagens(item.imagem);
   const lista3D = extrairListaImagens(item.imagem_3d, "");
   if (item.modelo_3d && !lista3D.some(ehStl3D)) lista3D.unshift(item.modelo_3d);
   const viewerOk = typeof Viewer3D !== "undefined" && typeof THREE !== "undefined";
@@ -1586,7 +1579,6 @@ function mostrarLista(itens) {
 
   const listaScroll = criar("div", "catalogo-lista-scroll");
   const fragmento = document.createDocumentFragment();
-  const pasta = abaAtiva === "perfis" ? "perfil" : "acessorio";
 
   itens.forEach((item) => {
     const linha = criar("div", "catalogo-item-lista");
@@ -1597,7 +1589,7 @@ function mostrarLista(itens) {
     thumb.loading = "lazy";
     thumb.decoding = "async";
     thumb.onerror = () => { thumb.src = NO_PHOTO; };
-    thumb.src = obterPrimeiraImagem(item.imagem, imagemPadrao(item, pasta));
+    thumb.src = obterPrimeiraImagem(item.imagem);
     linha.appendChild(thumb);
 
     const info = criar("div", "catalogo-item-info");
@@ -1989,7 +1981,7 @@ function miniaturaPerfil(cod, sistemaChave) {
   btn.title = item ? `Abrir ficha de ${item.codigo}` : `${cod} ainda não está no catálogo`;
 
   const foto = criar("span", "tipologia-perfil-foto");
-  const src = item ? obterPrimeiraImagem(item.imagem, imagemPadrao(item, achado.aba === "perfis" ? "perfil" : "acessorio")) : "";
+  const src = item ? obterPrimeiraImagem(item.imagem) : "";
   if (src && !src.includes("NO-PHOTO")) {
     const img = document.createElement("img");
     img.loading = "lazy";
@@ -2389,7 +2381,7 @@ function abrirComparacao() {
   comparando.forEach(it => {
     const th = document.createElement("th");
     const img = document.createElement("img");
-    img.src = obterPrimeiraImagem(it.imagem, imagemPadrao(it, ehAcessorio(it) ? "acessorio" : "perfil"));
+    img.src = obterPrimeiraImagem(it.imagem);
     img.alt = it.codigo;
     img.onerror = () => { img.src = NO_PHOTO; };
     th.append(img, criar("div", "comparar-codigo", it.codigo));

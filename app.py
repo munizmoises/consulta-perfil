@@ -301,6 +301,37 @@ def get_codigos_catalogo():
                for aba in ("perfis", "acessorios") for i in cache_catalogo[aba]]
     return jsonify(codigos)
 
+def falta(item, campo, final=""):
+    caminhos = [c.strip() for c in str(item.get(campo) or "").split(",") if c.strip() and "NO-PHOTO" not in c]
+    return not any(c.lower().endswith(final) for c in caminhos)
+
+@app.get("/api/pendencias")
+def get_pendencias():
+    # O que ainda falta de foto, 3D e gráfico em cada sistema
+    if not estado["carregado"]:
+        return CARREGANDO
+    sistemas = {}
+    novo = lambda chave: {"nome": SISTEMAS[chave]["nome"] if chave in SISTEMAS else chave, "perfis": {"total": 0, "sem_foto": [], "sem_3d": []},
+                          "acessorios": {"total": 0, "sem_foto": [], "sem_3d": []}, "graficos": {"total": 0, "sem_imagem": []}}
+    for aba in ("perfis", "acessorios"):
+        for i in cache_catalogo[aba]:
+            s = sistemas.setdefault(i["sistema_chave"], novo(i["sistema_chave"]))[aba]
+            s["total"] += 1
+            if falta(i, "imagem"):
+                s["sem_foto"].append(i["codigo"])
+            if falta(i, "imagem_3d", ".stl"):
+                s["sem_3d"].append(i["codigo"])
+    for g in cache_catalogo["graficos_desempenho"]:
+        s = sistemas.setdefault(g["sistema_chave"], novo(g["sistema_chave"]))["graficos"]
+        s["total"] += 1
+        if not fotos.existe(g.get("imagem_grafico") or "x"):
+            s["sem_imagem"].append(g["id"])
+    total = lambda aba, campo: sum(len(s[aba][campo]) for s in sistemas.values())
+    resumo_geral = {"perfis_sem_foto": total("perfis", "sem_foto"), "perfis_sem_3d": total("perfis", "sem_3d"),
+                    "acessorios_sem_foto": total("acessorios", "sem_foto"), "acessorios_sem_3d": total("acessorios", "sem_3d"),
+                    "graficos_sem_imagem": total("graficos", "sem_imagem")}
+    return jsonify({"resumo": resumo_geral, "sistemas": sistemas})
+
 @app.route("/api/sync", methods=["GET", "POST"])
 @app.route("/api/sync/tudo", methods=["GET", "POST"])
 def sync_tudo():

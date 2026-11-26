@@ -44,23 +44,22 @@ def existe(caminho):
     return caminho.startswith("http") or os.path.isfile(os.path.join(RAIZ, caminho))
 
 
-# Junta as fotos achadas com as do Notion, sem repetir
+# Junta as fotos achadas com as do Notion, sem repetir e sem caminho que não existe
 def completar(item, tipo, indice, pastas):
     novo = dict(item)
     codigo = normalizar(item.get("codigo"))
     for campo in ("imagem", "imagem_aplicavel", "imagem_3d"):
-        achadas = sorted({f for pasta in pastas for f in indice.get((pasta, tipo, campo, codigo), [])})
-        if not achadas:
-            continue
         atuais = [c.strip() for c in str(item.get(campo) or "").split(",") if c.strip()]
-        lista = [c for c in atuais if c.lower().endswith(".stl") or existe(c)]
+        lista = [c for c in atuais if existe(c)]
+        achadas = sorted({f for pasta in pastas for f in indice.get((pasta, tipo, campo, codigo), [])})
         # A mesma foto em duas pastas aparece uma vez só
         nomes = {os.path.basename(c).lower() for c in lista}
         for _, _, f in achadas:
             if os.path.basename(f).lower() not in nomes:
                 lista.append(f)
                 nomes.add(os.path.basename(f).lower())
-        novo[campo] = ", ".join(lista)
+        if lista != atuais:
+            novo[campo] = ", ".join(lista)
     return novo
 
 

@@ -187,6 +187,7 @@ Depois é só abrir o `index.html` com um servidor local (uso o Live Server do V
 | `/api/substituicoes` | perfis e acessórios da página de Substituições |
 | `/api/catalogo` | sistemas, cores, tipologias, perfis, acessórios e gráficos do catálogo |
 | `/api/catalogo/codigos` | só a lista de códigos do catálogo (a página de Substituições usa pros botões de ficha completa) |
+| `/api/pendencias` | o que ainda falta de foto, 3D e gráfico em cada sistema |
 | `/api/sync` | lê tudo do Notion de novo (roda por fora e responde na hora) |
 | `/api/sync/substituicoes` | atualiza só as substituições (todas as rotas de sync respondem na hora e rodam por fora) |
 | `/api/sync/catalogo` | atualiza só o catálogo |
