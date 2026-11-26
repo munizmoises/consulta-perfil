@@ -382,11 +382,12 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
 
   if (graficos.length > 1) {
     const seletorWrap = criar("div", "grafico-seletor-opcoes");
-    seletorWrap.appendChild(criar("span", "grafico-seletor-label", `Montagens e combinações disponíveis (${graficos.length}):`));
+    const tituloSeletor = graficos.every(g => g.vista) ? "Gráficos disponíveis" : "Montagens e combinações disponíveis";
+    seletorWrap.appendChild(criar("span", "grafico-seletor-label", `${tituloSeletor} (${graficos.length}):`));
 
     const botoesOpcoes = criar("div", "grafico-seletor-botoes");
     graficos.forEach((g, idx) => {
-      const textoBtn = g.tipologia || g.descricao_montagem || `Opção ${idx + 1}`;
+      const textoBtn = g.vista || g.tipologia || g.descricao_montagem || `Opção ${idx + 1}`;
       const btnOp = criar("button", "btn-opcao-grafico" + (idx === 0 ? " ativo" : ""), textoBtn);
       btnOp.type = "button";
       btnOp.addEventListener("click", () => {
@@ -395,6 +396,7 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
         graficoAtual = g;
         atualizarMidiaGrafico(graficoAtual.imagem_grafico, `Gráfico de Desempenho Estrutural — ${graficoAtual.descricao_montagem || item.codigo}`);
         atualizarResumoMontagem(graficoAtual);
+        atualizarObsMedidas(graficoAtual);
         btnCurvaPerfil.className = "btn btn-principal";
         btnMapaIsopletas.className = "btn btn-secundario";
       });
@@ -465,6 +467,25 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
   const palcoImg = criar("div", "modal-palco-img");
   colGrafico.appendChild(palcoImg);
 
+  // Desenho das medidas H e L
+  const obsMedidas = criar("div", "grafico-obs-medidas");
+  colGrafico.appendChild(obsMedidas);
+
+  function atualizarObsMedidas(g) {
+    obsMedidas.replaceChildren();
+    obsMedidas.hidden = !g || !g.imagem_medidas;
+    if (obsMedidas.hidden) return;
+    const desenho = document.createElement("img");
+    desenho.src = g.imagem_medidas;
+    desenho.alt = `Medidas H e L — ${item.codigo}`;
+    desenho.title = "Clique para ampliar a imagem";
+    desenho.addEventListener("click", () => abrirFoto(desenho.src, desenho.alt));
+    desenho.onerror = () => { obsMedidas.hidden = true; };
+    const texto = criar("p", "");
+    texto.innerHTML = "<strong>Observação:</strong> as medidas <strong>H</strong> e <strong>L</strong> deste gráfico são as indicadas no desenho.";
+    obsMedidas.append(desenho, texto);
+  }
+
   function atualizarMidiaGrafico(src, altText) {
     palcoImg.replaceChildren();
     const imgGrafico = document.createElement("img");
@@ -482,6 +503,7 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
   }
 
   atualizarResumoMontagem(graficoAtual);
+  atualizarObsMedidas(graficoAtual);
   atualizarMidiaGrafico(graficoAtual.imagem_grafico, `Gráfico de Desempenho Estrutural — ${item.codigo}`);
 
   const barraBotoesGrafico = criar("div", "modal-grafico-acoes");
@@ -492,12 +514,14 @@ function abrirModalGraficoEstrutural(item, graficosDisponiveis) {
 
   btnCurvaPerfil.addEventListener("click", () => {
     atualizarMidiaGrafico(graficoAtual.imagem_grafico, `Gráfico de Desempenho Estrutural — ${item.codigo}`);
+    atualizarObsMedidas(graficoAtual);
     btnCurvaPerfil.className = "btn btn-principal";
     btnMapaIsopletas.className = "btn btn-secundario";
   });
 
   btnMapaIsopletas.addEventListener("click", () => {
     atualizarMidiaGrafico(MAPA_ISOPLETAS_IMG, "Mapa das Regiões de Vento (Isopletas - ABNT NBR 6123)");
+    atualizarObsMedidas(null);
     btnMapaIsopletas.className = "btn btn-principal";
     btnCurvaPerfil.className = "btn btn-secundario";
   });
@@ -1424,7 +1448,8 @@ function mostrarFicha(item) {
     const secaoGrafico = criar("div", "ficha-secao-grafico");
     const btnGrafico = criar("button", "btn-ver-grafico");
     btnGrafico.type = "button";
-    const qtdBadge = graficosDoItem.length > 1 ? ` (${graficosDoItem.length} montagens)` : "";
+    const tipoBadge = graficosDoItem.every(g => g.vista) ? "gráficos" : "montagens";
+    const qtdBadge = graficosDoItem.length > 1 ? ` (${graficosDoItem.length} ${tipoBadge})` : "";
     btnGrafico.innerHTML = `<i class="fa-solid fa-chart-line"></i> Visualizar Gráfico de Desempenho e Regiões de Vento (BR)${qtdBadge}`;
     btnGrafico.addEventListener("click", () => abrirModalGraficoEstrutural(item, graficosDoItem));
     secaoGrafico.appendChild(btnGrafico);

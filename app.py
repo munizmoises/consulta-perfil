@@ -109,13 +109,15 @@ def remontar_catalogo():
     global cache_catalogo
     novo = {"sistemas": [], "cores": CORES, "tipologias": cache_tipologias, "graficos_desempenho": [], "perfis": [], "acessorios": []}
     indice = fotos.indexar()
+    indice_graficos = fotos.indexar_graficos()
     chave_por_nome = {s["nome"].lower(): k for k, s in SISTEMAS.items()}
     for chave, sis in SISTEMAS.items():
         dados = cache_sistemas[chave]
         novo["sistemas"].append({"chave": chave, "nome": sis["nome"], "edicao": sis["edicao"], "cor": sis["cor"]})
         for grupo, tipo in (("perfis", "perfil"), ("acessorios", "acessorio")):
             novo[grupo].extend(fotos.completar(i, tipo, indice, fotos.pastas_do_item(i, chave_por_nome)) for i in dados[grupo])
-        novo["graficos_desempenho"].extend(dados["graficos"])
+        for g in dados["graficos"]:
+            novo["graficos_desempenho"].extend(fotos.completar_graficos(g, indice_graficos))
     cache_catalogo = novo
 
 def sincronizar_substituicoes():

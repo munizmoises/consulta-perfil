@@ -207,6 +207,7 @@ As fotos do catálogo também entram sozinhas pelo nome do arquivo, sem mexer no
 - Vários códigos separados por `_` (`BRA-702_BRA-703_BRA-704.webp`): a foto vale pra todos eles.
 - `_2`, `_3` no fim (`CL006_2.webp`): é a 2ª, a 3ª foto do item.
 - Perfil do Diversos procura na pasta `diversos/` e nas pastas dos sistemas onde ele é usado.
+- Gráficos em `<sistema>/graficos/` pelo código ou combinação (`FCV-001.webp`, `VT798_VT781.webp`): `_2` é o segundo gráfico do perfil, `_H` e `_L` são os desenhos das medidas que aparecem como observação embaixo do gráfico.
 
 ## Versão Atual
 

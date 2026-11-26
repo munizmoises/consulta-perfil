@@ -1099,6 +1099,37 @@
   color: #64748b;
 }
 
+.grafico-obs-medidas {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+  padding: 0.6rem 0.8rem;
+}
+
+.grafico-obs-medidas[hidden] {
+  display: none;
+}
+
+.grafico-obs-medidas img {
+  height: 110px;
+  max-width: 40%;
+  object-fit: contain;
+  background: var(--fundo-desenho);
+  border-radius: 4px;
+  padding: 0.3rem;
+  cursor: zoom-in;
+}
+
+.grafico-obs-medidas p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--texto);
+}
+
 .modal-grafico-acoes {
   display: flex;
   flex-wrap: wrap;
@@ -2051,7 +2082,7 @@
   }
 
   .modal-estrutural-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

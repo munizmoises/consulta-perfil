@@ -64,6 +64,55 @@ def completar(item, tipo, indice, pastas):
     return novo
 
 
+# Gráficos: FCV-001.webp é o gráfico, _2 o segundo, _H e _L os desenhos das medidas
+def indexar_graficos():
+    indice = {}
+    if not os.path.isdir(PASTA):
+        return indice
+    for sistema in os.listdir(PASTA):
+        pasta = os.path.join(PASTA, sistema, "graficos")
+        if not os.path.isdir(pasta):
+            continue
+        for nome in os.listdir(pasta):
+            base, ext = os.path.splitext(nome)
+            if ext.lower() not in EXTENSOES:
+                continue
+            partes = [p for p in base.split("_") if p]
+            sufixo = "1"
+            if len(partes) > 1 and re.fullmatch(r"\d{1,2}|[HL]", partes[-1].upper()):
+                sufixo = partes.pop().upper()
+            chave = (sistema, juntar(partes))
+            indice.setdefault(chave, {})[sufixo] = f"assets/img/catalog/sistemas/{sistema}/graficos/{nome}"
+    return indice
+
+
+def juntar(codigos):
+    return "_".join(normalizar(c) for c in codigos)
+
+
+def completar_graficos(grafico, indice):
+    sistema = grafico.get("sistema_chave", "")
+    nome = os.path.splitext(os.path.basename(grafico.get("imagem_grafico") or ""))[0]
+    achados = indice.get((sistema, juntar(nome.split("_")))) or indice.get((sistema, juntar(grafico.get("composicao_perfis") or [])))
+    if not achados:
+        return [grafico]
+    novo = dict(grafico)
+    if "1" in achados and not existe(novo.get("imagem_grafico") or ""):
+        novo["imagem_grafico"] = achados["1"]
+    extras = sorted((s for s in achados if s.isdigit() and s != "1"), key=int)
+    if "H" in achados:
+        novo["imagem_medidas"] = achados["H"]
+    if extras:
+        novo["vista"] = "Altura (H)" if "H" in achados else "Gráfico 1"
+    lista = [novo]
+    for s in extras:
+        lateral = s == "2" and "L" in achados
+        lista.append(dict(novo, id=f"{novo['id']}-{s}", imagem_grafico=achados[s],
+                          imagem_medidas=achados["L"] if lateral else "",
+                          vista="Lateral (L)" if lateral else f"Gráfico {s}"))
+    return lista
+
+
 def pastas_do_item(item, chave_por_nome):
     pastas = [item.get("sistema_chave", "")]
     if pastas[0] == "diversos":
